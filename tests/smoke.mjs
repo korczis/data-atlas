@@ -7,7 +7,7 @@ import { loadPage, loadData, checker, remoteResources } from './helpers.mjs';
 
 const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
-const { document: d, state, errors, rows } = await loadPage();
+const { document: d, state, errors, tableRows, cardRows } = await loadPage();
 const { catalog, longlist } = loadData();
 const check = checker();
 
@@ -16,7 +16,8 @@ const cats = new Set(catalog.map(r => r['Kategorie'])).size;
 
 check('Alpine se načetl', !!state);
 check('nadpis', d.querySelector('h1')?.textContent.trim().replace(/\s+/g, ' ') === 'Geodata Atlas');
-check('katalog vykreslen celý', rows(0) === catalog.length, `${rows(0)} z ${catalog.length}`);
+check('tabulka vykreslila celý katalog', tableRows() === catalog.length, `${tableRows()} z ${catalog.length}`);
+check('karty vykreslily totéž', cardRows() === catalog.length, `${cardRows()} karet`);
 check('hlavička souhlasí s daty',
       [...d.querySelectorAll('dd')].map(e => e.textContent.trim()).join('|')
         === [catalog.length, inData, longlist.length, cats].join('|'));

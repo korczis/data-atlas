@@ -25,9 +25,11 @@ jobs:
       - name: Build a testy
         run: |
           python3 tools/build_page.py
+          python3 tools/lint_ui.py
           node tests/smoke.mjs
           node tests/interact.mjs
           node tests/meta.mjs
+          node tests/flowbite.mjs
 
       - name: Dokumentace je aktuální
         run: |

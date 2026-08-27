@@ -16,7 +16,9 @@ help:
     @echo "  just build        postaví dist/index.html z data/*.csv"
     @echo "  just test         ověří, že stránka odpovídá datům"
     @echo "  just serve        lokální náhled na http://localhost:8000"
-    @echo "  just check        build + test, tohle běží i v CI"
+    @echo "  just lint         konvence Flowbite + Alpine (docs/UI-RULES.md)"
+    @echo "  just responsive   měření přetečení v headless Chrome"
+    @echo "  just check        build + lint + test + responsive"
     @echo "  just assets       přegeneruje ikony a OG kartu"
     @echo
     @echo "Data (jen lokálně, potřebuje Chrome profil na disku):"
@@ -48,7 +50,7 @@ assets:
 
 # Build + testy — stejné, co běží v CI
 [group('build')]
-check: build test
+check: build lint test responsive
 
 # ── testy ─────────────────────────────────────────────────────────────────────
 
@@ -58,6 +60,17 @@ test:
     node tests/smoke.mjs
     node tests/interact.mjs
     node tests/meta.mjs
+    node tests/flowbite.mjs
+
+# Vynutí konvence Flowbite + Alpine nad src/template.html
+[group('test')]
+lint:
+    python3 tools/lint_ui.py
+
+# Změří vodorovné přetečení v headless Chrome na 320–1536 px
+[group('test')]
+responsive:
+    python3 tools/check_responsive.py
 
 # Lokální náhled postavené stránky
 [group('test')]

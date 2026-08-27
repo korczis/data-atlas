@@ -7,8 +7,8 @@
   [x-cloak] { display: none !important; }
   .scroll-x::-webkit-scrollbar { height: 8px; }
   .scroll-x::-webkit-scrollbar-thumb { background: rgba(107,114,128,.4); border-radius: 4px; }
-  /* viditelný focus pro klávesnici — Flowbite ho dává jen inputům */
-  button:focus-visible, a:focus-visible, input:focus-visible {
+  /* Flowbite dává focus ring jen formulářovým prvkům; klávesnice potřebuje víc */
+  button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible {
     outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px;
   }
   @media (prefers-color-scheme: dark) {
@@ -22,241 +22,242 @@
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 </style>
 
-<div x-data="atlas()" x-cloak class="font-sans antialiased text-gray-900 dark:text-gray-100">
+<div x-data="atlas" x-cloak
+     @keydown.slash.window.prevent="$refs.search.focus()"
+     @keydown.escape.window="reset()"
+     class="font-sans antialiased text-gray-900 dark:text-gray-100">
 
-  <!-- ══ HEADER ══ -->
+  <!-- ══════════ HLAVIČKA ══════════ -->
   <header class="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap items-start justify-between gap-6">
-        <div class="min-w-0">
-          <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Geodata&nbsp;Atlas
-          </h1>
-          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            GIS, geodata a prostorová analytika — sestaveno z Chrome záložek a historie,
-            doplněno o referenční zdroje.
-          </p>
-        </div>
-        <dl class="flex flex-wrap gap-x-8 gap-y-3">
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Katalog</dt>
-            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="catalog.length"></dd>
-          </div>
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Z tvých dat</dt>
-            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400" x-text="inData"></dd>
-          </div>
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Long list</dt>
-            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="longlist.length"></dd>
-          </div>
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorií</dt>
-            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="categories.length"></dd>
-          </div>
-        </dl>
-      </div>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
+        Geodata&nbsp;Atlas
+      </h1>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+        GIS, geodata a prostorová analytika — sestaveno z Chrome záložek a historie,
+        doplněno o referenční zdroje.
+      </p>
 
-      <!-- provenance -->
-      <div class="mt-6 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">Chrome / Default</span>
-        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
-        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
-        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
+      <!-- 2×2 na mobilu, řada od sm: nahoru -->
+      <dl class="mt-5 grid grid-cols-2 gap-x-6 gap-y-4 sm:flex sm:flex-wrap sm:gap-x-10">
+        <template x-for="s in headline" :key="s.label">
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400" x-text="s.label"></dt>
+            <dd class="mt-0.5 text-xl font-bold tabular-nums sm:text-2xl"
+                :class="s.accent ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white'"
+                x-text="s.value"></dd>
+          </div>
+        </template>
+      </dl>
+
+      <div class="mt-5 flex flex-wrap gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">Chrome / Default</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
       </div>
     </div>
   </header>
 
-  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+  <main class="mx-auto max-w-7xl px-4 pb-24 pt-5 sm:px-6 lg:px-8 lg:pb-10">
 
-    <!-- ══ TABS ══ -->
-    <div class="border-b border-gray-200 dark:border-gray-700">
+    <!-- ══════════ ZÁLOŽKY (od sm: nahoru; na mobilu je dole bottom nav) ══════════ -->
+    <div class="hidden border-b border-gray-200 dark:border-gray-700 sm:block">
       <ul class="-mb-px flex flex-wrap gap-1 text-sm font-medium">
-        <li>
-          <button type="button" @click="view='catalog'" :aria-selected="view==='catalog'"
-            :class="view==='catalog'
-              ? 'inline-block rounded-t-lg border-b-2 border-blue-600 px-4 py-3 text-blue-600 dark:border-blue-500 dark:text-blue-400'
-              : 'inline-block rounded-t-lg border-b-2 border-transparent px-4 py-3 text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'">
-            Kurátorovaný katalog
-            <span class="ml-1.5 rounded bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300" x-text="catalog.length"></span>
-          </button>
-        </li>
-        <li>
-          <button type="button" @click="view='longlist'" :aria-selected="view==='longlist'"
-            :class="view==='longlist'
-              ? 'inline-block rounded-t-lg border-b-2 border-blue-600 px-4 py-3 text-blue-600 dark:border-blue-500 dark:text-blue-400'
-              : 'inline-block rounded-t-lg border-b-2 border-transparent px-4 py-3 text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'">
-            Long list kandidátů
-            <span class="ml-1.5 rounded bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300" x-text="longlist.length"></span>
-          </button>
-        </li>
+        <template x-for="v in views" :key="v.id">
+          <li>
+            <button type="button" @click="view = v.id"
+              :aria-pressed="view === v.id ? 'true' : 'false'"
+              :class="view === v.id
+                ? 'border-blue-600 text-blue-600 dark:border-blue-500 dark:text-blue-400'
+                : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'"
+              class="inline-block rounded-t-lg border-b-2 px-4 py-3">
+              <span x-text="v.label"></span>
+              <span class="ms-1.5 rounded bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300"
+                    x-text="v.count"></span>
+            </button>
+          </li>
+        </template>
       </ul>
     </div>
 
-    <!-- ══ CONTROLS ══ -->
-    <div class="mt-5 flex flex-col gap-4">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div class="relative flex-1">
-          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
+    <!-- ══════════ NÁSTROJOVÁ LIŠTA ══════════ -->
+    <div class="mt-4 flex flex-col gap-3">
+      <div class="flex gap-2">
+        <div class="relative grow">
+          <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <svg class="h-4 w-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
               <circle cx="9" cy="9" r="6"/><path d="M14 14l4 4" stroke-linecap="round"/>
             </svg>
           </div>
-          <input type="search" x-model="q" placeholder="Hledat web, doménu, popis…"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500">
+          <label for="search" class="sr-only">Hledat v katalogu</label>
+          <input id="search" type="search" x-ref="search" x-model.debounce.200ms="q"
+            placeholder="Hledat web, doménu, popis…"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 pe-16 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+          <div class="pointer-events-none absolute inset-y-0 end-0 hidden items-center pe-3 lg:flex">
+            <kbd class="rounded-lg border border-gray-200 bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100">/</kbd>
+          </div>
         </div>
 
-        <div class="inline-flex rounded-lg shadow-sm" role="group">
-          <template x-for="(s,i) in sourceFilters" :key="s.k">
-            <button type="button" @click="source=s.k" :aria-pressed="source===s.k"
+        <!-- Filtry v šuplíku — jen do lg:, výš jsou rozbalené na stránce -->
+        <button type="button" class="relative shrink-0 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 lg:hidden"
+          data-drawer-target="filters" data-drawer-show="filters" data-drawer-placement="right" aria-controls="filters">
+          <svg class="me-1.5 inline h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 5h14M6 10h8M9 15h2" stroke-linecap="round"/>
+          </svg>
+          Filtry
+          <span x-show="activeFilters" x-transition
+                class="absolute -end-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1.5 text-xs font-bold text-white"
+                x-text="activeFilters"></span>
+        </button>
+      </div>
+
+      <!-- Filtry rozbalené na širokém displeji -->
+      <div class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-3">
+        <div class="inline-flex rounded-lg shadow-sm" role="group" aria-label="Filtr podle zdroje">
+          <template x-for="(s, i) in sourceFilters" :key="s.k">
+            <button type="button" @click="source = s.k" :aria-pressed="source === s.k ? 'true' : 'false'"
               :class="[
-                source===s.k ? 'z-10 bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:border-blue-600'
-                             : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700',
-                i===0 ? 'rounded-l-lg' : '',
-                i===sourceFilters.length-1 ? 'rounded-r-lg border-l-0' : 'border-l-0',
-                i===0 ? '' : ''
+                source === s.k
+                  ? 'z-10 border-blue-600 bg-blue-600 text-white'
+                  : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
+                i === 0 ? 'rounded-s-lg border' : 'border-y border-e',
+                i === sourceFilters.length - 1 ? 'rounded-e-lg' : ''
               ]"
-              class="border px-4 py-2.5 text-sm font-medium first:border-l"
-              x-text="s.label"></button>
+              class="px-4 py-2.5 text-sm font-medium" x-text="s.label"></button>
           </template>
         </div>
 
         <button type="button" @click="copyCsv()"
           class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
+          <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
             <rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 4H5a2 2 0 00-2 2v8" stroke-linecap="round"/>
           </svg>
-          <span x-text="copied ? 'Zkopírováno' : 'Kopírovat CSV'"></span>
+          Kopírovat CSV
         </button>
       </div>
 
-      <!-- category pills -->
-      <div x-show="view==='catalog'" class="scroll-x -mx-1 overflow-x-auto px-1 pb-1">
+      <!-- Kategorie: vodorovný pás, na mobilu scrollovatelný -->
+      <div x-show="view === 'catalog'" class="scroll-x -mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
         <div class="flex gap-2">
-          <button type="button" @click="cat=''" :aria-pressed="cat===''"
-            :class="cat==='' ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
-            class="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold">
-            Vše
-          </button>
+          <button type="button" @click="cat = ''" :aria-pressed="cat === '' ? 'true' : 'false'"
+            :class="cat === '' ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
+            class="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold">Vše</button>
           <template x-for="c in categories" :key="c">
-            <button type="button" @click="cat = (cat===c ? '' : c)" :aria-pressed="cat===c"
-              :class="cat===c ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
+            <button type="button" @click="cat = (cat === c ? '' : c)" :aria-pressed="cat === c ? 'true' : 'false'"
+              :class="cat === c ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
               class="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold"
-              x-text="c.replace(/^\d+\.\s*/,'')"></button>
+              x-text="shortCat(c)"></button>
           </template>
         </div>
       </div>
 
-      <p class="text-xs text-gray-500 dark:text-gray-400">
-        <span class="font-semibold tabular-nums" x-text="filtered.length"></span>
-        <span x-text="filtered.length===1 ? ' položka' : (filtered.length<5 ? ' položky' : ' položek')"></span>
-        <span x-show="q || cat || source"> · filtrováno</span>
-      </p>
-    </div>
-
-    <!-- ══ CATALOG TABLE ══ -->
-    <div x-show="view==='catalog'" class="mt-4 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-      <div class="scroll-x overflow-x-auto">
-        <table class="w-full min-w-[52rem] text-left text-sm">
-          <thead class="bg-gray-50 text-xs uppercase tracking-wide text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-            <tr>
-              <th scope="col" class="px-4 py-3 font-semibold">
-                <button type="button" @click="sortBy('name')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Web <span x-text="arrow('name')" class="text-[10px]"></span></button>
-              </th>
-              <th scope="col" class="px-4 py-3 font-semibold">Popis</th>
-              <th scope="col" class="px-4 py-3 font-semibold">
-                <button type="button" @click="sortBy('cat')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Kategorie <span x-text="arrow('cat')" class="text-[10px]"></span></button>
-              </th>
-              <th scope="col" class="px-4 py-3 font-semibold">Zdroj</th>
-              <th scope="col" class="px-4 py-3 text-right font-semibold">
-                <button type="button" @click="sortBy('visits')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Návštěv <span x-text="arrow('visits')" class="text-[10px]"></span></button>
-              </th>
-              <th scope="col" class="px-4 py-3 font-semibold">
-                <button type="button" @click="sortBy('last')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Poslední <span x-text="arrow('last')" class="text-[10px]"></span></button>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-            <template x-for="r in catalogRows" :key="r.id">
-              <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                <td class="px-4 py-3 align-top">
-                  <a :href="r.url" target="_blank" rel="noopener noreferrer"
-                     class="font-semibold text-blue-600 hover:underline dark:text-blue-400" x-text="r.name"></a>
-                  <div class="mt-0.5 font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
-                </td>
-                <td class="px-4 py-3 align-top text-gray-700 dark:text-gray-300">
-                  <span class="block max-w-md" x-text="r.desc"></span>
-                </td>
-                <td class="px-4 py-3 align-top">
-                  <span class="whitespace-nowrap text-xs text-gray-600 dark:text-gray-400" x-text="r.cat.replace(/^\d+\.\s*/,'')"></span>
-                </td>
-                <td class="px-4 py-3 align-top">
-                  <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
-                </td>
-                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-700 dark:text-gray-300" x-text="r.visits || '–'"></td>
-                <td class="px-4 py-3 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
-      <div x-show="filtered.length===0" class="bg-white px-4 py-12 text-center text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
-        Nic neodpovídá filtru.
+      <div class="flex items-center justify-between gap-3">
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-semibold tabular-nums" x-text="filtered.length"></span>
+          <span x-text="plural(filtered.length)"></span>
+          <span x-show="activeFilters"> · filtrováno</span>
+        </p>
+        <button type="button" x-show="activeFilters" x-transition @click="reset()"
+          class="text-xs font-medium text-blue-600 hover:underline dark:text-blue-400">
+          Zrušit filtry
+        </button>
       </div>
     </div>
 
-    <!-- ══ LONGLIST TABLE ══ -->
-    <div x-show="view==='longlist'" class="mt-4 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-      <div class="border-b border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-300">
+    <!-- ══════════ KARTY (do md:) ══════════ -->
+    <ul class="mt-4 flex flex-col gap-3 md:hidden" role="list">
+      <template x-for="r in rows" :key="r.id">
+        <li class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                 class="font-semibold text-blue-600 hover:underline dark:text-blue-400"
+                 x-text="r.name || r.dom"></a>
+              <p class="mt-0.5 break-all font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></p>
+            </div>
+            <span :class="badge(r.src)" class="shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium"
+                  x-text="srcLabel(r.src)"></span>
+          </div>
+
+          <p x-show="r.desc || r.title" class="mt-2.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+             x-text="r.desc || r.title"></p>
+
+          <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+            <span x-show="r.cat" x-text="shortCat(r.cat || '')"></span>
+            <span x-show="r.visits" class="tabular-nums">
+              <span x-text="r.visits"></span> návštěv
+            </span>
+            <span x-show="r.last" class="font-mono" x-text="r.last"></span>
+          </div>
+        </li>
+      </template>
+    </ul>
+
+    <!-- ══════════ TABULKA (od md: nahoru) ══════════ -->
+    <div class="mt-4 hidden overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 md:block">
+      <div x-show="view === 'longlist'"
+           class="border-b border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-300">
         Syrové výsledky keyword filtru nad doménou + URL + titulkem. Neprošlo kurací — je tu šum.
       </div>
       <div class="scroll-x overflow-x-auto">
-        <table class="w-full min-w-[52rem] text-left text-sm">
+        <table class="w-full text-start text-sm">
+          <caption class="sr-only">Katalog geodatových zdrojů</caption>
           <thead class="bg-gray-50 text-xs uppercase tracking-wide text-gray-600 dark:bg-gray-700 dark:text-gray-300">
             <tr>
-              <th scope="col" class="px-4 py-3 font-semibold">
-                <button type="button" @click="sortBy('dom')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Doména <span x-text="arrow('dom')" class="text-[10px]"></span></button>
-              </th>
-              <th scope="col" class="px-4 py-3 font-semibold">Ukázkový titulek</th>
-              <th scope="col" class="px-4 py-3 text-right font-semibold">
-                <button type="button" @click="sortBy('visits')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Návštěv <span x-text="arrow('visits')" class="text-[10px]"></span></button>
-              </th>
-              <th scope="col" class="px-4 py-3 text-right font-semibold">URL</th>
-              <th scope="col" class="px-4 py-3 font-semibold">Zdroj</th>
-              <th scope="col" class="px-4 py-3 font-semibold">
-                <button type="button" @click="sortBy('last')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Poslední <span x-text="arrow('last')" class="text-[10px]"></span></button>
-              </th>
+              <template x-for="col in columns" :key="col.key">
+                <th scope="col" class="px-4 py-3 font-semibold" :class="col.numeric ? 'text-end' : 'text-start'"
+                    :aria-sort="sort.key === col.key ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
+                  <button type="button" x-show="col.sortable" @click="sortBy(col.key)"
+                          class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">
+                    <span x-text="col.label"></span>
+                    <span class="text-[10px]" x-text="arrow(col.key)"></span>
+                  </button>
+                  <span x-show="!col.sortable" x-text="col.label"></span>
+                </th>
+              </template>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-            <template x-for="r in longlistRows" :key="r.id">
+            <template x-for="r in rows" :key="r.id">
               <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
                 <td class="px-4 py-3 align-top">
                   <a :href="r.url" target="_blank" rel="noopener noreferrer"
-                     class="font-mono text-xs font-semibold text-blue-600 hover:underline dark:text-blue-400" x-text="r.dom"></a>
+                     class="font-semibold text-blue-600 hover:underline dark:text-blue-400"
+                     x-text="r.name || r.dom"></a>
+                  <div class="mt-0.5 font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
                 </td>
                 <td class="px-4 py-3 align-top text-gray-700 dark:text-gray-300">
-                  <span class="block max-w-lg truncate" x-text="r.title || '–'"></span>
+                  <span class="block max-w-md lg:max-w-xl" x-text="r.desc || r.title"></span>
                 </td>
-                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-700 dark:text-gray-300" x-text="r.visits"></td>
-                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-500 dark:text-gray-400" x-text="r.urls"></td>
+                <td class="px-4 py-3 align-top">
+                  <span class="whitespace-nowrap text-xs text-gray-600 dark:text-gray-400" x-text="shortCat(r.cat || '')"></span>
+                </td>
                 <td class="px-4 py-3 align-top">
                   <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
                 </td>
+                <td class="px-4 py-3 align-top text-end tabular-nums text-gray-700 dark:text-gray-300" x-text="r.visits || '–'"></td>
                 <td class="px-4 py-3 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
               </tr>
             </template>
           </tbody>
         </table>
       </div>
-      <div x-show="filtered.length===0" class="bg-white px-4 py-12 text-center text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
-        Nic neodpovídá filtru.
-      </div>
     </div>
 
-    <!-- ══ FOOTER ══ -->
+    <!-- ══════════ PRÁZDNÝ STAV ══════════ -->
+    <div x-show="filtered.length === 0"
+         class="mt-4 rounded-lg border border-gray-200 bg-white px-4 py-12 text-center dark:border-gray-700 dark:bg-gray-800">
+      <p class="text-sm font-medium text-gray-900 dark:text-white">Nic neodpovídá filtru</p>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Zkus jiný výraz nebo zruš filtry.</p>
+      <button type="button" @click="reset()"
+        class="mt-4 rounded-lg bg-blue-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700">
+        Zrušit filtry
+      </button>
+    </div>
+
     <footer class="mt-10 border-t border-gray-200 pt-6 text-xs leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
       <p class="max-w-3xl">
         <span class="font-semibold text-gray-700 dark:text-gray-300">Jak to vzniklo.</span>
@@ -267,48 +268,174 @@
       </p>
     </footer>
   </main>
+
+  <!-- ══════════ ŠUPLÍK S FILTRY (Flowbite drawer) ══════════ -->
+  <div id="filters" tabindex="-1" aria-labelledby="filters-label"
+       class="fixed end-0 top-0 z-40 h-screen w-80 max-w-full translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800">
+    <h5 id="filters-label" class="mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">Filtry</h5>
+    <button type="button" data-drawer-hide="filters" aria-controls="filters"
+      class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+      <span class="sr-only">Zavřít filtry</span>
+    </button>
+
+    <fieldset class="mb-6">
+      <legend class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Zdroj</legend>
+      <div class="flex flex-col gap-2">
+        <template x-for="s in sourceFilters" :key="s.k">
+          <button type="button" @click="source = s.k" :aria-pressed="source === s.k ? 'true' : 'false'"
+            :class="source === s.k
+              ? 'border-blue-600 bg-blue-600 text-white'
+              : 'border-gray-300 bg-white text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300'"
+            class="rounded-lg border px-4 py-2.5 text-start text-sm font-medium" x-text="s.label"></button>
+        </template>
+      </div>
+    </fieldset>
+
+    <fieldset x-show="view === 'catalog'">
+      <legend class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorie</legend>
+      <div class="flex flex-col gap-1">
+        <button type="button" @click="cat = ''" :aria-pressed="cat === '' ? 'true' : 'false'"
+          :class="cat === '' ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                             : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'"
+          class="rounded-lg px-3 py-2 text-start text-sm">Vše</button>
+        <template x-for="c in categories" :key="c">
+          <button type="button" @click="cat = (cat === c ? '' : c)" :aria-pressed="cat === c ? 'true' : 'false'"
+            :class="cat === c ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                              : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'"
+            class="rounded-lg px-3 py-2 text-start text-sm" x-text="shortCat(c)"></button>
+        </template>
+      </div>
+    </fieldset>
+
+    <div class="mt-6 grid grid-cols-2 gap-2">
+      <button type="button" @click="reset()"
+        class="rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 dark:border-gray-600 dark:text-gray-300">
+        Zrušit
+      </button>
+      <button type="button" @click="copyCsv()"
+        class="rounded-lg bg-blue-700 px-4 py-2.5 text-sm font-medium text-white dark:bg-blue-600">
+        Kopírovat CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════ SPODNÍ NAVIGACE (jen mobil) ══════════ -->
+  <nav class="fixed bottom-0 start-0 z-30 h-16 w-full border-t border-gray-200 bg-white sm:hidden dark:border-gray-600 dark:bg-gray-700"
+       aria-label="Přepnout pohled">
+    <div class="mx-auto grid h-full max-w-lg grid-cols-2 font-medium">
+      <template x-for="v in views" :key="v.id">
+        <button type="button" @click="view = v.id" :aria-current="view === v.id ? 'page' : 'false'"
+          class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
+          <span class="text-sm"
+                :class="view === v.id ? 'font-semibold text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'"
+                x-text="v.label"></span>
+          <span class="mt-0.5 text-xs tabular-nums"
+                :class="view === v.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'"
+                x-text="v.count"></span>
+        </button>
+      </template>
+    </div>
+  </nav>
+
+  <!-- ══════════ TOAST ══════════ -->
+  <div x-show="toast" x-transition.opacity role="status" aria-live="polite"
+       class="fixed bottom-20 end-4 z-50 flex w-full max-w-xs items-center rounded-lg bg-white p-4 text-gray-500 shadow-sm dark:bg-gray-800 dark:text-gray-400 sm:bottom-4">
+    <div class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+      <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+      </svg>
+    </div>
+    <div class="ms-3 text-sm font-normal" x-text="toast"></div>
+    <button type="button" @click="toast = ''" aria-label="Zavřít"
+      class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white">
+      <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <script>
 window.__DATA__ = /*__JSON__*/;
-function atlas() {
-  return {
-    view: 'catalog', q: '', cat: '', source: '', copied: false,
+
+document.addEventListener('alpine:init', () => {
+  Alpine.data('atlas', () => ({
+    view: 'catalog', q: '', cat: '', source: '', toast: '',
     sort: { key: 'cat', dir: 1 },
     catalog: window.__DATA__.catalog,
     longlist: window.__DATA__.longlist,
+
     sourceFilters: [
       { k: '', label: 'Vše' },
       { k: 'data', label: 'V mých datech' },
       { k: 'reference', label: 'Reference' },
     ],
+
+    init() {
+      // Flowbite váže chování na data atributy při skenu DOM. Alpine tenhle
+      // markup vykresluje až po startu, takže se musí inicializovat po něm —
+      // jinak šuplík s filtry nereaguje.
+      this.$nextTick(() => window.initFlowbite && window.initFlowbite());
+    },
+
+    get views() {
+      return [
+        { id: 'catalog', label: 'Katalog', count: this.catalog.length },
+        { id: 'longlist', label: 'Long list', count: this.longlist.length },
+      ];
+    },
+    get headline() {
+      return [
+        { label: 'Katalog', value: this.catalog.length },
+        { label: 'Z tvých dat', value: this.catalog.filter(r => r.src !== 'reference').length, accent: true },
+        { label: 'Long list', value: this.longlist.length },
+        { label: 'Kategorií', value: this.categories.length },
+      ];
+    },
+    get columns() {
+      return [
+        { key: 'name', label: 'Web', sortable: true },
+        { key: 'desc', label: 'Popis' },
+        { key: 'cat', label: 'Kategorie', sortable: true },
+        { key: 'src', label: 'Zdroj' },
+        { key: 'visits', label: 'Návštěv', sortable: true, numeric: true },
+        { key: 'last', label: 'Poslední', sortable: true },
+      ];
+    },
     get categories() { return [...new Set(this.catalog.map(r => r.cat))]; },
-    get inData() { return this.catalog.filter(r => r.src !== 'reference').length; },
-    get rows() { return this.view === 'catalog' ? this.catalog : this.longlist; },
-    get catalogRows() { return this.view === 'catalog' ? this.filtered : []; },
-    get longlistRows() { return this.view === 'longlist' ? this.filtered : []; },
+    get activeFilters() { return [this.q, this.cat, this.source].filter(Boolean).length; },
+
     get filtered() {
       const q = this.q.trim().toLowerCase();
-      let out = this.rows.filter(r => {
-        if (this.source === 'data' && r.src === 'reference') return false;
-        if (this.source === 'reference' && r.src !== 'reference') return false;
-        if (this.view === 'catalog' && this.cat && r.cat !== this.cat) return false;
+      const source = this.source, cat = this.cat, isCatalog = this.view === 'catalog';
+      const out = (isCatalog ? this.catalog : this.longlist).filter(r => {
+        if (source === 'data' && r.src === 'reference') return false;
+        if (source === 'reference' && r.src !== 'reference') return false;
+        if (isCatalog && cat && r.cat !== cat) return false;
         if (!q) return true;
-        return [r.name, r.dom, r.desc, r.cat, r.title].filter(Boolean)
-          .some(v => String(v).toLowerCase().includes(q));
+        return [r.name, r.dom, r.desc, r.cat, r.title].some(v => v && String(v).toLowerCase().includes(q));
       });
-      const k = this.sort.key, d = this.sort.dir;
+      const { key, dir } = this.sort;
       return out.sort((a, b) => {
-        let x = a[k], y = b[k];
-        if (k === 'visits' || k === 'urls') { x = +x || 0; y = +y || 0; return (x - y) * d; }
-        return String(x ?? '').localeCompare(String(y ?? ''), 'cs') * d;
+        if (key === 'visits' || key === 'urls') return ((+a[key] || 0) - (+b[key] || 0)) * dir;
+        return String(a[key] ?? '').localeCompare(String(b[key] ?? ''), 'cs') * dir;
       });
     },
-    sortBy(k) {
-      if (this.sort.key === k) this.sort.dir *= -1;
-      else this.sort = { key: k, dir: (k === 'visits' || k === 'urls') ? -1 : 1 };
+    // Karty i tabulka čtou totéž; oddělený getter drží šablony jednoduché.
+    get rows() { return this.filtered; },
+
+    sortBy(key) {
+      if (this.sort.key === key) this.sort.dir *= -1;
+      else this.sort = { key, dir: (key === 'visits' || key === 'urls') ? -1 : 1 };
     },
-    arrow(k) { return this.sort.key === k ? (this.sort.dir === 1 ? '▲' : '▼') : ''; },
+    arrow(key) { return this.sort.key === key ? (this.sort.dir === 1 ? '▲' : '▼') : ''; },
+    reset() { this.q = ''; this.cat = ''; this.source = ''; },
+    shortCat(c) { return c.replace(/^\d+\.\s*/, ''); },
+    plural(n) { return n === 1 ? ' položka' : (n < 5 ? ' položky' : ' položek'); },
+
     srcLabel(s) {
       return { 'reference': 'reference', 'bookmarks': 'záložky', 'history': 'historie',
                'bookmarks+history': 'záložky + historie' }[s] || s;
@@ -319,6 +446,7 @@ function atlas() {
       if (s === 'bookmarks+history') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300';
       return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300';
     },
+
     copyCsv() {
       const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
       const cols = this.view === 'catalog'
@@ -326,10 +454,15 @@ function atlas() {
         : [['Doména','dom'],['Návštěvy','visits'],['URL celkem','urls'],['Zdroj','src'],['Poslední','last'],['Titulek','title'],['Ukázková URL','url']];
       const csv = [cols.map(c => esc(c[0])).join(',')]
         .concat(this.filtered.map(r => cols.map(c => esc(r[c[1]])).join(','))).join('\n');
-      navigator.clipboard.writeText(csv).then(() => {
-        this.copied = true; setTimeout(() => this.copied = false, 1800);
-      }).catch(() => {});
+      navigator.clipboard.writeText(csv)
+        .then(() => this.flash(`Zkopírováno ${this.filtered.length}${this.plural(this.filtered.length)}`))
+        .catch(() => this.flash('Schránka není dostupná'));
     },
-  };
-}
+    flash(msg) {
+      this.toast = msg;
+      clearTimeout(this._t);
+      this._t = setTimeout(() => { this.toast = ''; }, 2600);
+    },
+  }));
+});
 </script>

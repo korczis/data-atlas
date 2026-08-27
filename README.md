@@ -52,7 +52,7 @@ a tvářil se jako nejnavštěvovanější položka katalogu.
 ```bash
 just install     # npm závislosti
 just build       # dist/index.html z data/*.csv
-just test        # ověří, že stránka souhlasí s daty
+just check       # build + lint + testy + responzivita
 just serve       # náhled na localhost:8000
 just             # všechny recepty
 ```
@@ -65,8 +65,21 @@ Build vyrábí dvě varianty téhož:
   na doprovodné soubory. Pro Claude Artifacts a pro poslání e-mailem.
 
 Tailwind, Flowbite i Alpine.js jsou vloženy inline, takže obojí funguje z disku,
-offline i pod přísným CSP. Hlídá to 64 testů ve třech sadách
-(`smoke` · `interact` · `meta`).
+offline i pod přísným CSP. Hlídá to 83 testů ve čtyřech sadách
+(`smoke` · `interact` · `meta` · `flowbite`), linter konvencí a měření
+responzivity v headless Chrome.
+
+### Rozvržení
+
+Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
+s řaditelnými sloupci — tabulka o šesti sloupcích se na telefon nevejde.
+Pohled se pod `sm` přepíná spodní navigací, výš záložkami; filtry jsou pod `lg`
+v šuplíku, výš rozbalené v liště. Obě větve čtou týž getter a testy ověřují,
+že vykreslí stejný počet položek.
+
+Konvence Flowbite a Alpine popisuje [`docs/UI-RULES.md`](docs/UI-RULES.md)
+a vynucuje `just lint`. `just responsive` měří vodorovné přetečení v headless
+Chrome na šířkách 320 – 1536 px.
 
 ### Přidání položky
 

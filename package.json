@@ -12,9 +12,11 @@
   "license": "MIT",
   "scripts": {
     "build": "python3 tools/build_page.py",
-    "test": "node tests/smoke.mjs && node tests/interact.mjs && node tests/meta.mjs",
+    "test": "node tests/smoke.mjs && node tests/interact.mjs && node tests/meta.mjs && node tests/flowbite.mjs",
     "serve": "python3 -m http.server 8000 --directory dist",
-    "assets": "python3 tools/build_assets.py"
+    "assets": "python3 tools/build_assets.py",
+    "lint": "python3 tools/lint_ui.py",
+    "responsive": "python3 tools/check_responsive.py"
   },
   "devDependencies": {
     "alpinejs": "3.14.9",

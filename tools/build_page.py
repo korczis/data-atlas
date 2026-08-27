@@ -233,13 +233,16 @@ def main():
 
     css = build_css()
     alpine = (ROOT / "node_modules" / "alpinejs" / "dist" / "cdn.min.js").read_text(encoding="utf-8")
+    flowbite = (ROOT / "node_modules" / "flowbite" / "dist" / "flowbite.min.js").read_text(encoding="utf-8")
 
     m = re.match(r"\s*(<title>.*?</title>)\s*", body, re.S)
     title, rest = m.group(1), body[m.end():]
     style = f"<style>{css}</style>\n"
-    # Alpine se načítá až za tělem — atlas() musí být definované dřív, než
-    # se Alpine nastartuje, jinak x-data spadne na nedefinovanou funkci.
-    script = f"\n<script>{alpine}</script>\n"
+    # Pořadí je závazné:
+    #   1. tělo — registruje posluchač alpine:init s Alpine.data('atlas')
+    #   2. Flowbite — musí definovat initFlowbite() dřív, než ho init() zavolá
+    #   3. Alpine — až on odpálí alpine:init a spustí komponentu
+    script = f"\n<script>{flowbite}</script>\n<script>{alpine}</script>\n"
 
     DIST.mkdir(exist_ok=True)
     (DIST / "artifact.html").write_text(title + "\n" + style + rest + script, encoding="utf-8")
@@ -256,7 +259,8 @@ def main():
         print(f"  dist/{f:16s} {(DIST / f).stat().st_size / 1024:7.1f} KB")
     extras = sorted(f.name for f in DIST.iterdir() if f.name not in ("index.html", "artifact.html"))
     print(f"  + {len(extras)} doprovodných souborů: {', '.join(extras)}")
-    print(f"  katalog {len(catalog)} · long list {len(longlist)} · CSS {len(css)/1024:.1f} KB")
+    print(f"  katalog {len(catalog)} · long list {len(longlist)} · "
+          f"CSS {len(css)/1024:.1f} KB · Flowbite {len(flowbite)/1024:.1f} KB · Alpine {len(alpine)/1024:.1f} KB")
 
 
 if __name__ == "__main__":

@@ -25,9 +25,15 @@ export async function loadPage() {
   const { window } = dom;
   await new Promise(r => setTimeout(r, 1000));
   const state = window.Alpine ? window.Alpine.$data(window.document.querySelector('[x-data]')) : null;
-  return { window, document: window.document, state, errors,
-           tick: () => new Promise(r => setTimeout(r, 250)),
-           rows: n => window.document.querySelectorAll('table')[n].querySelectorAll('tbody tr').length };
+  const d = window.document;
+  return {
+    window, document: d, state, errors,
+    tick: () => new Promise(r => setTimeout(r, 250)),
+    // Od přechodu na mobile-first je tabulka jen pro md: a výš; pod tím
+    // se tentýž seznam vykresluje jako karty. Měříme obojí.
+    tableRows: () => d.querySelectorAll('table tbody tr').length,
+    cardRows: () => d.querySelectorAll('ul[role="list"] > li').length,
+  };
 }
 
 /** Najde odkazy na zdroje, které by prohlížeč skutečně stahoval.

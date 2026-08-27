@@ -38,11 +38,15 @@ jobs:
       - name: Build
         run: python3 tools/build_page.py
 
+      - name: Konvence UI
+        run: python3 tools/lint_ui.py
+
       - name: Test
         run: |
           node tests/smoke.mjs
           node tests/interact.mjs
           node tests/meta.mjs
+          node tests/flowbite.mjs
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
