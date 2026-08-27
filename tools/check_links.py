@@ -10,7 +10,9 @@ ještě GETem s omezením na první kilobajty. Rozlišuje se:
 
   ok           2xx
   přesměrování cíl je jinde, než co je v katalogu (stojí za aktualizaci)
-  blokuje      403 na curl, ale v prohlížeči funguje — ochrana proti robotům
+  blokuje      403 nebo 405 i po prostém GETu — ochrana proti robotům
+               (AWS WAF vrací na výzvu „Human Verification\" právě 405),
+               v prohlížeči web funguje
   certifikát   TLS selže, přes --insecure projde: vypršelý nebo špatný certifikát
   chyba        4xx/5xx nebo nedostupné
 
@@ -47,8 +49,9 @@ def probe(url: str, timeout: int, method: str = "HEAD",
         cmd.append("-k")
     if method == "HEAD":
         cmd.append("-I")
-    else:
-        cmd += ["-r", "0-2048"]
+    # Rozsahový požadavek (-r) si část serverů vyloží jako nepovolenou metodu
+    # a odpoví 405, takže by fallback hlásil chybu tam, kde žádná není.
+    # Tělo stejně zahazujeme do /dev/null.
     cmd.append(url)
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout * 3)
@@ -75,8 +78,9 @@ def classify(url: str, timeout: int) -> dict:
 
     if 200 <= code < 300:
         state = "ok" if canonical(final) == canonical(url) else "přesměrování"
-    elif code == 403:
-        # Cloudflare a spol. odmítají curl bez ohledu na User-Agent.
+    elif code in (403, 405):
+        # Cloudflare, AWS WAF a spol. odmítají curl bez ohledu na User-Agent.
+        # Po prostém GETu neznamená 405 chybějící stránku, ale odmítnutí klienta.
         state = "blokuje"
     elif code == 0:
         # Nespojilo se. Pokud to projde s -k, je vinen certifikát, ne server.

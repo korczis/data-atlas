@@ -11,13 +11,19 @@ check('výchozí pohled je katalog', tableRows() === catalog.length);
 check('karty a tabulka jsou v souladu', cardRows() === tableRows(), `${cardRows()} karet / ${tableRows()} řádků`);
 
 s.q = 'postgis'; await tick();
-check('hledání "postgis" projde i popisy', tableRows() === 3, `${tableRows()} řádků`);
+// Hledá se i v popisech, takže se trefí i položky, které PostGIS jen zmiňují.
+const postgisHits = catalog.filter(r =>
+  ['Web', 'Doména', 'Popis', 'Kategorie'].some(k => r[k].toLowerCase().includes('postgis'))).length;
+check('hledání "postgis" projde i popisy', tableRows() === postgisHits,
+      `${tableRows()} z ${postgisHits} očekávaných`);
 
 s.q = 'katastr'; await tick();
 check('hledání "katastr"', tableRows() >= 4, `${tableRows()} řádků`);
 
 s.q = ''; s.cat = s.categories.find(c => c.name.includes('Routing')).name; await tick();
-check('filtr kategorie', tableRows() === 6, `${tableRows()} řádků`);
+const routingCount = catalog.filter(r => r['Kategorie'].includes('Routing')).length;
+check('filtr kategorie', tableRows() === routingCount,
+      `${tableRows()} z ${routingCount} očekávaných`);
 
 s.cat = ''; s.source = 'data'; await tick();
 const inData = tableRows();

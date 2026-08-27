@@ -1,0 +1,779 @@
+{
+ "additions": [
+  {
+   "category": "1. Gazetteer / geokódování",
+   "web": "OpenCage Geocoding API",
+   "dom": "opencagedata.com",
+   "url": "https://opencagedata.com/",
+   "popis": "Hostované geokódovací API nad OSM a dalšími otevřenými geokodéry — forward i reverse, u výsledku časová zóna, Wikidata ID, NUTS a FIPS kódy, výsledky lze ukládat; free trial 2 500 dotazů/den, dál placené tarify"
+  },
+  {
+   "category": "1. Gazetteer / geokódování",
+   "web": "NGA GEOnet Names Server (GNS)",
+   "dom": "geonames.nga.mil",
+   "url": "https://geonames.nga.mil/",
+   "popis": "Gazetteer NGA a US Board on Geographic Names pro toponyma mimo USA — schválené tvary jmen, varianty, historické i nelatinkové zápisy, souřadnice a admin zařazení; country files ke stažení bez licenčních omezení"
+  },
+  {
+   "category": "1. Gazetteer / geokódování",
+   "web": "Wikidata",
+   "dom": "wikidata.org",
+   "url": "https://www.wikidata.org/",
+   "popis": "Otevřená znalostní báze — místa nesou souřadnici (P625), stabilní QID a křížové odkazy na GeoNames a OSM, rekonciliace toponym přes SPARQL endpoint"
+  },
+  {
+   "category": "1. Gazetteer / geokódování",
+   "web": "World Historical Gazetteer",
+   "dom": "whgazetteer.org",
+   "url": "https://whgazetteer.org/",
+   "popis": "Historický gazetteer (v3.2, University of Pittsburgh) — přes 2,2 mil. míst propojených napříč epochami a jazyky, rekonciliace proti GeoNames a Wikidata, API i stahování datasetů"
+  },
+  {
+   "category": "2. Globální geodata",
+   "web": "OSM Planet",
+   "dom": "planet.openstreetmap.org",
+   "url": "https://planet.openstreetmap.org/",
+   "popis": "Týdenní kompletní dumpy databáze OSM — XML (~165 GB) i PBF (~88 GB), full-history planet se všemi verzemi prvků, changesety a replikační diffy pro průběžnou synchronizaci"
+  },
+  {
+   "category": "2. Globální geodata",
+   "web": "HydroSHEDS",
+   "dom": "hydrosheds.org",
+   "url": "https://www.hydrosheds.org/",
+   "popis": "Globální hydrologická data odvozená z DEM — říční sítě, hierarchická povodí a jezera ve standardních GIS formátech; verze 2 z TanDEM-X zatím jen pro Ameriku, globální pokrytí se dokončuje"
+  },
+  {
+   "category": "2. Globální geodata",
+   "web": "Protected Planet (WDPA)",
+   "dom": "protectedplanet.net",
+   "url": "https://www.protectedplanet.net/",
+   "popis": "WDPA a WDOECM od UNEP-WCMC a IUCN — polygony a body přes 300 tisíc chráněných území a OECM celého světa, měsíční aktualizace, hromadné stahování i API"
+  },
+  {
+   "category": "2. Globální geodata",
+   "web": "Marine Regions",
+   "dom": "marineregions.org",
+   "url": "https://www.marineregions.org/",
+   "popis": "Gazetteer a hranice na moři od VLIZ — výlučné ekonomické zóny, teritoriální a vnitřní vody, rozšířené šelfy a volné moře v GeoPackage/shp/KML, přes OGC služby i balík mregions2"
+  },
+  {
+   "category": "2. Globální geodata",
+   "web": "Open Infrastructure Map",
+   "dom": "openinframap.org",
+   "url": "https://openinframap.org/",
+   "popis": "Prohlížečka infrastruktury vykreslené z OSM — elektrické vedení, trafostanice a elektrárny, ropovody, plynovody a telekomunikační síť; bez exportu dat"
+  },
+  {
+   "category": "3. ČR — katastr a geodata",
+   "web": "Portál DMVS (ČÚZK)",
+   "dom": "dmvs.cuzk.gov.cz",
+   "url": "https://dmvs.cuzk.gov.cz/",
+   "popis": "Portál digitální mapy veřejné správy — bezešvé prohlížení krajských digitálních technických map (DTM) a stahování dat v jednotném formátu JVF DTM"
+  },
+  {
+   "category": "3. ČR — katastr a geodata",
+   "web": "REST API dat katastru nemovitostí (ČÚZK)",
+   "dom": "api-kn.cuzk.gov.cz",
+   "url": "https://api-kn.cuzk.gov.cz/",
+   "popis": "Bezplatné REST API ke katastru — parcely, budovy, jednotky a řízení v JSON, po registraci přes Identitu občana nebo účet dálkového přístupu"
+  },
+  {
+   "category": "3. ČR — katastr a geodata",
+   "web": "ČÚZK — Mapové služby",
+   "dom": "services.cuzk.gov.cz",
+   "url": "https://services.cuzk.gov.cz/",
+   "popis": "Mapový server ČÚZK — bezúplatné WMS/WFS/WMTS endpointy katastrální mapy, ortofota, ZABAGED a RÚIAN, odtud se berou URL do QGIS nebo skriptu"
+  },
+  {
+   "category": "3. ČR — katastr a geodata",
+   "web": "ČÚZK — Stahovací služby ATOM",
+   "dom": "atom.cuzk.gov.cz",
+   "url": "https://atom.cuzk.gov.cz/",
+   "popis": "ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu"
+  },
+  {
+   "category": "3. ČR — katastr a geodata",
+   "web": "Půda v mapách (VÚMOP)",
+   "dom": "mapy.vumop.cz",
+   "url": "https://mapy.vumop.cz/",
+   "popis": "Mapový server VÚMOP — ohroženost vodní a větrnou erozí (SEO/MEO pro DZES 5), vlastnosti půd odvozené z BPEJ, třídy ochrany ZPF a zranitelnost podzemních vod"
+  },
+  {
+   "category": "4. ČR — doprava / mobilita",
+   "web": "Sčítání dopravy ŘSD",
+   "dom": "scitani.rsd.cz",
+   "url": "https://scitani.rsd.cz/",
+   "popis": "Výsledky celostátního sčítání dopravy 2010, 2016 a 2020 — intenzity automobilové dopravy po úsecích dálniční a silniční sítě ČR"
+  },
+  {
+   "category": "4. ČR — doprava / mobilita",
+   "web": "Dopravní nehody v ČR (CDV)",
+   "dom": "nehody.cdv.cz",
+   "url": "https://nehody.cdv.cz/",
+   "popis": "Nehody evidované Policií ČR od roku 2006 — filtrování podle času, území a 64 evidovaných parametrů, měsíční aktualizace, export do PDF"
+  },
+  {
+   "category": "4. ČR — doprava / mobilita",
+   "web": "Geoportál DTMŽ (Správa železnic)",
+   "dom": "geoportal.spravazeleznic.cz",
+   "url": "https://geoportal.spravazeleznic.cz/",
+   "popis": "Digitální technická mapa železnic — mapový klient, Všeobecná železniční mapa, vyhledávání metadat a žádost o výdej dat"
+  },
+  {
+   "category": "4. ČR — doprava / mobilita",
+   "web": "Portál CIS JŘ",
+   "dom": "portal.cisjr.cz",
+   "url": "https://portal.cisjr.cz/",
+   "popis": "Celostátní informační systém o jízdních řádech (Ministerstvo dopravy a CHAPS) — jízdní řády autobusů, MHD, vlaků a lanových drah, strojově čitelná data (JDF, NeTEx) v adresáři /pub/"
+  },
+  {
+   "category": "5. Crime / IZS / bezpečnost",
+   "web": "Mapa kriminality (Policie ČR)",
+   "dom": "kriminalita.policie.gov.cz",
+   "url": "https://kriminalita.policie.gov.cz/",
+   "popis": "Oficiální mapa kriminality Policie ČR — evidované a objasněné skutky podle druhu trestné činnosti a územních obvodů policie; aplikace vyžaduje JavaScript"
+  },
+  {
+   "category": "5. Crime / IZS / bezpečnost",
+   "web": "GDACS",
+   "dom": "gdacs.org",
+   "url": "https://www.gdacs.org/",
+   "popis": "Globální upozornění na katastrofy (EC-JRC a OSN) — zemětřesení, cyklóny, povodně a sopky s geodaty a odhadem zasažené populace"
+  },
+  {
+   "category": "5. Crime / IZS / bezpečnost",
+   "web": "Copernicus EMS",
+   "dom": "emergency.copernicus.eu",
+   "url": "https://emergency.copernicus.eu/",
+   "popis": "Emergency Management Service — On-Demand Mapping satelitních map škod pro aktivované mimořádné události, povodně EFAS/GloFAS, sucho EDO/GDO a lesní požáry na forest-fire.emergency.copernicus.eu"
+  },
+  {
+   "category": "5. Crime / IZS / bezpečnost",
+   "web": "UCDP",
+   "dom": "ucdp.uu.se",
+   "url": "https://ucdp.uu.se/",
+   "popis": "Uppsala Conflict Data Program — georeferencovaná databáze událostí ozbrojených konfliktů (GED) od roku 1989, delší časová řada a jiná metodika kódování než ACLED"
+  },
+  {
+   "category": "6. Remote sensing / rastr",
+   "web": "ASF DAAC (Vertex)",
+   "dom": "asf.alaska.edu",
+   "url": "https://asf.alaska.edu/",
+   "popis": "NASA DAAC pro radarová data — archiv Sentinel-1 (včetně 1D) a NISAR, vyhledávač Vertex, Python asf_search a on-demand zpracování HyP3 (RTC, InSAR, OPERA RTC-S1)"
+  },
+  {
+   "category": "6. Remote sensing / rastr",
+   "web": "NASA FIRMS",
+   "dom": "firms.modaps.eosdis.nasa.gov",
+   "url": "https://firms.modaps.eosdis.nasa.gov/",
+   "popis": "Detekce aktivních požárů a tepelných anomálií z MODIS (Aqua, Terra) a VIIRS (S-NPP, NOAA-20/21) do tří hodin od přeletu, pro USA a Kanadu v reálném čase — SHP/KML/TXT, WMS, API i e-mailové alerty"
+  },
+  {
+   "category": "6. Remote sensing / rastr",
+   "web": "Vantor Open Data Program",
+   "dom": "vantor.com",
+   "url": "https://vantor.com/company/open-data-program/",
+   "popis": "Snímky WorldView ze zasažených oblastí zdarma pod CC BY-NC 4.0 (dřívější Maxar Open Data) — jen po aktivaci programu u velkých náhlých katastrof, ne souvislé pokrytí"
+  },
+  {
+   "category": "6. Remote sensing / rastr",
+   "web": "Global Nature Watch",
+   "dom": "globalnaturewatch.org",
+   "url": "https://globalnaturewatch.org/",
+   "popis": "Nástupce Global Forest Watch od WRI — úbytek lesního krytu 30 m (UMD/Hansen, 2001-2025), integrované deforestační alerty 30 m aktualizované týdně a globální land cover, s mapou a otevřeným datovým portálem"
+  },
+  {
+   "category": "6. Remote sensing / rastr",
+   "web": "Registry of Open Data on AWS",
+   "dom": "registry.opendata.aws",
+   "url": "https://registry.opendata.aws/",
+   "popis": "Rejstřík otevřených dat ležících na AWS S3 — Sentinel-2 COG se STACem, Landsat, NOAA GOES a stovky dalších v cloud-native formátech (COG, Zarr, NetCDF) čitelných přímo z GDAL přes /vsis3/"
+  },
+  {
+   "category": "7. Statistika / demografie",
+   "web": "ČSÚ Statistický geoportál",
+   "dom": "geodata.csu.gov.cz",
+   "url": "https://geodata.csu.gov.cz/",
+   "popis": "Statistický geoportál ČSÚ — gridy SLDB 2021, ZSJ, registr sčítacích obvodů a budov (RSO) a hranice NUTS/LAU přes ArcGIS REST, WMS/WFS a INSPIRE služby"
+  },
+  {
+   "category": "7. Statistika / demografie",
+   "web": "UN World Population Prospects",
+   "dom": "population.un.org",
+   "url": "https://population.un.org/wpp/",
+   "popis": "Odhady a projekce populace OSN po zemích do roku 2100 — věkové struktury, fertilita, mortalita a migrace, kompletní datové sady ke stažení"
+  },
+  {
+   "category": "7. Statistika / demografie",
+   "web": "OECD Data Explorer",
+   "dom": "data-explorer.oecd.org",
+   "url": "https://data-explorer.oecd.org/",
+   "popis": "Statistiky OECD včetně regionálních ukazatelů TL2/TL3 a metropolitních areálů — strojový přístup přes SDMX API na sdmx.oecd.org"
+  },
+  {
+   "category": "7. Statistika / demografie",
+   "web": "IPUMS International",
+   "dom": "international.ipums.org",
+   "url": "https://international.ipums.org/international/",
+   "popis": "Harmonizovaná census mikrodata ze 104 zemí (656 sčítání) včetně hranic administrativních jednotek — zdarma, ale až po registraci a schválení účelu použití"
+  },
+  {
+   "category": "8. Historické mapy",
+   "web": "National Library of Scotland — Map Images",
+   "dom": "maps.nls.uk",
+   "url": "https://maps.nls.uk/",
+   "popis": "Zoomovatelné mapy Britských ostrovů 16.–20. století, velká část georeferencovaná — side-by-side a spyglass prohlížeč, vrstvy použitelné jako XYZ v QGIS přes Historic Maps API"
+  },
+  {
+   "category": "8. Historické mapy",
+   "web": "Allmaps",
+   "dom": "allmaps.org",
+   "url": "https://allmaps.org/",
+   "popis": "Georeferencování IIIF map přímo v prohlížeči — editor, viewer a tile server, který z Georeference Annotation udělá XYZ vrstvu pro QGIS, MapLibre, OpenLayers i Leaflet bez vytváření GeoTIFFů"
+  },
+  {
+   "category": "8. Historické mapy",
+   "web": "USGS topoView",
+   "dom": "ngmdb.usgs.gov",
+   "url": "https://ngmdb.usgs.gov/topoview/",
+   "popis": "Přes 178 000 historických topografických map USGS z let 1884–2006 — zdarma ke stažení jako GeoTIFF, GeoPDF, KMZ nebo JPEG"
+  },
+  {
+   "category": "8. Historické mapy",
+   "web": "Library of Congress — Maps",
+   "dom": "loc.gov",
+   "url": "https://www.loc.gov/maps/",
+   "popis": "Mapová sbírka Geography & Map Division včetně požárních plánů Sanborn — velká část public domain, ke stažení až v plném TIFF"
+  },
+  {
+   "category": "9. Mapové knihovny / basemapy",
+   "web": "CesiumJS",
+   "dom": "cesium.com",
+   "url": "https://cesium.com/platform/cesiumjs/",
+   "popis": "3D glóbus a mapy ve WebGL — 3D Tiles, globální terén, glTF modely a časová osa; knihovna pod Apache 2.0, hostované služby ion placené"
+  },
+  {
+   "category": "9. Mapové knihovny / basemapy",
+   "web": "MapProxy",
+   "dom": "mapproxy.org",
+   "url": "https://mapproxy.org/",
+   "popis": "Proxy a dlaždicová cache nad WMS — z pomalé WMS udělá rychlé WMTS/XYZ dlaždice, umí reprojekci, slučování vrstev a offline seeding"
+  },
+  {
+   "category": "9. Mapové knihovny / basemapy",
+   "web": "OpenMapTiles",
+   "dom": "openmaptiles.org",
+   "url": "https://openmaptiles.org/",
+   "popis": "Otevřené schéma vektorových dlaždic z OSM a Natural Earth — nástroje na generování vlastních dlaždic a self-hosting, BSD/CC-BY s povinnou atribucí"
+  },
+  {
+   "category": "9. Mapové knihovny / basemapy",
+   "web": "Mapbox",
+   "dom": "mapbox.com",
+   "url": "https://www.mapbox.com/",
+   "popis": "Komerční mapová platforma — hostované vektorové a satelitní basemapy, Studio pro tvorbu stylů a Mapbox GL JS (od v2 proprietární licence); free tier s měsíčním limitem"
+  },
+  {
+   "category": "9. Mapové knihovny / basemapy",
+   "web": "OpenTopoMap",
+   "dom": "opentopomap.org",
+   "url": "https://opentopomap.org/",
+   "popis": "Topografická rastrová basemapa z OSM a SRTM ve stylu německých topo map — vrstevnice a stínovaný reliéf, dlaždice bez API klíče pod CC-BY-SA 3.0"
+  },
+  {
+   "category": "10. Spatial DB / analytika",
+   "web": "GRASS GIS",
+   "dom": "grass.osgeo.org",
+   "url": "https://grass.osgeo.org/",
+   "popis": "Rastrová, terénní a hydrologická analytika s vlastní datovou strukturou (moduly r.*, v.*) — sklony, povodí, viewshed a časové řady, volatelné i z QGIS Processingu"
+  },
+  {
+   "category": "10. Spatial DB / analytika",
+   "web": "sf (Simple Features for R)",
+   "dom": "r-spatial.github.io",
+   "url": "https://r-spatial.github.io/sf/",
+   "popis": "Simple features pro R — geometrie jako sloupec v data.frame, operace přes GEOS, čtení a zápis přes GDAL, transformace přes PROJ, sférická geometrie přes s2"
+  },
+  {
+   "category": "10. Spatial DB / analytika",
+   "web": "PDAL",
+   "dom": "pdal.org",
+   "url": "https://pdal.org/",
+   "popis": "Pipeline pro zpracování mračen bodů — čtení LAS/LAZ/COPC, filtrace a klasifikace, výřezy a převod na rastr, deklarativně v JSON"
+  },
+  {
+   "category": "10. Spatial DB / analytika",
+   "web": "GEOS",
+   "dom": "libgeos.org",
+   "url": "https://libgeos.org/",
+   "popis": "C/C++ knihovna geometrických predikátů a operací (intersects, buffer, overlay, validace) — jádro, na kterém stojí PostGIS, QGIS, GDAL, Shapely i R sf"
+  },
+  {
+   "category": "10. Spatial DB / analytika",
+   "web": "xarray",
+   "dom": "xarray.dev",
+   "url": "https://xarray.dev/",
+   "popis": "Pojmenovaná N-rozměrná pole s indexy a líným výpočtem přes Dask — datový model pro EO časové řady a datové kostky, čte NetCDF, HDF, Zarr i GRIB"
+  },
+  {
+   "category": "11. Routing / síťová analýza",
+   "web": "OpenTripPlanner",
+   "dom": "opentripplanner.org",
+   "url": "https://www.opentripplanner.org/",
+   "popis": "Multimodální plánovač spojení nad GTFS a OSM — itineráře MHD s přestupy a dostupnostní analýzy přes GraphQL API (GTFS i Transmodel)"
+  },
+  {
+   "category": "11. Routing / síťová analýza",
+   "web": "openrouteservice",
+   "dom": "openrouteservice.org",
+   "url": "https://openrouteservice.org/",
+   "popis": "Hostované routovací API nad OSM od HeiGIT — trasy, matice vzdáleností, isochrony, výškové profily a optimalizace rozvozu, s bezplatnou vrstvou po registraci klíče i možností self-hostingu"
+  },
+  {
+   "category": "11. Routing / síťová analýza",
+   "web": "NetworkX",
+   "dom": "networkx.org",
+   "url": "https://networkx.org/documentation/stable/",
+   "popis": "Grafové algoritmy v Pythonu — nejkratší cesty, centrality, komponenty a toky; datová struktura, ve které OSMnx vrací uliční síť"
+  },
+  {
+   "category": "11. Routing / síťová analýza",
+   "web": "Google OR-Tools",
+   "dom": "developers.google.com",
+   "url": "https://developers.google.com/optimization",
+   "popis": "Solver na okružní a rozvozní úlohy — TSP a VRP s časovými okny, kapacitami a více vozidly, typicky nad maticí jízdních dob z OSRM nebo Valhally"
+  },
+  {
+   "category": "11. Routing / síťová analýza",
+   "web": "Pandana",
+   "dom": "udst.github.io",
+   "url": "https://udst.github.io/pandana/",
+   "popis": "Výpočet dostupnosti v síti přes contraction hierarchies — agregace POI a vah do vzdálenostních pásem kolem každého uzlu, řádově rychleji než obyčejný Dijkstra"
+  },
+  {
+   "category": "12. Formáty / projekce / standardy",
+   "web": "GeoPackage",
+   "dom": "geopackage.org",
+   "url": "https://www.geopackage.org/",
+   "popis": "OGC standard (adoptovaná verze 1.4.0) — jeden SQLite soubor s vektory, dlaždicemi i atributy, výchozí výstupní formát QGIS a náhrada za Shapefile"
+  },
+  {
+   "category": "12. Formáty / projekce / standardy",
+   "web": "EPSG Registry (IOGP)",
+   "dom": "epsg.org",
+   "url": "https://epsg.org/",
+   "popis": "Oficiální registr EPSG Geodetic Parameter Dataset od IOGP (v13.102) — primární zdroj, ze kterého žijí epsg.io i PROJ; online vyhledávání zdarma, offline export datasetu, datový model dle ISO 19111:2019"
+  },
+  {
+   "category": "12. Formáty / projekce / standardy",
+   "web": "Zarr",
+   "dom": "zarr.dev",
+   "url": "https://zarr.dev/",
+   "popis": "Formát pro chunkovaná komprimovaná N-rozměrná pole v object storage (v2/v3, implementace v 10 jazycích) — základ cloud-native klimatických a EO datasetů čtených přes xarray"
+  },
+  {
+   "category": "12. Formáty / projekce / standardy",
+   "web": "COPC",
+   "dom": "copc.io",
+   "url": "https://copc.io/",
+   "popis": "Cloud Optimized Point Cloud 1.0 — LAZ 1.4 s body uspořádanými do clusterovaného oktree, čitelný po částech přes HTTP range requesty, podporuje PDAL i QGIS"
+  },
+  {
+   "category": "12. Formáty / projekce / standardy",
+   "web": "GTFS",
+   "dom": "gtfs.org",
+   "url": "https://gtfs.org/",
+   "popis": "Referenční specifikace GTFS Schedule a GTFS Realtime pod správou MobilityData — jízdní řády, zastávky, tarify a živé polohy vozidel"
+  },
+  {
+   "category": "13. Open data / registry CZ",
+   "web": "Evidence skutečných majitelů",
+   "dom": "esm.justice.cz",
+   "url": "https://esm.justice.cz/",
+   "popis": "Rejstřík skutečných majitelů obchodních korporací a svěřenských fondů (MSp) — kdo za firmou reálně stojí za nastrčenými statutáry"
+  },
+  {
+   "category": "13. Open data / registry CZ",
+   "web": "Registr živnostenského podnikání",
+   "dom": "rzp.gov.cz",
+   "url": "https://rzp.gov.cz/",
+   "popis": "Živnostenská oprávnění fyzických i právnických osob — včetně seznamu provozoven s adresami (geokódovatelné)"
+  },
+  {
+   "category": "13. Open data / registry CZ",
+   "web": "Monitor státní pokladny",
+   "dom": "monitor.statnipokladna.gov.cz",
+   "url": "https://monitor.statnipokladna.gov.cz/",
+   "popis": "Rozpočty a účetní výkazy obcí, krajů a státních institucí — včetně ročních dumpů ke stažení"
+  },
+  {
+   "category": "13. Open data / registry CZ",
+   "web": "Národní elektronický nástroj (NEN)",
+   "dom": "nen.nipez.cz",
+   "url": "https://nen.nipez.cz/",
+   "popis": "Systém MMR pro zadávání veřejných zakázek — zadávací řízení, profily zadavatelů a registry dodavatelů, přístupné bez přihlášení"
+  },
+  {
+   "category": "13. Open data / registry CZ",
+   "web": "Nabídka majetku státu (ÚZSVM)",
+   "dom": "nabidkamajetku.gov.cz",
+   "url": "https://nabidkamajetku.gov.cz/",
+   "popis": "Katalog ÚZSVM s nabídkami státního majetku — prodeje, elektronické dražby a pronájmy nemovitostí, filtrovatelné podle kraje a obce"
+  },
+  {
+   "category": "14. OSINT / investigace",
+   "web": "OpenSanctions",
+   "dom": "opensanctions.org",
+   "url": "https://www.opensanctions.org/",
+   "popis": "Sankční seznamy, PEP a watchlisty z ~460 zdrojů (přes 1,9 mil. entit) — bulk data ve FollowTheMoney i screening API; zdarma pro nekomerční užití, komerčně za licenci"
+  },
+  {
+   "category": "14. OSINT / investigace",
+   "web": "ICIJ Offshore Leaks Database",
+   "dom": "offshoreleaks.icij.org",
+   "url": "https://offshoreleaks.icij.org/",
+   "popis": "Přes 810 tisíc offshore entit z Pandora, Paradise, Panama Papers, Bahamas Leaks a Offshore Leaks — ke stažení pod ODbL i přes REST API"
+  },
+  {
+   "category": "14. OSINT / investigace",
+   "web": "Bellingcat",
+   "dom": "bellingcat.com",
+   "url": "https://www.bellingcat.com/",
+   "popis": "Investigace z otevřených zdrojů — metodický toolkit pro geolokaci a verifikaci snímků a videí"
+  },
+  {
+   "category": "14. OSINT / investigace",
+   "web": "ADS-B Exchange",
+   "dom": "adsbexchange.com",
+   "url": "https://www.adsbexchange.com/",
+   "popis": "Nefiltrované sledování letadel z komunitní sítě 25 tis. přijímačů — veřejná mapa zdarma, historická data, API, gRPC stream a S3 jen za placené předplatné"
+  },
+  {
+   "category": "14. OSINT / investigace",
+   "web": "Global Fishing Watch",
+   "dom": "globalfishingwatch.org",
+   "url": "https://globalfishingwatch.org/",
+   "popis": "Pohyb plavidel z AIS a satelitní detekce — mapa, Vessel Viewer a datasety; API zdarma, ale až po registraci a vydání tokenu"
+  },
+  {
+   "category": "15. Počasí / klima",
+   "web": "WorldClim",
+   "dom": "worldclim.org",
+   "url": "https://worldclim.org/",
+   "popis": "Globální klimatické rastry — měsíční srážky a teploty a 19 bioklimatických proměnných v rozlišení 30 s až 10 min, historie i budoucí scénáře"
+  },
+  {
+   "category": "15. Počasí / klima",
+   "web": "ECMWF Open Data",
+   "dom": "data.ecmwf.int",
+   "url": "https://data.ecmwf.int/",
+   "popis": "Volně dostupná modelová pole ECMWF v GRIB2 (portál OpenECPDS) — stahování přes HTTPS bez registrace, adresář /forecasts/ pro vlastní zpracování"
+  },
+  {
+   "category": "15. Počasí / klima",
+   "web": "NOAA NOMADS",
+   "dom": "nomads.ncep.noaa.gov",
+   "url": "https://nomads.ncep.noaa.gov/",
+   "popis": "Operativní modely NCEP (GFS, GEFS, HRRR) v GRIB2 a přes OPeNDAP — včetně částečného stahování polí přes filtry"
+  },
+  {
+   "category": "15. Počasí / klima",
+   "web": "Copernicus Atmosphere Data Store",
+   "dom": "ads.atmosphere.copernicus.eu",
+   "url": "https://ads.atmosphere.copernicus.eu/",
+   "popis": "CAMS analýzy a předpovědi kvality ovzduší, aerosolů a složení atmosféry — stejné katalogové rozhraní, API i earthkit jako Climate Data Store"
+  },
+  {
+   "category": "15. Počasí / klima",
+   "web": "Klimatická změna (CzechGlobe)",
+   "dom": "klimatickazmena.cz",
+   "url": "https://www.klimatickazmena.cz/",
+   "popis": "Klimatický portál Ústavu výzkumu globální změny AV ČR — mapy, grafy a infografiky ke klimatu ČR: pozorované změny, scénáře a dopady na lesnictví, zemědělství a vodní prostředí"
+  },
+  {
+   "category": "16. Nemovitosti / trh",
+   "web": "Bezrealitky",
+   "dom": "bezrealitky.cz",
+   "url": "https://www.bezrealitky.cz/",
+   "popis": "CZ inzerce prodeje a pronájmu bez provize — velký podíl přímých majitelů, mutace SK a EN"
+  },
+  {
+   "category": "16. Nemovitosti / trh",
+   "web": "Valuo",
+   "dom": "valuo.cz",
+   "url": "https://www.valuo.cz/",
+   "popis": "Odhady cen nemovitostí v ČR — mapa realizovaných prodejů z katastru a inzerce a cenový index; mapa a odhad zdarma, PROFI a API za 5 000–10 000 Kč/rok bez DPH"
+  },
+  {
+   "category": "16. Nemovitosti / trh",
+   "web": "ČNB — finanční stabilita",
+   "dom": "cnb.cz",
+   "url": "https://www.cnb.cz/cs/financni-stabilita/",
+   "popis": "Zprávy o finanční stabilitě, zátěžové testy a limity úvěrových ukazatelů LTV, DTI a DSTI — makro pohled na trh bydlení"
+  },
+  {
+   "category": "17. Učení / komunita",
+   "web": "OSGeo",
+   "dom": "osgeo.org",
+   "url": "https://www.osgeo.org/",
+   "popis": "Nadace zastřešující ~50 open source geo projektů (QGIS, GDAL, PostGIS, GeoServer, GRASS, pgRouting) — pořádá konferenci FOSS4G, vydává OSGeoLive a sdružuje lokální chaptery"
+  },
+  {
+   "category": "17. Učení / komunita",
+   "web": "OpenStreetMap Wiki",
+   "dom": "wiki.openstreetmap.org",
+   "url": "https://wiki.openstreetmap.org/",
+   "popis": "Referenční dokumentace tagovacího schématu OSM — co který key a value znamená a jak se regionálně používá; bez ní se Overpass dotaz nedá napsat"
+  },
+  {
+   "category": "17. Učení / komunita",
+   "web": "geocompx (Geocomputation with R / Python)",
+   "dom": "geocompx.org",
+   "url": "https://geocompx.org/",
+   "popis": "Volně dostupné učebnice Geocomputation with R (CC-BY-NC-ND) a Geocomputation with Python — plus rozpracované verze pro Julii a tmap"
+  },
+  {
+   "category": "17. Učení / komunita",
+   "web": "Introduction to Python for Geographic Data Analysis",
+   "dom": "pythongis.org",
+   "url": "https://pythongis.org/",
+   "popis": "Volná online učebnice (Tenkanen, Heikinheimo, Whipp) od základů Pythonu po GIS s geopandas a shapely, CC 4.0"
+  },
+  {
+   "category": "17. Učení / komunita",
+   "web": "Anita Graser — Free and Open Source GIS Ramblings",
+   "dom": "anitagraser.com",
+   "url": "https://anitagraser.com/",
+   "popis": "Blog autorky MovingPandas — QGIS, PyQGIS, Trajectools a analýza pohybových dat"
+  }
+ ],
+ "corrections": [
+  {
+   "dom": "geonames.org",
+   "field": "popis",
+   "proposed": "Globální gazetteer pod CC-BY 4.0 — 12M unikátních objektů a 25M jmen (z toho 4,8M sídel a 16M alternate names), admin hierarchie ADM1-4 a populace; dumpy zdarma (allCountries.zip)"
+  },
+  {
+   "dom": "openaddresses.io",
+   "field": "popis",
+   "proposed": "Agregované otevřené adresní body globálně — živý pipeline na batch.openaddresses.io vydává týdenní kolekce po zemích a regionech v line-delimited GeoJSON, starý CSV výstup na results.openaddresses.io je zamrzlý archiv z 10/2021"
+  },
+  {
+   "dom": "developer.mapy.cz",
+   "field": "web",
+   "proposed": "Mapy.com REST API"
+  },
+  {
+   "dom": "developer.mapy.cz",
+   "field": "dom",
+   "proposed": "developer.mapy.com"
+  },
+  {
+   "dom": "planetarycomputer.microsoft.com",
+   "field": "popis",
+   "proposed": "STAC katalog a API nad otevřenými EO datasety (Sentinel, Landsat, NAIP, Copernicus DEM) — hostovaný JupyterHub byl vypnut v červnu 2024, data a API běží dál"
+  },
+  {
+   "dom": "gadm.org",
+   "field": "popis",
+   "proposed": "Administrativní hranice všech zemí do úrovně ADM5 v GeoPackage/shapefile/KMZ — jen pro akademické a nekomerční použití, redistribuce a komerční užití bez svolení zakázány"
+  },
+  {
+   "dom": "overturemaps.org",
+   "field": "popis",
+   "proposed": "Otevřená základní data v šesti tématech — addresses, base, buildings, divisions, places a transportation (adresy přes 470 mil. bodů, zatím alfa); měsíční release v GeoParquet na S3 a Azure, dotazovatelné DuckDB"
+  },
+  {
+   "dom": "esa-worldcover.org",
+   "field": "popis",
+   "proposed": "Globální land cover 10 m ze Sentinelu-1 a -2, 11 tříd — existují jen ročníky 2020 (v100) a 2021 (v200), novější nevznikly"
+  },
+  {
+   "dom": "land.copernicus.eu",
+   "field": "web",
+   "proposed": "Copernicus Land Monitoring Service (CORINE)"
+  },
+  {
+   "dom": "land.copernicus.eu",
+   "field": "popis",
+   "proposed": "Portál Copernicus Land Monitoring Service — CORINE Land Cover (referenční roky 1990-2018, aktualizace po šesti letech, poslední 2018) plus Urban Atlas, High Resolution Layers a CLCplus Backbone"
+  },
+  {
+   "dom": "worldfactbookarchive.org",
+   "field": "popis",
+   "proposed": "Nezávislý archiv všech ročníků CIA World Factbooku 1990-2025 (284 entit, přes milion polí) — vyhledávání, otevřené JSON API a export do CSV; po zrušení originálu v únoru 2026 jediná cesta k těmto datům"
+  },
+  {
+   "dom": "nahlizenidokn.cuzk.gov.cz",
+   "field": "popis",
+   "proposed": "Veřejné nahlížení do KN zdarma a bez registrace — parcely, budovy, jednotky, LV a vlastníci; API zde není, na strojový přístup slouží samostatné REST API na api-kn.cuzk.gov.cz"
+  },
+  {
+   "dom": "arcdata.cz",
+   "field": "popis",
+   "proposed": "ArcČR 4.3 — administrativní členění ČR s geometrií z RÚIAN k 1. 1. 2024 a napojenými statistikami ČSÚ a ÚAP, zdarma pod CC BY 4.0; starší ArcČR 500 v3.3 (sídla, vodstvo, doprava) je už jen archivní ke stažení"
+  },
+  {
+   "dom": "mapy.geology.cz",
+   "field": "url",
+   "proposed": "https://cgs.gov.cz/mapy-a-data"
+  },
+  {
+   "dom": "mapy.geology.cz",
+   "field": "dom",
+   "proposed": "cgs.gov.cz"
+  },
+  {
+   "dom": "gis-aopk.opendata.arcgis.com",
+   "field": "url",
+   "proposed": "https://gis-aopkcr.opendata.arcgis.com/"
+  },
+  {
+   "dom": "gis-aopk.opendata.arcgis.com",
+   "field": "dom",
+   "proposed": "gis-aopkcr.opendata.arcgis.com"
+  },
+  {
+   "dom": "zadosti.cuzk.gov.cz",
+   "field": "popis",
+   "proposed": "Žádosti o zřízení dálkového přístupu do KN, o výdej dat ve výměnném formátu ISKN (VFK) a o souhlas se šířením údajů katastru"
+  },
+  {
+   "dom": "geoportal.cuzk.cz",
+   "field": "url",
+   "proposed": "https://geoportal.cuzk.gov.cz/"
+  },
+  {
+   "dom": "geoportal.cuzk.cz",
+   "field": "dom",
+   "proposed": "geoportal.cuzk.gov.cz"
+  },
+  {
+   "dom": "katastr.cuzk.gov.cz",
+   "field": "popis",
+   "proposed": "Dálkový přístup do KN — placená služba pro registrované uživatele, on-line výstupy z ISKN (LV, parcely, řízení); kořen domény dnes vede na cuzk.gov.cz/aplikace-dp"
+  },
+  {
+   "dom": "eagri.cz",
+   "field": "web",
+   "proposed": "LPIS — veřejný registr půdy (MZe)"
+  },
+  {
+   "dom": "eagri.cz",
+   "field": "dom",
+   "proposed": "mze.gov.cz"
+  },
+  {
+   "dom": "mobilitydata.rsd.cz",
+   "field": "popis",
+   "proposed": "Registr odběrů NDIC — registrace k odběru dopravních informací ve formátech DATEX II a nativní NDIC XML včetně lokačních tabulek ALERT-C; přístup jen po přihlášení"
+  },
+  {
+   "dom": "dopravniinfo.cz",
+   "field": "url",
+   "proposed": "https://dopravniinfo.gov.cz/"
+  },
+  {
+   "dom": "dopravniinfo.cz",
+   "field": "dom",
+   "proposed": "dopravniinfo.gov.cz"
+  },
+  {
+   "dom": "api.golemio.cz",
+   "field": "url",
+   "proposed": "https://api.golemio.cz/docs/openapi/"
+  },
+  {
+   "dom": "api-nais.dopravniinfo.cz",
+   "field": "popis",
+   "proposed": "API vrstva nad národními dopravními informacemi (DATEX II) — přístup jen s účtem zřízeným přes Registr odběrů NDIC"
+  },
+  {
+   "dom": "md.gov.cz",
+   "field": "popis",
+   "proposed": "Web Ministerstva dopravy — sekce Statistiky, Dokumenty a Otevřená data (datové sady rezortu)"
+  },
+  {
+   "dom": "pid.cz",
+   "field": "popis",
+   "proposed": "Pražská integrovaná doprava — jízdní řády a mapy linek; GTFS feed se stahuje z data.pid.cz (https://data.pid.cz/PID_GTFS.zip)"
+  },
+  {
+   "dom": "davidrumsey.com",
+   "field": "popis",
+   "proposed": "Přes 150 000 naskenovaných map a atlasů online s IIIF — georeferencovaná přes Georeferencer je jen část sbírky"
+  },
+  {
+   "dom": "ags.cuzk.gov.cz",
+   "field": "popis",
+   "proposed": "Archivní mapy ČÚZK — císařské otisky a indikační skici stabilního katastru, stará státní mapová díla a archiv leteckých měřických snímků od roku 1936"
+  },
+  {
+   "dom": "mdl.library.utoronto.ca",
+   "field": "popis",
+   "proposed": "Mapová a datová knihovna University of Toronto — veřejná knihovna návodů a workshopů ke GIS a statistice; většina datových sad je přístupná jen příslušníkům univerzity"
+  },
+  {
+   "dom": "chartae-antiquae.cz",
+   "field": "url",
+   "proposed": "https://www.chartae-antiquae.cz/cs/"
+  },
+  {
+   "dom": "postgis.net",
+   "field": "popis",
+   "proposed": "Prostorové rozšíření PostgreSQL — typy geometry a geography a GiST indexy; rastr a topologie se instalují jako samostatné extenze (postgis_raster, postgis_topology), pgRouting je samostatný projekt"
+  },
+  {
+   "dom": "geopandas.org",
+   "field": "popis",
+   "proposed": "Pandas s geometrií (Shapely + pyproj + pyogrio) — základ Python geo analytiky"
+  },
+  {
+   "dom": "h3geo.org",
+   "field": "popis",
+   "proposed": "Hierarchický index nad hexagonální sítí (na každé úrovni 12 pětiúhelníků) — agregace bodů, sousedství, gridDisk"
+  },
+  {
+   "dom": "duckdb.org",
+   "field": "url",
+   "proposed": "https://duckdb.org/docs/current/core_extensions/spatial/overview"
+  },
+  {
+   "dom": "corteva.github.io",
+   "field": "web",
+   "proposed": "rioxarray"
+  },
+  {
+   "dom": "csu.gov.cz",
+   "field": "popis",
+   "proposed": "ČSÚ Ceny nemovitostí — průměrné ceny rodinných domů a bytů a cenové indexy po krajích a okresech za tříleté klouzavé období"
+  },
+  {
+   "dom": "northdata.com",
+   "field": "popis",
+   "proposed": "Firemní rejstříky, účetní závěrky a vazby osob a firem ve 26 zemích Evropy včetně ČR (v záběru je i Izrael)"
+  },
+  {
+   "dom": "data.humdata.org",
+   "field": "popis",
+   "proposed": "Globální populace ve vektorových H3 hexagonech 400 m (varianty 3 km a 22 km) — fúze GHSL, Facebook HRSL, Microsoft Buildings, Copernicus Land Cover a OSM"
+  },
+  {
+   "dom": "flatzone.cz",
+   "field": "web",
+   "proposed": "Flat Zone"
+  },
+  {
+   "dom": "flatzone.cz",
+   "field": "popis",
+   "proposed": "Vyhledávač novostaveb a developerských projektů v ČR — odhad ceny a datová platforma; B2B větev běží na b2b.flatzone.cz (dataligence.cz tam dnes redirectuje)"
+  }
+ ],
+ "removals": [
+  {
+   "dom": "cia.gov",
+   "why": "World Factbook byl 4. 2. 2026 zrušen — odkaz sice vrací 200, ale končí na rozlučkové stránce bez dat, takže popis (country profily) neplatí; náhrada worldfactbookarchive.org už v katalogu je"
+  }
+ ],
+ "summary": "Sloučeno do jednoho patch-listu: 79 doplnění, 44 oprav (v 17 řádcích), 1 odebrání.\n\nDuplicity: NASA FIRMS (firms.modaps.eosdis.nasa.gov) přišel dvakrát — v kat. 6 a kat. 5. Ponechán jednou v kat. 6 (Remote sensing / rastr) s lepším, doloženějším popisem; z varianty pro kat. 5 jsem převzal jmenovité družice (Aqua, Terra, S-NPP, NOAA-20/21). Jiná doména se v návrzích neopakuje; osgeo.org vs. grass.osgeo.org a wiki.openstreetmap.org vs. openstreetmap.org jsou samostatné položky v souladu s tím, jak katalog vede subdomény.\n\nVyhozeno jako výplň: Cloud-Native Geospatial Forum (cloudnativegeo.org) — je to komunita a konference, ne formát ani standard, do kat. 12 sedí jen přes odkazovaný guide; jako jediné to za slabé označil i vlastní oponentní posudek.\n\nFormát a tón: všechny popisy jsou česky, jedna věta, bez marketingu, pomlčka '—' odděluje název/typ od upřesnění; doplněna tam, kde chyběla (rzp.gov.cz, monitor.statnipokladna.gov.cz, offshoreleaks.icij.org, bellingcat.com, bezrealitky.cz aj.). Z opravy katastr.cuzk.gov.cz jsem vypustil osobní přívěsek „Nejnavštěvovanější geo zdroj v tvé historii\", který do popisu položky nepatří (stejný důvod, pro který se osobní poznámka odstraňuje u csu.gov.cz).\n\nDoplnění jsou seřazena podle čísla kategorie (1 → 17).\n\nPozor při aplikaci: sedm oprav mění vedle uvedeného pole i sloupec Doména — proto jsou rozepsány jako samostatné řádky s field \"dom\": developer.mapy.cz → developer.mapy.com, mapy.geology.cz → cgs.gov.cz, gis-aopk.opendata.arcgis.com → gis-aopkcr.opendata.arcgis.com, geoportal.cuzk.cz → geoportal.cuzk.gov.cz, eagri.cz → mze.gov.cz, dopravniinfo.cz → dopravniinfo.gov.cz. Bez nich by v katalogu zůstal nesoulad doména/URL.\n\nNic jsem nedomýšlel — čísla, licence a verze jsou přesně ty, které prošly ověřením v podkladech; neověřené údaje (počty map u NLS a LoC, kvóty openrouteservice, CMIP6 u WorldClim) v popisech nejsou."
+}

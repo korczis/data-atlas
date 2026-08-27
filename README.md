@@ -11,7 +11,7 @@ je zrovna nemám v historii.
 
 ## Co v tom je
 
-Položky v 17 kategoriích:
+218 položek v 17 kategoriích:
 
 | | |
 |---|---|
@@ -129,6 +129,31 @@ Build k tomu generuje `robots.txt`, `sitemap.xml`, `404.html` a `.nojekyll`.
 Sada `tests/meta.mjs` ověřuje každý tag i doprovodný soubor — chybějící
 `og:image` se totiž jinak pozná až ve chvíli, kdy někdo odkaz nasdílí
 a vypadne mu prázdná karta.
+
+## Audit katalogu
+
+Popisy i URL psal nejdřív jeden člověk z paměti. Katalog proto prošel
+**multiagentním auditem**: sedm agentů po shlucích kategorií ověřovalo věcná
+tvrzení a navrhovalo doplnění, každý shluk pak dostal skeptického oponenta
+s výchozím postojem *reject* a povinností ověřit URL curlem.
+
+Výsledek (patch-list je v [`docs/audit-patch-2026-08.json`](docs/audit-patch-2026-08.json)):
+**141 → 218 položek, 44 oprav, 1 odebrání.**
+
+Co audit našel a co by jinak zůstalo:
+
+- **CIA World Factbook byl 4. 2. 2026 zrušen.** Odkaz vracel 200, ale mířil na
+  rozlučkovou stránku bez dat — položka odstraněna, archiv v katalogu zůstává.
+- Šest služeb se přestěhovalo (`developer.mapy.cz` → `.com`, `eagri.cz` →
+  `mze.gov.cz`, `geoportal.cuzk.cz` → `.gov.cz`, …). Historické návštěvy pod
+  starým jménem jsou pořád důkaz, že zdroj znáš, takže je drží
+  `DOMAIN_ALIASES` v `tools/build_catalog.py`.
+- Věcné chyby v popisech: `pgRouting` není součást PostGIS, `ESA WorldCover`
+  existuje jen pro roky 2020 a 2021, `Planetary Computer` vypnul hostovaný
+  JupyterHub, David Rumsey má 150 tisíc map a georeferencovaná je jen část.
+
+Patch aplikuje `tools/apply_patch.py` do `tools/build_catalog.py`, ne do CSV —
+zdrojem pravdy je generátor. Dá se projít, po položkách zamítnout a spustit znovu.
 
 ## Odkazy stárnou
 
