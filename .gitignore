@@ -1,0 +1,14 @@
+node_modules/
+
+# Mezivýsledky datového řetězu. Obsahují nefiltrovanou historii prohlížení
+# včetně interních hostnames — do repozitáře nepatří za žádných okolností.
+.cache/
+
+# Postavená stránka; Pages si ji staví z committnutých CSV.
+dist/
+
+.DS_Store
+*.log
+
+# Site-specific hostnames vlastní sítě — nikdy se necommitují.
+config/private-hosts.txt

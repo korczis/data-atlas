@@ -1,0 +1,18 @@
+{
+  "name": "geodata-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Katalog GIS a geodatových zdrojů sestavený z Chrome záložek a historie",
+  "license": "MIT",
+  "scripts": {
+    "build": "python3 tools/build_page.py",
+    "test": "node tests/smoke.mjs && node tests/interact.mjs",
+    "serve": "python3 -m http.server 8000 --directory dist"
+  },
+  "devDependencies": {
+    "alpinejs": "3.14.9",
+    "flowbite": "2.5.2",
+    "jsdom": "^25.0.1",
+    "tailwindcss": "3.4.17"
+  }
+}

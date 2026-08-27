@@ -1,0 +1,335 @@
+<title>Geodata Atlas</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { background:#f9fafb; color:#111827; margin:0; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { background:#111827; color:#f3f4f6; } }
+  :root[data-theme="dark"] body { background:#111827; color:#f3f4f6; }
+  [x-cloak] { display: none !important; }
+  .scroll-x::-webkit-scrollbar { height: 8px; }
+  .scroll-x::-webkit-scrollbar-thumb { background: rgba(107,114,128,.4); border-radius: 4px; }
+  /* viditelný focus pro klávesnici — Flowbite ho dává jen inputům */
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) button:focus-visible,
+    :root:not([data-theme="light"]) a:focus-visible,
+    :root:not([data-theme="light"]) input:focus-visible { outline-color: #60a5fa; }
+  }
+  :root[data-theme="dark"] button:focus-visible,
+  :root[data-theme="dark"] a:focus-visible,
+  :root[data-theme="dark"] input:focus-visible { outline-color: #60a5fa; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+
+<div x-data="atlas()" x-cloak class="font-sans antialiased text-gray-900 dark:text-gray-100">
+
+  <!-- ══ HEADER ══ -->
+  <header class="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div class="min-w-0">
+          <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            Geodata&nbsp;Atlas
+          </h1>
+          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            GIS, geodata a prostorová analytika — sestaveno z Chrome záložek a historie,
+            doplněno o referenční zdroje.
+          </p>
+        </div>
+        <dl class="flex flex-wrap gap-x-8 gap-y-3">
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Katalog</dt>
+            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="catalog.length"></dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Z tvých dat</dt>
+            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400" x-text="inData"></dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Long list</dt>
+            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="longlist.length"></dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorií</dt>
+            <dd class="mt-0.5 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="categories.length"></dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- provenance -->
+      <div class="mt-6 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">Chrome / Default</span>
+        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
+        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
+        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <!-- ══ TABS ══ -->
+    <div class="border-b border-gray-200 dark:border-gray-700">
+      <ul class="-mb-px flex flex-wrap gap-1 text-sm font-medium">
+        <li>
+          <button type="button" @click="view='catalog'" :aria-selected="view==='catalog'"
+            :class="view==='catalog'
+              ? 'inline-block rounded-t-lg border-b-2 border-blue-600 px-4 py-3 text-blue-600 dark:border-blue-500 dark:text-blue-400'
+              : 'inline-block rounded-t-lg border-b-2 border-transparent px-4 py-3 text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'">
+            Kurátorovaný katalog
+            <span class="ml-1.5 rounded bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300" x-text="catalog.length"></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" @click="view='longlist'" :aria-selected="view==='longlist'"
+            :class="view==='longlist'
+              ? 'inline-block rounded-t-lg border-b-2 border-blue-600 px-4 py-3 text-blue-600 dark:border-blue-500 dark:text-blue-400'
+              : 'inline-block rounded-t-lg border-b-2 border-transparent px-4 py-3 text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'">
+            Long list kandidátů
+            <span class="ml-1.5 rounded bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-300" x-text="longlist.length"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ══ CONTROLS ══ -->
+    <div class="mt-5 flex flex-col gap-4">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div class="relative flex-1">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="9" r="6"/><path d="M14 14l4 4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <input type="search" x-model="q" placeholder="Hledat web, doménu, popis…"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500">
+        </div>
+
+        <div class="inline-flex rounded-lg shadow-sm" role="group">
+          <template x-for="(s,i) in sourceFilters" :key="s.k">
+            <button type="button" @click="source=s.k" :aria-pressed="source===s.k"
+              :class="[
+                source===s.k ? 'z-10 bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:border-blue-600'
+                             : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700',
+                i===0 ? 'rounded-l-lg' : '',
+                i===sourceFilters.length-1 ? 'rounded-r-lg border-l-0' : 'border-l-0',
+                i===0 ? '' : ''
+              ]"
+              class="border px-4 py-2.5 text-sm font-medium first:border-l"
+              x-text="s.label"></button>
+          </template>
+        </div>
+
+        <button type="button" @click="copyCsv()"
+          class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
+            <rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 4H5a2 2 0 00-2 2v8" stroke-linecap="round"/>
+          </svg>
+          <span x-text="copied ? 'Zkopírováno' : 'Kopírovat CSV'"></span>
+        </button>
+      </div>
+
+      <!-- category pills -->
+      <div x-show="view==='catalog'" class="scroll-x -mx-1 overflow-x-auto px-1 pb-1">
+        <div class="flex gap-2">
+          <button type="button" @click="cat=''" :aria-pressed="cat===''"
+            :class="cat==='' ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
+            class="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold">
+            Vše
+          </button>
+          <template x-for="c in categories" :key="c">
+            <button type="button" @click="cat = (cat===c ? '' : c)" :aria-pressed="cat===c"
+              :class="cat===c ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'"
+              class="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold"
+              x-text="c.replace(/^\d+\.\s*/,'')"></button>
+          </template>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-500 dark:text-gray-400">
+        <span class="font-semibold tabular-nums" x-text="filtered.length"></span>
+        <span x-text="filtered.length===1 ? ' položka' : (filtered.length<5 ? ' položky' : ' položek')"></span>
+        <span x-show="q || cat || source"> · filtrováno</span>
+      </p>
+    </div>
+
+    <!-- ══ CATALOG TABLE ══ -->
+    <div x-show="view==='catalog'" class="mt-4 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+      <div class="scroll-x overflow-x-auto">
+        <table class="w-full min-w-[52rem] text-left text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wide text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+            <tr>
+              <th scope="col" class="px-4 py-3 font-semibold">
+                <button type="button" @click="sortBy('name')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Web <span x-text="arrow('name')" class="text-[10px]"></span></button>
+              </th>
+              <th scope="col" class="px-4 py-3 font-semibold">Popis</th>
+              <th scope="col" class="px-4 py-3 font-semibold">
+                <button type="button" @click="sortBy('cat')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Kategorie <span x-text="arrow('cat')" class="text-[10px]"></span></button>
+              </th>
+              <th scope="col" class="px-4 py-3 font-semibold">Zdroj</th>
+              <th scope="col" class="px-4 py-3 text-right font-semibold">
+                <button type="button" @click="sortBy('visits')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Návštěv <span x-text="arrow('visits')" class="text-[10px]"></span></button>
+              </th>
+              <th scope="col" class="px-4 py-3 font-semibold">
+                <button type="button" @click="sortBy('last')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Poslední <span x-text="arrow('last')" class="text-[10px]"></span></button>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+            <template x-for="r in catalogRows" :key="r.id">
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                <td class="px-4 py-3 align-top">
+                  <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                     class="font-semibold text-blue-600 hover:underline dark:text-blue-400" x-text="r.name"></a>
+                  <div class="mt-0.5 font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
+                </td>
+                <td class="px-4 py-3 align-top text-gray-700 dark:text-gray-300">
+                  <span class="block max-w-md" x-text="r.desc"></span>
+                </td>
+                <td class="px-4 py-3 align-top">
+                  <span class="whitespace-nowrap text-xs text-gray-600 dark:text-gray-400" x-text="r.cat.replace(/^\d+\.\s*/,'')"></span>
+                </td>
+                <td class="px-4 py-3 align-top">
+                  <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
+                </td>
+                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-700 dark:text-gray-300" x-text="r.visits || '–'"></td>
+                <td class="px-4 py-3 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="filtered.length===0" class="bg-white px-4 py-12 text-center text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+        Nic neodpovídá filtru.
+      </div>
+    </div>
+
+    <!-- ══ LONGLIST TABLE ══ -->
+    <div x-show="view==='longlist'" class="mt-4 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+      <div class="border-b border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-300">
+        Syrové výsledky keyword filtru nad doménou + URL + titulkem. Neprošlo kurací — je tu šum.
+      </div>
+      <div class="scroll-x overflow-x-auto">
+        <table class="w-full min-w-[52rem] text-left text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wide text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+            <tr>
+              <th scope="col" class="px-4 py-3 font-semibold">
+                <button type="button" @click="sortBy('dom')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Doména <span x-text="arrow('dom')" class="text-[10px]"></span></button>
+              </th>
+              <th scope="col" class="px-4 py-3 font-semibold">Ukázkový titulek</th>
+              <th scope="col" class="px-4 py-3 text-right font-semibold">
+                <button type="button" @click="sortBy('visits')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Návštěv <span x-text="arrow('visits')" class="text-[10px]"></span></button>
+              </th>
+              <th scope="col" class="px-4 py-3 text-right font-semibold">URL</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Zdroj</th>
+              <th scope="col" class="px-4 py-3 font-semibold">
+                <button type="button" @click="sortBy('last')" class="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white">Poslední <span x-text="arrow('last')" class="text-[10px]"></span></button>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+            <template x-for="r in longlistRows" :key="r.id">
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                <td class="px-4 py-3 align-top">
+                  <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                     class="font-mono text-xs font-semibold text-blue-600 hover:underline dark:text-blue-400" x-text="r.dom"></a>
+                </td>
+                <td class="px-4 py-3 align-top text-gray-700 dark:text-gray-300">
+                  <span class="block max-w-lg truncate" x-text="r.title || '–'"></span>
+                </td>
+                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-700 dark:text-gray-300" x-text="r.visits"></td>
+                <td class="px-4 py-3 align-top text-right tabular-nums text-gray-500 dark:text-gray-400" x-text="r.urls"></td>
+                <td class="px-4 py-3 align-top">
+                  <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
+                </td>
+                <td class="px-4 py-3 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="filtered.length===0" class="bg-white px-4 py-12 text-center text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+        Nic neodpovídá filtru.
+      </div>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="mt-10 border-t border-gray-200 pt-6 text-xs leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
+      <p class="max-w-3xl">
+        <span class="font-semibold text-gray-700 dark:text-gray-300">Jak to vzniklo.</span>
+        Záložky z <span class="font-mono">AccountBookmarks</span>, historie z <span class="font-mono">History</span> (SQLite).
+        Match na doménu&nbsp;+&nbsp;URL&nbsp;+&nbsp;titulek proti ~120 klíčovým slovům, dedup na úroveň domény, pak ruční kurace.
+        Adult složky a domény vyřazeny. Chrome drží historii jen 90 dní — starší GIS surfování v datech není,
+        položky označené <span class="font-medium">reference</span> jsou doplněné.
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.__DATA__ = /*__JSON__*/;
+function atlas() {
+  return {
+    view: 'catalog', q: '', cat: '', source: '', copied: false,
+    sort: { key: 'cat', dir: 1 },
+    catalog: window.__DATA__.catalog,
+    longlist: window.__DATA__.longlist,
+    sourceFilters: [
+      { k: '', label: 'Vše' },
+      { k: 'data', label: 'V mých datech' },
+      { k: 'reference', label: 'Reference' },
+    ],
+    get categories() { return [...new Set(this.catalog.map(r => r.cat))]; },
+    get inData() { return this.catalog.filter(r => r.src !== 'reference').length; },
+    get rows() { return this.view === 'catalog' ? this.catalog : this.longlist; },
+    get catalogRows() { return this.view === 'catalog' ? this.filtered : []; },
+    get longlistRows() { return this.view === 'longlist' ? this.filtered : []; },
+    get filtered() {
+      const q = this.q.trim().toLowerCase();
+      let out = this.rows.filter(r => {
+        if (this.source === 'data' && r.src === 'reference') return false;
+        if (this.source === 'reference' && r.src !== 'reference') return false;
+        if (this.view === 'catalog' && this.cat && r.cat !== this.cat) return false;
+        if (!q) return true;
+        return [r.name, r.dom, r.desc, r.cat, r.title].filter(Boolean)
+          .some(v => String(v).toLowerCase().includes(q));
+      });
+      const k = this.sort.key, d = this.sort.dir;
+      return out.sort((a, b) => {
+        let x = a[k], y = b[k];
+        if (k === 'visits' || k === 'urls') { x = +x || 0; y = +y || 0; return (x - y) * d; }
+        return String(x ?? '').localeCompare(String(y ?? ''), 'cs') * d;
+      });
+    },
+    sortBy(k) {
+      if (this.sort.key === k) this.sort.dir *= -1;
+      else this.sort = { key: k, dir: (k === 'visits' || k === 'urls') ? -1 : 1 };
+    },
+    arrow(k) { return this.sort.key === k ? (this.sort.dir === 1 ? '▲' : '▼') : ''; },
+    srcLabel(s) {
+      return { 'reference': 'reference', 'bookmarks': 'záložky', 'history': 'historie',
+               'bookmarks+history': 'záložky + historie' }[s] || s;
+    },
+    badge(s) {
+      if (s === 'reference') return 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300';
+      if (s === 'bookmarks') return 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300';
+      if (s === 'bookmarks+history') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300';
+      return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300';
+    },
+    copyCsv() {
+      const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+      const cols = this.view === 'catalog'
+        ? [['Kategorie','cat'],['Web','name'],['Doména','dom'],['Popis','desc'],['Zdroj','src'],['Návštěvy','visits'],['Poslední','last'],['URL','url']]
+        : [['Doména','dom'],['Návštěvy','visits'],['URL celkem','urls'],['Zdroj','src'],['Poslední','last'],['Titulek','title'],['Ukázková URL','url']];
+      const csv = [cols.map(c => esc(c[0])).join(',')]
+        .concat(this.filtered.map(r => cols.map(c => esc(r[c[1]])).join(','))).join('\n');
+      navigator.clipboard.writeText(csv).then(() => {
+        this.copied = true; setTimeout(() => this.copied = false, 1800);
+      }).catch(() => {});
+    },
+  };
+}
+</script>

@@ -1,0 +1,6 @@
+# Zkopíruj na config/private-hosts.txt a doplň hostnames vlastní sítě.
+# Jeden regex na řádek, `#` uvozuje komentář. Soubor sám je v .gitignore.
+#
+# \.lab\.example\.com$
+# ^admin\.
+# ^staging\.
