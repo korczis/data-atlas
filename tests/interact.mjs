@@ -41,8 +41,10 @@ check('hledání v long listu', tableRows() === expected, `${tableRows()} z ${ex
 s.q = ''; s.view = 'catalog'; s.cat = s.categories.find(c => c.includes('Historické')); await tick();
 s.copyCsv(); await tick();
 const clip = w.__clip || '';
+// Počet se bere z CSV — ručně zapsané číslo padne při první změně katalogu.
+const expectedRows = catalog.filter(r => r['Kategorie'].includes('Historické')).length;
 check('export filtrovaného výběru do schránky',
-      clip.startsWith('"Kategorie"') && clip.split('\n').length === 7,
-      `${clip.split('\n').length - 1} datových řádků`);
+      clip.startsWith('"Kategorie"') && clip.split('\n').length === expectedRows + 1,
+      `${clip.split('\n').length - 1} z ${expectedRows} očekávaných`);
 
 check.report(errors);

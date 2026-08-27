@@ -63,7 +63,7 @@ C=[
 ("1. Gazetteer / geokódování","Who's on First","whosonfirst.org","Gazetteer admin i POI entit se stabilními ID a hierarchií, podklad Pelias","https://whosonfirst.org/"),
 ("1. Gazetteer / geokódování","OpenAddresses","openaddresses.io","Agregované otevřené adresní body globálně, CSV s lat/lon","https://openaddresses.io/"),
 ("1. Gazetteer / geokódování","RÚIAN / VDP ČÚZK","vdp.cuzk.cz","Autoritativní CZ registr adres a územní identifikace — výměnný formát, adresní body, definiční body parcel","https://vdp.cuzk.cz/"),
-("1. Gazetteer / geokódování","Mapy.cz Developer API","developer.mapy.cz","CZ geokódování, suggest, routing, dlaždice. Máš tam aktivní projekt s consumption trackingem","https://developer.mapy.cz/"),
+("1. Gazetteer / geokódování","Mapy.cz Developer API","developer.mapy.cz","CZ geokódování, suggest, routing, dlaždice. Máš tam aktivní projekt s consumption trackingem","https://developer.mapy.com/"),
 ("1. Gazetteer / geokódování","Photon","photon.komoot.io","Rychlý OSM geocoder s type-ahead, snadný self-hosting","https://photon.komoot.io/"),
 
 # ═══ 2. GLOBÁLNÍ REFERENČNÍ GEODATA ═══
@@ -87,11 +87,11 @@ C=[
 ("3. ČR — katastr a geodata","Geoportál ČÚZK","geoportal.cuzk.cz","WMS/WFS/WMTS, ZABAGED, Ortofoto ČR, DMR 5G/DMP 1G, Data50/200. Klíčový CZ zdroj","https://geoportal.cuzk.cz/"),
 ("3. ČR — katastr a geodata","ČÚZK — Žádosti","zadosti.cuzk.gov.cz","Objednávky výstupů a datových sad","https://zadosti.cuzk.gov.cz/"),
 ("3. ČR — katastr a geodata","ČÚZK (rozcestník)","cuzk.gov.cz","Hlavní web zeměměřického a katastrálního úřadu","https://www.cuzk.gov.cz/"),
-("3. ČR — katastr a geodata","Národní geoportál INSPIRE (CENIA)","geoportal.gov.cz","CZ INSPIRE katalog — metadata a služby napříč resorty","https://geoportal.gov.cz/"),
-("3. ČR — katastr a geodata","ArcČR 500 / ArcData","arcdata.cz","Volně dostupná digitální geografická databáze ČR 1:500 000","https://www.arcdata.cz/produkty/geograficka-data/arccr"),
+("3. ČR — katastr a geodata","Národní geoportál INSPIRE (CENIA)","geoportal.gov.cz","CZ INSPIRE katalog — metadata a služby napříč resorty, včetně historického ortofota z 50. let","https://geoportal.gov.cz/"),
+("3. ČR — katastr a geodata","ArcČR (ARCDATA Praha)","arcdata.cz","Volně dostupná digitální geografická databáze ČR — administrativní členění, sídla, vodstvo, doprava; navazuje na ArcČR 500","https://www.arcdata.cz/cs-cz/produkty/data/arccr"),
 ("3. ČR — katastr a geodata","DIBAVOD (VÚV TGM)","dibavod.cz","Digitální báze vodohospodářských dat — povodí, vodní toky, nádrže","https://www.dibavod.cz/"),
 ("3. ČR — katastr a geodata","AOPK — Ochrana přírody","gis-aopk.opendata.arcgis.com","Chráněná území, Natura 2000, biotopy jako open data","https://gis-aopk.opendata.arcgis.com/"),
-("3. ČR — katastr a geodata","LPIS / eAGRI","eagri.cz","Zemědělské půdní bloky, využití půdy, WMS/WFS","https://eagri.cz/public/app/lpisext/lpis/verejny2/plpis/"),
+("3. ČR — katastr a geodata","LPIS / eAGRI","eagri.cz","Zemědělské půdní bloky, využití půdy, WMS/WFS","https://mze.gov.cz/public/app/lpisext/lpis/verejny2/plpis/"),
 ("3. ČR — katastr a geodata","Česká geologická služba","mapy.geology.cz","Geologické, hydrogeologické a půdní mapy, sesuvy, poddolování","https://mapy.geology.cz/"),
 ("3. ČR — katastr a geodata","Geoportál Praha","geoportalpraha.cz","Pražská geodata a open data — ortofota, územní plán, 3D model","https://www.geoportalpraha.cz/"),
 
@@ -99,18 +99,18 @@ C=[
 ("4. ČR — doprava / mobilita","Golemio (Praha)","golemio.cz","Datová platforma hl. m. Prahy — MHD, parkování, senzory, sdílená mobilita","https://golemio.cz/"),
 ("4. ČR — doprava / mobilita","Golemio API","api.golemio.cz","API dokumentace + správa klíčů: Public Transport, GTFS, vehicle positions","https://api.golemio.cz/"),
 ("4. ČR — doprava / mobilita","ŘSD MobilityData","mobilitydata.rsd.cz","Registr odběrů dat ŘSD — sčítání dopravy, zdroje, licence","https://mobilitydata.rsd.cz/"),
-("4. ČR — doprava / mobilita","Geoportál ŘSD","geoportal.rsd.cz","Silniční a dálniční síť ČR — mapové aplikace, datové vrstvy, uzly a úseky","https://geoportal.rsd.cz/"),
+("4. ČR — doprava / mobilita","Geoportál ŘSD","geoportal.rsd.cz","Silniční a dálniční síť ČR — mapové aplikace, datové vrstvy, uzly a úseky","https://geoportal.rsd.cz/web"),
 ("4. ČR — doprava / mobilita","Dopravní info (NDIC)","dopravniinfo.cz","Uzavírky, nehody, sjízdnost, real-time dopravní události","https://www.dopravniinfo.cz/"),
 ("4. ČR — doprava / mobilita","NAIS API","api-nais.dopravniinfo.cz","API vrstva nad národními dopravními informacemi (DATEX II)","https://api-nais.dopravniinfo.cz/"),
 ("4. ČR — doprava / mobilita","PID","pid.cz","Pražská integrovaná doprava — GTFS feed, jízdní řády, mapy linek","https://pid.cz/"),
-("4. ČR — doprava / mobilita","Ministerstvo dopravy","md.gov.cz","Rezortní registry a data","https://www.md.gov.cz/"),
+("4. ČR — doprava / mobilita","Ministerstvo dopravy","md.gov.cz","Rezortní registry a data","https://md.gov.cz/"),
 
 # ═══ 5. CRIME / IZS / VEŘEJNÁ BEZPEČNOST ═══
 ("5. Crime / IZS / bezpečnost","SFPD Crime Dashboard","sanfranciscopolice.org","Incident-level crime data SF s prostorovou složkou — referenční vzor crime dashboardu","https://www.sanfranciscopolice.org/stay-safe/crime-data/crime-dashboard"),
 ("5. Crime / IZS / bezpečnost","data.police.uk","data.police.uk","UK street-level crime + outcomes API, měsíční CSV s lat/lon a force area","https://data.police.uk/"),
 ("5. Crime / IZS / bezpečnost","Portál krizového řízení Stč. kraje","pkr.kr-stredocesky.cz","Zásahy jednotek požární ochrany — mapa a feed událostí IZS","https://pkr.kr-stredocesky.cz/"),
 ("5. Crime / IZS / bezpečnost","HZS Královéhradecký — Události","udalostikhk.hzscr.cz","Veřejný výpis zásahů HZS s lokalizací","https://udalostikhk.hzscr.cz/"),
-("5. Crime / IZS / bezpečnost","HZS Vysočina — Webohled","webohled.hasici-vysocina.cz","Veřejný portál událostí hasičů kraje Vysočina","https://webohled.hasici-vysocina.cz/"),
+("5. Crime / IZS / bezpečnost","HZS Vysočina — Webohled","webohled.hasici-vysocina.cz","Veřejný portál událostí hasičů kraje Vysočina — pozor, TLS certifikát vypršel v srpnu 2020 a je vystavený na jiný název","https://webohled.hasici-vysocina.cz/"),
 ("5. Crime / IZS / bezpečnost","NYC Open Data","opendata.cityofnewyork.us","Vzorový municipální portál — NYPD complaints, 311, PLUTO parcely","https://opendata.cityofnewyork.us/"),
 ("5. Crime / IZS / bezpečnost","Chicago Data Portal","data.cityofchicago.org","Crimes 2001-present s lat/lon — klasický dataset pro prostorovou analytiku","https://data.cityofchicago.org/"),
 ("5. Crime / IZS / bezpečnost","ACLED","acleddata.com","Armed Conflict Location & Event Data — georeferencované konflikty a protesty","https://acleddata.com/"),
@@ -125,7 +125,7 @@ C=[
 ("6. Remote sensing / rastr","Google Earth Engine","earthengine.google.com","Planetární petabajtový katalog s cloudovým zpracováním","https://earthengine.google.com/"),
 ("6. Remote sensing / rastr","ESA WorldCover","esa-worldcover.org","Globální land cover 10 m","https://esa-worldcover.org/"),
 ("6. Remote sensing / rastr","CORINE Land Cover","land.copernicus.eu","Evropské využití území, časové řady 1990-2018","https://land.copernicus.eu/"),
-("6. Remote sensing / rastr","GHSL (Global Human Settlement)","ghsl.jrc.ec.europa.eu","Zastavěnost, populační rastr, urbanizace — JRC","https://ghsl.jrc.ec.europa.eu/"),
+("6. Remote sensing / rastr","GHSL (Global Human Settlement)","human-settlement.emergency.copernicus.eu","Zastavěnost, populační rastr, urbanizace — JRC","https://human-settlement.emergency.copernicus.eu/"),
 ("6. Remote sensing / rastr","STAC Index","stacindex.org","Katalog veřejných STAC endpointů","https://stacindex.org/"),
 
 # ═══ 7. STATISTIKA / DEMOGRAFIE ═══
@@ -139,10 +139,9 @@ C=[
 # ═══ 8. HISTORICKÉ MAPY ═══
 ("8. Historické mapy","David Rumsey Map Collection","davidrumsey.com","~200k georeferencovaných historických map, IIIF a Georeferencer","https://www.davidrumsey.com/"),
 ("8. Historické mapy","Old Maps Online","oldmapsonline.org","Meta-vyhledávač historických map podle místa a času","https://www.oldmapsonline.org/"),
-("8. Historické mapy","Mapire","mapire.eu","Habsburská vojenská mapování (I.-III.) georeferencovaná — ideální pro ČR","https://mapire.eu/"),
+("8. Historické mapy","Mapire (Arcanum Maps)","maps.arcanum.com","Habsburská vojenská mapování (I.-III.) georeferencovaná — ideální pro ČR","https://maps.arcanum.com/en/"),
 ("8. Historické mapy","Archivní mapy ČÚZK","ags.cuzk.gov.cz","Císařské otisky stabilního katastru, indikační skici","https://ags.cuzk.gov.cz/archiv/"),
 ("8. Historické mapy","Chartae Antiquae","chartae-antiquae.cz","Virtuální mapová sbírka historických map ČR","https://www.chartae-antiquae.cz/"),
-("8. Historické mapy","Kontaminovaná místa / staré ortofoto","kontaminace.cenia.cz","Ortofoto z 50. let vs. současnost — změny krajiny","https://kontaminace.cenia.cz/"),
 
 # ═══ 9. MAPOVÉ KNIHOVNY, BASEMAPY, RENDERING ═══
 ("9. Mapové knihovny / basemapy","MapLibre GL JS","maplibre.org","OSS fork Mapbox GL — vektorové dlaždice, WebGL, style spec","https://maplibre.org/"),

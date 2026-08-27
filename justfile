@@ -19,6 +19,7 @@ help:
     @echo "  just lint         konvence Flowbite + Alpine (docs/UI-RULES.md)"
     @echo "  just responsive   měření přetečení v headless Chrome"
     @echo "  just a11y         audit přístupnosti přes axe-core"
+    @echo "  just links        ověření odkazů v katalogu (chodí po síti)"
     @echo "  just check        build + lint + test + responsive + a11y"
     @echo "  just assets       přegeneruje ikony a OG kartu"
     @echo
@@ -77,6 +78,11 @@ responsive:
 [group('test')]
 a11y:
     python3 tools/check_a11y.py
+
+# Ověří, že odkazy v katalogu někam vedou (chodí po síti, v `check` není)
+[group('test')]
+links:
+    python3 tools/check_links.py
 
 # Lokální náhled postavené stránky
 [group('test')]

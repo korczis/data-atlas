@@ -17,7 +17,8 @@
     "assets": "python3 tools/build_assets.py",
     "lint": "python3 tools/lint_ui.py",
     "responsive": "python3 tools/check_responsive.py",
-    "a11y": "python3 tools/check_a11y.py"
+    "a11y": "python3 tools/check_a11y.py",
+    "links": "python3 tools/check_links.py"
   },
   "devDependencies": {
     "alpinejs": "3.14.9",

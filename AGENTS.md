@@ -33,6 +33,8 @@ protože ta selhává tiše.
   `config/private-hosts.txt`, který je mimo repozitář.
 - **Flowbite `data-*` nepatří do `x-for`.** Důvod je v `docs/UI-RULES.md`;
   selhává to tiše, bez chyby v konzoli.
+- **URL v katalogu ověřuj, nevymýšlej.** `just links` je od toho. Zdrojem
+  pravdy je `tools/build_catalog.py`, ne `data/catalog.csv` — ten se generuje.
 - **Nespoléhej na jsdom u layoutu.** Umí DOM, ne rozvržení. Přetečení do strany
   odhalí jedině `just responsive`.
 

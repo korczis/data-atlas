@@ -11,7 +11,7 @@ je zrovna nemám v historii.
 
 ## Co v tom je
 
-142 položek v 17 kategoriích:
+Položky v 17 kategoriích:
 
 | | |
 |---|---|
@@ -125,6 +125,28 @@ Build k tomu generuje `robots.txt`, `sitemap.xml`, `404.html` a `.nojekyll`.
 Sada `tests/meta.mjs` ověřuje každý tag i doprovodný soubor — chybějící
 `og:image` se totiž jinak pozná až ve chvíli, kdy někdo odkaz nasdílí
 a vypadne mu prázdná karta.
+
+## Odkazy stárnou
+
+Katalog odkazů, jehož odkazy nikdo neověřil, je pasivní lež — vypadá jako zdroj
+informací a přitom část z něj nefunguje. `just links` proto projde všechny URL
+a rozliší:
+
+| Stav | Co znamená |
+|---|---|
+| `ok` | 2xx a cíl sedí |
+| `přesměrování` | web se přestěhoval — stojí za pohled, ale často jde jen o jazykovou mutaci nebo session ID |
+| `blokuje` | 403 na automat, v prohlížeči funguje (Cloudflare a spol.) |
+| `certifikát` | TLS selže, přes `-k` obsah naskočí — vada webu, ne katalogu |
+| `chyba` | opravdu nikam nevede |
+
+Rozlišení není puntičkářství: první běh nahlásil osm chyb, ze kterých byly
+**tři skutečné**. Zbytek byly bot ochrany, vypršelý certifikát a — hlavně —
+selhání lokálního DNS. Checker proto překládá jména sám přes DoH, jinak by
+výsledek závisel na tom, na jaké síti zrovna běží.
+
+Kontrola není součástí `just check`, protože chodí po síti. Běží měsíčně
+[vlastním workflow](.github/workflows/links.yml), který při nálezu založí issue.
 
 ## Soukromí
 
