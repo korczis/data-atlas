@@ -19,9 +19,15 @@ def main() -> None:
     with (ROOT / "data" / "catalog.csv").open(encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh))
 
-    groups = collections.OrderedDict()
+    # Dvě úrovně: skupina → kategorie. Plochý seznam sedmnácti kategorií
+    # je na 218 položek nepřehledný.
+    tree: dict[str, dict[str, list]] = collections.OrderedDict()
     for r in rows:
-        groups.setdefault(r["Kategorie"], []).append(r)
+        tree.setdefault(r["Skupina"], collections.OrderedDict()) \
+            .setdefault(r["Kategorie"], []).append(r)
+    groups = collections.OrderedDict()
+    for cats in tree.values():
+        groups.update(cats)
     evidenced = sum(1 for r in rows if r["Zdroj"] != "reference")
 
     out = [
@@ -42,18 +48,23 @@ def main() -> None:
         "## Kategorie",
         "",
     ]
-    for cat, items in groups.items():
-        out.append(f"- [{cat}](#{anchor(cat)}) — {len(items)}")
+    for grp, cats in tree.items():
+        total = sum(len(v) for v in cats.values())
+        out.append(f"\n**{grp}** — {total}\n")
+        for cat, items in cats.items():
+            out.append(f"- [{cat}](#{anchor(cat)}) — {len(items)}")
     out.append("")
 
-    for cat, items in groups.items():
-        out += ["", f"## {cat}", "",
-                "| Web | Doména | Popis | Zdroj | Návštěv | Poslední |",
-                "|---|---|---|---|--:|---|"]
-        for r in items:
-            desc = r["Popis"].replace("|", "\\|")
-            out.append(f"| [{r['Web']}]({r['URL']}) | `{r['Doména']}` | {desc} | "
-                       f"{r['Zdroj']} | {r['Návštěvy'] or '–'} | {r['Poslední návštěva'] or '–'} |")
+    for grp, cats in tree.items():
+        out += ["", f"# {grp}", ""]
+        for cat, items in cats.items():
+            out += ["", f"## {cat}", "",
+                    "| Web | Doména | Popis | Zdroj | Návštěv | Poslední |",
+                    "|---|---|---|---|--:|---|"]
+            for r in items:
+                desc = r["Popis"].replace("|", "\\|")
+                out.append(f"| [{r['Web']}]({r['URL']}) | `{r['Doména']}` | {desc} | "
+                           f"{r['Zdroj']} | {r['Návštěvy'] or '–'} | {r['Poslední návštěva'] or '–'} |")
     out.append("")
 
     target = ROOT / "docs" / "CATALOG.md"

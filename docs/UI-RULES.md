@@ -44,6 +44,22 @@ protože artefakt se vykresluje ve **třech** stavech, ne dvou: explicitní volb
 
 ## Alpine
 
+### Past, která stála nejvíc času
+
+**Alpine u výrazu, který vrátí funkci, tu funkci zavolá.** Je to záměr — aby
+šlo psát `x-text="metoda"` místo `x-text="metoda()"`. Důsledek je ale ošklivý:
+callback uložený v datech a použitý ve výrazu se spustí při **každém
+překreslení**.
+
+Drobečky původně nesly `action: () => { this.cat = '' }` a šablona měla
+`x-show="crumb.action"`. Každý render tím mazal filtr, který uživatel právě
+nastavil. Tvářilo se to jako rozbitá reaktivita: hodnota se přiřadila, po pár
+milisekundách zmizela a v `$watch` dorazilo `"" → ""`.
+
+Pravidlo: **v datech používaných ve výrazech nikdy neukládej funkce.**
+Drobeček nese cíl skoku jako řetězec, kliknutí obsluhuje `goTo(crumb.to)`.
+Hlídá to test *„překreslení nemění nastavený filtr"*.
+
 | Pravidlo | Proč |
 |---|---|
 | `alpine/data` — komponenta registrovaná přes `Alpine.data()` v `alpine:init` | Drží logiku mimo globální jmenný prostor |
@@ -63,6 +79,39 @@ protože artefakt se vykresluje ve **třech** stavech, ne dvou: explicitní volb
 ARIA se nepoužívá na efekt: záložky **nemají** `role="tablist"`, protože
 neimplementujeme obsluhu šipkami, kterou ta role slibuje. Nedodržený ARIA
 kontrakt je horší než žádný.
+
+## Informační architektura
+
+Sedmnáct kategorií v plochém seznamu je na 218 položek moc. Katalog má proto
+dvě úrovně: **skupina → kategorie**, definované v `tools/build_catalog.py`
+a nesené sloupcem `Skupina` v CSV.
+
+| Skupina | Co v ní je |
+|---|---|
+| Data — svět | globální geodata, remote sensing, statistika, historické mapy |
+| Data — Česko | katastr, doprava, open data, nemovitosti |
+| Události a rizika | crime/IZS, OSINT, počasí |
+| Nástroje | gazetteery, knihovny, spatial DB, routing, formáty |
+| Učení | komunita a kurzy |
+
+Z toho plyne zbytek:
+
+- **CSV se zapisuje v pořadí IA**, ne podle toho, jak položky vznikaly.
+  Stránka to pořadí drží ve sloupci `ord`; bez něj by se řadilo podle textu
+  kategorie a `10. Spatial DB` by skončilo před `2. Globální geodata`.
+- **Výsledky se člení po kategoriích** — 218 nerozlišených řádků se nedá
+  procházet. Při hledání napříč katalogem je členění potřebnější než při
+  procházení jedné kategorie.
+- **Členění se vypne, když se řadí podle něčeho jiného než pořadí katalogu.**
+  Seřadit podle návštěv a pak seskupit po kategoriích si odporuje: uživatel
+  chce globální pořadí, ne nejnavštěvovanější v každé sekci. Proto je
+  „Pořadí katalogu" první volbou v řazení — musí jít vrátit zpátky.
+- **Sloupec Kategorie odpadá, když jsou řádky seskupené** — jinak opakuje
+  hlavičku sekce na každém řádku. Hlídá to test, že hlavička a tělo tabulky
+  mají stejný počet viditelných sloupců.
+- **Filtr žije v URL** (`#cat=…&q=…&src=…`). Výřez katalogu se dá poslat dál.
+  Zápis je v `try` — pod `file://` a v sandboxu `replaceState` vyhodí výjimku,
+  a ta by uvnitř `$watch` shodila reaktivitu celé stránky.
 
 ## Mobile-first
 

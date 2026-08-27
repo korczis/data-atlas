@@ -12,41 +12,42 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 
 ## Kategorie
 
-- [1. Gazetteer / geokódování](#1-gazetteer--geokódování) — 12
+
+**Data — svět** — 50
+
 - [2. Globální geodata](#2-globální-geodata) — 16
-- [3. ČR — katastr a geodata](#3-čr--katastr-a-geodata) — 18
-- [4. ČR — doprava / mobilita](#4-čr--doprava--mobilita) — 12
-- [5. Crime / IZS / bezpečnost](#5-crime--izs--bezpečnost) — 13
 - [6. Remote sensing / rastr](#6-remote-sensing--rastr) — 15
 - [7. Statistika / demografie](#7-statistika--demografie) — 10
 - [8. Historické mapy](#8-historické-mapy) — 9
+
+**Data — Česko** — 48
+
+- [3. ČR — katastr a geodata](#3-čr--katastr-a-geodata) — 18
+- [4. ČR — doprava / mobilita](#4-čr--doprava--mobilita) — 12
+- [13. Open data / registry CZ](#13-open-data--registry-cz) — 11
+- [16. Nemovitosti / trh](#16-nemovitosti--trh) — 7
+
+**Události a rizika** — 36
+
+- [5. Crime / IZS / bezpečnost](#5-crime--izs--bezpečnost) — 13
+- [14. OSINT / investigace](#14-osint--investigace) — 13
+- [15. Počasí / klima](#15-počasí--klima) — 10
+
+**Nástroje** — 74
+
+- [1. Gazetteer / geokódování](#1-gazetteer--geokódování) — 12
 - [9. Mapové knihovny / basemapy](#9-mapové-knihovny--basemapy) — 15
 - [10. Spatial DB / analytika](#10-spatial-db--analytika) — 23
 - [11. Routing / síťová analýza](#11-routing--síťová-analýza) — 11
 - [12. Formáty / projekce / standardy](#12-formáty--projekce--standardy) — 13
-- [13. Open data / registry CZ](#13-open-data--registry-cz) — 11
-- [14. OSINT / investigace](#14-osint--investigace) — 13
-- [15. Počasí / klima](#15-počasí--klima) — 10
-- [16. Nemovitosti / trh](#16-nemovitosti--trh) — 7
+
+**Učení** — 10
+
 - [17. Učení / komunita](#17-učení--komunita) — 10
 
 
-## 1. Gazetteer / geokódování
+# Data — svět
 
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [Nominatim](https://nominatim.org/) | `nominatim.org` | OSM geocoder — forward/reverse, self-hosted i veřejný. Import, admin, maintenance docs máš v záložkách Geo & Maps | bookmarks+history | 0 | 2026-08-27 |
-| [GeoNames](https://www.geonames.org/) | `geonames.org` | Globální gazetteer pod CC-BY 4.0 — 12M unikátních objektů a 25M jmen (z toho 4,8M sídel a 16M alternate names), admin hierarchie ADM1-4 a populace; dumpy zdarma (allCountries.zip) | history | 1 | 2026-08-27 |
-| [Pelias](https://pelias.io/) | `pelias.io` | Modulární OSS geocoder (OSM + WOF + OpenAddresses + Geonames), Elasticsearch backend | reference | – | – |
-| [Who's on First](https://whosonfirst.org/) | `whosonfirst.org` | Gazetteer admin i POI entit se stabilními ID a hierarchií, podklad Pelias | reference | – | – |
-| [OpenAddresses](https://openaddresses.io/) | `openaddresses.io` | Agregované otevřené adresní body globálně — živý pipeline na batch.openaddresses.io vydává týdenní kolekce po zemích a regionech v line-delimited GeoJSON, starý CSV výstup na results.openaddresses.io je zamrzlý archiv z 10/2021 | reference | – | – |
-| [RÚIAN / VDP ČÚZK](https://vdp.cuzk.cz/) | `vdp.cuzk.cz` | Autoritativní CZ registr adres a územní identifikace — výměnný formát, adresní body, definiční body parcel | reference | – | – |
-| [Mapy.com REST API](https://developer.mapy.com/) | `developer.mapy.com` | CZ geokódování, suggest, routing, dlaždice. Máš tam aktivní projekt s consumption trackingem | bookmarks+history | 0 | 2026-08-27 |
-| [Photon](https://photon.komoot.io/) | `photon.komoot.io` | Rychlý OSM geocoder s type-ahead, snadný self-hosting | reference | – | – |
-| [OpenCage Geocoding API](https://opencagedata.com/) | `opencagedata.com` | Hostované geokódovací API nad OSM a dalšími otevřenými geokodéry — forward i reverse, u výsledku časová zóna, Wikidata ID, NUTS a FIPS kódy, výsledky lze ukládat; free trial 2 500 dotazů/den, dál placené tarify | reference | – | – |
-| [NGA GEOnet Names Server (GNS)](https://geonames.nga.mil/) | `geonames.nga.mil` | Gazetteer NGA a US Board on Geographic Names pro toponyma mimo USA — schválené tvary jmen, varianty, historické i nelatinkové zápisy, souřadnice a admin zařazení; country files ke stažení bez licenčních omezení | reference | – | – |
-| [Wikidata](https://www.wikidata.org/) | `wikidata.org` | Otevřená znalostní báze — místa nesou souřadnici (P625), stabilní QID a křížové odkazy na GeoNames a OSM, rekonciliace toponym přes SPARQL endpoint | reference | – | – |
-| [World Historical Gazetteer](https://whgazetteer.org/) | `whgazetteer.org` | Historický gazetteer (v3.2, University of Pittsburgh) — přes 2,2 mil. míst propojených napříč epochami a jazyky, rekonciliace proti GeoNames a Wikidata, API i stahování datasetů | reference | – | – |
 
 ## 2. Globální geodata
 
@@ -68,64 +69,6 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [Protected Planet (WDPA)](https://www.protectedplanet.net/) | `protectedplanet.net` | WDPA a WDOECM od UNEP-WCMC a IUCN — polygony a body přes 300 tisíc chráněných území a OECM celého světa, měsíční aktualizace, hromadné stahování i API | reference | – | – |
 | [Marine Regions](https://www.marineregions.org/) | `marineregions.org` | Gazetteer a hranice na moři od VLIZ — výlučné ekonomické zóny, teritoriální a vnitřní vody, rozšířené šelfy a volné moře v GeoPackage/shp/KML, přes OGC služby i balík mregions2 | reference | – | – |
 | [Open Infrastructure Map](https://openinframap.org/) | `openinframap.org` | Prohlížečka infrastruktury vykreslené z OSM — elektrické vedení, trafostanice a elektrárny, ropovody, plynovody a telekomunikační síť; bez exportu dat | reference | – | – |
-
-## 3. ČR — katastr a geodata
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [ČÚZK — Dálkový přístup do KN](https://katastr.cuzk.gov.cz/) | `katastr.cuzk.gov.cz` | Dálkový přístup do KN — placená služba pro registrované uživatele, on-line výstupy z ISKN (LV, parcely, řízení); kořen domény dnes vede na cuzk.gov.cz/aplikace-dp | history | 36 | 2026-08-20 |
-| [Nahlížení do KN](https://nahlizenidokn.cuzk.gov.cz/) | `nahlizenidokn.cuzk.gov.cz` | Veřejné nahlížení do KN zdarma a bez registrace — parcely, budovy, jednotky, LV a vlastníci; API zde není, na strojový přístup slouží samostatné REST API na api-kn.cuzk.gov.cz | history | 9 | 2026-06-25 |
-| [SGI Nahlížení do KN](https://sgi-nahlizenidokn.cuzk.gov.cz/) | `sgi-nahlizenidokn.cuzk.gov.cz` | Grafická část — katastrální mapa, mapové služby | history | 4 | 2026-06-26 |
-| [Geoportál ČÚZK](https://geoportal.cuzk.gov.cz/) | `geoportal.cuzk.gov.cz` | WMS/WFS/WMTS, ZABAGED, Ortofoto ČR, DMR 5G/DMP 1G, Data50/200. Klíčový CZ zdroj | history | 3 | 2026-08-27 |
-| [ČÚZK — Žádosti](https://zadosti.cuzk.gov.cz/) | `zadosti.cuzk.gov.cz` | Žádosti o zřízení dálkového přístupu do KN, o výdej dat ve výměnném formátu ISKN (VFK) a o souhlas se šířením údajů katastru | history | 4 | 2026-08-06 |
-| [ČÚZK (rozcestník)](https://www.cuzk.gov.cz/) | `cuzk.gov.cz` | Hlavní web zeměměřického a katastrálního úřadu | history | 9 | 2026-08-20 |
-| [Národní geoportál INSPIRE (CENIA)](https://geoportal.gov.cz/) | `geoportal.gov.cz` | CZ INSPIRE katalog — metadata a služby napříč resorty, včetně historického ortofota z 50. let | reference | – | – |
-| [ArcČR (ARCDATA Praha)](https://www.arcdata.cz/cs-cz/produkty/data/arccr) | `arcdata.cz` | ArcČR 4.3 — administrativní členění ČR s geometrií z RÚIAN k 1. 1. 2024 a napojenými statistikami ČSÚ a ÚAP, zdarma pod CC BY 4.0; starší ArcČR 500 v3.3 (sídla, vodstvo, doprava) je už jen archivní ke stažení | reference | – | – |
-| [DIBAVOD (VÚV TGM)](https://www.dibavod.cz/) | `dibavod.cz` | Digitální báze vodohospodářských dat — povodí, vodní toky, nádrže | reference | – | – |
-| [AOPK — Ochrana přírody](https://gis-aopkcr.opendata.arcgis.com/) | `gis-aopkcr.opendata.arcgis.com` | Chráněná území, Natura 2000, biotopy jako open data | reference | – | – |
-| [LPIS — veřejný registr půdy (MZe)](https://mze.gov.cz/public/app/lpisext/lpis/verejny2/plpis/) | `mze.gov.cz` | Zemědělské půdní bloky, využití půdy, WMS/WFS | reference | – | – |
-| [Česká geologická služba](https://cgs.gov.cz/mapy-a-data) | `cgs.gov.cz` | Geologické, hydrogeologické a půdní mapy, sesuvy, poddolování | reference | – | – |
-| [Geoportál Praha](https://www.geoportalpraha.cz/) | `geoportalpraha.cz` | Pražská geodata a open data — ortofota, územní plán, 3D model | reference | – | – |
-| [Portál DMVS (ČÚZK)](https://dmvs.cuzk.gov.cz/) | `dmvs.cuzk.gov.cz` | Portál digitální mapy veřejné správy — bezešvé prohlížení krajských digitálních technických map (DTM) a stahování dat v jednotném formátu JVF DTM | reference | – | – |
-| [REST API dat katastru nemovitostí (ČÚZK)](https://api-kn.cuzk.gov.cz/) | `api-kn.cuzk.gov.cz` | Bezplatné REST API ke katastru — parcely, budovy, jednotky a řízení v JSON, po registraci přes Identitu občana nebo účet dálkového přístupu | reference | – | – |
-| [ČÚZK — Mapové služby](https://services.cuzk.gov.cz/) | `services.cuzk.gov.cz` | Mapový server ČÚZK — bezúplatné WMS/WFS/WMTS endpointy katastrální mapy, ortofota, ZABAGED a RÚIAN, odtud se berou URL do QGIS nebo skriptu | reference | – | – |
-| [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | reference | – | – |
-| [Půda v mapách (VÚMOP)](https://mapy.vumop.cz/) | `mapy.vumop.cz` | Mapový server VÚMOP — ohroženost vodní a větrnou erozí (SEO/MEO pro DZES 5), vlastnosti půd odvozené z BPEJ, třídy ochrany ZPF a zranitelnost podzemních vod | reference | – | – |
-
-## 4. ČR — doprava / mobilita
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [Golemio (Praha)](https://golemio.cz/) | `golemio.cz` | Datová platforma hl. m. Prahy — MHD, parkování, senzory, sdílená mobilita | history | 4 | 2026-08-26 |
-| [Golemio API](https://api.golemio.cz/) | `api.golemio.cz` | API dokumentace a správa klíčů — Public Transport, GTFS, polohy vozidel; OpenAPI pro PID je na /pid/docs/openapi/ | history | 39 | 2026-08-26 |
-| [ŘSD MobilityData](https://mobilitydata.rsd.cz/) | `mobilitydata.rsd.cz` | Registr odběrů NDIC — registrace k odběru dopravních informací ve formátech DATEX II a nativní NDIC XML včetně lokačních tabulek ALERT-C; přístup jen po přihlášení | history | 27 | 2026-08-27 |
-| [Geoportál ŘSD](https://geoportal.rsd.cz/web) | `geoportal.rsd.cz` | Silniční a dálniční síť ČR — mapové aplikace, datové vrstvy, uzly a úseky | history | 2 | 2026-08-26 |
-| [Dopravní info (NDIC)](https://dopravniinfo.gov.cz/) | `dopravniinfo.gov.cz` | Uzavírky, nehody, sjízdnost, real-time dopravní události | history | 9 | 2026-08-26 |
-| [NAIS API](https://api-nais.dopravniinfo.cz/) | `api-nais.dopravniinfo.cz` | API vrstva nad národními dopravními informacemi (DATEX II) — přístup jen s účtem zřízeným přes Registr odběrů NDIC | history | 4 | 2026-08-26 |
-| [PID](https://pid.cz/) | `pid.cz` | Pražská integrovaná doprava — jízdní řády a mapy linek; GTFS feed se stahuje z data.pid.cz (https://data.pid.cz/PID_GTFS.zip) | history | 1 | 2026-08-25 |
-| [Ministerstvo dopravy](https://md.gov.cz/) | `md.gov.cz` | Web Ministerstva dopravy — sekce Statistiky, Dokumenty a Otevřená data (datové sady rezortu) | history | 4 | 2026-06-18 |
-| [Sčítání dopravy ŘSD](https://scitani.rsd.cz/) | `scitani.rsd.cz` | Výsledky celostátního sčítání dopravy 2010, 2016 a 2020 — intenzity automobilové dopravy po úsecích dálniční a silniční sítě ČR | reference | – | – |
-| [Dopravní nehody v ČR (CDV)](https://nehody.cdv.cz/) | `nehody.cdv.cz` | Nehody evidované Policií ČR od roku 2006 — filtrování podle času, území a 64 evidovaných parametrů, měsíční aktualizace, export do PDF | reference | – | – |
-| [Geoportál DTMŽ (Správa železnic)](https://geoportal.spravazeleznic.cz/) | `geoportal.spravazeleznic.cz` | Digitální technická mapa železnic — mapový klient, Všeobecná železniční mapa, vyhledávání metadat a žádost o výdej dat | reference | – | – |
-| [Portál CIS JŘ](https://portal.cisjr.cz/) | `portal.cisjr.cz` | Celostátní informační systém o jízdních řádech (Ministerstvo dopravy a CHAPS) — jízdní řády autobusů, MHD, vlaků a lanových drah, strojově čitelná data (JDF, NeTEx) v adresáři /pub/ | reference | – | – |
-
-## 5. Crime / IZS / bezpečnost
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [SFPD Crime Dashboard](https://www.sanfranciscopolice.org/stay-safe/crime-data/crime-dashboard) | `sanfranciscopolice.org` | Incident-level crime data SF s prostorovou složkou — referenční vzor crime dashboardu | history | 1 | 2026-08-27 |
-| [data.police.uk](https://data.police.uk/) | `data.police.uk` | UK street-level crime + outcomes API, měsíční CSV s lat/lon a force area | reference | – | – |
-| [Portál krizového řízení Stč. kraje](https://pkr.kr-stredocesky.cz/) | `pkr.kr-stredocesky.cz` | Zásahy jednotek požární ochrany — mapa a feed událostí IZS | history | 16 | 2026-08-24 |
-| [HZS Královéhradecký — Události](https://udalostikhk.hzscr.cz/) | `udalostikhk.hzscr.cz` | Veřejný výpis zásahů HZS s lokalizací | history | 5 | 2026-08-24 |
-| [HZS Vysočina — Webohled](https://webohled.hasici-vysocina.cz/) | `webohled.hasici-vysocina.cz` | Veřejný portál událostí hasičů kraje Vysočina — pozor, TLS certifikát vypršel v srpnu 2020 a je vystavený na jiný název | history | 9 | 2026-08-24 |
-| [NYC Open Data](https://opendata.cityofnewyork.us/) | `opendata.cityofnewyork.us` | Vzorový municipální portál — NYPD complaints, 311, PLUTO parcely | reference | – | – |
-| [Chicago Data Portal](https://data.cityofchicago.org/) | `data.cityofchicago.org` | Crimes 2001-present s lat/lon — klasický dataset pro prostorovou analytiku | reference | – | – |
-| [ACLED](https://acleddata.com/) | `acleddata.com` | Armed Conflict Location & Event Data — georeferencované konflikty a protesty | reference | – | – |
-| [GDELT](https://www.gdeltproject.org/) | `gdeltproject.org` | Globální event database z médií s geokódováním, BigQuery dataset | reference | – | – |
-| [Mapa kriminality (Policie ČR)](https://kriminalita.policie.gov.cz/) | `kriminalita.policie.gov.cz` | Oficiální mapa kriminality Policie ČR — evidované a objasněné skutky podle druhu trestné činnosti a územních obvodů policie; aplikace vyžaduje JavaScript | reference | – | – |
-| [GDACS](https://www.gdacs.org/) | `gdacs.org` | Globální upozornění na katastrofy (EC-JRC a OSN) — zemětřesení, cyklóny, povodně a sopky s geodaty a odhadem zasažené populace | reference | – | – |
-| [Copernicus EMS](https://emergency.copernicus.eu/) | `emergency.copernicus.eu` | Emergency Management Service — On-Demand Mapping satelitních map škod pro aktivované mimořádné události, povodně EFAS/GloFAS, sucho EDO/GDO a lesní požáry na forest-fire.emergency.copernicus.eu | reference | – | – |
-| [UCDP](https://ucdp.uu.se/) | `ucdp.uu.se` | Uppsala Conflict Data Program — georeferencovaná databáze událostí ozbrojených konfliktů (GED) od roku 1989, delší časová řada a jiná metodika kódování než ACLED | reference | – | – |
 
 ## 6. Remote sensing / rastr
 
@@ -175,6 +118,151 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [Allmaps](https://allmaps.org/) | `allmaps.org` | Georeferencování IIIF map přímo v prohlížeči — editor, viewer a tile server, který z Georeference Annotation udělá XYZ vrstvu pro QGIS, MapLibre, OpenLayers i Leaflet bez vytváření GeoTIFFů | reference | – | – |
 | [USGS topoView](https://ngmdb.usgs.gov/topoview/) | `ngmdb.usgs.gov` | Přes 178 000 historických topografických map USGS z let 1884–2006 — zdarma ke stažení jako GeoTIFF, GeoPDF, KMZ nebo JPEG | reference | – | – |
 | [Library of Congress — Maps](https://www.loc.gov/maps/) | `loc.gov` | Mapová sbírka Geography & Map Division včetně požárních plánů Sanborn — velká část public domain, ke stažení až v plném TIFF | reference | – | – |
+
+# Data — Česko
+
+
+## 3. ČR — katastr a geodata
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [ČÚZK — Dálkový přístup do KN](https://katastr.cuzk.gov.cz/) | `katastr.cuzk.gov.cz` | Dálkový přístup do KN — placená služba pro registrované uživatele, on-line výstupy z ISKN (LV, parcely, řízení); kořen domény dnes vede na cuzk.gov.cz/aplikace-dp | history | 36 | 2026-08-20 |
+| [Nahlížení do KN](https://nahlizenidokn.cuzk.gov.cz/) | `nahlizenidokn.cuzk.gov.cz` | Veřejné nahlížení do KN zdarma a bez registrace — parcely, budovy, jednotky, LV a vlastníci; API zde není, na strojový přístup slouží samostatné REST API na api-kn.cuzk.gov.cz | history | 9 | 2026-06-25 |
+| [SGI Nahlížení do KN](https://sgi-nahlizenidokn.cuzk.gov.cz/) | `sgi-nahlizenidokn.cuzk.gov.cz` | Grafická část — katastrální mapa, mapové služby | history | 4 | 2026-06-26 |
+| [Geoportál ČÚZK](https://geoportal.cuzk.gov.cz/) | `geoportal.cuzk.gov.cz` | WMS/WFS/WMTS, ZABAGED, Ortofoto ČR, DMR 5G/DMP 1G, Data50/200. Klíčový CZ zdroj | history | 3 | 2026-08-27 |
+| [ČÚZK — Žádosti](https://zadosti.cuzk.gov.cz/) | `zadosti.cuzk.gov.cz` | Žádosti o zřízení dálkového přístupu do KN, o výdej dat ve výměnném formátu ISKN (VFK) a o souhlas se šířením údajů katastru | history | 4 | 2026-08-06 |
+| [ČÚZK (rozcestník)](https://www.cuzk.gov.cz/) | `cuzk.gov.cz` | Hlavní web zeměměřického a katastrálního úřadu | history | 9 | 2026-08-20 |
+| [Národní geoportál INSPIRE (CENIA)](https://geoportal.gov.cz/) | `geoportal.gov.cz` | CZ INSPIRE katalog — metadata a služby napříč resorty, včetně historického ortofota z 50. let | reference | – | – |
+| [ArcČR (ARCDATA Praha)](https://www.arcdata.cz/cs-cz/produkty/data/arccr) | `arcdata.cz` | ArcČR 4.3 — administrativní členění ČR s geometrií z RÚIAN k 1. 1. 2024 a napojenými statistikami ČSÚ a ÚAP, zdarma pod CC BY 4.0; starší ArcČR 500 v3.3 (sídla, vodstvo, doprava) je už jen archivní ke stažení | reference | – | – |
+| [DIBAVOD (VÚV TGM)](https://www.dibavod.cz/) | `dibavod.cz` | Digitální báze vodohospodářských dat — povodí, vodní toky, nádrže | reference | – | – |
+| [AOPK — Ochrana přírody](https://gis-aopkcr.opendata.arcgis.com/) | `gis-aopkcr.opendata.arcgis.com` | Chráněná území, Natura 2000, biotopy jako open data | reference | – | – |
+| [LPIS — veřejný registr půdy (MZe)](https://mze.gov.cz/public/app/lpisext/lpis/verejny2/plpis/) | `mze.gov.cz` | Zemědělské půdní bloky, využití půdy, WMS/WFS | reference | – | – |
+| [Česká geologická služba](https://cgs.gov.cz/mapy-a-data) | `cgs.gov.cz` | Geologické, hydrogeologické a půdní mapy, sesuvy, poddolování | reference | – | – |
+| [Geoportál Praha](https://www.geoportalpraha.cz/) | `geoportalpraha.cz` | Pražská geodata a open data — ortofota, územní plán, 3D model | reference | – | – |
+| [Portál DMVS (ČÚZK)](https://dmvs.cuzk.gov.cz/) | `dmvs.cuzk.gov.cz` | Portál digitální mapy veřejné správy — bezešvé prohlížení krajských digitálních technických map (DTM) a stahování dat v jednotném formátu JVF DTM | reference | – | – |
+| [REST API dat katastru nemovitostí (ČÚZK)](https://api-kn.cuzk.gov.cz/) | `api-kn.cuzk.gov.cz` | Bezplatné REST API ke katastru — parcely, budovy, jednotky a řízení v JSON, po registraci přes Identitu občana nebo účet dálkového přístupu | reference | – | – |
+| [ČÚZK — Mapové služby](https://services.cuzk.gov.cz/) | `services.cuzk.gov.cz` | Mapový server ČÚZK — bezúplatné WMS/WFS/WMTS endpointy katastrální mapy, ortofota, ZABAGED a RÚIAN, odtud se berou URL do QGIS nebo skriptu | reference | – | – |
+| [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | reference | – | – |
+| [Půda v mapách (VÚMOP)](https://mapy.vumop.cz/) | `mapy.vumop.cz` | Mapový server VÚMOP — ohroženost vodní a větrnou erozí (SEO/MEO pro DZES 5), vlastnosti půd odvozené z BPEJ, třídy ochrany ZPF a zranitelnost podzemních vod | reference | – | – |
+
+## 4. ČR — doprava / mobilita
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Golemio (Praha)](https://golemio.cz/) | `golemio.cz` | Datová platforma hl. m. Prahy — MHD, parkování, senzory, sdílená mobilita | history | 4 | 2026-08-26 |
+| [Golemio API](https://api.golemio.cz/) | `api.golemio.cz` | API dokumentace a správa klíčů — Public Transport, GTFS, polohy vozidel; OpenAPI pro PID je na /pid/docs/openapi/ | history | 39 | 2026-08-26 |
+| [ŘSD MobilityData](https://mobilitydata.rsd.cz/) | `mobilitydata.rsd.cz` | Registr odběrů NDIC — registrace k odběru dopravních informací ve formátech DATEX II a nativní NDIC XML včetně lokačních tabulek ALERT-C; přístup jen po přihlášení | history | 27 | 2026-08-27 |
+| [Geoportál ŘSD](https://geoportal.rsd.cz/web) | `geoportal.rsd.cz` | Silniční a dálniční síť ČR — mapové aplikace, datové vrstvy, uzly a úseky | history | 2 | 2026-08-26 |
+| [Dopravní info (NDIC)](https://dopravniinfo.gov.cz/) | `dopravniinfo.gov.cz` | Uzavírky, nehody, sjízdnost, real-time dopravní události | history | 9 | 2026-08-26 |
+| [NAIS API](https://api-nais.dopravniinfo.cz/) | `api-nais.dopravniinfo.cz` | API vrstva nad národními dopravními informacemi (DATEX II) — přístup jen s účtem zřízeným přes Registr odběrů NDIC | history | 4 | 2026-08-26 |
+| [PID](https://pid.cz/) | `pid.cz` | Pražská integrovaná doprava — jízdní řády a mapy linek; GTFS feed se stahuje z data.pid.cz (https://data.pid.cz/PID_GTFS.zip) | history | 1 | 2026-08-25 |
+| [Ministerstvo dopravy](https://md.gov.cz/) | `md.gov.cz` | Web Ministerstva dopravy — sekce Statistiky, Dokumenty a Otevřená data (datové sady rezortu) | history | 4 | 2026-06-18 |
+| [Sčítání dopravy ŘSD](https://scitani.rsd.cz/) | `scitani.rsd.cz` | Výsledky celostátního sčítání dopravy 2010, 2016 a 2020 — intenzity automobilové dopravy po úsecích dálniční a silniční sítě ČR | reference | – | – |
+| [Dopravní nehody v ČR (CDV)](https://nehody.cdv.cz/) | `nehody.cdv.cz` | Nehody evidované Policií ČR od roku 2006 — filtrování podle času, území a 64 evidovaných parametrů, měsíční aktualizace, export do PDF | reference | – | – |
+| [Geoportál DTMŽ (Správa železnic)](https://geoportal.spravazeleznic.cz/) | `geoportal.spravazeleznic.cz` | Digitální technická mapa železnic — mapový klient, Všeobecná železniční mapa, vyhledávání metadat a žádost o výdej dat | reference | – | – |
+| [Portál CIS JŘ](https://portal.cisjr.cz/) | `portal.cisjr.cz` | Celostátní informační systém o jízdních řádech (Ministerstvo dopravy a CHAPS) — jízdní řády autobusů, MHD, vlaků a lanových drah, strojově čitelná data (JDF, NeTEx) v adresáři /pub/ | reference | – | – |
+
+## 13. Open data / registry CZ
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Národní katalog otevřených dat](https://data.gov.cz/) | `data.gov.cz` | Centrální CZ katalog datových sad včetně geodat a INSPIRE | history | 2 | 2026-08-27 |
+| [Hlídač státu](https://www.hlidacstatu.cz/) | `hlidacstatu.cz` | Smlouvy, dotace, zakázky, politici — API V2. Máš registrovaný účet | history | 23 | 2026-08-20 |
+| [Registr smluv](https://smlouvy.gov.cz/) | `smlouvy.gov.cz` | Otevřený registr smluv státu | history | 3 | 2026-07-24 |
+| [ARES](https://ares.gov.cz/) | `ares.gov.cz` | Ekonomické subjekty ČR — REST API, adresy sídel (geokódovatelné) | history | 7 | 2026-08-05 |
+| [Obchodní rejstřík](https://or.justice.cz/) | `or.justice.cz` | Veřejný rejstřík — vazby, sídla, statutáři | history | 16 | 2026-08-05 |
+| [ISIR](https://isir.justice.cz/) | `isir.justice.cz` | Insolvenční rejstřík | history | 5 | 2026-08-11 |
+| [Evidence skutečných majitelů](https://esm.justice.cz/) | `esm.justice.cz` | Rejstřík skutečných majitelů obchodních korporací a svěřenských fondů (MSp) — kdo za firmou reálně stojí za nastrčenými statutáry | reference | – | – |
+| [Registr živnostenského podnikání](https://rzp.gov.cz/) | `rzp.gov.cz` | Živnostenská oprávnění fyzických i právnických osob — včetně seznamu provozoven s adresami (geokódovatelné) | reference | – | – |
+| [Monitor státní pokladny](https://monitor.statnipokladna.gov.cz/) | `monitor.statnipokladna.gov.cz` | Rozpočty a účetní výkazy obcí, krajů a státních institucí — včetně ročních dumpů ke stažení | reference | – | – |
+| [Národní elektronický nástroj (NEN)](https://nen.nipez.cz/) | `nen.nipez.cz` | Systém MMR pro zadávání veřejných zakázek — zadávací řízení, profily zadavatelů a registry dodavatelů, přístupné bez přihlášení | reference | – | – |
+| [Nabídka majetku státu (ÚZSVM)](https://nabidkamajetku.gov.cz/) | `nabidkamajetku.gov.cz` | Katalog ÚZSVM s nabídkami státního majetku — prodeje, elektronické dražby a pronájmy nemovitostí, filtrovatelné podle kraje a obce | reference | – | – |
+
+## 16. Nemovitosti / trh
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Sreality](https://www.sreality.cz/) | `sreality.cz` | CZ inzerce s geokódovanými nabídkami | history | 5 | 2026-06-16 |
+| [Flat Zone](https://www.flatzone.cz/) | `flatzone.cz` | Vyhledávač novostaveb a developerských projektů v ČR — odhad ceny a datová platforma; B2B větev běží na b2b.flatzone.cz (dataligence.cz tam dnes redirectuje) | history | 5 | 2026-08-14 |
+| [ČSÚ — Ceny nemovitostí](https://csu.gov.cz/produkty/ceny-nemovitosti) | `csu.gov.cz` | Ceny nemovitostí 2022-2024 podle území — v historii máš přesně tuhle stránku | reference | – | – |
+| [CBRE](https://www.cbre.cz/) | `cbre.cz` | Komerční realitní analytika a market reporty | history | 1 | 2026-06-16 |
+| [Bezrealitky](https://www.bezrealitky.cz/) | `bezrealitky.cz` | CZ inzerce prodeje a pronájmu bez provize — velký podíl přímých majitelů, mutace SK a EN | reference | – | – |
+| [Valuo](https://www.valuo.cz/) | `valuo.cz` | Odhady cen nemovitostí v ČR — mapa realizovaných prodejů z katastru a inzerce a cenový index; mapa a odhad zdarma, PROFI a API za 5 000–10 000 Kč/rok bez DPH | reference | – | – |
+| [ČNB — finanční stabilita](https://www.cnb.cz/cs/financni-stabilita/) | `cnb.cz` | Zprávy o finanční stabilitě, zátěžové testy a limity úvěrových ukazatelů LTV, DTI a DSTI — makro pohled na trh bydlení | reference | – | – |
+
+# Události a rizika
+
+
+## 5. Crime / IZS / bezpečnost
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [SFPD Crime Dashboard](https://www.sanfranciscopolice.org/stay-safe/crime-data/crime-dashboard) | `sanfranciscopolice.org` | Incident-level crime data SF s prostorovou složkou — referenční vzor crime dashboardu | history | 1 | 2026-08-27 |
+| [data.police.uk](https://data.police.uk/) | `data.police.uk` | UK street-level crime + outcomes API, měsíční CSV s lat/lon a force area | reference | – | – |
+| [Portál krizového řízení Stč. kraje](https://pkr.kr-stredocesky.cz/) | `pkr.kr-stredocesky.cz` | Zásahy jednotek požární ochrany — mapa a feed událostí IZS | history | 16 | 2026-08-24 |
+| [HZS Královéhradecký — Události](https://udalostikhk.hzscr.cz/) | `udalostikhk.hzscr.cz` | Veřejný výpis zásahů HZS s lokalizací | history | 5 | 2026-08-24 |
+| [HZS Vysočina — Webohled](https://webohled.hasici-vysocina.cz/) | `webohled.hasici-vysocina.cz` | Veřejný portál událostí hasičů kraje Vysočina — pozor, TLS certifikát vypršel v srpnu 2020 a je vystavený na jiný název | history | 9 | 2026-08-24 |
+| [NYC Open Data](https://opendata.cityofnewyork.us/) | `opendata.cityofnewyork.us` | Vzorový municipální portál — NYPD complaints, 311, PLUTO parcely | reference | – | – |
+| [Chicago Data Portal](https://data.cityofchicago.org/) | `data.cityofchicago.org` | Crimes 2001-present s lat/lon — klasický dataset pro prostorovou analytiku | reference | – | – |
+| [ACLED](https://acleddata.com/) | `acleddata.com` | Armed Conflict Location & Event Data — georeferencované konflikty a protesty | reference | – | – |
+| [GDELT](https://www.gdeltproject.org/) | `gdeltproject.org` | Globální event database z médií s geokódováním, BigQuery dataset | reference | – | – |
+| [Mapa kriminality (Policie ČR)](https://kriminalita.policie.gov.cz/) | `kriminalita.policie.gov.cz` | Oficiální mapa kriminality Policie ČR — evidované a objasněné skutky podle druhu trestné činnosti a územních obvodů policie; aplikace vyžaduje JavaScript | reference | – | – |
+| [GDACS](https://www.gdacs.org/) | `gdacs.org` | Globální upozornění na katastrofy (EC-JRC a OSN) — zemětřesení, cyklóny, povodně a sopky s geodaty a odhadem zasažené populace | reference | – | – |
+| [Copernicus EMS](https://emergency.copernicus.eu/) | `emergency.copernicus.eu` | Emergency Management Service — On-Demand Mapping satelitních map škod pro aktivované mimořádné události, povodně EFAS/GloFAS, sucho EDO/GDO a lesní požáry na forest-fire.emergency.copernicus.eu | reference | – | – |
+| [UCDP](https://ucdp.uu.se/) | `ucdp.uu.se` | Uppsala Conflict Data Program — georeferencovaná databáze událostí ozbrojených konfliktů (GED) od roku 1989, delší časová řada a jiná metodika kódování než ACLED | reference | – | – |
+
+## 14. OSINT / investigace
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Progresus OSINT](https://osint.cloud.progresus.cz/) | `osint.cloud.progresus.cz` | Tvoje platforma pro due diligence z veřejných zdrojů — zdroje, laboratoř, architektura | history | 72 | 2026-08-23 |
+| [vomaste.cz](https://vomaste.cz/) | `vomaste.cz` | Tvůj projekt — Registr tvrzení / zdrojů / kauz, dossiery, Globální mapa | history | 1407 | 2026-08-15 |
+| [Situační radar (HzsRadar)](https://situacni-radar.fly.dev/) | `situacni-radar.fly.dev` | Tvoje agregace událostí IZS v Phoenixu | history | 41 | 2026-08-27 |
+| [Maltego](https://www.maltego.com/) | `maltego.com` | Link-analysis platforma pro OSINT vyšetřování | history | 2 | 2026-08-05 |
+| [OpenAlex](https://openalex.org/) | `openalex.org` | Otevřený katalog vědeckých prací s afiliacemi institucí (geokódovatelné) | history | 9 | 2026-08-11 |
+| [Common Crawl](https://commoncrawl.org/) | `commoncrawl.org` | Otevřený webový crawl korpus | bookmarks+history | 0 | 2026-08-27 |
+| [North Data](https://www.northdata.com/) | `northdata.com` | Firemní rejstříky, účetní závěrky a vazby osob a firem ve 26 zemích Evropy včetně ČR (v záběru je i Izrael) | history | 22 | 2026-07-22 |
+| [Investigace.cz](https://www.investigace.cz/) | `investigace.cz` | České centrum investigativní žurnalistiky (OCCRP) | bookmarks+history | 0 | 2026-08-27 |
+| [OpenSanctions](https://www.opensanctions.org/) | `opensanctions.org` | Sankční seznamy, PEP a watchlisty z ~460 zdrojů (přes 1,9 mil. entit) — bulk data ve FollowTheMoney i screening API; zdarma pro nekomerční užití, komerčně za licenci | reference | – | – |
+| [ICIJ Offshore Leaks Database](https://offshoreleaks.icij.org/) | `offshoreleaks.icij.org` | Přes 810 tisíc offshore entit z Pandora, Paradise, Panama Papers, Bahamas Leaks a Offshore Leaks — ke stažení pod ODbL i přes REST API | reference | – | – |
+| [Bellingcat](https://www.bellingcat.com/) | `bellingcat.com` | Investigace z otevřených zdrojů — metodický toolkit pro geolokaci a verifikaci snímků a videí | reference | – | – |
+| [ADS-B Exchange](https://www.adsbexchange.com/) | `adsbexchange.com` | Nefiltrované sledování letadel z komunitní sítě 25 tis. přijímačů — veřejná mapa zdarma, historická data, API, gRPC stream a S3 jen za placené předplatné | reference | – | – |
+| [Global Fishing Watch](https://globalfishingwatch.org/) | `globalfishingwatch.org` | Pohyb plavidel z AIS a satelitní detekce — mapa, Vessel Viewer a datasety; API zdarma, ale až po registraci a vydání tokenu | reference | – | – |
+
+## 15. Počasí / klima
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [ČHMÚ](https://www.chmi.cz/) | `chmi.cz` | Předpovědi, radar, srážky, hydrologie; otevřená data na opendata.chmi.cz | reference | – | – |
+| [Meteoradar.cz](https://www.meteoradar.cz/) | `meteoradar.cz` | Online srážkový radar ČR a Evropa | history | 2 | 2026-06-26 |
+| [In-počasí](https://www.in-pocasi.cz/) | `in-pocasi.cz` | Předpovědi, radar, síť stanic | history | 1 | 2026-08-17 |
+| [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/) | `cds.climate.copernicus.eu` | ERA5 reanalýza, klimatické projekce, API | reference | – | – |
+| [Open-Meteo](https://open-meteo.com/) | `open-meteo.com` | Free weather API bez klíče, historická i předpovědní data po souřadnicích | reference | – | – |
+| [WorldClim](https://worldclim.org/) | `worldclim.org` | Globální klimatické rastry — měsíční srážky a teploty a 19 bioklimatických proměnných v rozlišení 30 s až 10 min, historie i budoucí scénáře | reference | – | – |
+| [ECMWF Open Data](https://www.ecmwf.int/en/forecasts/datasets/open-data) | `ecmwf.int` | Otevřená část předpovědí ECMWF (IFS a AIFS) v GRIB2 pod CC BY 4.0 — datový endpoint data.ecmwf.int agresivně rate-limituje, přes klienta ecmwf-opendata to jde lépe než ručně | reference | – | – |
+| [NOAA NOMADS](https://nomads.ncep.noaa.gov/) | `nomads.ncep.noaa.gov` | Operativní modely NCEP (GFS, GEFS, HRRR) v GRIB2 a přes OPeNDAP — včetně částečného stahování polí přes filtry | reference | – | – |
+| [Copernicus Atmosphere Data Store](https://ads.atmosphere.copernicus.eu/) | `ads.atmosphere.copernicus.eu` | CAMS analýzy a předpovědi kvality ovzduší, aerosolů a složení atmosféry — stejné katalogové rozhraní, API i earthkit jako Climate Data Store | reference | – | – |
+| [Klimatická změna (CzechGlobe)](https://www.klimatickazmena.cz/) | `klimatickazmena.cz` | Klimatický portál Ústavu výzkumu globální změny AV ČR — mapy, grafy a infografiky ke klimatu ČR: pozorované změny, scénáře a dopady na lesnictví, zemědělství a vodní prostředí | reference | – | – |
+
+# Nástroje
+
+
+## 1. Gazetteer / geokódování
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Nominatim](https://nominatim.org/) | `nominatim.org` | OSM geocoder — forward/reverse, self-hosted i veřejný. Import, admin, maintenance docs máš v záložkách Geo & Maps | bookmarks+history | 0 | 2026-08-27 |
+| [GeoNames](https://www.geonames.org/) | `geonames.org` | Globální gazetteer pod CC-BY 4.0 — 12M unikátních objektů a 25M jmen (z toho 4,8M sídel a 16M alternate names), admin hierarchie ADM1-4 a populace; dumpy zdarma (allCountries.zip) | history | 1 | 2026-08-27 |
+| [Pelias](https://pelias.io/) | `pelias.io` | Modulární OSS geocoder (OSM + WOF + OpenAddresses + Geonames), Elasticsearch backend | reference | – | – |
+| [Who's on First](https://whosonfirst.org/) | `whosonfirst.org` | Gazetteer admin i POI entit se stabilními ID a hierarchií, podklad Pelias | reference | – | – |
+| [OpenAddresses](https://openaddresses.io/) | `openaddresses.io` | Agregované otevřené adresní body globálně — živý pipeline na batch.openaddresses.io vydává týdenní kolekce po zemích a regionech v line-delimited GeoJSON, starý CSV výstup na results.openaddresses.io je zamrzlý archiv z 10/2021 | reference | – | – |
+| [RÚIAN / VDP ČÚZK](https://vdp.cuzk.cz/) | `vdp.cuzk.cz` | Autoritativní CZ registr adres a územní identifikace — výměnný formát, adresní body, definiční body parcel | reference | – | – |
+| [Mapy.com REST API](https://developer.mapy.com/) | `developer.mapy.com` | CZ geokódování, suggest, routing, dlaždice. Máš tam aktivní projekt s consumption trackingem | bookmarks+history | 0 | 2026-08-27 |
+| [Photon](https://photon.komoot.io/) | `photon.komoot.io` | Rychlý OSM geocoder s type-ahead, snadný self-hosting | reference | – | – |
+| [OpenCage Geocoding API](https://opencagedata.com/) | `opencagedata.com` | Hostované geokódovací API nad OSM a dalšími otevřenými geokodéry — forward i reverse, u výsledku časová zóna, Wikidata ID, NUTS a FIPS kódy, výsledky lze ukládat; free trial 2 500 dotazů/den, dál placené tarify | reference | – | – |
+| [NGA GEOnet Names Server (GNS)](https://geonames.nga.mil/) | `geonames.nga.mil` | Gazetteer NGA a US Board on Geographic Names pro toponyma mimo USA — schválené tvary jmen, varianty, historické i nelatinkové zápisy, souřadnice a admin zařazení; country files ke stažení bez licenčních omezení | reference | – | – |
+| [Wikidata](https://www.wikidata.org/) | `wikidata.org` | Otevřená znalostní báze — místa nesou souřadnici (P625), stabilní QID a křížové odkazy na GeoNames a OSM, rekonciliace toponym přes SPARQL endpoint | reference | – | – |
+| [World Historical Gazetteer](https://whgazetteer.org/) | `whgazetteer.org` | Historický gazetteer (v3.2, University of Pittsburgh) — přes 2,2 mil. míst propojených napříč epochami a jazyky, rekonciliace proti GeoNames a Wikidata, API i stahování datasetů | reference | – | – |
 
 ## 9. Mapové knihovny / basemapy
 
@@ -258,66 +346,8 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [COPC](https://copc.io/) | `copc.io` | Cloud Optimized Point Cloud 1.0 — LAZ 1.4 s body uspořádanými do clusterovaného oktree, čitelný po částech přes HTTP range requesty, podporuje PDAL i QGIS | reference | – | – |
 | [GTFS](https://gtfs.org/) | `gtfs.org` | Referenční specifikace GTFS Schedule a GTFS Realtime pod správou MobilityData — jízdní řády, zastávky, tarify a živé polohy vozidel | reference | – | – |
 
-## 13. Open data / registry CZ
+# Učení
 
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [Národní katalog otevřených dat](https://data.gov.cz/) | `data.gov.cz` | Centrální CZ katalog datových sad včetně geodat a INSPIRE | history | 2 | 2026-08-27 |
-| [Hlídač státu](https://www.hlidacstatu.cz/) | `hlidacstatu.cz` | Smlouvy, dotace, zakázky, politici — API V2. Máš registrovaný účet | history | 23 | 2026-08-20 |
-| [Registr smluv](https://smlouvy.gov.cz/) | `smlouvy.gov.cz` | Otevřený registr smluv státu | history | 3 | 2026-07-24 |
-| [ARES](https://ares.gov.cz/) | `ares.gov.cz` | Ekonomické subjekty ČR — REST API, adresy sídel (geokódovatelné) | history | 7 | 2026-08-05 |
-| [Obchodní rejstřík](https://or.justice.cz/) | `or.justice.cz` | Veřejný rejstřík — vazby, sídla, statutáři | history | 16 | 2026-08-05 |
-| [ISIR](https://isir.justice.cz/) | `isir.justice.cz` | Insolvenční rejstřík | history | 5 | 2026-08-11 |
-| [Evidence skutečných majitelů](https://esm.justice.cz/) | `esm.justice.cz` | Rejstřík skutečných majitelů obchodních korporací a svěřenských fondů (MSp) — kdo za firmou reálně stojí za nastrčenými statutáry | reference | – | – |
-| [Registr živnostenského podnikání](https://rzp.gov.cz/) | `rzp.gov.cz` | Živnostenská oprávnění fyzických i právnických osob — včetně seznamu provozoven s adresami (geokódovatelné) | reference | – | – |
-| [Monitor státní pokladny](https://monitor.statnipokladna.gov.cz/) | `monitor.statnipokladna.gov.cz` | Rozpočty a účetní výkazy obcí, krajů a státních institucí — včetně ročních dumpů ke stažení | reference | – | – |
-| [Národní elektronický nástroj (NEN)](https://nen.nipez.cz/) | `nen.nipez.cz` | Systém MMR pro zadávání veřejných zakázek — zadávací řízení, profily zadavatelů a registry dodavatelů, přístupné bez přihlášení | reference | – | – |
-| [Nabídka majetku státu (ÚZSVM)](https://nabidkamajetku.gov.cz/) | `nabidkamajetku.gov.cz` | Katalog ÚZSVM s nabídkami státního majetku — prodeje, elektronické dražby a pronájmy nemovitostí, filtrovatelné podle kraje a obce | reference | – | – |
-
-## 14. OSINT / investigace
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [Progresus OSINT](https://osint.cloud.progresus.cz/) | `osint.cloud.progresus.cz` | Tvoje platforma pro due diligence z veřejných zdrojů — zdroje, laboratoř, architektura | history | 72 | 2026-08-23 |
-| [vomaste.cz](https://vomaste.cz/) | `vomaste.cz` | Tvůj projekt — Registr tvrzení / zdrojů / kauz, dossiery, Globální mapa | history | 1407 | 2026-08-15 |
-| [Situační radar (HzsRadar)](https://situacni-radar.fly.dev/) | `situacni-radar.fly.dev` | Tvoje agregace událostí IZS v Phoenixu | history | 41 | 2026-08-27 |
-| [Maltego](https://www.maltego.com/) | `maltego.com` | Link-analysis platforma pro OSINT vyšetřování | history | 2 | 2026-08-05 |
-| [OpenAlex](https://openalex.org/) | `openalex.org` | Otevřený katalog vědeckých prací s afiliacemi institucí (geokódovatelné) | history | 9 | 2026-08-11 |
-| [Common Crawl](https://commoncrawl.org/) | `commoncrawl.org` | Otevřený webový crawl korpus | bookmarks+history | 0 | 2026-08-27 |
-| [North Data](https://www.northdata.com/) | `northdata.com` | Firemní rejstříky, účetní závěrky a vazby osob a firem ve 26 zemích Evropy včetně ČR (v záběru je i Izrael) | history | 22 | 2026-07-22 |
-| [Investigace.cz](https://www.investigace.cz/) | `investigace.cz` | České centrum investigativní žurnalistiky (OCCRP) | bookmarks+history | 0 | 2026-08-27 |
-| [OpenSanctions](https://www.opensanctions.org/) | `opensanctions.org` | Sankční seznamy, PEP a watchlisty z ~460 zdrojů (přes 1,9 mil. entit) — bulk data ve FollowTheMoney i screening API; zdarma pro nekomerční užití, komerčně za licenci | reference | – | – |
-| [ICIJ Offshore Leaks Database](https://offshoreleaks.icij.org/) | `offshoreleaks.icij.org` | Přes 810 tisíc offshore entit z Pandora, Paradise, Panama Papers, Bahamas Leaks a Offshore Leaks — ke stažení pod ODbL i přes REST API | reference | – | – |
-| [Bellingcat](https://www.bellingcat.com/) | `bellingcat.com` | Investigace z otevřených zdrojů — metodický toolkit pro geolokaci a verifikaci snímků a videí | reference | – | – |
-| [ADS-B Exchange](https://www.adsbexchange.com/) | `adsbexchange.com` | Nefiltrované sledování letadel z komunitní sítě 25 tis. přijímačů — veřejná mapa zdarma, historická data, API, gRPC stream a S3 jen za placené předplatné | reference | – | – |
-| [Global Fishing Watch](https://globalfishingwatch.org/) | `globalfishingwatch.org` | Pohyb plavidel z AIS a satelitní detekce — mapa, Vessel Viewer a datasety; API zdarma, ale až po registraci a vydání tokenu | reference | – | – |
-
-## 15. Počasí / klima
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [ČHMÚ](https://www.chmi.cz/) | `chmi.cz` | Předpovědi, radar, srážky, hydrologie; otevřená data na opendata.chmi.cz | reference | – | – |
-| [Meteoradar.cz](https://www.meteoradar.cz/) | `meteoradar.cz` | Online srážkový radar ČR a Evropa | history | 2 | 2026-06-26 |
-| [In-počasí](https://www.in-pocasi.cz/) | `in-pocasi.cz` | Předpovědi, radar, síť stanic | history | 1 | 2026-08-17 |
-| [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/) | `cds.climate.copernicus.eu` | ERA5 reanalýza, klimatické projekce, API | reference | – | – |
-| [Open-Meteo](https://open-meteo.com/) | `open-meteo.com` | Free weather API bez klíče, historická i předpovědní data po souřadnicích | reference | – | – |
-| [WorldClim](https://worldclim.org/) | `worldclim.org` | Globální klimatické rastry — měsíční srážky a teploty a 19 bioklimatických proměnných v rozlišení 30 s až 10 min, historie i budoucí scénáře | reference | – | – |
-| [ECMWF Open Data](https://www.ecmwf.int/en/forecasts/datasets/open-data) | `ecmwf.int` | Otevřená část předpovědí ECMWF (IFS a AIFS) v GRIB2 pod CC BY 4.0 — datový endpoint data.ecmwf.int agresivně rate-limituje, přes klienta ecmwf-opendata to jde lépe než ručně | reference | – | – |
-| [NOAA NOMADS](https://nomads.ncep.noaa.gov/) | `nomads.ncep.noaa.gov` | Operativní modely NCEP (GFS, GEFS, HRRR) v GRIB2 a přes OPeNDAP — včetně částečného stahování polí přes filtry | reference | – | – |
-| [Copernicus Atmosphere Data Store](https://ads.atmosphere.copernicus.eu/) | `ads.atmosphere.copernicus.eu` | CAMS analýzy a předpovědi kvality ovzduší, aerosolů a složení atmosféry — stejné katalogové rozhraní, API i earthkit jako Climate Data Store | reference | – | – |
-| [Klimatická změna (CzechGlobe)](https://www.klimatickazmena.cz/) | `klimatickazmena.cz` | Klimatický portál Ústavu výzkumu globální změny AV ČR — mapy, grafy a infografiky ke klimatu ČR: pozorované změny, scénáře a dopady na lesnictví, zemědělství a vodní prostředí | reference | – | – |
-
-## 16. Nemovitosti / trh
-
-| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
-|---|---|---|---|--:|---|
-| [Sreality](https://www.sreality.cz/) | `sreality.cz` | CZ inzerce s geokódovanými nabídkami | history | 5 | 2026-06-16 |
-| [Flat Zone](https://www.flatzone.cz/) | `flatzone.cz` | Vyhledávač novostaveb a developerských projektů v ČR — odhad ceny a datová platforma; B2B větev běží na b2b.flatzone.cz (dataligence.cz tam dnes redirectuje) | history | 5 | 2026-08-14 |
-| [ČSÚ — Ceny nemovitostí](https://csu.gov.cz/produkty/ceny-nemovitosti) | `csu.gov.cz` | Ceny nemovitostí 2022-2024 podle území — v historii máš přesně tuhle stránku | reference | – | – |
-| [CBRE](https://www.cbre.cz/) | `cbre.cz` | Komerční realitní analytika a market reporty | history | 1 | 2026-06-16 |
-| [Bezrealitky](https://www.bezrealitky.cz/) | `bezrealitky.cz` | CZ inzerce prodeje a pronájmu bez provize — velký podíl přímých majitelů, mutace SK a EN | reference | – | – |
-| [Valuo](https://www.valuo.cz/) | `valuo.cz` | Odhady cen nemovitostí v ČR — mapa realizovaných prodejů z katastru a inzerce a cenový index; mapa a odhad zdarma, PROFI a API za 5 000–10 000 Kč/rok bez DPH | reference | – | – |
-| [ČNB — finanční stabilita](https://www.cnb.cz/cs/financni-stabilita/) | `cnb.cz` | Zprávy o finanční stabilitě, zátěžové testy a limity úvěrových ukazatelů LTV, DTI a DSTI — makro pohled na trh bydlení | reference | – | – |
 
 ## 17. Učení / komunita
 

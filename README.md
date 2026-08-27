@@ -81,6 +81,11 @@ Aplikační shell adaptovaný z Flowbite Pro Admin Dashboardu — horní lišta,
 postranní panel se všemi 17 kategoriemi a jejich počty, hlavní obsah a lepivá
 souhrnná lišta. Podrobnosti k licenci jsou v [`NOTICE.md`](NOTICE.md).
 
+Katalog má dvě úrovně: **skupina → kategorie**. Sedmnáct kategorií v plochém
+seznamu je na 218 položek moc, tak je panel řadí do pěti skupin (Data — svět,
+Data — Česko, Události a rizika, Nástroje, Učení) a výsledky se člení po
+kategoriích. Filtr se propisuje do URL, takže výřez katalogu jde poslat dál.
+
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
 s řaditelnými sloupci — tabulka o šesti sloupcích se na telefon nevejde.
 Postranní panel je pod `lg` šuplík, od `lg` výš stojí napevno; pohled se pod

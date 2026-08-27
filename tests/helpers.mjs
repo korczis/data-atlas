@@ -31,8 +31,10 @@ export async function loadPage() {
     tick: () => new Promise(r => setTimeout(r, 250)),
     // Od přechodu na mobile-first je tabulka jen pro md: a výš; pod tím
     // se tentýž seznam vykresluje jako karty. Měříme obojí.
-    tableRows: () => d.querySelectorAll('table tbody tr').length,
+    // [data-row] odliší datové řádky od hlaviček sekcí.
+    tableRows: () => d.querySelectorAll('table tbody tr[data-row]').length,
     cardRows: () => d.querySelectorAll('ul[role="list"] > li').length,
+    tableSections: () => d.querySelectorAll('table tbody').length,
   };
 }
 

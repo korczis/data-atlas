@@ -17,6 +17,16 @@ TEMPLATE = ROOT / "src" / "template.html"
 problems: list[tuple[str, str]] = []
 
 
+def tag(name: str) -> str:
+    """Vzor otevíracího tagu, který snese '>' uvnitř hodnoty atributu.
+
+    Naivní `<svg[^>]*>` se ukousne na `x-show="i > 0"` a pak nevidí atributy
+    za ním — linter tak hlásil chybějící aria-hidden na značce, která ho má.
+    Falešný poplach je horší než žádné pravidlo: naučí lidi výstup ignorovat.
+    """
+    return rf"""<{name}\b(?:[^>"']|"[^"]*"|'[^']*')*>"""
+
+
 def fail(rule: str, detail: str) -> None:
     problems.append((rule, detail))
 
@@ -41,7 +51,9 @@ def check(html: str) -> None:
 
     # Flowbite komponenta uvnitř x-for přežije jen do prvního přefiltrování:
     # Alpine uzel zahodí a nový už žádný Flowbite listener nemá.
-    for m in re.finditer(r"<template[^>]*x-for[^>]*>(.*?)</template>", markup, re.S):
+    for m in re.finditer(tag("template") + r"(.*?)</template>", markup, re.S):
+        if "x-for" not in m.group(0):
+            continue
         if re.search(r"data-(drawer|dropdown|modal|tooltip|popover|accordion|tabs|collapse)-", m.group(1)):
             fail("flowbite/dynamic",
                  f"řádek {line_of(markup, m.start())}: Flowbite data atribut uvnitř x-for — "
@@ -74,14 +86,18 @@ def check(html: str) -> None:
 
     # ── Alpine: klíče v x-for ─────────────────────────────────────────────────
     # Duplicitní nebo chybějící :key neshodí jen jednu položku, ale celý seznam.
-    for m in re.finditer(r"<template[^>]*\bx-for=[^>]*>", markup):
+    for m in re.finditer(tag("template"), markup):
+        if "x-for" not in m.group(0):
+            continue
         if ":key" not in m.group(0):
             fail("alpine/key",
                  f"řádek {line_of(markup, m.start())}: x-for bez :key")
 
     # ── Alpine: x-cloak ───────────────────────────────────────────────────────
     # Bez něj problikne nevykreslená šablona, než Alpine nastartuje.
-    root = re.search(r"<div[^>]*\bx-data=[^>]*>", markup)
+    root = re.search(tag("div"), markup)
+    while root and "x-data=" not in root.group(0):
+        root = re.search(tag("div"), markup[root.end():])
     if root and "x-cloak" not in root.group(0):
         fail("alpine/cloak", "kořenový x-data nemá x-cloak")
     if "[x-cloak]" not in html:
@@ -101,32 +117,35 @@ def check(html: str) -> None:
             fail("alpine/debounce", "hledací input nemá x-model.debounce")
 
     # ── Přístupnost ───────────────────────────────────────────────────────────
-    for m in re.finditer(r"<button\b[^>]*>(.*?)</button>", markup, re.S):
-        tag, inner = m.group(0), m.group(1)
+    for m in re.finditer(tag("button") + r"(.*?)</button>", markup, re.S):
+        open_tag, inner = m.group(0), m.group(1)
         # inner je obsah MEZI tagy, takže se v něm nehledá '>' — jen text
         # po odstranění vnořených elementů.
         text = re.sub(r"<[^>]*>", "", inner).strip()
-        named = bool(text) or "aria-label" in tag or "x-text" in tag \
+        named = bool(text) or "aria-label" in open_tag or "x-text" in open_tag \
             or "x-text" in inner or "sr-only" in inner
         if not named:
             fail("a11y/button-name",
                  f"řádek {line_of(markup, m.start())}: tlačítko bez přístupného názvu")
 
-    for m in re.finditer(r"<svg\b[^>]*>", markup):
+    for m in re.finditer(tag("svg"), markup):
         if "aria-hidden" not in m.group(0) and "role=" not in m.group(0):
             fail("a11y/svg",
                  f"řádek {line_of(markup, m.start())}: dekorativní <svg> bez aria-hidden=\"true\"")
 
-    for m in re.finditer(r'<input\b[^>]*id="([^"]+)"[^>]*>', markup):
-        ident = m.group(1)
+    for m in re.finditer(tag("input"), markup):
+        ident_m = re.search(r'\bid="([^"]+)"', m.group(0))
+        if not ident_m:
+            continue
+        ident = ident_m.group(1)
         if f'for="{ident}"' not in markup and "aria-label" not in m.group(0):
             fail("a11y/label", f"input #{ident} nemá <label for> ani aria-label")
 
     # Přepínač musí hlásit stav, jinak o něm odečítač neví.
-    for m in re.finditer(r"<button\b[^>]*>", markup):
-        tag = m.group(0)
-        if ":class=" in tag and re.search(r"@click=\"[a-zA-Z]+ ?=", tag):
-            if "aria-pressed" not in tag and "aria-current" not in tag:
+    for m in re.finditer(tag("button"), markup):
+        open_tag = m.group(0)
+        if ":class=" in open_tag and re.search(r"@click=\"[a-zA-Z]+ ?=", open_tag):
+            if "aria-pressed" not in open_tag and "aria-current" not in open_tag:
                 fail("a11y/toggle-state",
                      f"řádek {line_of(markup, m.start())}: přepínač bez aria-pressed/aria-current")
 

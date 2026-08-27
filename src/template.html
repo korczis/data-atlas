@@ -109,7 +109,11 @@
       </div>
 
       <div x-show="view === 'catalog'">
-        <h2 class="mb-2 px-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorie</h2>
+        <div class="mb-2 flex items-center justify-between px-3">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorie</h2>
+          <button type="button" @click="cat = ''" x-show="cat"
+            class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+        </div>
         <ul class="space-y-0.5">
           <li>
             <button type="button" @click="cat = ''" :aria-pressed="cat === '' ? 'true' : 'false'"
@@ -120,19 +124,32 @@
               <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="catalog.length"></span>
             </button>
           </li>
-          <template x-for="c in categories" :key="c.name">
-            <li>
-              <button type="button" @click="cat = (cat === c.name ? '' : c.name)"
-                :aria-pressed="cat === c.name ? 'true' : 'false'"
-                :class="cat === c.name ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
-                                       : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
-                class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
-                <span class="truncate" x-text="c.label"></span>
-                <span class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="c.count"></span>
-              </button>
-            </li>
-          </template>
         </ul>
+
+        <!-- Sedmnáct kategorií v plochém seznamu se nedá přehlédnout; skupiny
+             odpovídají tomu, co člověk hledá jako první. -->
+        <template x-for="g in groups" :key="g.name">
+          <div class="mt-4">
+            <p class="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+              <span x-text="g.name"></span>
+              <span class="ms-1 font-normal tabular-nums" x-text="'· ' + g.count"></span>
+            </p>
+            <ul class="space-y-0.5">
+              <template x-for="c in g.categories" :key="c.name">
+                <li>
+                  <button type="button" @click="cat = (cat === c.name ? '' : c.name)"
+                    :aria-pressed="cat === c.name ? 'true' : 'false'"
+                    :class="cat === c.name ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                           : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+                    class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
+                    <span class="truncate" x-text="c.label"></span>
+                    <span class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="c.count"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
       </div>
     </div>
   </aside>
@@ -145,6 +162,20 @@
       <!-- záhlaví stránky -->
       <div class="block items-center justify-between border-b border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex">
         <div class="w-full">
+          <nav class="mb-2" aria-label="Kde jsem">
+            <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+              <template x-for="(crumb, i) in breadcrumbs" :key="crumb.label">
+                <li class="flex items-center gap-1">
+                  <svg x-show="i > 0" class="h-4 w-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
+                    <path d="M8 5l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <button type="button" x-show="crumb.to" @click="goTo(crumb.to)"
+                    class="hover:text-gray-900 hover:underline dark:hover:text-white" x-text="crumb.label"></button>
+                  <span x-show="!crumb.to" class="font-medium text-gray-700 dark:text-gray-300" x-text="crumb.label"></span>
+                </li>
+              </template>
+            </ol>
+          </nav>
           <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" x-text="heading"></h1>
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" x-text="subheading"></p>
 
@@ -208,27 +239,37 @@
       </div>
 
       <!-- karty (do md:) -->
-      <ul class="flex flex-col gap-3 p-4 md:hidden" role="list">
-        <template x-for="r in rows" :key="r.id">
-          <li class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-            <div class="flex items-start justify-between gap-3">
-              <div class="min-w-0">
-                <a :href="r.url" target="_blank" rel="noopener noreferrer"
-                   class="text-base font-semibold text-primary-700 hover:underline dark:text-primary-400"
-                   x-text="r.name || r.dom"></a>
-                <p class="mt-0.5 break-all font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></p>
-              </div>
-              <span :class="badge(r.src)" class="shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
-            </div>
-            <p x-show="r.desc || r.title" class="mt-2.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300" x-text="r.desc || r.title"></p>
-            <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
-              <span x-show="r.cat" x-text="shortCat(r.cat || '')"></span>
-              <span x-show="r.visits" class="tabular-nums"><span x-text="r.visits"></span> návštěv</span>
-              <span x-show="r.last" class="font-mono" x-text="r.last"></span>
-            </div>
-          </li>
+      <div class="p-4 md:hidden">
+        <template x-for="sec in sections" :key="sec.key">
+          <section class="mb-6">
+            <h2 x-show="sections.length > 1"
+                class="sticky top-16 z-10 -mx-4 mb-2 bg-gray-50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:bg-gray-900 dark:text-gray-300">
+              <span x-text="sec.label"></span>
+              <span class="ms-1 font-normal tabular-nums text-gray-500 dark:text-gray-400" x-text="'· ' + sec.rows.length"></span>
+            </h2>
+            <ul class="flex flex-col gap-3" role="list">
+              <template x-for="r in sec.rows" :key="r.id">
+                <li class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                         class="text-base font-semibold text-primary-700 hover:underline dark:text-primary-400"
+                         x-text="r.name || r.dom"></a>
+                      <p class="mt-0.5 break-all font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></p>
+                    </div>
+                    <span :class="badge(r.src)" class="shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
+                  </div>
+                  <p x-show="r.desc || r.title" class="mt-2.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300" x-text="r.desc || r.title"></p>
+                  <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+                    <span x-show="r.visits" class="tabular-nums"><span x-text="r.visits"></span> návštěv</span>
+                    <span x-show="r.last" class="font-mono" x-text="r.last"></span>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </section>
         </template>
-      </ul>
+      </div>
 
       <!-- tabulka (od md:) -->
       <div class="hidden p-4 md:block">
@@ -252,25 +293,35 @@
                   </template>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-                <template x-for="r in rows" :key="r.id">
-                  <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <td class="p-4 align-top">
-                      <a :href="r.url" target="_blank" rel="noopener noreferrer"
-                         class="text-base font-semibold text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
-                         x-text="r.name || r.dom"></a>
-                      <div class="mt-0.5 font-mono text-xs font-normal text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
-                    </td>
-                    <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="r.desc || r.title"></td>
-                    <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="shortCat(r.cat || '')"></td>
-                    <td class="p-4 align-top">
-                      <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
-                    </td>
-                    <td class="p-4 align-top text-end text-sm font-medium tabular-nums text-gray-900 dark:text-white" x-text="r.visits || '–'"></td>
-                    <td class="p-4 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
+              <template x-for="sec in sections" :key="sec.key">
+                <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+                  <tr x-show="sections.length > 1" class="bg-gray-50 dark:bg-gray-700/50">
+                    <th scope="colgroup" :colspan="columns.length"
+                        class="px-4 py-2 text-start text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                      <span x-text="sec.label"></span>
+                      <span class="ms-1 font-normal normal-case tabular-nums text-gray-500 dark:text-gray-400"
+                            x-text="'· ' + sec.rows.length + ' ' + plural(sec.rows.length)"></span>
+                    </th>
                   </tr>
-                </template>
-              </tbody>
+                  <template x-for="r in sec.rows" :key="r.id">
+                    <tr data-row class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <td class="p-4 align-top">
+                        <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                           class="text-base font-semibold text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
+                           x-text="r.name || r.dom"></a>
+                        <div class="mt-0.5 font-mono text-xs font-normal text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
+                      </td>
+                      <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="r.desc || r.title"></td>
+                      <td x-show="!grouped" class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="shortCat(r.cat || '')"></td>
+                      <td class="p-4 align-top">
+                        <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
+                      </td>
+                      <td class="p-4 align-top text-end text-sm font-medium tabular-nums text-gray-900 dark:text-white" x-text="r.visits || '–'"></td>
+                      <td class="p-4 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
+                    </tr>
+                  </template>
+                </tbody>
+              </template>
             </table>
           </div>
         </div>
@@ -357,8 +408,10 @@ window.__DATA__ = /*__JSON__*/;
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('atlas', () => ({
-    view: 'catalog', q: '', cat: '', source: '', toast: '',
-    sort: { key: 'cat', dir: 1 },
+    view: 'catalog', q: '', cat: '', source: '', toast: '', _syncing: false,
+    // Výchozí řazení je pořadí informační architektury z CSV, ne abeceda —
+    // textově by '10. Spatial DB' předběhlo '2. Globální geodata'.
+    sort: { key: 'ord', dir: 1 },
     catalog: window.__DATA__.catalog,
     longlist: window.__DATA__.longlist,
 
@@ -372,10 +425,53 @@ document.addEventListener('alpine:init', () => {
       // Flowbite váže chování na data atributy jediným skenem DOM, Alpine
       // vykresluje až po startu. Bez tohohle je panel i dropdown v DOM,
       // vypadají správně a nedělají nic — bez chyby v konzoli.
+      this.readHash();
       this.$nextTick(() => {
         window.initFlowbite && window.initFlowbite();
         this.syncSidebarAria();
       });
+      // Filtr patří do URL: bez toho se výřez katalogu nedá poslat dál.
+      this.$watch('view', () => this.writeHash());
+      this.$watch('q', () => this.writeHash());
+      this.$watch('cat', () => this.writeHash());
+      this.$watch('source', () => this.writeHash());
+      // Bez téhle pojistky si vlastní zápis do URL vzápětí přečteme zpátky
+      // a přepíšeme jím stav, který uživatel právě nastavil.
+      window.addEventListener('hashchange', () => { if (!this._syncing) this.readHash(); });
+    },
+
+    // Parametr kvůli testovatelnosti: pod file:// ani v jsdom se URL přepsat
+    // nedá, ale samotné čtení a skládání stavu se ověřit má.
+    readHash(raw) {
+      const p = new URLSearchParams(String(raw ?? location.hash ?? '').replace(/^#/, ''));
+      const view = p.get('view');
+      if (view === 'catalog' || view === 'longlist') this.view = view;
+      this.q = p.get('q') || '';
+      this.cat = this.catalog.some(r => r.cat === p.get('cat')) ? p.get('cat') : '';
+      this.source = ['data', 'reference'].includes(p.get('src')) ? p.get('src') : '';
+    },
+
+    writeHash() {
+      const p = new URLSearchParams();
+      if (this.view !== 'catalog') p.set('view', this.view);
+      if (this.q) p.set('q', this.q);
+      if (this.cat) p.set('cat', this.cat);
+      if (this.source) p.set('src', this.source);
+      const hash = p.toString();
+      this._syncing = true;
+      setTimeout(() => { this._syncing = false; }, 0);
+      // replaceState, ne location.hash — jinak by každý stisk klávesy přidal
+      // položku do historie prohlížeče.
+      //
+      // Zabaleno v try: pod file://, v sandboxu a nad about:blank replaceState
+      // vyhodí výjimku. Ta by uvnitř $watch shodila reaktivitu Alpine a s ní
+      // filtrování celé stránky — sdílitelná URL je bonus, ne nosná funkce.
+      try {
+        history.replaceState(null, '', hash ? '#' + hash : '#');
+      } catch (e) {
+        /* URL se přepsat nedá; stránka funguje dál */
+      }
+      return hash;
     },
 
     /** Od lg: je panel trvale vidět, ale Flowbite na něm nechává aria-hidden
@@ -400,18 +496,26 @@ document.addEventListener('alpine:init', () => {
       ];
     },
     get columns() {
+      // Když jsou řádky seskupené po kategoriích, sloupec Kategorie jen
+      // opakuje hlavičku sekce na každém řádku — v tom případě odpadá.
+      const grouped = this.grouped;
       return [
         { key: 'name', label: 'Web', sortable: true, width: 'w-56' },
         { key: 'desc', label: 'Popis', width: 'w-96' },
-        { key: 'cat', label: 'Kategorie', sortable: true, width: 'w-48' },
+        ...(grouped ? [] : [{ key: 'cat', label: 'Kategorie', sortable: true, width: 'w-48' }]),
         { key: 'src', label: 'Zdroj', width: 'w-40' },
         { key: 'visits', label: 'Návštěv', sortable: true, numeric: true, width: 'w-28' },
         { key: 'last', label: 'Poslední', sortable: true, width: 'w-32' },
       ];
     },
-    get sortable() { return this.columns.filter(c => c.sortable); },
+    /** Volby řazení. 'ord' je pořadí informační architektury a zároveň jediné,
+     *  při kterém dává členění po kategoriích smysl — musí jít vybrat zpátky. */
+    get sortable() {
+      return [{ key: 'ord', label: 'Pořadí katalogu' },
+              ...this.columns.filter(c => c.sortable)];
+    },
     get sortLabel() {
-      return (this.columns.find(c => c.key === this.sort.key) || { label: '—' }).label;
+      return (this.sortable.find(c => c.key === this.sort.key) || { label: '—' }).label;
     },
 
     // Kategorie nesou počet položek, aby šlo v panelu poznat, kde co je.
@@ -419,6 +523,69 @@ document.addEventListener('alpine:init', () => {
       const counts = new Map();
       for (const r of this.catalog) counts.set(r.cat, (counts.get(r.cat) || 0) + 1);
       return [...counts].map(([name, count]) => ({ name, count, label: this.shortCat(name) }));
+    },
+
+    /** Skupina → kategorie. Pořadí přebírá z dat, která už jsou seřazená
+     *  podle informační architektury. */
+    get groups() {
+      const out = [];
+      const byName = new Map();
+      for (const r of this.catalog) {
+        let g = byName.get(r.grp);
+        if (!g) { g = { name: r.grp, count: 0, categories: [], _cats: new Map() }; byName.set(r.grp, g); out.push(g); }
+        g.count++;
+        let c = g._cats.get(r.cat);
+        if (!c) { c = { name: r.cat, label: this.shortCat(r.cat), count: 0 }; g._cats.set(r.cat, c); g.categories.push(c); }
+        c.count++;
+      }
+      return out;
+    },
+
+    /** Výsledky rozdělené po kategoriích. Dvě stě osmnáct nerozlišených řádků
+     *  se nedá procházet; při hledání napříč katalogem je členění ještě
+     *  potřebnější než při procházení jedné kategorie. */
+    /** Členění dává smysl jen v pořadí IA a jen když není vybraná jedna
+     *  kategorie. Řadit podle návštěv a pak seskupovat si odporuje: uživatel
+     *  chce globální pořadí, ne nejnavštěvovanější v každé sekci. */
+    get grouped() {
+      return this.view === 'catalog' && this.sort.key === 'ord' && !this.cat;
+    },
+
+    get sections() {
+      const rows = this.filtered;
+      if (!this.grouped) return [{ key: 'all', label: '', rows }];
+      const out = [];
+      const byCat = new Map();
+      for (const r of rows) {
+        let sec = byCat.get(r.cat);
+        if (!sec) { sec = { key: r.cat, label: this.shortCat(r.cat), rows: [] }; byCat.set(r.cat, sec); out.push(sec); }
+        sec.rows.push(r);
+      }
+      return out;
+    },
+
+    /** Drobečky nesou jen cíl skoku jako řetězec, nikdy callback.
+     *
+     *  Alpine u výrazu, který vrátí funkci, tu funkci zavolá — aby šlo psát
+     *  x-text="metoda". Callback v `x-show="crumb.action"` by se tedy spustil
+     *  při každém překreslení a mazal filtr, který uživatel právě nastavil.
+     *  Trvalo to najít, protože se to tvářilo jako chyba reaktivity. */
+    get breadcrumbs() {
+      const atRoot = this.view === 'catalog' && !this.cat;
+      const crumbs = [{ label: 'Katalog', to: atRoot ? '' : 'root' }];
+      if (this.view === 'longlist') { crumbs.push({ label: 'Long list', to: '' }); return crumbs; }
+      if (this.cat) {
+        const grp = this.catalog.find(r => r.cat === this.cat)?.grp;
+        if (grp) crumbs.push({ label: grp, to: 'group' });
+        crumbs.push({ label: this.shortCat(this.cat), to: '' });
+      }
+      if (this.q) crumbs.push({ label: `hledání „${this.q}"`, to: '' });
+      return crumbs;
+    },
+
+    goTo(target) {
+      if (target === 'root') { this.view = 'catalog'; this.cat = ''; }
+      else if (target === 'group') { this.cat = ''; }
     },
     get activeFilters() { return [this.q, this.cat, this.source].filter(Boolean).length; },
     get total() { return this.view === 'catalog' ? this.catalog.length : this.longlist.length; },

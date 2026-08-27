@@ -325,13 +325,48 @@ C=[
 ("17. Učení / komunita","Anita Graser — Free and Open Source GIS Ramblings","anitagraser.com","Blog autorky MovingPandas — QGIS, PyQGIS, Trajectools a analýza pohybových dat","https://anitagraser.com/"),
 ]
 
+# ── informační architektura ──────────────────────────────────────────────────
+# Sedmnáct kategorií v plochém seznamu je na 218 položek moc; nadřazené skupiny
+# dělí katalog na to, co člověk hledá jako první: odkud data vzít (svět / ČR),
+# co se právě děje, čím to zpracovat a kde se to naučit.
+GROUPS = {
+    "Data — svět":       ["2. Globální geodata", "6. Remote sensing / rastr",
+                          "7. Statistika / demografie", "8. Historické mapy"],
+    "Data — Česko":      ["3. ČR — katastr a geodata", "4. ČR — doprava / mobilita",
+                          "13. Open data / registry CZ", "16. Nemovitosti / trh"],
+    "Události a rizika": ["5. Crime / IZS / bezpečnost", "15. Počasí / klima",
+                          "14. OSINT / investigace"],
+    "Nástroje":          ["1. Gazetteer / geokódování", "9. Mapové knihovny / basemapy",
+                          "10. Spatial DB / analytika", "11. Routing / síťová analýza",
+                          "12. Formáty / projekce / standardy"],
+    "Učení":             ["17. Učení / komunita"],
+}
+CATEGORY_GROUP = {c: g for g, cats in GROUPS.items() for c in cats}
+GROUP_ORDER = {g: i for i, g in enumerate(GROUPS)}
+
+
+def _cat_number(cat):
+    """Kategorie mají číselnou předponu; textové řazení by dalo '10.' před '2.'."""
+    return int(cat.split(".", 1)[0])
+
+
+def sort_key(entry):
+    cat = entry[0]
+    return (GROUP_ORDER[CATEGORY_GROUP[cat]], _cat_number(cat))
+
+_ungrouped = {c for c, *_ in ((e[0],) for e in C)} - set(CATEGORY_GROUP)
+assert not _ungrouped, f"kategorie bez skupiny: {sorted(_ungrouped)}"
+
 DATA.mkdir(exist_ok=True)
 with open(DATA/"catalog.csv","w",newline='',encoding='utf-8-sig') as fh:
     w=csv.writer(fh)
-    w.writerow(["Kategorie","Web","Doména","Popis","Zdroj","Návštěvy","Unikátních URL","Poslední návštěva","URL"])
-    for cat,name,dom,desc,url in C:
+    w.writerow(["Skupina","Kategorie","Web","Doména","Popis","Zdroj","Návštěvy",
+                "Unikátních URL","Poslední návštěva","URL"])
+    # CSV se zapisuje v pořadí informační architektury (skupina → kategorie),
+    # ne v pořadí, jak položky vznikaly. Stránka i markdown to pořadí přebírají.
+    for cat,name,dom,desc,url in sorted(C, key=sort_key):
         sr,v,nu,last = evidence(url,dom)
-        w.writerow([cat,name,dom,desc,sr,v,nu,last,url])
+        w.writerow([CATEGORY_GROUP[cat],cat,name,dom,desc,sr,v,nu,last,url])
 
 own=sum(1 for c in C if evidence(c[4],c[2])[0]!='reference')
 print(f"curated: {len(C)}  (z toho {own} doložených z tvých dat, {len(C)-own} doplněných referenčně)")

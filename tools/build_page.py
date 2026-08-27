@@ -41,7 +41,7 @@ def read_csv(path):
 
 def load_data():
     catalog = [
-        dict(cat=r["Kategorie"], name=r["Web"], dom=r["Doména"], desc=r["Popis"],
+        dict(grp=r["Skupina"], cat=r["Kategorie"], name=r["Web"], dom=r["Doména"], desc=r["Popis"],
              src=r["Zdroj"], visits=int(r["Návštěvy"] or 0),
              last=r["Poslední návštěva"], url=r["URL"])
         for r in read_csv(ROOT / "data" / "catalog.csv")
@@ -58,8 +58,11 @@ def load_data():
 
     # Stabilní klíče pro x-for. Bez nich Alpine při shodných klíčech (dvě položky
     # na stejné doméně) shodí celý render — ne jen tu jednu řádku.
+    # 'ord' drží pořadí informační architektury z CSV. Bez něj by se řadilo
+    # podle textu kategorie a '10. Spatial DB' by skončilo před '2. Globální'.
     for i, r in enumerate(catalog):
         r["id"] = f"c{i}"
+        r["ord"] = i
     for i, r in enumerate(longlist):
         r["id"] = f"l{i}"
     return catalog, longlist
