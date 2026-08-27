@@ -80,6 +80,25 @@ a `--window-size=320` se tiše klampne — test by pak měřil něco jiného, ne
 Rozdělení rolí: **linter** hlídá konvence ve zdroji, **sonda** hlídá výsledek
 v prohlížeči. Ani jedno nenahradí to druhé.
 
+## Audit přístupnosti
+
+`just a11y` pouští **axe-core** nad postavenou stránkou ve čtyřech scénářích:
+mobil i desktop × světlý i tmavý motiv. Selhává od závažnosti `serious` výš.
+
+Proč v prohlížeči a ne v jsdom: jsdom nepočítá layout ani barvy, takže pravidlo
+`color-contrast` v něm skončí jako „incomplete" a projde i stránka, na které
+není nic vidět. A proč oba motivy: kontrast se mezi nimi liší — první běh našel
+selhání jen v tmavém režimu a jiné jen ve světlém.
+
+Dva nálezy z prvního běhu stojí za zapamatování:
+
+- **`aria-hidden-focus` na šuplíku.** Posunout ho mimo plátno přes
+  `translate-x-full` nestačí — obsah zůstane fokusovatelný a odečítač do něj
+  vleze. Řeší to `#filters[aria-hidden="true"] { visibility: hidden }`,
+  navázané na atribut, který razí Flowbite.
+- **Kontrast těsně pod hranicí.** `gray-500` na `gray-100` dává 4,4:1 při
+  požadovaných 4,5:1. Okem nerozeznatelné, měřením ano.
+
 ## Rozvržení
 
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný

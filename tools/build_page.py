@@ -65,6 +65,24 @@ def load_data():
     return catalog, longlist
 
 
+def build_flowbite() -> str:
+    """Zbundluje jen ty Flowbite komponenty, které markup skutečně používá.
+
+    Plný UMD build má 133 kB a nese accordion, carousel, datepicker a další
+    nepoužité věci. Výřez v src/js/flowbite-entry.js má 9 kB.
+    """
+    CACHE.mkdir(exist_ok=True)
+    out = CACHE / "flowbite-min.js"
+    r = subprocess.run(
+        ["npx", "esbuild", "src/js/flowbite-entry.js", "--bundle", "--minify",
+         "--format=iife", f"--outfile={out.relative_to(ROOT)}", "--log-level=warning"],
+        cwd=ROOT, capture_output=True, text=True)
+    if r.returncode != 0:
+        sys.stderr.write(r.stdout + r.stderr)
+        raise SystemExit("esbuild selhal")
+    return out.read_text(encoding="utf-8")
+
+
 def build_css():
     CACHE.mkdir(exist_ok=True)
     r = subprocess.run(
@@ -233,7 +251,7 @@ def main():
 
     css = build_css()
     alpine = (ROOT / "node_modules" / "alpinejs" / "dist" / "cdn.min.js").read_text(encoding="utf-8")
-    flowbite = (ROOT / "node_modules" / "flowbite" / "dist" / "flowbite.min.js").read_text(encoding="utf-8")
+    flowbite = build_flowbite()
 
     m = re.match(r"\s*(<title>.*?</title>)\s*", body, re.S)
     title, rest = m.group(1), body[m.end():]

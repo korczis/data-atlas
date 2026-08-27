@@ -26,6 +26,8 @@ jobs:
         run: |
           python3 tools/build_page.py
           python3 tools/lint_ui.py
+          python3 tools/check_responsive.py
+          python3 tools/check_a11y.py
           node tests/smoke.mjs
           node tests/interact.mjs
           node tests/meta.mjs

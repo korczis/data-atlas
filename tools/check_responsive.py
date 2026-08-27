@@ -8,12 +8,14 @@ konkrétní prvek za to může.
 
 Vrací nenulový kód, když se stránka na kterékoli šířce roztáhne do strany.
 """
+from __future__ import annotations
+
 import argparse, json, re, subprocess, sys, tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE = ROOT / "dist" / "index.html"
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+CHROME: str | None = None  # zjistí se v runtime přes find_chrome()
 
 # šířky, na kterých se to musí chovat: malý telefon → mobil → tablet → desktop
 WIDTHS = [320, 360, 390, 414, 768, 1024, 1280, 1536]
@@ -63,6 +65,28 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
 """
 
 
+def find_chrome() -> str | None:
+    """Najde Chrome napříč systémy.
+
+    Cesta natvrdo znamená, že kontrola v CI tiše neběží a člověk si myslí,
+    že něco hlídá. Pořadí: proměnná CHROME_PATH, pak obvyklá místa.
+    """
+    import os, shutil
+    if (env := os.environ.get("CHROME_PATH")) and Path(env).exists():
+        return env
+    candidates = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    ]
+    for c in candidates:
+        if Path(c).exists():
+            return c
+    for name in ("google-chrome", "google-chrome-stable", "chromium",
+                 "chromium-browser", "chrome"):
+        if (found := shutil.which(name)):
+            return found
+    return None
+
 def measure(width: int) -> dict:
     with tempfile.TemporaryDirectory() as tmp:
         harness = Path(tmp) / "harness.html"
@@ -88,8 +112,11 @@ def main() -> int:
 
     if not PAGE.exists():
         raise SystemExit("chybí dist/index.html — spusť nejdřív `just build`")
-    if not Path(CHROME).exists():
-        print("headless Chrome nenalezen, kontrola přeskočena", file=sys.stderr)
+    global CHROME
+    CHROME = find_chrome()
+    if CHROME is None:
+        print("headless Chrome nenalezen, kontrola přeskočena "
+              "(nastav CHROME_PATH)", file=sys.stderr)
         return 0
 
     failed = False

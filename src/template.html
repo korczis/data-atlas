@@ -19,6 +19,11 @@
   :root[data-theme="dark"] button:focus-visible,
   :root[data-theme="dark"] a:focus-visible,
   :root[data-theme="dark"] input:focus-visible { outline-color: #60a5fa; }
+  /* Off-canvas šuplík: posun sám o sobě nestačí, obsah zůstane fokusovatelný
+     a odečítač do něj vleze. Flowbite razí aria-hidden, tak se na to navážeme. */
+  #filters[aria-hidden="true"] { visibility: hidden; }
+  #filters { transition: transform .3s ease-in-out, visibility 0s linear 0s; }
+  #filters[aria-hidden="true"] { transition: transform .3s ease-in-out, visibility 0s linear .3s; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 </style>
 
@@ -51,10 +56,10 @@
       </dl>
 
       <div class="mt-5 flex flex-wrap gap-1.5 text-xs text-gray-500 dark:text-gray-400">
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">Chrome / Default</span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">Chrome / Default</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
       </div>
     </div>
   </header>
@@ -323,17 +328,17 @@
   </div>
 
   <!-- ══════════ SPODNÍ NAVIGACE (jen mobil) ══════════ -->
-  <nav class="fixed bottom-0 start-0 z-30 h-16 w-full border-t border-gray-200 bg-white sm:hidden dark:border-gray-600 dark:bg-gray-700"
+  <nav class="fixed bottom-0 start-0 z-30 h-16 w-full border-t border-gray-200 bg-white sm:hidden dark:border-gray-700 dark:bg-gray-800"
        aria-label="Přepnout pohled">
     <div class="mx-auto grid h-full max-w-lg grid-cols-2 font-medium">
       <template x-for="v in views" :key="v.id">
         <button type="button" @click="view = v.id" :aria-current="view === v.id ? 'page' : 'false'"
-          class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800">
+          class="group inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-700">
           <span class="text-sm"
                 :class="view === v.id ? 'font-semibold text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'"
                 x-text="v.label"></span>
           <span class="mt-0.5 text-xs tabular-nums"
-                :class="view === v.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'"
+                :class="view === v.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'"
                 x-text="v.count"></span>
         </button>
       </template>

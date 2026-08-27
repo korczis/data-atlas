@@ -41,6 +41,11 @@ jobs:
       - name: Konvence UI
         run: python3 tools/lint_ui.py
 
+      - name: Responzivita a přístupnost
+        run: |
+          python3 tools/check_responsive.py
+          python3 tools/check_a11y.py
+
       - name: Test
         run: |
           node tests/smoke.mjs

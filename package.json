@@ -16,10 +16,13 @@
     "serve": "python3 -m http.server 8000 --directory dist",
     "assets": "python3 tools/build_assets.py",
     "lint": "python3 tools/lint_ui.py",
-    "responsive": "python3 tools/check_responsive.py"
+    "responsive": "python3 tools/check_responsive.py",
+    "a11y": "python3 tools/check_a11y.py"
   },
   "devDependencies": {
     "alpinejs": "3.14.9",
+    "axe-core": "^4.13.0",
+    "esbuild": "^0.28.2",
     "flowbite": "2.5.2",
     "jsdom": "^25.0.1",
     "tailwindcss": "3.4.17"

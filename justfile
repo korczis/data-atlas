@@ -18,7 +18,8 @@ help:
     @echo "  just serve        lokální náhled na http://localhost:8000"
     @echo "  just lint         konvence Flowbite + Alpine (docs/UI-RULES.md)"
     @echo "  just responsive   měření přetečení v headless Chrome"
-    @echo "  just check        build + lint + test + responsive"
+    @echo "  just a11y         audit přístupnosti přes axe-core"
+    @echo "  just check        build + lint + test + responsive + a11y"
     @echo "  just assets       přegeneruje ikony a OG kartu"
     @echo
     @echo "Data (jen lokálně, potřebuje Chrome profil na disku):"
@@ -50,7 +51,7 @@ assets:
 
 # Build + testy — stejné, co běží v CI
 [group('build')]
-check: build lint test responsive
+check: build lint test responsive a11y
 
 # ── testy ─────────────────────────────────────────────────────────────────────
 
@@ -71,6 +72,11 @@ lint:
 [group('test')]
 responsive:
     python3 tools/check_responsive.py
+
+# Audit přístupnosti (axe-core) v obou motivech a na dvou šířkách
+[group('test')]
+a11y:
+    python3 tools/check_a11y.py
 
 # Lokální náhled postavené stránky
 [group('test')]

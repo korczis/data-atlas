@@ -65,9 +65,15 @@ Build vyrábí dvě varianty téhož:
   na doprovodné soubory. Pro Claude Artifacts a pro poslání e-mailem.
 
 Tailwind, Flowbite i Alpine.js jsou vloženy inline, takže obojí funguje z disku,
-offline i pod přísným CSP. Hlídá to 83 testů ve čtyřech sadách
-(`smoke` · `interact` · `meta` · `flowbite`), linter konvencí a měření
-responzivity v headless Chrome.
+offline i pod přísným CSP.
+
+Z Flowbite se bundluje jen to, co markup opravdu používá: plný `flowbite.min.js`
+má 133 kB a nese accordion, carousel či datepicker, které tu nejsou — výřez
+s jediným šuplíkem má 9 kB.
+
+Hlídá to 83 testů ve čtyřech sadách (`smoke` · `interact` · `meta` · `flowbite`),
+linter konvencí, měření responzivity a audit přístupnosti přes axe-core —
+vše v `just check`.
 
 ### Rozvržení
 
@@ -79,7 +85,8 @@ v šuplíku, výš rozbalené v liště. Obě větve čtou týž getter a testy 
 
 Konvence Flowbite a Alpine popisuje [`docs/UI-RULES.md`](docs/UI-RULES.md)
 a vynucuje `just lint`. `just responsive` měří vodorovné přetečení v headless
-Chrome na šířkách 320 – 1536 px.
+Chrome na šířkách 320 – 1536 px, `just a11y` pouští axe-core ve čtyřech
+scénářích (mobil i desktop × světlý i tmavý motiv).
 
 ### Přidání položky
 
