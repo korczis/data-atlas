@@ -77,10 +77,14 @@ vše v `just check`.
 
 ### Rozvržení
 
+Aplikační shell adaptovaný z Flowbite Pro Admin Dashboardu — horní lišta,
+postranní panel se všemi 17 kategoriemi a jejich počty, hlavní obsah a lepivá
+souhrnná lišta. Podrobnosti k licenci jsou v [`NOTICE.md`](NOTICE.md).
+
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
 s řaditelnými sloupci — tabulka o šesti sloupcích se na telefon nevejde.
-Pohled se pod `sm` přepíná spodní navigací, výš záložkami; filtry jsou pod `lg`
-v šuplíku, výš rozbalené v liště. Obě větve čtou týž getter a testy ověřují,
+Postranní panel je pod `lg` šuplík, od `lg` výš stojí napevno; pohled se pod
+`sm` přepíná i spodní navigací. Obě větve čtou týž getter a testy ověřují,
 že vykreslí stejný počet položek.
 
 Konvence Flowbite a Alpine popisuje [`docs/UI-RULES.md`](docs/UI-RULES.md)

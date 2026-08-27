@@ -14,36 +14,55 @@ check('Flowbite eviduje instance', typeof w.FlowbiteInstances === 'object');
 check('Alpine komponenta je registrovaná přes Alpine.data', !!state);
 
 // ── šuplík s filtry ──────────────────────────────────────────────────────────
-const drawer = d.getElementById('filters');
-const open = d.querySelector('[data-drawer-show="filters"]');
-const close = d.querySelector('[data-drawer-hide="filters"]');
+const sidebar = d.getElementById('sidebar');
+const toggle = d.querySelector('[data-drawer-toggle="sidebar"]');
 
-check('šuplík i jeho spouštěč existují', !!drawer && !!open && !!close);
-check('šuplík startuje mimo plátno', drawer.className.includes('translate-x-full'));
-check('spouštěč má aria-controls', open.getAttribute('aria-controls') === 'filters');
-check('šuplík má aria-labelledby',
-      !!d.getElementById(drawer.getAttribute('aria-labelledby')));
+check('postranní panel i jeho spouštěč existují', !!sidebar && !!toggle);
+check('panel má aria-label', !!sidebar.getAttribute('aria-label'));
+check('spouštěč má aria-controls', toggle.getAttribute('aria-controls') === 'sidebar');
+check('panel startuje mimo plátno (pod lg:)', sidebar.className.includes('-translate-x-full'));
+check('panel je od lg: napevno vidět', sidebar.className.includes('lg:translate-x-0'));
 
-open.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+toggle.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 await tick();
-check('kliknutí šuplík otevře', !drawer.className.includes('translate-x-full'));
+check('kliknutí panel otevře', !sidebar.className.includes('-translate-x-full'));
 
-close.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+toggle.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
 await tick();
-check('zavírací tlačítko šuplík zavře', drawer.className.includes('translate-x-full'));
+check('další kliknutí panel zavře', sidebar.className.includes('-translate-x-full'));
 
-// ── filtry v šuplíku ovládají tentýž stav jako na desktopu ───────────────────
-const drawerSourceBtns = drawer.querySelectorAll('button[aria-pressed]');
-check('šuplík nabízí filtry', drawerSourceBtns.length > 3, `${drawerSourceBtns.length} přepínačů`);
+// ── panel ovládá tentýž stav jako zbytek stránky ─────────────────────────────
+check('panel nabízí kategorie i filtry',
+      sidebar.querySelectorAll('button[aria-pressed]').length > 15,
+      `${sidebar.querySelectorAll('button[aria-pressed]').length} přepínačů`);
 
 state.source = 'reference';
 await tick();
-const pressed = [...drawer.querySelectorAll('button[aria-pressed="true"]')]
-  .some(b => b.textContent.trim() === 'Reference');
-check('šuplík odráží stav komponenty', pressed);
+check('panel odráží stav komponenty',
+      [...sidebar.querySelectorAll('button[aria-pressed="true"]')]
+        .some(b => b.textContent.trim() === 'Reference'));
+state.source = '';
+await tick();
+
+// ── řadicí dropdown (Flowbite) ───────────────────────────────────────────────
+const sortToggle = d.querySelector('[data-dropdown-toggle="sort-dropdown"]');
+const sortMenu = d.getElementById('sort-dropdown');
+check('řadicí dropdown existuje', !!sortToggle && !!sortMenu);
+check('dropdown startuje skrytý', sortMenu.className.includes('hidden'));
+
+sortToggle.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+await tick();
+check('kliknutí dropdown otevře', !sortMenu.className.includes('hidden'));
+
+const visitsOption = [...sortMenu.querySelectorAll('button')]
+  .find(b => b.textContent.includes('Návštěv'));
+visitsOption.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+await tick();
+check('volba v dropdownu přeřadí tabulku', state.sort.key === 'visits',
+      `řadí se dle '${state.sort.key}'`);
 
 // ── spodní navigace a přepínání pohledu ──────────────────────────────────────
-const bottomNav = d.querySelector('nav[aria-label]');
+const bottomNav = d.querySelector('nav[aria-label="Přepnout pohled"]');
 check('spodní navigace existuje', !!bottomNav);
 check('spodní navigace je jen pro mobil', bottomNav.className.includes('sm:hidden'));
 

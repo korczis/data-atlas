@@ -101,11 +101,20 @@ Dva nálezy z prvního běhu stojí za zapamatování:
 
 ## Rozvržení
 
+Aplikační shell podle Flowbite Pro Admin Dashboardu (viz [`NOTICE.md`](../NOTICE.md)):
+horní lišta, postranní panel, hlavní obsah, lepivá souhrnná lišta.
+
+- **Postranní panel** nese přepínání pohledu, filtr zdroje a všech 17 kategorií
+  s počty. Pod `lg` je to Flowbite šuplík, od `lg` výš stojí napevno.
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný
   scroll uvnitř řádku je horší než karta.
 - `≥ md` — tabulka s řaditelnými sloupci.
-- `< sm` — přepínání pohledu spodní navigací; `≥ sm` záložkami.
-- `< lg` — filtry v šuplíku; `≥ lg` rozbalené v liště.
+- `< sm` — přepínání pohledu i spodní navigací.
+
+Jedna past, na kterou upozornil až axe: Flowbite drží na panelu `aria-hidden`
+z inicializace šuplíku **i na desktopu**, kde je panel trvale vidět. Odečítač
+by ho pak přeskočil, přestože se do něj dá tabovat. Srovnává to
+`syncSidebarAria()` podle breakpointu.
 
 Obě varianty čtou týž `rows` getter. `tests/smoke.mjs` ověřuje, že karty
 a tabulka vykreslí stejný počet položek — jinak by se dala jedna větev tiše

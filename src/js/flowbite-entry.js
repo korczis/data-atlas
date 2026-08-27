@@ -10,7 +10,9 @@
  * dvojici "data atribut v markupu ↔ volání initFlowbite".
  */
 import { initDrawers } from 'flowbite/lib/esm/components/drawer'
+import { initDropdowns } from 'flowbite/lib/esm/components/dropdown'
 
 window.initFlowbite = () => {
   initDrawers()
+  initDropdowns()
 }

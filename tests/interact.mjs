@@ -16,7 +16,7 @@ check('hledání "postgis" projde i popisy', tableRows() === 3, `${tableRows()} 
 s.q = 'katastr'; await tick();
 check('hledání "katastr"', tableRows() >= 4, `${tableRows()} řádků`);
 
-s.q = ''; s.cat = s.categories.find(c => c.includes('Routing')); await tick();
+s.q = ''; s.cat = s.categories.find(c => c.name.includes('Routing')).name; await tick();
 check('filtr kategorie', tableRows() === 6, `${tableRows()} řádků`);
 
 s.cat = ''; s.source = 'data'; await tick();
@@ -38,7 +38,7 @@ s.q = 'cuzk'; await tick();
 const expected = longlist.filter(r => r['Doména'].includes('cuzk')).length;
 check('hledání v long listu', tableRows() === expected, `${tableRows()} z ${expected} očekávaných`);
 
-s.q = ''; s.view = 'catalog'; s.cat = s.categories.find(c => c.includes('Historické')); await tick();
+s.q = ''; s.view = 'catalog'; s.cat = s.categories.find(c => c.name.includes('Historické')).name; await tick();
 s.copyCsv(); await tick();
 const clip = w.__clip || '';
 // Počet se bere z CSV — ručně zapsané číslo padne při první změně katalogu.
