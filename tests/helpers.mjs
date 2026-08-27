@@ -30,6 +30,22 @@ export async function loadPage() {
            rows: n => window.document.querySelectorAll('table')[n].querySelectorAll('tbody tr').length };
 }
 
+/** Najde odkazy na zdroje, které by prohlížeč skutečně stahoval.
+ *  Vědomě ignoruje canonical, og:url a JSON-LD: to jsou absolutní URL
+ *  v metadatech, ne síťové požadavky. */
+export function remoteResources(html) {
+  const patterns = [
+    /<script[^>]+\bsrc=["']https?:/gi,
+    /<link[^>]+rel=["'](?:stylesheet|preload|prefetch|preconnect)["'][^>]*\bhref=["']https?:/gi,
+    /<(?:img|iframe|video|audio|source|embed)[^>]+\bsrc=["']https?:/gi,
+    /@import\s+(?:url\()?["']?https?:/gi,
+    /url\(\s*["']?(?:https?:)?\/\//gi,
+    /\bfetch\(\s*["']https?:/gi,
+    /new\s+(?:XMLHttpRequest|WebSocket|EventSource)\b/gi,
+  ];
+  return patterns.flatMap(re => html.match(re) || []);
+}
+
 /** Přečte committnutá CSV, aby testy ověřovaly shodu stránky s daty,
  *  místo aby hlídaly ručně opsaná čísla, která zestárnou při každém rebuildu. */
 export function loadData() {

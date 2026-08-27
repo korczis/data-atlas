@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Geodata Atlas">
+  <title>Geodata Atlas</title>
+  <!-- Motiv: mapové dlaždice. Mřížka 3×3 čte i na 16 px, kde by se graticule
+       slila do skvrny, a "jedna zvýrazněná dlaždice" je přesně to, o čem
+       katalog je — vybraný výřez z většího celku. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#0f2a6b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+
+  <g fill="#93c5fd" fill-opacity=".45">
+    <rect x="104" y="104" width="92" height="92" rx="14"/>
+    <rect x="210" y="104" width="92" height="92" rx="14"/>
+    <rect x="316" y="104" width="92" height="92" rx="14"/>
+    <rect x="104" y="210" width="92" height="92" rx="14"/>
+    <rect x="316" y="210" width="92" height="92" rx="14"/>
+    <rect x="104" y="316" width="92" height="92" rx="14"/>
+    <rect x="210" y="316" width="92" height="92" rx="14"/>
+    <rect x="316" y="316" width="92" height="92" rx="14"/>
+  </g>
+
+  <!-- vybraná dlaždice -->
+  <rect x="204" y="204" width="104" height="104" rx="18" fill="#fff"/>
+  <circle cx="256" cy="256" r="26" fill="#1d4ed8"/>
+</svg>

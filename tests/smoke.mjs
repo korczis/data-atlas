@@ -1,6 +1,11 @@
 /** Ověří, že se stránka vůbec nastartuje: Alpine se načte, data se vykreslí,
  *  x-cloak zmizí a v konzoli není chyba. Počty se berou z CSV, ne z hlavy. */
-import { loadPage, loadData, checker } from './helpers.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { loadPage, loadData, checker, remoteResources } from './helpers.mjs';
+
+const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
 const { document: d, state, errors, rows } = await loadPage();
 const { catalog, longlist } = loadData();
@@ -16,7 +21,14 @@ check('hlavička souhlasí s daty',
       [...d.querySelectorAll('dd')].map(e => e.textContent.trim()).join('|')
         === [catalog.length, inData, longlist.length, cats].join('|'));
 check('x-cloak zrušen', d.querySelectorAll('[x-cloak]').length === 0);
-check('žádné externí zdroje',
-      !/<(script|link)[^>]+(src|href)="https?:/.test(d.documentElement.outerHTML));
+// Stránka nesmí stahovat nic zvenčí — jinak přestane fungovat offline
+// a rozbije se pod CSP, které blokuje cizí hosty.
+for (const f of ['index.html', 'artifact.html']) {
+  const found = remoteResources(fs.readFileSync(path.join(DIST, f), 'utf8'));
+  check(`${f} nenačítá nic zvenčí`, found.length === 0, found.slice(0, 2).join(' '));
+}
+// Artefakt jde navíc jako jediný soubor: ani lokální doprovodné soubory.
+check('artifact.html je soběstačný',
+      !/<(link|img|script)[^>]+(href|src)=/i.test(fs.readFileSync(path.join(DIST, 'artifact.html'), 'utf8')));
 
 check.report(errors);

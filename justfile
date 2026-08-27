@@ -17,6 +17,7 @@ help:
     @echo "  just test         ověří, že stránka odpovídá datům"
     @echo "  just serve        lokální náhled na http://localhost:8000"
     @echo "  just check        build + test, tohle běží i v CI"
+    @echo "  just assets       přegeneruje ikony a OG kartu"
     @echo
     @echo "Data (jen lokálně, potřebuje Chrome profil na disku):"
     @echo "  just refresh      celý řetěz extract → scan → catalog → sanitize → build"
@@ -40,6 +41,11 @@ build:
 docs:
     python3 tools/build_docs.py
 
+# Přegeneruje ikony a OG kartu do static/ (potřebuje Chrome + ImageMagick)
+[group('build')]
+assets:
+    python3 tools/build_assets.py
+
 # Build + testy — stejné, co běží v CI
 [group('build')]
 check: build test
@@ -51,6 +57,7 @@ check: build test
 test:
     node tests/smoke.mjs
     node tests/interact.mjs
+    node tests/meta.mjs
 
 # Lokální náhled postavené stránky
 [group('test')]

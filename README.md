@@ -57,14 +57,31 @@ just serve       # náhled na localhost:8000
 just             # všechny recepty
 ```
 
-Stránka je **jeden soubor bez jediného externího požadavku** — Tailwind, Flowbite
-i Alpine.js jsou vloženy inline. Funguje z disku, offline i pod přísným CSP.
-Testy to hlídají.
+Build vyrábí dvě varianty téhož:
+
+- `dist/index.html` — stránka pro web. Veškeré CSS a JS je inline; zvenčí
+  nestahuje nic, jen vedle sebe má ikony a manifest.
+- `dist/artifact.html` — **jediný soběstačný soubor**, bez jakéhokoli odkazu
+  na doprovodné soubory. Pro Claude Artifacts a pro poslání e-mailem.
+
+Tailwind, Flowbite i Alpine.js jsou vloženy inline, takže obojí funguje z disku,
+offline i pod přísným CSP. Hlídá to 64 testů ve třech sadách
+(`smoke` · `interact` · `meta`).
 
 ### Přidání položky
 
 Edituj `data/catalog.csv`, pak `just build docs`. Sloupce `Zdroj`, `Návštěvy`
 a `Poslední návštěva` nech u ručně přidaných prázdné — patří datovému řetězu.
+
+### Ikony a OG karta
+
+`static/` obsahuje vygenerované ikony, favicon, maskable ikonu a sociální kartu
+1200×630. Zdroje jsou v `src/assets/` (`icon.svg`, `og.html`); přegeneruje je
+`just assets` — potřebuje headless Chrome a ImageMagick. Výstupy jsou
+committnuté, aby CI nemuselo nic renderovat.
+
+Počty na kartě i v `<meta name="description">` se berou z `data/catalog.csv`.
+Nikde se nepíšou ručně, takže nemůžou zestárnout.
 
 ### Přegenerování z prohlížeče
 
@@ -77,6 +94,17 @@ just extract "~/Library/Application Support/Google/Chrome/Profile 1"
 
 `tools/extract.py` čte `AccountBookmarks` (u přihlášeného účtu jsou záložky
 tam, ne v `Bookmarks`) a kopii `History`, aby nenarazil na zámek Chromu.
+
+## SEO a sdílení
+
+Hlavička je kompletní: canonical, `robots`, Open Graph, Twitter card
+`summary_large_image`, `theme-color` pro světlý i tmavý motiv, sada ikon,
+web app manifest a strukturovaná data schema.org (`DataCatalog` + `WebSite`).
+Build k tomu generuje `robots.txt`, `sitemap.xml`, `404.html` a `.nojekyll`.
+
+Sada `tests/meta.mjs` ověřuje každý tag i doprovodný soubor — chybějící
+`og:image` se totiž jinak pozná až ve chvíli, kdy někdo odkaz nasdílí
+a vypadne mu prázdná karta.
 
 ## Soukromí
 

@@ -42,6 +42,7 @@ jobs:
         run: |
           node tests/smoke.mjs
           node tests/interact.mjs
+          node tests/meta.mjs
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
