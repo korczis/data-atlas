@@ -609,7 +609,11 @@ document.addEventListener('alpine:init', () => {
       });
       const { key, dir } = this.sort;
       return out.sort((a, b) => {
-        if (key === 'visits' || key === 'urls') return ((+a[key] || 0) - (+b[key] || 0)) * dir;
+        // 'ord' je pořadí z CSV, tedy číslo. Přes String().localeCompare by se
+        // řadilo textově a položka 100 by skončila před položkou 99 — od dvou
+        // set položek nahoru je pak výchozí „Pořadí katalogu" rozházené.
+        if (key === 'visits' || key === 'urls' || key === 'ord')
+          return ((+a[key] || 0) - (+b[key] || 0)) * dir;
         return String(a[key] ?? '').localeCompare(String(b[key] ?? ''), 'cs') * dir;
       });
     },
