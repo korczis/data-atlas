@@ -430,13 +430,12 @@ try {
       <div class="hidden p-4 md:block">
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-sm dark:border-gray-700">
           <div class="scroll-x overflow-x-auto">
-            <table class="min-w-full table-fixed divide-y divide-gray-200 dark:divide-gray-600">
+            <table class="w-full text-start text-sm text-gray-500 dark:text-gray-400">
               <caption class="sr-only">Katalog veřejných datových zdrojů</caption>
-              <thead class="sticky top-16 z-10 bg-gray-50 dark:bg-gray-700">
+              <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-300">
                 <tr>
                   <template x-for="col in columns" :key="col.key">
-                    <th scope="col" :class="col.width + ' ' + (col.numeric ? 'text-end' : 'text-start')"
-                        class="p-4 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300"
+                    <th scope="col" class="px-4 py-3 text-start font-semibold tracking-wide"
                         :aria-sort="sort.key === col.key ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
                       <button type="button" x-show="col.sortable" @click="sortBy(col.key)"
                               class="inline-flex items-center gap-1 uppercase hover:text-gray-900 dark:hover:text-white">
@@ -459,32 +458,32 @@ try {
                     </th>
                   </tr>
                   <template x-for="r in sec.rows" :key="r.id">
-                    <tr data-row class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                      <td class="p-4 align-top">
+                    <tr data-row class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                      <td class="w-1/3 px-4 py-4 align-top">
                         <a :href="r.url" target="_blank" rel="noopener noreferrer"
-                           class="text-base font-semibold text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
+                           class="font-semibold text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
                            x-text="r.name || r.dom"></a>
-                        <div class="mt-0.5 flex flex-wrap items-center gap-1.5">
+                        <div class="mt-1 flex flex-wrap items-center gap-1.5">
                           <span x-show="r.code"
                                 class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                                 x-text="r.code"></span>
-                          <span class="font-mono text-xs font-normal text-gray-500 dark:text-gray-400" x-text="r.dom"></span>
+                          <span class="break-all font-mono text-xs" x-text="r.dom"></span>
                         </div>
                       </td>
-                      <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400">
+                      <td class="px-4 py-4 align-top">
                         <span x-text="r.desc || r.title"></span>
-                        <span x-show="marks(r).length" class="mt-1.5 flex flex-wrap items-center gap-1.5">
+                        <span class="mt-1.5 flex flex-wrap items-center gap-1.5">
                           <template x-for="mk in marks(r)" :key="mk.text">
                             <span :class="mk.cls" class="rounded px-1.5 py-0.5 text-[10px] font-medium" x-text="mk.text"></span>
                           </template>
+                          <!-- Doložení jen tam, kde je: 998 z 1050 položek je
+                               čistá reference a prázdný sloupec za to nestál. -->
+                          <span x-show="r.src !== 'reference'" :class="badge(r.src)"
+                                class="whitespace-nowrap rounded px-1.5 py-0.5 text-[10px] font-medium"
+                                x-text="srcLabel(r.src) + (r.visits ? ' · ' + r.visits + '×' : '')"></span>
                         </span>
                       </td>
-                      <td x-show="!grouped" class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="topicLabel(r.topic || '')"></td>
-                      <td class="p-4 align-top">
-                        <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
-                      </td>
-                      <td class="p-4 align-top text-end text-sm font-medium tabular-nums text-gray-900 dark:text-white" x-text="r.visits || '–'"></td>
-                      <td class="p-4 align-top whitespace-nowrap font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.last || '–'"></td>
+                      <td x-show="!grouped" class="px-4 py-4 align-top" x-text="topicLabel(r.topic || '')"></td>
                     </tr>
                   </template>
                 </tbody>
@@ -763,23 +762,28 @@ document.addEventListener('alpine:init', () => {
       ];
     },
     get columns() {
+      // Sloupce Zdroj, Návštěv a Poslední braly 370 px, ale u 998 z 1050 položek
+      // jsou prázdné — doložení z prohlížeče má jen 52 z nich. Na tabletu se
+      // kvůli nim tabulka nevešla a scrollovala do strany. Doložení se proto
+      // ukazuje jako odznak u popisu, a jen tam, kde vůbec je; řadit podle
+      // návštěv a data jde dál přes nabídku řazení.
+      //
       // Když jsou řádky seskupené po tématech, sloupec Téma jen opakuje
       // hlavičku sekce na každém řádku — v tom případě odpadá.
-      const grouped = this.grouped;
       return [
-        { key: 'name', label: 'Web', sortable: true, width: 'w-64' },
-        { key: 'desc', label: 'Popis', width: 'w-96' },
-        ...(grouped ? [] : [{ key: 'topic', label: 'Téma', sortable: true, width: 'w-48' }]),
-        { key: 'src', label: 'Zdroj', width: 'w-36' },
-        { key: 'visits', label: 'Návštěv', sortable: true, numeric: true, width: 'w-24' },
-        { key: 'last', label: 'Poslední', sortable: true, width: 'w-32' },
+        { key: 'name', label: 'Web', sortable: true },
+        { key: 'desc', label: 'Popis' },
+        ...(this.grouped ? [] : [{ key: 'topic', label: 'Téma', sortable: true }]),
       ];
     },
+
     /** Volby řazení. 'ord' je pořadí informační architektury a zároveň jediné,
      *  při kterém dává členění po tématech smysl — musí jít vybrat zpátky. */
     get sortable() {
       return [{ key: 'ord', label: 'Pořadí katalogu' },
-              ...this.columns.filter(c => c.sortable)];
+              ...this.columns.filter(c => c.sortable),
+              { key: 'visits', label: 'Návštěv' },
+              { key: 'last', label: 'Poslední návštěva' }];
     },
     get sortLabel() {
       return (this.sortable.find(c => c.key === this.sort.key) || { label: '—' }).label;

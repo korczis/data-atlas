@@ -215,7 +215,12 @@ Proč v prohlížeči a ne v jsdom: jsdom nepočítá layout ani barvy, takže p
 není nic vidět. A proč oba motivy: kontrast se mezi nimi liší — první běh našel
 selhání jen v tmavém režimu a jiné jen ve světlém.
 
-Dva nálezy z prvního běhu stojí za zapamatování:
+**Referenční markup Flowbite kontrast negarantuje.** Hlavička tabulky má
+v jejich dokumentaci `dark:text-gray-400` na `dark:bg-gray-700`, což dává
+zhruba 3,5:1 a axe to hlásí jako `serious`. Opsat vzor tedy nestačí —
+vyhrává vlastní brána, ne předloha.
+
+Tři nálezy stojí za zapamatování:
 
 - **`aria-hidden-focus` na šuplíku.** Posunout ho mimo plátno přes
   `translate-x-full` nestačí — obsah zůstane fokusovatelný a odečítač do něj
@@ -223,6 +228,25 @@ Dva nálezy z prvního běhu stojí za zapamatování:
   navázané na atribut, který razí Flowbite.
 - **Kontrast těsně pod hranicí.** `gray-500` na `gray-100` dává 4,4:1 při
   požadovaných 4,5:1. Okem nerozeznatelné, měřením ano.
+- **Hlavička tabulky opsaná z Flowbite** propadla v tmavém motivu; opraveno
+  na `dark:text-gray-300`.
+
+### Měření nestačí — je potřeba se podívat
+
+Dvě vady prošly úplně vším a odhalil je až pohled na stránku:
+
+- chybějící `</aside>` zanořila obsah do panelu a **stránka byla prázdná**,
+  přestože v DOM byly všechny řádky;
+- lepivá hlavička tabulky (`sticky top-16`, vlastní vynález, ne vzor
+  z Flowbite) **překryla záhlaví sekce a první řádek** — uvnitř
+  `overflow-x-auto` se z obalu stane scroll kontejner a `top` se počítá
+  od něj.
+
+`check_responsive.py` dnes obojí chytí (plocha obsahu, zanoření v panelu,
+vnitřní přetečení tabulky). Pro nové vady toho druhu je tu `just shots`:
+vyrenderuje stránku ve čtyřech šířkách do `.cache/shots/`. **Po každém zásahu
+do rozvržení se na ty obrázky podívej** — je to levnější než vymýšlet metriku
+na každý způsob, jak se dá layout rozbít.
 
 ## Rozvržení
 

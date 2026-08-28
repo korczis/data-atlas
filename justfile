@@ -19,7 +19,8 @@ help:
     @echo "  just test         ověří, že stránka odpovídá datům"
     @echo "  just serve        lokální náhled na http://localhost:8000"
     @echo "  just lint         konvence Flowbite + Alpine (docs/UI-RULES.md)"
-    @echo "  just responsive   měření přetečení v headless Chrome"
+    @echo "  just responsive   měření rozvržení v headless Chrome"
+    @echo "  just shots        screenshoty do .cache/shots/ (mrkni se na ně)"
     @echo "  just a11y         audit přístupnosti přes axe-core"
     @echo "  just links        ověření odkazů v katalogu (chodí po síti)"
     @echo "                    zúžení: --country AT · --topic companies · --changed"
@@ -88,6 +89,11 @@ validate:
 [group('test')]
 responsive:
     python3 tools/check_responsive.py
+
+# Screenshoty stránky do .cache/shots/ — na vady, které měření nepozná
+[group('test')]
+shots *ARGS:
+    python3 tools/shoot.py {{ ARGS }}
 
 # Audit přístupnosti (axe-core) v obou motivech a na dvou šířkách
 [group('test')]

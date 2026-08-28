@@ -65,6 +65,11 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
   const mainBox = main ? main.getBoundingClientRect() : { width: 0, height: 0 };
   const rows = [...d.querySelectorAll('table tbody tr[data-row], ul[role="list"] > li')]
     .filter(el => el.getBoundingClientRect().height > 0).length;
+  // Vnitřní scroll je legitimní únik pro širokou tabulku, ale znamená, že
+  // část sloupců není vidět. U katalogu to bylo 1004px tabulky v 768px okně,
+  // takže dva sloupce zmizely za okrajem — proto se to měří.
+  const box = d.querySelector('.scroll-x');
+  const innerOverflow = box ? box.scrollWidth - box.clientWidth : 0;
   const out = document.createElement('div');
   out.id = 'probe-result';
   out.textContent = JSON.stringify({
@@ -75,6 +80,7 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
     mainHeight: Math.round(mainBox.height),
     mainInSidebar: !!(side && main && side.contains(main)),
     visibleRows: rows,
+    innerOverflow: Math.max(0, innerOverflow),
     guilty: guilty.slice(0, 5),
   });
   document.body.appendChild(out);
@@ -151,10 +157,14 @@ def main() -> int:
             problems.append(f"hlavní obsah nic nezabírá ({r['mainWidth']}×{r['mainHeight']}px)")
         if r["visibleRows"] == 0:
             problems.append("není vidět ani jedna položka katalogu")
+        # Karty (< md) tabulku nevykreslují, tam se vnitřní scroll neměří.
+        if w >= 768 and r["innerOverflow"] > 0:
+            problems.append(f"tabulka je o {r['innerOverflow']}px širší než okno "
+                            "— sloupce zmizí za okrajem")
         failed |= bool(problems)
         print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
               f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
-              f"položek={r['visibleRows']}")
+              f"položek={r['visibleRows']}  tabulka+{r['innerOverflow']}px")
         for problem in problems:
             print(f"        {problem}")
         if r["overflow"] > 0:
