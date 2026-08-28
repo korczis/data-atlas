@@ -46,7 +46,10 @@ def main() -> int:
 
         try:
             v = datetime.date.fromisoformat(s.get("verified", ""))
-            if v > today:
+            # Den tolerance: kdo přidává zdroje po půlnoci v CEST, razí datum,
+            # které je pro runner v UTC ještě zítřek. Skutečnou vadu — datum
+            # o týdny napřed — to pořád chytí.
+            if v > today + datetime.timedelta(days=1):
                 errors.append(f"{where}: datum ověření {v} je v budoucnosti")
             elif (today - v).days > 730:
                 warnings.append(f"{where}: ověřeno naposledy {v}")
