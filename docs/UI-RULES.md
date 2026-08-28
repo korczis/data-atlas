@@ -24,9 +24,22 @@ Z toho plynou dvě pravidla:
 | `flowbite/init` — kdo použije Flowbite `data-*`, musí volat `initFlowbite()` | Bez toho se sken nespustí nad tím, co vykreslil Alpine |
 | `flowbite/dynamic` — žádné Flowbite `data-*` uvnitř `<template x-for>` | Alpine uzly při přefiltrování zahodí; nové už žádný listener nemají a znovu-init na každý překreslení je drahý |
 
-Volá se to v `init()` přes `$nextTick`, tedy až Alpine dokreslí. Pořadí skriptů
-v buildu je proto závazné: **tělo → Flowbite → Alpine**. Hlídá to
+Pořadí skriptů v buildu je závazné: **tělo → Flowbite → Alpine**. Hlídá to
 `tests/flowbite.mjs`, a to kliknutím, ne kontrolou přítomnosti atributu.
+
+### `initFlowbite()` se volá jednou, a hned
+
+Volalo se to původně v `$nextTick`, tedy až Alpine dokreslí seznam. Při dvou stech
+položkách to bylo neviditelné; při tisícovce je to **vteřina, po kterou je šuplík
+s filtry mrtvý** — na telefonu na něj klikneš a nic se nestane.
+
+Čekat na Alpine přitom není proč: pravidlo `flowbite/dynamic` zakazuje Flowbite
+`data-*` uvnitř `x-for`, takže **všechny interaktivní Flowbite komponenty jsou
+ve statickém markupu** a v DOM jsou od parsování.
+
+A zavolat to „pro jistotu" dvakrát je horší než pozdě: Flowbite navěsí posluchač
+znovu, dvě instance si `toggle()` vzájemně vyruší a šuplík pak nejde zavřít
+vůbec. Narazili jsme na to při pokusu nechat obě volání vedle sebe.
 
 Praktický důsledek: interaktivní Flowbite komponenty patří do **statického**
 markupu (šuplík, spodní navigace, toast). Seznam položek si řídí Alpine sám.
@@ -82,34 +95,51 @@ kontrakt je horší než žádný.
 
 ## Informační architektura
 
-Sedmnáct kategorií v plochém seznamu je na 218 položek moc. Katalog má proto
-dvě úrovně: **skupina → kategorie**, definované v `tools/build_catalog.py`
-a nesené sloupcem `Skupina` v CSV.
+Katalog má **dvě nezávislé osy**: *téma* (o jaký druh zdroje jde) a *země*
+(kde platí). Kdyby byla země součástí kategorie — jako dřív, kdy existovaly
+kategorie „ČR — katastr" a „Polsko — katastr" — znamenal by každý další stát
+tři až šest nových položek v panelu a při sedmadvaceti státech by jich byly stovky.
 
-| Skupina | Co v ní je |
-|---|---|
-| Data — svět | globální geodata, remote sensing, statistika, historické mapy |
-| Data — Česko | katastr, doprava, open data, nemovitosti |
-| Události a rizika | crime/IZS, OSINT, počasí |
-| Nástroje | gazetteery, knihovny, spatial DB, routing, formáty |
-| Učení | komunita a kurzy |
+Témata a jejich skupiny jsou v [`data/topics.json`](../data/topics.json), země
+v [`data/countries.json`](../data/countries.json); pořadí klíčů v obou souborech
+je pořadí v UI.
+
+**Filtr země je přesná shoda.** Při vybraném Rakousku se celoevropské zdroje
+nezobrazí; `EU` a `GLOBAL` jsou vlastní volby a v panelu stojí navrchu.
+Alternativa — přimíchávat celoevropské zdroje do každé země — by znamenala,
+že u každého státu vidíš tytéž položky a nepoznáš, co má ta země vlastního.
+
+**Počty v panelu se počítají křížem:** při vybrané zemi ukazují témata počty
+v té zemi, při vybraném tématu ukazují země počty v tom tématu. Absolutní součty
+by u sedmadvaceti států říkaly „něco tu je" místo „tady je toho kolik". Hledání
+a filtr zdroje se do počtů schválně nepromítají — poskakovaly by při každém
+stisku klávesy.
+
+**Seznam zemí má vlastní filtrovací pole.** Sedmadvacet států plus nadnárodní
+rozsahy se do plochého seznamu v panelu nevejde; skládací strom je na telefonu
+horší než hledání.
 
 Z toho plyne zbytek:
 
-- **CSV se zapisuje v pořadí IA**, ne podle toho, jak položky vznikaly.
-  Stránka to pořadí drží ve sloupci `ord`; bez něj by se řadilo podle textu
-  kategorie a `10. Spatial DB` by skončilo před `2. Globální geodata`.
-- **Výsledky se člení po kategoriích** — 218 nerozlišených řádků se nedá
+- **CSV se zapisuje v pořadí IA** (skupina → téma → země), ne podle toho, jak
+  položky vznikaly. Stránka to pořadí drží ve sloupci `ord`, a porovnává ho
+  **číselně**: přes `String().localeCompare` by položka 100 skončila před 99
+  a výchozí „Pořadí katalogu" by bylo od dvou set položek rozházené.
+- **Výsledky se člení po tématech** — tisíc nerozlišených řádků se nedá
   procházet. Při hledání napříč katalogem je členění potřebnější než při
-  procházení jedné kategorie.
+  procházení jednoho tématu; při vybrané zemi je to hlavní způsob, jak se
+  v jejích zdrojích vyznat.
 - **Členění se vypne, když se řadí podle něčeho jiného než pořadí katalogu.**
-  Seřadit podle návštěv a pak seskupit po kategoriích si odporuje: uživatel
+  Seřadit podle návštěv a pak seskupit po tématech si odporuje: uživatel
   chce globální pořadí, ne nejnavštěvovanější v každé sekci. Proto je
   „Pořadí katalogu" první volbou v řazení — musí jít vrátit zpátky.
-- **Sloupec Kategorie odpadá, když jsou řádky seskupené** — jinak opakuje
+- **Sloupec Téma odpadá, když jsou řádky seskupené** — jinak opakuje
   hlavičku sekce na každém řádku. Hlídá to test, že hlavička a tělo tabulky
   mají stejný počet viditelných sloupců.
-- **Filtr žije v URL** (`#cat=…&q=…&src=…`). Výřez katalogu se dá poslat dál.
+- **Filtr žije v URL** (`#country=…&topic=…&q=…&src=…`). Výřez katalogu se dá
+  poslat dál. V URL stojí **identifikátor** tématu, ne jeho popisek: popisky se
+  přepisují („Katastr" → „Katastr a pozemkové knihy") a odkaz poslaný před rokem
+  by po takové úpravě tiše přestal filtrovat.
   Zápis je v `try` — pod `file://` a v sandboxu `replaceState` vyhodí výjimku,
   a ta by uvnitř `$watch` shodila reaktivitu celé stránky.
 
@@ -153,18 +183,36 @@ Dva nálezy z prvního běhu stojí za zapamatování:
 Aplikační shell podle Flowbite Pro Admin Dashboardu (viz [`NOTICE.md`](../NOTICE.md)):
 horní lišta, postranní panel, hlavní obsah, lepivá souhrnná lišta.
 
-- **Postranní panel** nese přepínání pohledu, filtr zdroje a všech 17 kategorií
-  s počty. Pod `lg` je to Flowbite šuplík, od `lg` výš stojí napevno.
+- **Postranní panel** nese přepínání pohledu, filtr zdroje, seznam zemí
+  s vlastním hledáním a témata seskupená po rodinách, obojí s počty.
+  Pod `lg` je to Flowbite šuplík, od `lg` výš stojí napevno.
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný
   scroll uvnitř řádku je horší než karta.
 - `≥ md` — tabulka s řaditelnými sloupci.
 - `< sm` — přepínání pohledu i spodní navigací.
+- **Země, strojová dostupnost a překážka v přístupu jsou odznaky, ne sloupce.**
+  Tabulka už má šest sloupců a tři další by ji na tabletu rozbily; odznaky
+  se vejdou do buňky s názvem a popisem.
 
 Jedna past, na kterou upozornil až axe: Flowbite drží na panelu `aria-hidden`
 z inicializace šuplíku **i na desktopu**, kde je panel trvale vidět. Odečítač
 by ho pak přeskočil, přestože se do něj dá tabovat. Srovnává to
 `syncSidebarAria()` podle breakpointu.
 
-Obě varianty čtou týž `rows` getter. `tests/smoke.mjs` ověřuje, že karty
-a tabulka vykreslí stejný počet položek — jinak by se dala jedna větev tiše
-rozbít a druhá by to zakryla.
+### Vykresluje se jen ta větev, která je vidět
+
+Karty a tabulka čtou týž `rows` getter, ale v DOM je vždycky jen jedna z nich:
+`<template x-if="mobile">` kolem karet, `x-if="!mobile"` kolem tabulky.
+Příznak nastavuje `matchMedia` na breakpointu **md (768 px)** — musí odpovídat
+třídám `md:hidden` / `hidden md:block` v markupu, jinak by vznikla šířka,
+na které není vidět ani jedna větev. Ty třídy proto zůstávají jako pojistka.
+
+Důvod je měřený: držet v DOM obě větve stálo u tisícovky položek zhruba
+**vteřinu navíc** (961 ms → 240 ms po změně, medián pěti běhů headless Chrome)
+a dvojnásobek uzlů, z toho polovinu neviditelných.
+
+`tests/smoke.mjs` proto větev přepne, změří ji zvlášť a ověří, že obě vykreslí
+stejný počet položek — jinak by se dala jedna tiše rozbít a druhá by to zakryla.
+Stub `matchMedia` v `tests/helpers.mjs` vyhodnocuje `min-width` proti šířce
+1024 px; konstantní `matches: false` by znamenalo „nejužší telefon" a testy
+by tabulku nikdy neviděly.

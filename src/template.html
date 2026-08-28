@@ -63,9 +63,12 @@
       </div>
 
       <div class="hidden items-center gap-2 text-xs text-gray-500 dark:text-gray-400 xl:flex">
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">756 záložek</span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">11&nbsp;317 URL historie</span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">2026-05-29 → 2026-08-27</span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+              x-text="catalog.length + ' zdrojů'"></span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+              x-text="places.length + ' zemí a rozsahů'"></span>
+        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+              x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0) + ' témat'"></span>
       </div>
     </div>
   </header>
@@ -110,23 +113,68 @@
 
       <div x-show="view === 'catalog'">
         <div class="mb-2 flex items-center justify-between px-3">
-          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Kategorie</h2>
-          <button type="button" @click="cat = ''" x-show="cat"
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Země</h2>
+          <button type="button" @click="country = ''" x-show="country"
+            class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+        </div>
+        <!-- Sedmadvacet členských států plus nadnárodní rozsahy se do panelu
+             nevejde jako plochý seznam. Hledání nad zemí je levnější než
+             skládací strom a funguje i na telefonu. -->
+        <div class="px-3 pb-2">
+          <label for="country-search" class="sr-only">Filtrovat seznam zemí</label>
+          <input id="country-search" type="text" x-model="cq" placeholder="Filtrovat země…"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+        </div>
+        <ul class="max-h-72 space-y-0.5 overflow-y-auto">
+          <li x-show="!cq">
+            <button type="button" @click="country = ''" :aria-pressed="country === '' ? 'true' : 'false'"
+              :class="country === '' ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                     : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+              class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-start text-sm">
+              <span>Všechny země</span>
+              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="catalog.length"></span>
+            </button>
+          </li>
+          <template x-for="p in countryList" :key="p.code">
+            <li>
+              <button type="button" data-filter="country" @click="country = (country === p.code ? '' : p.code)"
+                :aria-pressed="country === p.code ? 'true' : 'false'"
+                :class="country === p.code ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                           : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+                class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
+                <span class="flex min-w-0 items-center gap-2">
+                  <span class="shrink-0 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-600 dark:text-gray-200"
+                        x-text="p.scope ? (p.code === 'EU' ? 'EU' : '★') : p.code"></span>
+                  <span class="truncate" x-text="p.name"></span>
+                </span>
+                <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="p.count"></span>
+              </button>
+            </li>
+          </template>
+          <li x-show="countryList.length === 0" class="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">
+            Žádná země neodpovídá.
+          </li>
+        </ul>
+
+        <div class="mb-2 mt-6 flex items-center justify-between px-3">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Téma</h2>
+          <button type="button" @click="topic = ''" x-show="topic"
             class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
         </div>
         <ul class="space-y-0.5">
           <li>
-            <button type="button" @click="cat = ''" :aria-pressed="cat === '' ? 'true' : 'false'"
-              :class="cat === '' ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
-                                 : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+            <button type="button" @click="topic = ''" :aria-pressed="topic === '' ? 'true' : 'false'"
+              :class="topic === '' ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
               class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-start text-sm">
-              <span>Vše</span>
-              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="catalog.length"></span>
+              <span>Všechna témata</span>
+              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300"
+                    x-text="country ? placeCounts.get(country) : catalog.length"></span>
             </button>
           </li>
         </ul>
 
-        <!-- Sedmnáct kategorií v plochém seznamu se nedá přehlédnout; skupiny
+        <!-- Třiatřicet témat v plochém seznamu se nedá přehlédnout; skupiny
              odpovídají tomu, co člověk hledá jako první. -->
         <template x-for="g in groups" :key="g.name">
           <div class="mt-4">
@@ -135,15 +183,15 @@
               <span class="ms-1 font-normal tabular-nums" x-text="'· ' + g.count"></span>
             </p>
             <ul class="space-y-0.5">
-              <template x-for="c in g.categories" :key="c.name">
+              <template x-for="t in g.topics" :key="t.id">
                 <li>
-                  <button type="button" @click="cat = (cat === c.name ? '' : c.name)"
-                    :aria-pressed="cat === c.name ? 'true' : 'false'"
-                    :class="cat === c.name ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                  <button type="button" data-filter="topic" @click="topic = (topic === t.id ? '' : t.id)"
+                    :aria-pressed="topic === t.id ? 'true' : 'false'"
+                    :class="topic === t.id ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
                                            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
                     class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
-                    <span class="truncate" x-text="c.label"></span>
-                    <span class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="c.count"></span>
+                    <span class="truncate" x-text="t.label"></span>
+                    <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="t.count"></span>
                   </button>
                 </li>
               </template>
@@ -189,7 +237,7 @@
                   </svg>
                 </div>
                 <input id="search" type="search" x-ref="search" x-model.debounce.200ms="q"
-                  placeholder="Hledat web, doménu, popis…"
+                  placeholder="Hledat web, doménu, popis, zemi…"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 pe-16 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
                 <div class="pointer-events-none absolute inset-y-0 end-0 hidden items-center pe-3 lg:flex">
                   <kbd class="rounded-lg border border-gray-200 bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100">/</kbd>
@@ -239,6 +287,7 @@
       </div>
 
       <!-- karty (do md:) -->
+      <template x-if="mobile">
       <div class="p-4 md:hidden">
         <template x-for="sec in sections" :key="sec.key">
           <section class="mb-6">
@@ -260,6 +309,16 @@
                     <span :class="badge(r.src)" class="shrink-0 whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
                   </div>
                   <p x-show="r.desc || r.title" class="mt-2.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300" x-text="r.desc || r.title"></p>
+                  <!-- Odznaky nesou to, co mění použitelnost zdroje: země, strojová
+                       dostupnost a překážka v přístupu. Do tabulky by z toho byly
+                       tři sloupce navíc, které se na telefon nevejdou. -->
+                  <div x-show="r.code" class="mt-2.5 flex flex-wrap items-center gap-1.5">
+                    <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                          x-text="r.code + ' · ' + topicLabel(r.topic)"></span>
+                    <template x-for="mk in marks(r)" :key="mk.text">
+                      <span :class="mk.cls" class="rounded px-1.5 py-0.5 text-[10px] font-medium" x-text="mk.text"></span>
+                    </template>
+                  </div>
                   <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
                     <span x-show="r.visits" class="tabular-nums"><span x-text="r.visits"></span> návštěv</span>
                     <span x-show="r.last" class="font-mono" x-text="r.last"></span>
@@ -270,13 +329,15 @@
           </section>
         </template>
       </div>
+      </template>
 
       <!-- tabulka (od md:) -->
+      <template x-if="!mobile">
       <div class="hidden p-4 md:block">
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-sm dark:border-gray-700">
           <div class="scroll-x overflow-x-auto">
             <table class="min-w-full table-fixed divide-y divide-gray-200 dark:divide-gray-600">
-              <caption class="sr-only">Katalog geodatových zdrojů</caption>
+              <caption class="sr-only">Katalog veřejných datových zdrojů</caption>
               <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
                   <template x-for="col in columns" :key="col.key">
@@ -309,10 +370,22 @@
                         <a :href="r.url" target="_blank" rel="noopener noreferrer"
                            class="text-base font-semibold text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
                            x-text="r.name || r.dom"></a>
-                        <div class="mt-0.5 font-mono text-xs font-normal text-gray-500 dark:text-gray-400" x-text="r.dom"></div>
+                        <div class="mt-0.5 flex flex-wrap items-center gap-1.5">
+                          <span x-show="r.code"
+                                class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                                x-text="r.code"></span>
+                          <span class="font-mono text-xs font-normal text-gray-500 dark:text-gray-400" x-text="r.dom"></span>
+                        </div>
                       </td>
-                      <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="r.desc || r.title"></td>
-                      <td x-show="!grouped" class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="shortCat(r.cat || '')"></td>
+                      <td class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <span x-text="r.desc || r.title"></span>
+                        <span x-show="marks(r).length" class="mt-1.5 flex flex-wrap items-center gap-1.5">
+                          <template x-for="mk in marks(r)" :key="mk.text">
+                            <span :class="mk.cls" class="rounded px-1.5 py-0.5 text-[10px] font-medium" x-text="mk.text"></span>
+                          </template>
+                        </span>
+                      </td>
+                      <td x-show="!grouped" class="p-4 align-top text-sm font-normal text-gray-500 dark:text-gray-400" x-text="topicLabel(r.topic || '')"></td>
                       <td class="p-4 align-top">
                         <span :class="badge(r.src)" class="whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium" x-text="srcLabel(r.src)"></span>
                       </td>
@@ -326,6 +399,7 @@
           </div>
         </div>
       </div>
+      </template>
 
       <div x-show="filtered.length === 0" class="px-4 pb-8">
         <div class="rounded-lg border border-gray-200 bg-white px-4 py-12 text-center dark:border-gray-700 dark:bg-gray-800">
@@ -340,11 +414,13 @@
 
       <footer class="border-t border-gray-200 px-4 py-6 text-xs leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
         <p class="max-w-3xl">
-          <span class="font-semibold text-gray-700 dark:text-gray-300">Jak to vzniklo.</span>
-          Záložky z <span class="font-mono">AccountBookmarks</span>, historie z <span class="font-mono">History</span> (SQLite).
-          Match na doménu&nbsp;+&nbsp;URL&nbsp;+&nbsp;titulek proti ~120 klíčovým slovům, dedup na úroveň domény, pak ruční kurace.
-          Adult složky a domény vyřazeny. Chrome drží historii jen 90 dní — starší GIS surfování v datech není,
-          položky označené <span class="font-medium">reference</span> jsou doplněné.
+          <span class="font-semibold text-gray-700 dark:text-gray-300">Co to je.</span>
+          Kurátorovaný soupis veřejných datových zdrojů Evropské unie — geodata a katastr, otevřená data
+          a statistika, obchodní rejstříky, insolvence, zakázky, soudy a regulace, a k tomu rizikové
+          a OSINT zdroje. Země a téma jsou dvě nezávislé osy: filtr země je přesná shoda, takže
+          celoevropské a celosvětové zdroje stojí ve vlastních rozsazích a needitují se sedmadvacetkrát.
+          Jádro katalogu vzniklo z vlastních Chrome záložek a historie — položky označené
+          <span class="font-medium">reference</span> jsou doplněné rešerší a ověřené odkazem, ne návštěvou.
         </p>
       </footer>
     </main>
@@ -406,14 +482,38 @@
 <script>
 window.__DATA__ = /*__JSON__*/;
 
+// Vyhledávací řetězec i číselníky se skládají jednou, nad prostými objekty,
+// ještě než je Alpine obalí reaktivním proxy. Kdyby se stavěly uvnitř
+// komponenty, platilo by se za to při každém překreslení — a u tisícovky
+// položek napříč sedmadvaceti zeměmi to je znát.
+(() => {
+  const D = window.__DATA__;
+  const topic = new Map();
+  for (const g of D.groups) for (const t of g.topics) topic.set(t.id, t.label);
+  const place = new Map(D.places.map(p => [p.code, p.name]));
+  D.topicLabel = topic; D.placeLabel = place;
+  for (const r of D.catalog)
+    r.s = [r.name, r.dom, r.desc, topic.get(r.topic), place.get(r.code), r.code]
+      .join(' ').toLowerCase();
+  for (const r of D.longlist) r.s = [r.dom, r.title, r.url].join(' ').toLowerCase();
+})();
+
 document.addEventListener('alpine:init', () => {
   Alpine.data('atlas', () => ({
-    view: 'catalog', q: '', cat: '', source: '', toast: '', _syncing: false,
+    view: 'catalog', q: '', topic: '', country: '', source: '', cq: '',
+    toast: '', _syncing: false,
+    // Karty (< md) a tabulka (≥ md) vykreslují týž seznam. Držet v DOM obě
+    // větve stálo u tisícovky položek zhruba vteřinu navíc a dvojnásobek uzlů,
+    // z toho polovinu neviditelných. Tenhle příznak nechá vzniknout jen tu,
+    // která je vidět; nastavuje ho matchMedia na breakpointu md (768 px).
+    mobile: false,
     // Výchozí řazení je pořadí informační architektury z CSV, ne abeceda —
-    // textově by '10. Spatial DB' předběhlo '2. Globální geodata'.
+    // textově by „Účetní závěrky" předběhly „Adresy".
     sort: { key: 'ord', dir: 1 },
     catalog: window.__DATA__.catalog,
     longlist: window.__DATA__.longlist,
+    taxonomy: window.__DATA__.groups,
+    places: window.__DATA__.places,
 
     sourceFilters: [
       { k: '', label: 'Vše' },
@@ -422,19 +522,25 @@ document.addEventListener('alpine:init', () => {
     ],
 
     init() {
-      // Flowbite váže chování na data atributy jediným skenem DOM, Alpine
-      // vykresluje až po startu. Bez tohohle je panel i dropdown v DOM,
-      // vypadají správně a nedělají nic — bez chyby v konzoli.
       this.readHash();
-      this.$nextTick(() => {
-        window.initFlowbite && window.initFlowbite();
-        this.syncSidebarAria();
-      });
+      // Flowbite se inicializuje **jednou a hned**, ne v $nextTick.
+      //
+      // Dvě věci, které to určují. Za prvé: všechny interaktivní Flowbite
+      // komponenty (šuplík s filtry, řadicí dropdown) jsou ve statickém markupu —
+      // pravidlo flowbite/dynamic zakazuje Flowbite data-* uvnitř x-for a hlídá
+      // ho linter. Čekat na Alpine tedy není proč. Za druhé je to škodlivé:
+      // $nextTick se u tisícovky položek spustí až po vteřině renderu a šuplík
+      // je do té doby mrtvý — na telefonu klikneš na filtr a nic se nestane.
+      //
+      // Zavolat initFlowbite() pro jistotu dvakrát je horší než pozdě: Flowbite
+      // navěsí posluchač znovu, dvě instance si toggle vzájemně vyruší a šuplík
+      // pak nejde zavřít vůbec.
+      window.initFlowbite && window.initFlowbite();
+      this.syncSidebarAria();
+      this.watchBreakpoint();
       // Filtr patří do URL: bez toho se výřez katalogu nedá poslat dál.
-      this.$watch('view', () => this.writeHash());
-      this.$watch('q', () => this.writeHash());
-      this.$watch('cat', () => this.writeHash());
-      this.$watch('source', () => this.writeHash());
+      for (const k of ['view', 'q', 'topic', 'country', 'source'])
+        this.$watch(k, () => this.writeHash());
       // Bez téhle pojistky si vlastní zápis do URL vzápětí přečteme zpátky
       // a přepíšeme jím stav, který uživatel právě nastavil.
       window.addEventListener('hashchange', () => { if (!this._syncing) this.readHash(); });
@@ -442,12 +548,17 @@ document.addEventListener('alpine:init', () => {
 
     // Parametr kvůli testovatelnosti: pod file:// ani v jsdom se URL přepsat
     // nedá, ale samotné čtení a skládání stavu se ověřit má.
+    //
+    // V URL stojí *identifikátor* tématu, ne jeho popisek. Popisky se přepisují
+    // („Katastr" → „Katastr a pozemkové knihy") a odkaz poslaný před rokem
+    // by po takové úpravě tiše přestal filtrovat.
     readHash(raw) {
       const p = new URLSearchParams(String(raw ?? location.hash ?? '').replace(/^#/, ''));
       const view = p.get('view');
       if (view === 'catalog' || view === 'longlist') this.view = view;
       this.q = p.get('q') || '';
-      this.cat = this.catalog.some(r => r.cat === p.get('cat')) ? p.get('cat') : '';
+      this.topic = this.catalog.some(r => r.topic === p.get('topic')) ? p.get('topic') : '';
+      this.country = this.catalog.some(r => r.code === p.get('country')) ? p.get('country') : '';
       this.source = ['data', 'reference'].includes(p.get('src')) ? p.get('src') : '';
     },
 
@@ -455,7 +566,8 @@ document.addEventListener('alpine:init', () => {
       const p = new URLSearchParams();
       if (this.view !== 'catalog') p.set('view', this.view);
       if (this.q) p.set('q', this.q);
-      if (this.cat) p.set('cat', this.cat);
+      if (this.country) p.set('country', this.country);
+      if (this.topic) p.set('topic', this.topic);
       if (this.source) p.set('src', this.source);
       const hash = p.toString();
       this._syncing = true;
@@ -472,6 +584,20 @@ document.addEventListener('alpine:init', () => {
         /* URL se přepsat nedá; stránka funguje dál */
       }
       return hash;
+    },
+
+    /** Vykresluje se jen ta větev seznamu, která je na dané šířce vidět.
+     *
+     *  Breakpoint musí odpovídat Tailwind `md` (768 px) použitému v markupu —
+     *  kdyby se rozešly, vznikla by šířka, na které není vidět ani jedna větev.
+     *  Třídy `md:hidden` / `hidden md:block` na kontejnerech proto zůstávají
+     *  jako pojistka: i kdyby matchMedia chybělo, layout schová tu špatnou. */
+    watchBreakpoint() {
+      if (!window.matchMedia) return;
+      const desktop = window.matchMedia('(min-width: 768px)');
+      const sync = () => { this.mobile = !desktop.matches; };
+      sync();
+      desktop.addEventListener('change', sync);
     },
 
     /** Od lg: je panel trvale vidět, ale Flowbite na něm nechává aria-hidden
@@ -496,20 +622,20 @@ document.addEventListener('alpine:init', () => {
       ];
     },
     get columns() {
-      // Když jsou řádky seskupené po kategoriích, sloupec Kategorie jen
-      // opakuje hlavičku sekce na každém řádku — v tom případě odpadá.
+      // Když jsou řádky seskupené po tématech, sloupec Téma jen opakuje
+      // hlavičku sekce na každém řádku — v tom případě odpadá.
       const grouped = this.grouped;
       return [
-        { key: 'name', label: 'Web', sortable: true, width: 'w-56' },
+        { key: 'name', label: 'Web', sortable: true, width: 'w-64' },
         { key: 'desc', label: 'Popis', width: 'w-96' },
-        ...(grouped ? [] : [{ key: 'cat', label: 'Kategorie', sortable: true, width: 'w-48' }]),
-        { key: 'src', label: 'Zdroj', width: 'w-40' },
-        { key: 'visits', label: 'Návštěv', sortable: true, numeric: true, width: 'w-28' },
+        ...(grouped ? [] : [{ key: 'topic', label: 'Téma', sortable: true, width: 'w-48' }]),
+        { key: 'src', label: 'Zdroj', width: 'w-36' },
+        { key: 'visits', label: 'Návštěv', sortable: true, numeric: true, width: 'w-24' },
         { key: 'last', label: 'Poslední', sortable: true, width: 'w-32' },
       ];
     },
     /** Volby řazení. 'ord' je pořadí informační architektury a zároveň jediné,
-     *  při kterém dává členění po kategoriích smysl — musí jít vybrat zpátky. */
+     *  při kterém dává členění po tématech smysl — musí jít vybrat zpátky. */
     get sortable() {
       return [{ key: 'ord', label: 'Pořadí katalogu' },
               ...this.columns.filter(c => c.sortable)];
@@ -518,47 +644,64 @@ document.addEventListener('alpine:init', () => {
       return (this.sortable.find(c => c.key === this.sort.key) || { label: '—' }).label;
     },
 
-    // Kategorie nesou počet položek, aby šlo v panelu poznat, kde co je.
-    get categories() {
-      const counts = new Map();
-      for (const r of this.catalog) counts.set(r.cat, (counts.get(r.cat) || 0) + 1);
-      return [...counts].map(([name, count]) => ({ name, count, label: this.shortCat(name) }));
+    /** Země a témata se počítají křížem: při vybraném Rakousku ukazují témata
+     *  počty *v Rakousku*, při vybraném tématu ukazují země počty *v tom
+     *  tématu*. Absolutní součty by u sedmadvaceti zemí říkaly „něco tu je"
+     *  místo „tady je toho kolik". Hledání a filtr zdroje se do počtů schválně
+     *  nepromítají — poskakovaly by při každém stisku klávesy. */
+    get topicCounts() {
+      const m = new Map();
+      for (const r of this.catalog)
+        if (!this.country || r.code === this.country) m.set(r.topic, (m.get(r.topic) || 0) + 1);
+      return m;
+    },
+    get placeCounts() {
+      const m = new Map();
+      for (const r of this.catalog)
+        if (!this.topic || r.topic === this.topic) m.set(r.code, (m.get(r.code) || 0) + 1);
+      return m;
     },
 
-    /** Skupina → kategorie. Pořadí přebírá z dat, která už jsou seřazená
-     *  podle informační architektury. */
+    /** Skupina → téma, jen s tématy, která v aktuálním výřezu něco nesou. */
     get groups() {
-      const out = [];
-      const byName = new Map();
-      for (const r of this.catalog) {
-        let g = byName.get(r.grp);
-        if (!g) { g = { name: r.grp, count: 0, categories: [], _cats: new Map() }; byName.set(r.grp, g); out.push(g); }
-        g.count++;
-        let c = g._cats.get(r.cat);
-        if (!c) { c = { name: r.cat, label: this.shortCat(r.cat), count: 0 }; g._cats.set(r.cat, c); g.categories.push(c); }
-        c.count++;
-      }
-      return out;
+      const counts = this.topicCounts;
+      return this.taxonomy
+        .map(g => ({
+          name: g.label,
+          topics: g.topics.filter(t => counts.get(t.id)).map(t => ({ ...t, count: counts.get(t.id) })),
+        }))
+        .filter(g => g.topics.length)
+        .map(g => ({ ...g, count: g.topics.reduce((a, t) => a + t.count, 0) }));
     },
 
-    /** Výsledky rozdělené po kategoriích. Dvě stě osmnáct nerozlišených řádků
-     *  se nedá procházet; při hledání napříč katalogem je členění ještě
-     *  potřebnější než při procházení jedné kategorie. */
-    /** Členění dává smysl jen v pořadí IA a jen když není vybraná jedna
-     *  kategorie. Řadit podle návštěv a pak seskupovat si odporuje: uživatel
-     *  chce globální pořadí, ne nejnavštěvovanější v každé sekci. */
+    /** Seznam zemí do panelu. Nadnárodní rozsahy (EU, celosvětové) stojí
+     *  navrchu: filtr země je přesná shoda, takže při vybraném Rakousku se
+     *  celoevropské zdroje nezobrazí a musí být na dosah. */
+    get countryList() {
+      const counts = this.placeCounts;
+      const q = this.cq.trim().toLowerCase();
+      return this.places
+        .filter(p => counts.get(p.code))
+        .filter(p => !q || p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q))
+        .map(p => ({ ...p, count: counts.get(p.code) }));
+    },
+
+    /** Výsledky rozdělené po tématech. Členění dává smysl jen v pořadí IA
+     *  a jen když není vybrané jedno téma. Řadit podle návštěv a pak
+     *  seskupovat si odporuje: uživatel chce globální pořadí, ne
+     *  nejnavštěvovanější v každé sekci. */
     get grouped() {
-      return this.view === 'catalog' && this.sort.key === 'ord' && !this.cat;
+      return this.view === 'catalog' && this.sort.key === 'ord' && !this.topic;
     },
 
     get sections() {
       const rows = this.filtered;
       if (!this.grouped) return [{ key: 'all', label: '', rows }];
       const out = [];
-      const byCat = new Map();
+      const byTopic = new Map();
       for (const r of rows) {
-        let sec = byCat.get(r.cat);
-        if (!sec) { sec = { key: r.cat, label: this.shortCat(r.cat), rows: [] }; byCat.set(r.cat, sec); out.push(sec); }
+        let sec = byTopic.get(r.topic);
+        if (!sec) { sec = { key: r.topic, label: this.topicLabel(r.topic), rows: [] }; byTopic.set(r.topic, sec); out.push(sec); }
         sec.rows.push(r);
       }
       return out;
@@ -571,41 +714,43 @@ document.addEventListener('alpine:init', () => {
      *  při každém překreslení a mazal filtr, který uživatel právě nastavil.
      *  Trvalo to najít, protože se to tvářilo jako chyba reaktivity. */
     get breadcrumbs() {
-      const atRoot = this.view === 'catalog' && !this.cat;
+      const atRoot = this.view === 'catalog' && !this.topic && !this.country;
       const crumbs = [{ label: 'Katalog', to: atRoot ? '' : 'root' }];
       if (this.view === 'longlist') { crumbs.push({ label: 'Long list', to: '' }); return crumbs; }
-      if (this.cat) {
-        const grp = this.catalog.find(r => r.cat === this.cat)?.grp;
-        if (grp) crumbs.push({ label: grp, to: 'group' });
-        crumbs.push({ label: this.shortCat(this.cat), to: '' });
-      }
+      if (this.country) crumbs.push({ label: this.placeLabel(this.country), to: this.topic ? 'country' : '' });
+      if (this.topic) crumbs.push({ label: this.topicLabel(this.topic), to: '' });
       if (this.q) crumbs.push({ label: `hledání „${this.q}"`, to: '' });
       return crumbs;
     },
 
     goTo(target) {
-      if (target === 'root') { this.view = 'catalog'; this.cat = ''; }
-      else if (target === 'group') { this.cat = ''; }
+      if (target === 'root') { this.view = 'catalog'; this.topic = ''; this.country = ''; }
+      else if (target === 'country') { this.topic = ''; }
     },
-    get activeFilters() { return [this.q, this.cat, this.source].filter(Boolean).length; },
+    get activeFilters() { return [this.q, this.topic, this.country, this.source].filter(Boolean).length; },
     get total() { return this.view === 'catalog' ? this.catalog.length : this.longlist.length; },
 
-    get heading() { return this.view === 'catalog' ? 'Kurátorovaný katalog' : 'Long list kandidátů'; },
+    get heading() {
+      if (this.view === 'longlist') return 'Long list kandidátů';
+      if (this.country) return this.placeLabel(this.country);
+      return 'Kurátorovaný katalog';
+    },
     get subheading() {
       return this.view === 'catalog'
-        ? 'GIS, geodata a prostorová analytika — sestaveno z Chrome záložek a historie, doplněno o referenční zdroje.'
+        ? 'Geodata, otevřená data, veřejné registry a OSINT/DD zdroje — po zemích a tématech.'
         : 'Domény, které prošly keyword filtrem. Bez kurace, se šumem.';
     },
 
     get filtered() {
       const q = this.q.trim().toLowerCase();
-      const source = this.source, cat = this.cat, isCatalog = this.view === 'catalog';
+      const source = this.source, topic = this.topic, country = this.country;
+      const isCatalog = this.view === 'catalog';
       const out = (isCatalog ? this.catalog : this.longlist).filter(r => {
         if (source === 'data' && r.src === 'reference') return false;
         if (source === 'reference' && r.src !== 'reference') return false;
-        if (isCatalog && cat && r.cat !== cat) return false;
-        if (!q) return true;
-        return [r.name, r.dom, r.desc, r.cat, r.title].some(v => v && String(v).toLowerCase().includes(q));
+        if (isCatalog && topic && r.topic !== topic) return false;
+        if (isCatalog && country && r.code !== country) return false;
+        return !q || r.s.includes(q);
       });
       const { key, dir } = this.sort;
       return out.sort((a, b) => {
@@ -614,7 +759,9 @@ document.addEventListener('alpine:init', () => {
         // set položek nahoru je pak výchozí „Pořadí katalogu" rozházené.
         if (key === 'visits' || key === 'urls' || key === 'ord')
           return ((+a[key] || 0) - (+b[key] || 0)) * dir;
-        return String(a[key] ?? '').localeCompare(String(b[key] ?? ''), 'cs') * dir;
+        const va = key === 'topic' ? this.topicLabel(a.topic) : a[key];
+        const vb = key === 'topic' ? this.topicLabel(b.topic) : b[key];
+        return String(va ?? '').localeCompare(String(vb ?? ''), 'cs') * dir;
       });
     },
     get rows() { return this.filtered; },
@@ -624,8 +771,9 @@ document.addEventListener('alpine:init', () => {
       else this.sort = { key, dir: (key === 'visits' || key === 'urls') ? -1 : 1 };
     },
     arrow(key) { return this.sort.key === key ? (this.sort.dir === 1 ? '▲' : '▼') : ''; },
-    reset() { this.q = ''; this.cat = ''; this.source = ''; },
-    shortCat(c) { return c.replace(/^\d+\.\s*/, ''); },
+    reset() { this.q = ''; this.topic = ''; this.country = ''; this.source = ''; this.cq = ''; },
+    topicLabel(id) { return window.__DATA__.topicLabel.get(id) || id; },
+    placeLabel(code) { return window.__DATA__.placeLabel.get(code) || code; },
     plural(n) { return n === 1 ? ' položka' : (n < 5 ? ' položky' : ' položek'); },
 
     srcLabel(s) {
@@ -639,15 +787,41 @@ document.addEventListener('alpine:init', () => {
       return 'bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300';
     },
 
+    /** Odznaky u položky. Ukazuje se jen to, co mění způsob použití zdroje:
+     *  strojová dostupnost a překážka v přístupu. „Otevřený web bez API"
+     *  je většina katalogu a psát to na každý řádek je šum. */
+    marks(r) {
+      const out = [];
+      const data = { bulk: 'bulk', api: 'API', ogc: 'OGC', download: 'ke stažení' }[r.data];
+      if (data) out.push({ text: data, cls: 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300' });
+      const acc = { search: 'jen vyhledávání', registration: 'registrace', paid: 'placené',
+                    mixed: 'zdarma i placeně', restricted: 'omezený přístup' }[r.access];
+      if (acc) out.push({ text: acc, cls: 'bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300' });
+      const kind = { commercial: 'komerční', regional: 'regionální' }[r.kind];
+      if (kind) out.push({ text: kind, cls: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300' });
+      return out;
+    },
+
     copyCsv() {
       const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-      const cols = this.view === 'catalog'
-        ? [['Kategorie','cat'],['Web','name'],['Doména','dom'],['Popis','desc'],['Zdroj','src'],['Návštěvy','visits'],['Poslední','last'],['URL','url']]
-        : [['Doména','dom'],['Návštěvy','visits'],['URL celkem','urls'],['Zdroj','src'],['Poslední','last'],['Titulek','title'],['Ukázková URL','url']];
-      const csv = [cols.map(c => esc(c[0])).join(',')]
-        .concat(this.filtered.map(r => cols.map(c => esc(r[c[1]])).join(','))).join('\n');
+      const rows = this.filtered;
+      if (this.view === 'catalog') {
+        const head = ['Země', 'Téma', 'Web', 'Doména', 'Popis', 'Typ', 'Přístup', 'Data',
+                      'Zdroj', 'Návštěvy', 'Poslední', 'URL'];
+        const line = r => [this.placeLabel(r.code), this.topicLabel(r.topic), r.name, r.dom,
+                           r.desc, r.kind, r.access, r.data, r.src, r.visits, r.last, r.url];
+        this.toClipboard([head.map(esc).join(',')]
+          .concat(rows.map(r => line(r).map(esc).join(','))).join('\n'), rows.length);
+        return;
+      }
+      const cols = [['Doména', 'dom'], ['Návštěvy', 'visits'], ['URL celkem', 'urls'],
+                    ['Zdroj', 'src'], ['Poslední', 'last'], ['Titulek', 'title'], ['Ukázková URL', 'url']];
+      this.toClipboard([cols.map(c => esc(c[0])).join(',')]
+        .concat(rows.map(r => cols.map(c => esc(r[c[1]])).join(','))).join('\n'), rows.length);
+    },
+    toClipboard(csv, n) {
       navigator.clipboard.writeText(csv)
-        .then(() => this.flash(`Zkopírováno ${this.filtered.length}${this.plural(this.filtered.length)}`))
+        .then(() => this.flash(`Zkopírováno ${n}${this.plural(n)}`))
         .catch(() => this.flash('Schránka není dostupná'));
     },
     flash(msg) {

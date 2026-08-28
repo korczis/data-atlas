@@ -47,10 +47,11 @@ check('JSON-LD popisuje DataCatalog',
       parsed?.['@graph']?.some(n => n['@type'] === 'DataCatalog'));
 
 // popis nesmí obsahovat ručně opsané počty, které nesedí s daty
-const cats = new Set(catalog.map(r => r['Kategorie'])).size;
+const topics = new Set(catalog.map(r => r['Téma'])).size;
+const places = new Set(catalog.map(r => r['Kód'])).size;
 check('popis odpovídá skutečným počtům',
-      head.includes(`${catalog.length} položek v ${cats} kategoriích`),
-      `${catalog.length} položek / ${cats} kategorií`);
+      head.includes(`${catalog.length} položek v ${topics} tématech a ${places} zemích`),
+      `${catalog.length} položek / ${topics} témat / ${places} zemí`);
 
 for (const f of ['robots.txt', 'sitemap.xml', 'site.webmanifest', '404.html', '.nojekyll',
                  'favicon.ico', 'favicon.svg', 'apple-touch-icon.png',

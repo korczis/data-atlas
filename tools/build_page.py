@@ -24,14 +24,16 @@ AUTHOR = PKG["author"]
 TITLE = "Geodata Atlas"
 
 # Počty se nikdy nepíšou ručně — zestárnou při první změně katalogu.
-def describe(items: int, cats: int) -> str:
-    return ("Katalog GIS a geodatových zdrojů — datasety, katastr, doprava, "
-            "remote sensing, prostorové databáze a analytika. "
-            f"{items} položek v {cats} kategoriích, prohledávatelných na jedné stránce.")
+def describe(items: int, topics: int, countries: int) -> str:
+    return ("Katalog geodat, otevřených dat, veřejných registrů a OSINT/DD zdrojů pro Evropu — "
+            "katastr, doprava, statistika, obchodní rejstříky, insolvence, zakázky a rizika. "
+            f"{items} položek v {topics} tématech a {countries} zemích, "
+            "prohledávatelných na jedné stránce.")
 
 
-def og_alt(items: int, cats: int) -> str:
-    return f"Geodata Atlas — katalog GIS a geodatových zdrojů, {items} položek v {cats} kategoriích"
+def og_alt(items: int, topics: int, countries: int) -> str:
+    return (f"Geodata Atlas — katalog veřejných datových zdrojů, {items} položek "
+            f"v {topics} tématech a {countries} zemích")
 
 
 def read_csv(path):
@@ -40,8 +42,16 @@ def read_csv(path):
 
 
 def load_data():
+    """Řádky katalogu + číselníky témat a zemí.
+
+    Číselníky se posílají zvlášť, ne na každém řádku: pořadí panelu má určovat
+    taxonomie, ne to, co zrovna prošlo filtrem, a u tisícovky položek by se
+    opakovaný název skupiny a země v JSONu sečetl do stovek kilobajtů.
+    Vyhledávací řetězec se z týchž důvodů skládá až v prohlížeči při startu.
+    """
     catalog = [
-        dict(grp=r["Skupina"], cat=r["Kategorie"], name=r["Web"], dom=r["Doména"], desc=r["Popis"],
+        dict(id=r["ID"], topic=r["Téma ID"], code=r["Kód"], name=r["Web"], dom=r["Doména"],
+             desc=r["Popis"], kind=r["Typ"], access=r["Přístup"], data=r["Data"],
              src=r["Zdroj"], visits=int(r["Návštěvy"] or 0),
              last=r["Poslední návštěva"], url=r["URL"])
         for r in read_csv(ROOT / "data" / "catalog.csv")
@@ -59,13 +69,28 @@ def load_data():
     # Stabilní klíče pro x-for. Bez nich Alpine při shodných klíčech (dvě položky
     # na stejné doméně) shodí celý render — ne jen tu jednu řádku.
     # 'ord' drží pořadí informační architektury z CSV. Bez něj by se řadilo
-    # podle textu kategorie a '10. Spatial DB' by skončilo před '2. Globální'.
+    # podle textu tématu a '10. Spatial DB' by skončilo před '2. Globální'.
     for i, r in enumerate(catalog):
-        r["id"] = f"c{i}"
         r["ord"] = i
     for i, r in enumerate(longlist):
         r["id"] = f"l{i}"
-    return catalog, longlist
+
+    taxonomy = json.loads((ROOT / "data" / "topics.json").read_text(encoding="utf-8"))
+    places = json.loads((ROOT / "data" / "countries.json").read_text(encoding="utf-8"))
+
+    # Do panelu jdou jen země, které něco nesou — prázdná Malta by lhala
+    # o pokrytí. Pořadí přebírá číselník, ne data.
+    used = {r["code"] for r in catalog}
+    place_list = [dict(code=c["code"], name=c["name"], scope=bool(c.get("scope")),
+                       eu=bool(c.get("eu")))
+                  for c in places["scopes"] + places["countries"] if c["code"] in used]
+    used_topics = {r["topic"] for r in catalog}
+    groups = [dict(label=g["label"],
+                   topics=[dict(id=t["id"], label=t["label"]) for t in g["topics"]
+                           if t["id"] in used_topics])
+              for g in taxonomy["groups"]]
+    groups = [g for g in groups if g["topics"]]
+    return catalog, longlist, groups, place_list
 
 
 def build_flowbite() -> str:
@@ -114,7 +139,8 @@ def head_meta(description: str, alt: str) -> str:
                 "description": description,
                 "url": BASE,
                 "inLanguage": "cs",
-                "keywords": ["GIS", "geodata", "geospatial", "open data",
+                "keywords": ["GIS", "geodata", "geospatial", "open data", "veřejné registry",
+                             "obchodní rejstřík", "due diligence", "OSINT", "EU",
                              "remote sensing", "PostGIS", "OpenStreetMap"],
                 "license": "https://opensource.org/licenses/MIT",
                 "creator": {"@type": "Person", "name": AUTHOR},
@@ -239,13 +265,15 @@ def write_site_files(description: str) -> None:
 
 
 def main():
-    catalog, longlist = load_data()
-    data = json.dumps({"catalog": catalog, "longlist": longlist},
+    catalog, longlist, groups, places = load_data()
+    data = json.dumps({"catalog": catalog, "longlist": longlist,
+                       "groups": groups, "places": places},
                       ensure_ascii=False, separators=(",", ":"))
 
     n_items = len(catalog)
-    n_cats = len({r["cat"] for r in catalog})
-    description = describe(n_items, n_cats)
+    n_topics = len({r["topic"] for r in catalog})
+    n_places = len(places)
+    description = describe(n_items, n_topics, n_places)
 
     body = (ROOT / "src" / "template.html").read_text(encoding="utf-8")
     body = body.replace("/*__JSON__*/", data)
@@ -270,7 +298,7 @@ def main():
     (DIST / "index.html").write_text(
         '<!doctype html>\n<html lang="cs">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-        + title + "\n" + head_meta(description, og_alt(n_items, n_cats)) + style + "</head>\n<body>\n"
+        + title + "\n" + head_meta(description, og_alt(n_items, n_topics, n_places)) + style + "</head>\n<body>\n"
         + rest + script + "</body>\n</html>\n",
         encoding="utf-8")
 
@@ -280,7 +308,7 @@ def main():
         print(f"  dist/{f:16s} {(DIST / f).stat().st_size / 1024:7.1f} KB")
     extras = sorted(f.name for f in DIST.iterdir() if f.name not in ("index.html", "artifact.html"))
     print(f"  + {len(extras)} doprovodných souborů: {', '.join(extras)}")
-    print(f"  katalog {len(catalog)} · long list {len(longlist)} · "
+    print(f"  katalog {len(catalog)} · {n_topics} témat · {n_places} zemí · long list {len(longlist)} · "
           f"CSS {len(css)/1024:.1f} KB · Flowbite {len(flowbite)/1024:.1f} KB · Alpine {len(alpine)/1024:.1f} KB")
 
 

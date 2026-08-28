@@ -5,6 +5,17 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
+/** Alpine při přerušeném x-transition odmítne vlastní promise značkou
+ *  { isFromCancelledTransition: true } a zpracuje ji o mikrotask později.
+ *  Node ji do té doby stihne prohlásit za unhandled a shodit celý běh —
+ *  test pak spadne na chování, které v prohlížeči nikdo nepozná.
+ *  Přeskakuje se přesně tahle značka; cokoli jiného musí testy vidět. */
+const rejections = [];
+process.on('unhandledRejection', reason => {
+  if (reason && typeof reason === 'object' && reason.isFromCancelledTransition) return;
+  rejections.push(String(reason?.message ?? reason));
+});
+
 /** Načte postavenou stránku do jsdom a vrátí okno, Alpine stav a zachycené chyby. */
 export async function loadPage() {
   const html = fs.readFileSync(path.join(ROOT, 'dist', 'index.html'), 'utf8');
@@ -14,9 +25,19 @@ export async function loadPage() {
     pretendToBeVisual: true,
     beforeParse(w) {
       w.addEventListener('error', e => errors.push(e.message));
-      // jsdom nemá matchMedia ani clipboard; stránka obojí používá
-      w.matchMedia = q => ({ matches: false, media: q, addEventListener() {},
-                             removeEventListener() {}, addListener() {}, removeListener() {} });
+      // jsdom nemá matchMedia ani clipboard; stránka obojí používá.
+      //
+      // Stránka se podle matchMedia rozhoduje, jestli vykreslit karty, nebo
+      // tabulku. Konstantní `matches: false` by tedy znamenalo „nejužší telefon"
+      // a testy by nikdy neviděly tabulku. Stub proto vyhodnocuje `min-width`
+      // proti šířce okna jsdomu (výchozích 1024 px), tedy jako desktop.
+      const viewport = 1024;
+      w.matchMedia = q => {
+        const m = /min-width:\s*(\d+)px/.exec(q);
+        return { matches: m ? viewport >= Number(m[1]) : false, media: q,
+                 addEventListener() {}, removeEventListener() {},
+                 addListener() {}, removeListener() {} };
+      };
       Object.defineProperty(w.navigator, 'clipboard', {
         value: { writeText: t => { w.__clip = t; return Promise.resolve(); } },
       });
@@ -26,6 +47,7 @@ export async function loadPage() {
   await new Promise(r => setTimeout(r, 1000));
   const state = window.Alpine ? window.Alpine.$data(window.document.querySelector('[x-data]')) : null;
   const d = window.document;
+  errors.push(...rejections);
   return {
     window, document: d, state, errors,
     tick: () => new Promise(r => setTimeout(r, 250)),
@@ -34,6 +56,19 @@ export async function loadPage() {
     // [data-row] odliší datové řádky od hlaviček sekcí.
     tableRows: () => d.querySelectorAll('table tbody tr[data-row]').length,
     cardRows: () => d.querySelectorAll('ul[role="list"] > li').length,
+    // V DOM je vždy jen ta větev seznamu, která je na dané šířce vidět —
+    // druhá se nevykresluje, aby se u tisícovky položek neplatilo dvakrát.
+    // Testy si proto větev přepnou a změří ji zvlášť.
+    withMobile: async (on, fn) => {
+      const st = window.Alpine.$data(d.querySelector('[x-data]'));
+      const before = st.mobile;
+      st.mobile = on;
+      await new Promise(r => setTimeout(r, 400));
+      const out = fn();
+      st.mobile = before;
+      await new Promise(r => setTimeout(r, 400));
+      return out;
+    },
     tableSections: () => d.querySelectorAll('table tbody').length,
   };
 }
