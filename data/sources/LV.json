@@ -382,5 +382,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Lotyšská Valsts kontrole publikuje audity i **otevřená data o zjištěních a jejich finančním dopadu**",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-dvi",
+    "topic": "regulators",
+    "name": "Datu valsts inspekcija",
+    "url": "https://www.dvi.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Lotyšská inspekce publikuje rozhodnutí, pokyny a přehled uložených pokut",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

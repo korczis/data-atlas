@@ -742,5 +742,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Polský úřad zveřejňuje Urzędowy Wykaz Produktów Leczniczych — úřední seznam registrovaných léčiv, aktualizovaný a ke stažení",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-uodo",
+    "topic": "regulators",
+    "name": "UODO",
+    "url": "https://uodo.gov.pl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Polský UODO zveřejňuje rozhodnutí, pokuty a rozsáhlou sbírku výkladových stanovisek",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

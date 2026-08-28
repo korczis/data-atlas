@@ -442,5 +442,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Dánská Rigsrevisionen publikuje zprávy pro parlamentní výbor Statsrevisorerne, které jsou stručné a adresné",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-datatilsynet",
+    "topic": "regulators",
+    "name": "Datatilsynet",
+    "url": "https://www.datatilsynet.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Dánský úřad publikuje rozhodnutí i praktické návody a rozhoduje o oznámeních porušení zabezpečení",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

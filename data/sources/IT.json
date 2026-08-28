@@ -502,5 +502,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Italský účetní dvůr je i soudem pro odpovědnost za škodu způsobenou státu a předběžně registruje vládní akty",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-garante",
+    "topic": "regulators",
+    "name": "Garante per la protezione dei dati personali",
+    "url": "https://www.garanteprivacy.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Italský Garante publikuje rozhodnutí v prohledávatelné databázi a vydává závazné kodexy pro jednotlivá odvětví",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

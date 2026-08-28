@@ -442,5 +442,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Portugalský účetní dvůr **předběžně schvaluje velké veřejné smlouvy** — bez jeho visto řada zakázek nenabude účinnosti, takže jeho rozhodnutí jsou dobrým indikátorem problémů",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-cnpd",
+    "topic": "regulators",
+    "name": "CNPD",
+    "url": "https://www.cnpd.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Portugalská CNPD publikuje rozhodnutí i stanoviska k legislativním návrhům",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

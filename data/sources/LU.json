@@ -382,5 +382,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Lucemburský účetní dvůr publikuje zprávu o plnění rozpočtu a zvláštní zprávy k investičním projektům",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-cnpd",
+    "topic": "regulators",
+    "name": "CNPD",
+    "url": "https://cnpd.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Lucemburská CNPD dohlíží i na velké finanční a technologické skupiny se sídlem v zemi a publikuje rozhodnutí i roční přehled sankcí",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

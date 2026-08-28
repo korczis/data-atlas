@@ -562,5 +562,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Francouzský účetní dvůr publikuje výroční zprávu i tematické zprávy a spolu s regionálními komorami kontroluje obce a nemocnice",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-cnil",
+    "topic": "regulators",
+    "name": "CNIL",
+    "url": "https://www.cnil.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Francouzská CNIL je nejstarší dozorový úřad v Evropě a publikuje **otevřená data o svých sankcích a kontrolách** i podrobné metodiky pro jednotlivé sektory",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

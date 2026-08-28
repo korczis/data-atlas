@@ -454,5 +454,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Nizozemská Rekenkamer publikuje audity a **otevřená data o výdajích ministerstev** v nástroji, který ukazuje rozpočet po programech",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-ap",
+    "topic": "regulators",
+    "name": "Autoriteit Persoonsgegevens",
+    "url": "https://autoriteitpersoonsgegevens.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Nizozemský úřad publikuje rozhodnutí i **statistiky ohlášených úniků dat** po odvětvích",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

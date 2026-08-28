@@ -358,5 +358,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Irský C&AG publikuje výroční zprávu o veřejných účtech a zvláštní zprávy k jednotlivým programům",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-dpc",
+    "topic": "regulators",
+    "name": "Data Protection Commission",
+    "url": "https://www.dataprotection.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Irská DPC je hlavním dozorem pro většinu velkých technologických firem, které mají v Irsku evropské sídlo — její rozhodnutí mají dopad na celou EU",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

@@ -394,5 +394,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Finský VTV vede vedle auditů i **registr financování volebních kampaní** a stranických příjmů",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-tietosuoja",
+    "topic": "regulators",
+    "name": "Tietosuojavaltuutetun toimisto",
+    "url": "https://tietosuoja.fi/etusivu",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Finský úřad zveřejňuje rozhodnutí sankční komise a výkladová stanoviska",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

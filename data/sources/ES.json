@@ -467,5 +467,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Španělský účetní dvůr vede navíc **registr účetnictví politických stran** a databázi veřejných podniků",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-aepd",
+    "topic": "regulators",
+    "name": "AEPD",
+    "url": "https://www.aepd.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Španělská AEPD patří k nejaktivnějším v EU; publikuje plné znění rozhodnutí a rozsáhlou databázi precedentů",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

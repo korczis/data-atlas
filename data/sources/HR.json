@@ -406,5 +406,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Chorvatský revizní úřad kontroluje i obce a státní podniky a zveřejňuje audity stranických financí",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-azop",
+    "topic": "regulators",
+    "name": "AZOP",
+    "url": "https://azop.hr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Chorvatská AZOP publikuje rozhodnutí, pokyny a přehled uložených pokut",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

@@ -466,5 +466,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Slovenský ŠÚKL vede registr léčiv, povolení a zveřejňuje hlášení o nežádoucích účincích",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-uoou",
+    "topic": "regulators",
+    "name": "Úrad na ochranu osobných údajov SR",
+    "url": "https://dataprotection.gov.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Slovenský úřad publikuje rozhodnutí, metodiky a přehled uložených pokut",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

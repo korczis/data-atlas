@@ -334,5 +334,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Řecký účetní dvůr je zároveň soudem — kromě auditů rozhoduje o odpovědnosti úředníků za škodu a předběžně schvaluje velké zakázky",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-dpa",
+    "topic": "regulators",
+    "name": "Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα",
+    "url": "https://www.dpa.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Řecký úřad zveřejňuje rozhodnutí i stanoviska k dohledu na pracovišti a kamerovým systémům",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

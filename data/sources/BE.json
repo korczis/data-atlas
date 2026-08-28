@@ -478,5 +478,17 @@
     "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Belgický účetní dvůr kontroluje federální i regionální úroveň a ověřuje volební výdaje stran",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-gba",
+    "topic": "regulators",
+    "name": "Gegevensbeschermingsautoriteit / APD",
+    "url": "https://www.dataprotectionauthority.be/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Belgický úřad má oddělenou rozhodovací komoru a publikuje její rozsudky v plném znění",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]
