@@ -418,5 +418,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Dánsko sloučilo telekomunikační regulaci s energetickou agenturou; ta vede registr operátorů i statistiky trhu",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-lms",
+    "topic": "regulators",
+    "name": "Lægemiddelstyrelsen",
+    "url": "https://laegemiddelstyrelsen.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Dánská agentura publikuje registr léčiv a **statistiky spotřeby léků** jako otevřená data přes medstat.dk",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

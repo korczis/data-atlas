@@ -454,5 +454,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Slovenský úřad vede registry operátorů, přidělených kmitočtů a poštovních podniků",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-sukl",
+    "topic": "regulators",
+    "name": "ŠÚKL",
+    "url": "https://www.sukl.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Slovenský ŠÚKL vede registr léčiv, povolení a zveřejňuje hlášení o nežádoucích účincích",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

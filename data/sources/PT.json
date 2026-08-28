@@ -418,5 +418,17 @@
     "desc": "Portugalský portál bydlení spravovaný IHRU. Vedle podpor a programů zpřístupňuje statistiky trhu a evidenci nájemních smluv; ceny transakcí publikuje statistický úřad po obcích",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-infarmed",
+    "topic": "regulators",
+    "name": "INFARMED",
+    "url": "https://www.infarmed.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Portugalský INFARMED provozuje Infomed s registrem léčiv a cen a publikuje statistiky spotřeby",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

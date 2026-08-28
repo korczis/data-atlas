@@ -334,5 +334,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Irský ComReg publikuje čtvrtletní data o trhu a mapy pokrytí; vede také registr prémiových čísel a poštovních operátorů",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-hpra",
+    "topic": "regulators",
+    "name": "HPRA — Health Products Regulatory Authority",
+    "url": "https://www.hpra.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Irská HPRA reguluje léčiva, zdravotnické prostředky i kosmetiku a zveřejňuje seznam držitelů licencí",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

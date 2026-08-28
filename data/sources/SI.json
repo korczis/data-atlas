@@ -406,5 +406,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Slovinský AKOS reguluje telekomunikace, poštu, média i železnici a vede registry poskytovatelů všech těchto odvětví",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-jazmp",
+    "topic": "regulators",
+    "name": "JAZMP",
+    "url": "https://www.jazmp.si/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Slovinská agentura reguluje léčiva i zdravotnické prostředky a vede centrální databázi cen",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

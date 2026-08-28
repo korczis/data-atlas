@@ -358,5 +358,17 @@
     "desc": "Lucemburská observatoř bydlení. Publikuje **ceny prodaných bytů a domů po obcích** i ceny stavebních pozemků a nájmů, čtvrtletně a s otevřenými daty",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-sante",
+    "topic": "regulators",
+    "name": "Direction de la santé",
+    "url": "https://santesecu.public.lu/fr.html",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Lucembursko nemá samostatnou lékovou agenturu; registraci a dozor vede zdravotní ředitelství ministerstva zdravotnictví",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

@@ -430,5 +430,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Nizozemská ACM spojuje regulaci energetiky, telekomunikací, dopravy a ochranu spotřebitele i soutěže; rozhodnutí jsou veřejná",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-cbg",
+    "topic": "regulators",
+    "name": "CBG — College ter Beoordeling van Geneesmiddelen",
+    "url": "https://www.cbg-meb.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Nizozemské kolegium provozuje veřejnou databázi léčiv Geneesmiddeleninformatiebank s texty schválených informací",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

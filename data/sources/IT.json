@@ -478,5 +478,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Italský AGCOM reguluje telekomunikace i média a vede **Registro degli Operatori di Comunicazione** — veřejný rejstřík vydavatelů, vysílatelů a operátorů včetně jejich vlastnické struktury",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-aifa",
+    "topic": "regulators",
+    "name": "AIFA",
+    "url": "https://www.aifa.gov.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Italská AIFA publikuje registr léčiv, ceny a **roční zprávu o spotřebě léků** s regionálním rozpadem",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

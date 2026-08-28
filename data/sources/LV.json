@@ -358,5 +358,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lotyšská komise reguluje energetiku, vodárenství, odpady, poštu i telekomunikace a vede registr poskytovatelů",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-zva",
+    "topic": "regulators",
+    "name": "Zāļu valsts aģentūra",
+    "url": "https://www.zva.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Lotyšská agentura zveřejňuje registr léčiv a databázi cen a úhrad",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

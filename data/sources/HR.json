@@ -382,5 +382,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Chorvatská HERA reguluje elektřinu, plyn, teplo i ropovody a vede registr účastníků trhu",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-halmed",
+    "topic": "regulators",
+    "name": "HALMED",
+    "url": "https://www.halmed.hr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Chorvatská agentura zveřejňuje registr léčiv, klinických hodnocení a hlášení nežádoucích účinků",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

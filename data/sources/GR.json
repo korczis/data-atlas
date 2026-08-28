@@ -310,5 +310,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Řecký regulátor dohlíží i na poštovní trh a vede registr domén .gr",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-eof",
+    "topic": "regulators",
+    "name": "ΕΟΦ — Εθνικός Οργανισμός Φαρμάκων",
+    "url": "https://www.eof.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Řecký EOF vede registr léčiv, cen a povolených distributorů",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

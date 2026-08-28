@@ -418,5 +418,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Bulharská komise vede veřejný registr operátorů a přidělených kmitočtů",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-bda",
+    "topic": "regulators",
+    "name": "ИАЛ — Изпълнителна агенция по лекарствата",
+    "url": "https://www.bda.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Bulharská agentura zveřejňuje registr léčiv a maximální ceny hrazených přípravků",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

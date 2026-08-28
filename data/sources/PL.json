@@ -730,5 +730,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Polský portál daňové správy s **Bílým seznamem plátců DPH** — kromě statusu ukazuje i bankovní účty, na které je bezpečné platit; platba mimo ně zakládá ručení za nezaplacenou daň",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-urpl",
+    "topic": "regulators",
+    "name": "URPL",
+    "url": "https://www.gov.pl/web/urpl",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Polský úřad zveřejňuje Urzędowy Wykaz Produktów Leczniczych — úřední seznam registrovaných léčiv, aktualizovaný a ke stažení",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

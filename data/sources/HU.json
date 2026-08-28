@@ -442,5 +442,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Maďarský úřad spojuje telekomunikační a mediální regulaci v jednom, což je v EU neobvyklé; vede i registr médií",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-ogyei",
+    "topic": "regulators",
+    "name": "OGYÉI",
+    "url": "https://ogyei.gov.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Maďarský úřad vede registr léčiv, zdravotnických prostředků a lékáren",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

@@ -370,5 +370,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Estonský úřad spojuje ochranu spotřebitele s technickým dozorem nad telekomunikacemi, energetikou a dopravou",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-ravimiamet",
+    "topic": "regulators",
+    "name": "Ravimiamet",
+    "url": "https://ravimiamet.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Estonská agentura vede registr léčiv a povolení a zveřejňuje statistiky spotřeby v otevřených formátech",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

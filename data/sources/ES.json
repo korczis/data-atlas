@@ -443,5 +443,17 @@
     "desc": "Španělské ministerstvo bydlení publikuje **statistiky cen bydlení, transakcí a odhadů** po provinciích a obcích, včetně řad zpět do 90. let. Agendu převzalo v roce 2023 od ministerstva dopravy, jehož adresa už nefunguje",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-aemps",
+    "topic": "regulators",
+    "name": "AEMPS",
+    "url": "https://www.aemps.gob.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Španělská AEMPS provozuje CIMA — databázi léčiv s příbalovými letáky, cenami a stavem registrace, s veřejným API",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

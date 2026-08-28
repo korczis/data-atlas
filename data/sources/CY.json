@@ -286,5 +286,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Kyperský regulátor dohlíží na telekomunikace i poštovní služby",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-moh",
+    "topic": "regulators",
+    "name": "Υπουργείο Υγείας — φαρμακευτικές υπηρεσίες",
+    "url": "https://www.gov.cy/moh/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Kyperskou lékovou agendu vedou farmaceutické služby ministerstva zdravotnictví; registr léčiv i ceny jsou veřejné",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

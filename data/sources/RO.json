@@ -322,5 +322,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Rumunský ANCOM provozuje **Netograf** s nezávislým měřením rychlosti připojení a publikuje mapy pokrytí jako otevřená data",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-anm",
+    "topic": "regulators",
+    "name": "ANMDMR",
+    "url": "https://www.anm.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Rumunská agentura vede registr léčiv, zdravotnických prostředků a povolení k distribuci",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

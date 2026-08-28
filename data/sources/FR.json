@@ -538,5 +538,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Francouzský ARCEP publikuje **otevřená data o pokrytí a kvalitě mobilních sítí** až na úroveň obcí, včetně nezávislých měření",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-ansm",
+    "topic": "regulators",
+    "name": "ANSM",
+    "url": "https://ansm.sante.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Francouzská ANSM zveřejňuje **databázi léčiv, nedostupností a bezpečnostních upozornění**; k tomu vede Transparence Santé s platbami farmaceutických firem lékařům",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

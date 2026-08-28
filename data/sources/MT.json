@@ -298,5 +298,17 @@
     "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Maltský regulátor pokrývá telekomunikace, poštu i elektronický obchod a publikuje statistiky trhu",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-medicines",
+    "topic": "regulators",
+    "name": "Malta Medicines Authority",
+    "url": "https://medicinesauthority.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Maltská agentura vede registr léčiv, lékáren a velkodistributorů",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]
