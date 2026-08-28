@@ -73,7 +73,9 @@ def canonical(url: str) -> str:
 def classify(url: str, timeout: int) -> dict:
     code, final = probe(url, timeout)
     # Spousta serverů HEAD odmítá nebo na něj odpovídá jinak než na GET.
-    if code in (0, 403, 405, 404, 501):
+    # Mezi ně patří i 401: portály jako krz.ms.gov.pl na HEAD vrátí „neautorizováno"
+    # a na GET tutéž stránku bez přihlášení normálně vydají.
+    if code in (0, 401, 403, 405, 404, 501):
         code, final = probe(url, timeout, method="GET")
 
     if 200 <= code < 300:
