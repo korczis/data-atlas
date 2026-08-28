@@ -243,11 +243,18 @@ Dvě vady prošly úplně vším a odhalil je až pohled na stránku:
   od něj.
 
 `check_responsive.py` dnes obojí chytí (plocha obsahu, zanoření v panelu,
-vnitřní přetečení tabulky) a k tomu **překryv po odscrollování**: `position:
-sticky` do prvního scrollu nic nedělá, takže měření při `scrollY = 0` lepivou
-hlavičku nikdy neuvidí. Sonda proto scrolluje a hlásí, když lepivý nebo fixní
-prvek překryje datový řádek — s výjimkou prvků přilepených k hornímu a dolnímu
-okraji, pod kterými obsah projíždět má. Pro nové vady toho druhu je tu `just shots`:
+vnitřní přetečení tabulky) a k tomu **překryv při scrollu 0**.
+
+Ten poslední stojí za vysvětlení, protože intuice vede opačně. Lepivý prvek
+do prvního scrollu drží svou přirozenou pozici, takže tam **nemá co překrývat**.
+Když překrývá, znamená to, že se jeho lepivý kontext počítá od něčeho jiného,
+než člověk čeká — přesně to udělala `sticky top-16` na hlavičce tabulky uvnitř
+`overflow-x-auto`: obal se stal scroll kontejnerem a hlavička skončila 4 rem
+pod *jeho* horní hranou, tedy přes záhlaví sekce a první řádek.
+
+Po odscrollování se naopak překrývat **má** — lepivé nadpisy sekcí v kartách
+fungují právě tak. Kdyby se měřilo po scrollu, hlásila by sonda je, a ne tu
+skutečnou vadu. Pro nové vady toho druhu je tu `just shots`:
 vyrenderuje stránku ve čtyřech šířkách do `.cache/shots/`. **Po každém zásahu
 do rozvržení se na ty obrázky podívej** — je to levnější než vymýšlet metriku
 na každý způsob, jak se dá layout rozbít.

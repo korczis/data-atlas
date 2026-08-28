@@ -30,7 +30,7 @@ WIDTHS = [320, 360, 390, 414, 768, 1024, 1280, 1536]
 # Chrome na macOS neumí okno užší než ~500 px — `--window-size=320` se tiše
 # klampne a test by měřil něco jiného, než tvrdí. Stránku proto vkládáme do
 # iframu přesné šířky uvnitř širokého okna a měříme uvnitř něj.
-HARNESS = """<!doctype html><meta charset="utf-8">
+HARNESS = r"""<!doctype html><meta charset="utf-8">
 <style>html,body{margin:0}iframe{border:0;display:block}</style>
 <iframe id="f" src="PAGE_URL" width="WIDTH" height="900"></iframe>
 <script>
@@ -70,25 +70,38 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
   // takže dva sloupce zmizely za okrajem — proto se to měří.
   const box = d.querySelector('.scroll-x');
   const innerOverflow = box ? box.scrollWidth - box.clientWidth : 0;
+  const EDGE = 8;   // tolerance pro „ukotvené k okraji"
 
   // Překryv se nepozná, dokud se nescrolluje: `position: sticky` do té doby
   // nic nedělá. Lepivá hlavička tabulky proto překryla první řádek a všechny
   // brány prošly. Kontroluje se po odscrollování a jen u prvků, které
   // *neplavou* u horního ani dolního okraje — pod horní lištou a nad souhrnnou
   // lištou obsah projíždět má, uprostřed viewportu ne.
+  // Měří se **při scrollu 0**, a to je celý trik. Lepivý prvek do prvního
+  // scrollu drží svou přirozenou pozici, takže tam nemá co překrývat.
+  // Když překrývá, znamená to, že se jeho lepivý kontext počítá od něčeho
+  // jiného, než člověk čeká — přesně to udělala `sticky top-16` na hlavičce
+  // tabulky uvnitř `overflow-x-auto`: obal se stal scroll kontejnerem
+  // a hlavička skončila 4rem pod jeho horní hranou, přes záhlaví sekce
+  // a první řádek.
+  //
+  // Po odscrollování se naopak překrývat *má* — lepivé nadpisy sekcí v kartách
+  // fungují právě tak. Proto se scrolluje jen kvůli tomu, aby se vyloučily
+  // prvky ukotvené k okraji (horní lišta, souhrnná lišta, spodní navigace),
+  // pod kterými obsah projíždět má.
   const occluders = [...d.querySelectorAll('body *')].filter(el => {
-    const pos = d.defaultView.getComputedStyle(el).position;
-    return pos === 'fixed' || pos === 'sticky';
+    const cs = d.defaultView.getComputedStyle(el);
+    if (cs.position !== 'fixed' && cs.position !== 'sticky') return false;
+    if (cs.bottom !== 'auto') return false;
+    return !(cs.top !== 'auto' && parseFloat(cs.top) <= EDGE);
   });
   const overlaps = [];
   const vh = d.documentElement.clientHeight;
-  const EDGE = 8;   // tolerance pro „přilepené k okraji"
-  for (const y of [0, 400, 1200]) {
-    f.contentWindow.scrollTo(0, y);
+  {
+    const y = 0;
     for (const el of occluders) {
       const a = el.getBoundingClientRect();
       if (a.width === 0 || a.height === 0) continue;
-      if (a.top <= EDGE || a.bottom >= vh - EDGE) continue;   // banner u okraje
       for (const row of d.querySelectorAll('tr[data-row], ul[role="list"] > li')) {
         const b = row.getBoundingClientRect();
         if (b.height === 0) continue;
@@ -103,9 +116,7 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
         }
       }
     }
-    if (overlaps.length) break;
   }
-  f.contentWindow.scrollTo(0, 0);
   const out = document.createElement('div');
   out.id = 'probe-result';
   out.textContent = JSON.stringify({
