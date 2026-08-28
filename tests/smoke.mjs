@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { loadPage, loadData, checker, remoteResources } from './helpers.mjs';
 
 const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
-const { document: d, state, errors, tableRows, cardRows, withMobile } = await loadPage();
+const { document: d, state, errors, tableRows, cardRows, withMobile, renderAll } = await loadPage();
 const { catalog, longlist } = loadData();
 const check = checker();
 
@@ -14,7 +14,13 @@ check('Alpine se načetl', !!state);
 const flat = d.body.textContent.replace(/\s+/g, ' ');  // pozor na &nbsp; ve značce
 check('značka v horní liště', flat.includes('Geodata Atlas'));
 check('nadpis stránky', d.querySelector('h1')?.textContent.trim() === 'Kurátorovaný katalog');
-check('tabulka vykreslila celý katalog', tableRows() === catalog.length, `${tableRows()} z ${catalog.length}`);
+// Katalog se vykresluje po dávkách — celý najednou by na mobilu znamenal
+// 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky.
+check('první dávka je vykreslená', tableRows() === state.STEP, `${tableRows()} z ${state.STEP}`);
+check('dávka je menší než katalog', state.STEP < catalog.length && state.hasMore);
+await renderAll();
+check('po načtení všech dávek je celý katalog',
+      tableRows() === catalog.length, `${tableRows()} z ${catalog.length}`);
 // Karty existují jen pod md:. Test si tu větev zapne, změří ji a vrátí zpátky.
 const cards = await withMobile(true, cardRows);
 check('karty vykreslily totéž', cards === catalog.length, `${cards} karet`);

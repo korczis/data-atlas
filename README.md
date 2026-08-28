@@ -133,6 +133,11 @@ odvozené z dat a rychlé vstupy po zemích a tématech. Jakýkoli filtr ho scho
 takže sdílený odkaz jako `#country=DE&topic=companies` vede rovnou do dat —
 rozcestník by překážel právě těm, kdo už vědí, co hledají.
 
+Katalog se vykresluje **po dávkách** — všech 1050 položek naráz znamenalo na
+telefonu 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky. Doscrollování
+načte další; počty i export do CSV přitom pracují s celým výběrem, ne s tím,
+co je zrovna na obrazovce.
+
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
 s řaditelnými sloupci. **Vykresluje se vždy jen ta větev, která je vidět** —
 držet v DOM obě stálo u tisícovky položek zhruba vteřinu navíc a dvojnásobek

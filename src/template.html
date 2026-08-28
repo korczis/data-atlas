@@ -597,6 +597,17 @@ try {
       </div>
       </template>
 
+      <!-- Další dávka. Hlídka ji načte při doscrollování, tlačítko zůstává
+           pro klávesnici a pro případ, že IntersectionObserver chybí. -->
+      <div x-show="hasMore" class="px-4 pb-8 text-center">
+        <div x-init="observeSentinel($el)" aria-hidden="true" class="h-px"></div>
+        <button type="button" @click="loadMore()"
+          class="rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+          Zobrazit dalších <span x-text="Math.min(STEP, filtered.length - limit)"></span>
+          <span class="text-gray-500 dark:text-gray-400" x-text="'z ' + (filtered.length - limit) + ' zbývajících'"></span>
+        </button>
+      </div>
+
       <div x-show="filtered.length === 0" class="px-4 pb-8">
         <div class="rounded-lg border border-gray-200 bg-white px-4 py-12 text-center dark:border-gray-700 dark:bg-gray-800">
           <p class="text-sm font-medium text-gray-900 dark:text-white">Nic neodpovídá filtru</p>
@@ -633,8 +644,15 @@ try {
            class="fixed bottom-16 end-0 start-0 z-20 border-t border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800 sm:bottom-0 lg:start-64">
       <div class="flex items-center justify-between gap-3">
         <p class="text-sm text-gray-500 dark:text-gray-400">
-          Zobrazeno <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="filtered.length"></span>
-          z <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="total"></span>
+          <span x-show="hasMore">
+            Vykresleno <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="shown"></span>
+            z <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="filtered.length"></span>
+            odpovídajících
+          </span>
+          <span x-show="!hasMore">
+            Zobrazeno <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="filtered.length"></span>
+            z <span class="font-semibold text-gray-900 dark:text-white tabular-nums" x-text="total"></span>
+          </span>
           <span x-show="activeFilters" class="hidden sm:inline"> · filtrováno</span>
         </p>
         <button type="button" x-show="activeFilters" x-transition @click="reset()"
@@ -713,6 +731,12 @@ document.addEventListener('alpine:init', () => {
     // z toho polovinu neviditelných. Tenhle příznak nechá vzniknout jen tu,
     // která je vidět; nastavuje ho matchMedia na breakpointu md (768 px).
     mobile: false,
+    // Vykreslovat všech 1050 položek naráz stálo na mobilní šířce 16 453 uzlů
+    // DOM a ~200 ms na desktopovém CPU — na telefonu násobek, po který je
+    // stránka prázdná a nereaguje. Renderuje se proto po dávkách; `filtered`
+    // zůstává úplné, takže počty i export do CSV pracují s celým výběrem.
+    limit: 60,
+    STEP: 60,
     // Výchozí řazení je pořadí informační architektury z CSV, ne abeceda —
     // textově by „Účetní závěrky" předběhly „Adresy".
     sort: { key: 'ord', dir: 1 },
@@ -748,6 +772,10 @@ document.addEventListener('alpine:init', () => {
       // Filtr patří do URL: bez toho se výřez katalogu nedá poslat dál.
       for (const k of ['view', 'q', 'topic', 'country', 'source'])
         this.$watch(k, () => this.writeHash());
+      // Každá změna výběru začíná znovu od první dávky — jinak by po zúžení
+      // filtru zůstal vykreslený zbytek předchozího, širšího výsledku.
+      for (const k of ['view', 'q', 'topic', 'country', 'source'])
+        this.$watch(k, () => { this.limit = this.STEP; });
       // Bez téhle pojistky si vlastní zápis do URL vzápětí přečteme zpátky
       // a přepíšeme jím stav, který uživatel právě nastavil.
       window.addEventListener('hashchange', () => { if (!this._syncing) this.readHash(); });
@@ -791,6 +819,15 @@ document.addEventListener('alpine:init', () => {
         /* URL se přepsat nedá; stránka funguje dál */
       }
       return hash;
+    },
+
+    /** Doscrollování načte další dávku. Observer se váže na hlídku uvnitř
+     *  bloku, který Alpine při `x-show` nezahazuje, takže stačí jednou. */
+    observeSentinel(el) {
+      if (!window.IntersectionObserver) return;   // tlačítko funguje i bez toho
+      new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting) && this.hasMore) this.loadMore();
+      }, { rootMargin: '600px' }).observe(el);
     },
 
     /** Světlý → tmavý → podle systému. Tři stavy, protože „podle systému"
@@ -985,8 +1022,13 @@ document.addEventListener('alpine:init', () => {
       return this.view === 'catalog' && this.sort.key === 'ord' && !this.topic;
     },
 
+    /** Kolik se právě vykresluje a kolik odpovídá filtru. */
+    get shown() { return Math.min(this.limit, this.filtered.length); },
+    get hasMore() { return this.filtered.length > this.limit; },
+    loadMore() { this.limit += this.STEP; },
+
     get sections() {
-      const rows = this.filtered;
+      const rows = this.filtered.slice(0, this.limit);
       if (!this.grouped) return [{ key: 'all', label: '', rows }];
       const out = [];
       const byTopic = new Map();

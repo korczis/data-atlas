@@ -2,7 +2,7 @@
  *  řazení, přepnutí záložky a export do schránky. */
 import { loadPage, loadData, checker } from './helpers.mjs';
 
-const { window: w, document: d, state: s, errors, tick, tableRows, cardRows, withMobile } = await loadPage();
+const { window: w, document: d, state: s, errors, tick, tableRows, cardRows, withMobile, renderAll } = await loadPage();
 const { catalog, longlist } = loadData();
 const check = checker();
 const inDataCount = catalog.filter(r => r['Zdroj'] !== 'reference').length;
@@ -12,6 +12,29 @@ const inDataCount = catalog.filter(r => r['Zdroj'] !== 'reference').length;
 // v potaz zemi nebo téma.
 const blob = r => [r['Web'], r['Doména'], r['Popis'], r['Téma'], r['Země'], r['Kód']]
   .join(' ').toLowerCase();
+
+// ── dávkování ──────────────────────────────────────────────────────────────
+// Testuje se dřív, než ho zbytek souboru vypne: katalog se vykresluje po
+// dávkách, protože všech 1050 položek naráz znamenalo na mobilu 16 453 uzlů
+// DOM a vteřiny prázdné, nereagující stránky.
+check('vykresluje se jen první dávka', tableRows() === s.STEP, `${tableRows()} řádků`);
+check('souhrn přizná, že je vykreslená jen část', s.hasMore && s.shown === s.STEP);
+s.loadMore(); await tick();
+check('další dávka přibude', tableRows() === 2 * s.STEP, `${tableRows()} řádků`);
+s.q = 'kataster'; await tick();
+check('změna filtru začíná znovu od první dávky', s.limit === s.STEP);
+s.q = ''; await tick();
+// Export bere celý výběr, ne jen vykreslenou dávku.
+s.reset(); s.topic = 'companies'; await tick();
+s.copyCsv(); await tick();
+const exportRows = (w.__clip || '').split('\n').length - 1;
+check('CSV exportuje celý výběr, ne jen vykreslenou dávku',
+      exportRows === catalog.filter(r => r['Téma ID'] === 'companies').length,
+      `${exportRows} řádků`);
+s.reset();
+
+// Zbytek souboru ověřuje filtrování, ne dávkování — ať vidí celý výběr.
+await renderAll();
 
 check('výchozí pohled je katalog', tableRows() === catalog.length);
 const cardsAll = await withMobile(true, cardRows);

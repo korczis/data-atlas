@@ -56,6 +56,18 @@ export async function loadPage() {
     // [data-row] odliší datové řádky od hlaviček sekcí.
     tableRows: () => d.querySelectorAll('table tbody tr[data-row]').length,
     cardRows: () => d.querySelectorAll('ul[role="list"] > li').length,
+    /** Katalog se vykresluje po dávkách (viz `limit`), takže v DOM je jen
+     *  prvních pár desítek položek. Testy, které ověřují *filtrování*, chtějí
+     *  vidět celý výběr — tahle pomůcka dávkování na chvíli vypne. Testy
+     *  samotného dávkování si `limit` nastavují samy. */
+    renderAll: async () => {
+      const st = window.Alpine.$data(d.querySelector('[x-data]'));
+      // Zvedá se i krok, ne jen `limit`: každá změna filtru `limit` resetuje
+      // zpátky na `STEP`, takže samotné `limit` by vydrželo do prvního filtru.
+      st.STEP = Number.MAX_SAFE_INTEGER;
+      st.limit = Number.MAX_SAFE_INTEGER;
+      await new Promise(r => setTimeout(r, 700));
+    },
     // V DOM je vždy jen ta větev seznamu, která je na dané šířce vidět —
     // druhá se nevykresluje, aby se u tisícovky položek neplatilo dvakrát.
     // Testy si proto větev přepnou a změří ji zvlášť.

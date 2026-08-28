@@ -294,6 +294,32 @@ z inicializace šuplíku **i na desktopu**, kde je panel trvale vidět. Odečít
 by ho pak přeskočil, přestože se do něj dá tabovat. Srovnává to
 `syncSidebarAria()` podle breakpointu.
 
+### Katalog se vykresluje po dávkách
+
+Vykreslit všech 1050 položek naráz znamenalo na mobilní šířce **16 453 uzlů DOM**
+a ~200 ms jen na renderu — na desktopovém CPU. Na telefonu je to násobek a po
+tu dobu je stránka **prázdná a nereagující**, protože `x-cloak` drží obsah
+schovaný, dokud Alpine nedokreslí.
+
+Renderuje se proto po dávkách (`limit`, výchozí `STEP = 60`); doscrollování
+načte další přes `IntersectionObserver`, tlačítko zůstává pro klávesnici a pro
+prohlížeče bez observeru.
+
+  uzlů DOM   16 453 → 1 631
+  render       196 ms → 7 ms   (390 px, medián 5 běhů headless Chrome)
+
+Dvě věci, na kterých to stojí:
+
+- **`filtered` zůstává úplné.** Dávkuje se až `sections`. Počty v panelu,
+  souhrn i export do CSV proto pracují s celým výběrem, ne s tím, co je zrovna
+  na obrazovce. Hlídá to test *„CSV exportuje celý výběr, ne jen vykreslenou
+  dávku"*.
+- **Změna filtru vrací `limit` na `STEP`.** Bez toho by po zúžení výběru zůstal
+  vykreslený zbytek předchozího, širšího výsledku.
+
+Souhrnná lišta říká pravdu o obojím: dokud je co načítat, hlásí
+„Vykresleno 60 z 1050 odpovídajících", potom „Zobrazeno 1050 z 1050".
+
 ### Vykresluje se jen ta větev, která je vidět
 
 Karty a tabulka čtou týž `rows` getter, ale v DOM je vždycky jen jedna z nich:
