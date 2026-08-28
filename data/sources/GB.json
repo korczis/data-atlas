@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gb-national-library-of-scotland-map-images",
+    "country": "GB",
+    "topic": "archives",
+    "name": "National Library of Scotland — Map Images",
+    "url": "https://maps.nls.uk/",
+    "desc": "Zoomovatelné mapy Britských ostrovů 16.–20. století, velká část georeferencovaná — side-by-side a spyglass prohlížeč, vrstvy použitelné jako XYZ v QGIS přes Historic Maps API",
+    "kind": "research",
+    "access": "open",
+    "data": "download",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "gb-data-police-uk",
+    "country": "GB",
+    "topic": "security",
+    "name": "data.police.uk",
+    "url": "https://data.police.uk/",
+    "desc": "UK street-level crime + outcomes API, měsíční CSV s lat/lon a force area",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "gb-companies-house",
+    "topic": "companies",
+    "name": "Companies House",
+    "url": "https://find-and-update.company-information.service.gov.uk/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Britský obchodní rejstřík — firmy, statutární orgány, historie jmen a sídel, listiny včetně účetních závěrek a registr osob s významnou kontrolou, všechno zdarma a bez registrace. Měsíční hromadné soubory i REST API. Nejotevřenější velký rejstřík v Evropě a častá protistrana v prověrkách",
+    "country": "GB",
+    "verified": "2026-08-28"
+  }
+]
