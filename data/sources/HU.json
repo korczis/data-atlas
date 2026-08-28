@@ -382,5 +382,29 @@
     "desc": "Oficiální maďarský místopisný slovník — **všechny obce a jejich části s kódy KSH, okresem, župou a statistickými údaji**, ročně aktualizovaný a ke stažení. Referenční územní číselník Maďarska. Adresy na úrovni ulic vede Központi Címregiszter (KCR), který je ale úřední evidencí bez veřejného vyhledávání",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-allamkincstar",
+    "topic": "spending",
+    "name": "Magyar Államkincstár",
+    "url": "https://www.allamkincstar.gov.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Maďarskou agendu převzala od MVH státní pokladna; ta vedle toho vede evidenci veřejných výdajů a rozpočtových organizací",
+    "country": "HU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-sztnh",
+    "topic": "ip",
+    "name": "SZTNH — Szellemi Tulajdon Nemzeti Hivatala",
+    "url": "https://www.hipo.gov.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Maďarský úřad duševního vlastnictví. Vedle rejstříků patentů a známek vede i evidenci kolektivních správců autorských práv",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

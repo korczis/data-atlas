@@ -370,5 +370,29 @@
     "desc": "Sjednocený belgický adresní registr — **spojuje regionální zdroje CRAB (Flandry), ICAR (Valonsko) a UrbIS (Brusel) do jedné sady se souřadnicemi**, měsíčně aktualizované a zdarma ke stažení. Bez něj se belgické adresy geokódují ze tří nekompatibilních registrů",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-landbouw-vlaanderen",
+    "topic": "spending",
+    "name": "Landbouw en Visserij (Vlaanderen)",
+    "url": "https://www.vlaanderen.be/landbouw-en-visserij",
+    "kind": "regional",
+    "access": "open",
+    "data": "download",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Belgie ji má rozdělenou po regionech — Flandry, Valonsko a Brusel vyplácejí a zveřejňují odděleně, federální seznam neexistuje",
+    "country": "BE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "be-ip-fps",
+    "topic": "ip",
+    "name": "Belgian Intellectual Property Office",
+    "url": "https://economie.fgov.be/en/themes/intellectual-property",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Belgický úřad průmyslového vlastnictví spadá pod ministerstvo hospodářství. Známky se pro Belgii, Nizozemsko a Lucembursko zapisují společně u Benelux Office, patenty národně tady",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

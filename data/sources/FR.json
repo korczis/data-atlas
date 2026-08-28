@@ -466,5 +466,29 @@
     "desc": "Francouzský referenční model terénu — **mřížka 1 m a 5 m pro celou Francii včetně zámoří, zdarma pod otevřenou licencí** od otevření dat IGN v roce 2021. Doplňuje ho program LiDAR HD s bodovými mračny",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-asp",
+    "topic": "spending",
+    "name": "ASP — Agence de services et de paiement",
+    "url": "https://www.asp-public.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Francouzská ASP vyplácí vedle zemědělských dotací i zaměstnanecké a sociální podpory a data o příjemcích publikuje jako otevřená na data.gouv.fr",
+    "country": "FR",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-inpi-marques",
+    "topic": "ip",
+    "name": "Base marques INPI",
+    "url": "https://bases-marques.inpi.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Francouzský rejstřík ochranných známek u INPI. Hledá se podle znění značky i podle majitele, takže z něj jde sestavit portfolio značek jedné skupiny; patenty a vzory mají u INPI vlastní databáze",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

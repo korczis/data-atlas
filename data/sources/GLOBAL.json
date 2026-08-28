@@ -1550,7 +1550,7 @@
   },
   {
     "id": "global-espacenet",
-    "topic": "companies",
+    "topic": "ip",
     "name": "Espacenet",
     "url": "https://worldwide.espacenet.com/",
     "kind": "intl",

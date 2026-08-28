@@ -346,5 +346,29 @@
     "desc": "Dánský katastr — **parcely, jejich hranice, výměry a katastrální označení pro celé Dánsko**, jako základní registr. Geometrie je zdarma přes Dataforsyningen a Datafordeleren; vlastnická práva vede zvlášť pozemková kniha Tinglysning",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-lbst",
+    "topic": "spending",
+    "name": "Landbrugsstyrelsen",
+    "url": "https://lbst.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Dánská agentura vydává seznam příjemců i jako otevřená data a k tomu registr zemědělských bloků",
+    "country": "DK",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-dkpto",
+    "topic": "ip",
+    "name": "Patent- og Varemærkestyrelsen",
+    "url": "https://www.dkpto.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dánský patentový a známkový úřad. Rejstříky jsou veřejné a napojené na obchodní rejstřík CVR, takže majitele známky lze rovnou dohledat jako firmu",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

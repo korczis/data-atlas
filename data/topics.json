@@ -5,69 +5,172 @@
       "id": "geo",
       "label": "Geodata",
       "topics": [
-        { "id": "geoportal",      "label": "Geoportály a NSDI" },
-        { "id": "cadastre",       "label": "Katastr a pozemkové knihy" },
-        { "id": "addresses",      "label": "Adresy a územní členění" },
-        { "id": "terrain",        "label": "Ortofoto, výškopis, topografie" },
-        { "id": "environment",    "label": "Životní prostředí, geologie, rizika" },
-        { "id": "transport",      "label": "Doprava a infrastruktura" },
-        { "id": "remote-sensing", "label": "Remote sensing / rastr" },
-        { "id": "basemaps",       "label": "Globální referenční geodata" }
+        {
+          "id": "geoportal",
+          "label": "Geoportály a NSDI"
+        },
+        {
+          "id": "cadastre",
+          "label": "Katastr a pozemkové knihy"
+        },
+        {
+          "id": "addresses",
+          "label": "Adresy a územní členění"
+        },
+        {
+          "id": "terrain",
+          "label": "Ortofoto, výškopis, topografie"
+        },
+        {
+          "id": "environment",
+          "label": "Životní prostředí, geologie, rizika"
+        },
+        {
+          "id": "transport",
+          "label": "Doprava a infrastruktura"
+        },
+        {
+          "id": "remote-sensing",
+          "label": "Remote sensing / rastr"
+        },
+        {
+          "id": "basemaps",
+          "label": "Globální referenční geodata"
+        }
       ]
     },
     {
       "id": "gov",
       "label": "Veřejná data a správa",
       "topics": [
-        { "id": "opendata",    "label": "Otevřená data" },
-        { "id": "statistics",  "label": "Statistika a demografie" },
-        { "id": "gazette",     "label": "Legislativa a věstníky" },
-        { "id": "procurement", "label": "Veřejné zakázky" },
-        { "id": "spending",    "label": "Rozpočty, dotace, výdaje" }
+        {
+          "id": "opendata",
+          "label": "Otevřená data"
+        },
+        {
+          "id": "statistics",
+          "label": "Statistika a demografie"
+        },
+        {
+          "id": "gazette",
+          "label": "Legislativa a věstníky"
+        },
+        {
+          "id": "procurement",
+          "label": "Veřejné zakázky"
+        },
+        {
+          "id": "spending",
+          "label": "Rozpočty, dotace, výdaje"
+        }
       ]
     },
     {
       "id": "dd",
       "label": "Firmy a due diligence",
       "topics": [
-        { "id": "companies",   "label": "Obchodní rejstříky" },
-        { "id": "ownership",   "label": "Skuteční majitelé" },
-        { "id": "filings",     "label": "Účetní závěrky a listiny" },
-        { "id": "insolvency",  "label": "Insolvence a exekuce" },
-        { "id": "courts",      "label": "Soudy a judikatura" },
-        { "id": "regulators",  "label": "Regulace a licencované subjekty" },
-        { "id": "property",    "label": "Nemovitosti a trh" }
+        {
+          "id": "companies",
+          "label": "Obchodní rejstříky"
+        },
+        {
+          "id": "ownership",
+          "label": "Skuteční majitelé"
+        },
+        {
+          "id": "filings",
+          "label": "Účetní závěrky a listiny"
+        },
+        {
+          "id": "insolvency",
+          "label": "Insolvence a exekuce"
+        },
+        {
+          "id": "courts",
+          "label": "Soudy a judikatura"
+        },
+        {
+          "id": "ip",
+          "label": "Průmyslové vlastnictví"
+        },
+        {
+          "id": "regulators",
+          "label": "Regulace a licencované subjekty"
+        },
+        {
+          "id": "property",
+          "label": "Nemovitosti a trh"
+        }
       ]
     },
     {
       "id": "risk",
       "label": "Rizika a OSINT",
       "topics": [
-        { "id": "sanctions",    "label": "Sankce a compliance" },
-        { "id": "security",     "label": "Kriminalita, IZS, bezpečnost" },
-        { "id": "cyber",        "label": "Kyberbezpečnost a CERT" },
-        { "id": "weather",      "label": "Počasí a klima" },
-        { "id": "transparency", "label": "Transparentnost, volby, lobbing" },
-        { "id": "osint",        "label": "OSINT a investigace" },
-        { "id": "archives",     "label": "Archivy a historické zdroje" }
+        {
+          "id": "sanctions",
+          "label": "Sankce a compliance"
+        },
+        {
+          "id": "security",
+          "label": "Kriminalita, IZS, bezpečnost"
+        },
+        {
+          "id": "cyber",
+          "label": "Kyberbezpečnost a CERT"
+        },
+        {
+          "id": "weather",
+          "label": "Počasí a klima"
+        },
+        {
+          "id": "transparency",
+          "label": "Transparentnost, volby, lobbing"
+        },
+        {
+          "id": "osint",
+          "label": "OSINT a investigace"
+        },
+        {
+          "id": "archives",
+          "label": "Archivy a historické zdroje"
+        }
       ]
     },
     {
       "id": "tools",
       "label": "Nástroje",
       "topics": [
-        { "id": "geocoding", "label": "Gazetteery a geokódování" },
-        { "id": "maplibs",   "label": "Mapové knihovny a basemapy" },
-        { "id": "spatialdb", "label": "Spatial DB a analytika" },
-        { "id": "routing",   "label": "Routing a síťová analýza" },
-        { "id": "formats",   "label": "Formáty, projekce, standardy" }
+        {
+          "id": "geocoding",
+          "label": "Gazetteery a geokódování"
+        },
+        {
+          "id": "maplibs",
+          "label": "Mapové knihovny a basemapy"
+        },
+        {
+          "id": "spatialdb",
+          "label": "Spatial DB a analytika"
+        },
+        {
+          "id": "routing",
+          "label": "Routing a síťová analýza"
+        },
+        {
+          "id": "formats",
+          "label": "Formáty, projekce, standardy"
+        }
       ]
     },
     {
       "id": "learn",
       "label": "Učení",
       "topics": [
-        { "id": "learning", "label": "Učení a komunita" }
+        {
+          "id": "learning",
+          "label": "Učení a komunita"
+        }
       ]
     }
   ]

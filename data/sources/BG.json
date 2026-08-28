@@ -346,5 +346,29 @@
     "desc": "Bulharská generální ředitelství GRAO — **národní klasifikátor územních jednotek (EKATTE) a adresní registr**, plus statistiky obyvatelstva po obcích a čtvrtích. EKATTE je referenční kód, na kterém stojí většina bulharských územních dat",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-dfz",
+    "topic": "spending",
+    "name": "ДФ „Земеделие“",
+    "url": "https://www.dfz.bg/bg/home",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Bulharský fond zveřejňuje i seznamy schválených projektů z programu rozvoje venkova",
+    "country": "BG",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-bpo",
+    "topic": "ip",
+    "name": "Патентно ведомство",
+    "url": "https://www.bpo.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Bulharský patentový úřad s rejstříky patentů, známek, vzorů a zeměpisných označení. Databáze jsou veřejné a hledá se v nich i podle přihlašovatele",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

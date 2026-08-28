@@ -385,7 +385,7 @@
   },
   {
     "id": "de-dpmaregister",
-    "topic": "companies",
+    "topic": "ip",
     "name": "DPMAregister",
     "url": "https://register.dpma.de/DPMAregister/Uebersicht",
     "kind": "official",
@@ -476,6 +476,18 @@
     "access": "open",
     "data": "bulk",
     "desc": "Celoněmecké adresy se souřadnicemi, sestavené BKG z dat zeměměřických správ všech šestnácti zemí — **jediná adresní sada, která pokrývá Německo jako celek**. Ke stažení; samostatný spolkový adresní registr Německo nemá",
+    "country": "DE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "de-agrarzahlungen",
+    "topic": "spending",
+    "name": "Agrar-Fischerei-Zahlungen",
+    "url": "https://www.agrarzahlungen.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Německý seznam pokrývá i platby z rybářského fondu a hledá se v něm podle jména, obce i spolkové země",
     "country": "DE",
     "verified": "2026-08-28"
   }

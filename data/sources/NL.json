@@ -370,5 +370,29 @@
     "desc": "Výškopis Nizozemska z leteckého laserového skenování — **bodová mračna a modely terénu i povrchu v rozlišení 0,5 m pro celou zemi, zdarma**, s několika generacemi pro porovnání v čase. Jeden z nejhustších národních výškopisů na světě",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-rvo-glb",
+    "topic": "spending",
+    "name": "RVO — Gemeenschappelijk landbouwbeleid",
+    "url": "https://www.rvo.nl/onderwerpen/glb",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Nizozemská RVO zveřejňuje seznam příjemců a k tomu registr zemědělských pozemků a energetických štítků",
+    "country": "NL",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-octrooicentrum",
+    "topic": "ip",
+    "name": "Octrooicentrum Nederland",
+    "url": "https://www.octrooicentrum.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Nizozemské patentové centrum spadá pod agenturu RVO. Národní patentový rejstřík je tady, známky pro Benelux vede společný úřad BOIP",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

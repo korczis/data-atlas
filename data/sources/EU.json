@@ -439,7 +439,7 @@
   },
   {
     "id": "eu-euipo-esearch",
-    "topic": "companies",
+    "topic": "ip",
     "name": "EUIPO eSearch",
     "url": "https://euipo.europa.eu/eSearch/",
     "kind": "intl",
@@ -663,6 +663,42 @@
     "access": "open",
     "data": "search",
     "desc": "Evropská databáze dokladů požadovaných v zadávacích řízeních — pro každý členský stát ukazuje, který úřad vydává potvrzení o bezdlužnosti, o neexistenci úpadku nebo výpis z trestního rejstříku a jak se získává. Odsud se zjistí, co po dodavateli z jiné země může zadavatel vůbec chtít",
+    "country": "EU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "eu-cap-beneficiaries",
+    "topic": "spending",
+    "name": "Příjemci dotací SZP — rozcestník",
+    "url": "https://agriculture.ec.europa.eu/common-agricultural-policy/financing-cap/beneficiaries_en",
+    "kind": "intl",
+    "access": "open",
+    "data": "none",
+    "desc": "Rozcestník Komise po národních seznamech příjemců zemědělských dotací — pro každý členský stát odkaz na jeho platební agenturu. Zveřejňování je povinné, ale formát i hloubka se stát od státu liší, takže odsud se začíná, když je potřeba dohledat příjemce v zemi, jejíž systém člověk nezná",
+    "country": "EU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "eu-epo",
+    "topic": "ip",
+    "name": "EPO — European Patent Office",
+    "url": "https://www.epo.org/",
+    "kind": "intl",
+    "access": "open",
+    "data": "search",
+    "desc": "Evropský patentový úřad uděluje patenty s účinkem ve 39 státech. Vedle registru nabízí statistiky přihlášek po zemích a oborech, což je dobrý ukazatel toho, kde která firma opravdu vyvíjí",
+    "country": "EU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "eu-tmview",
+    "topic": "ip",
+    "name": "TMview",
+    "url": "https://www.tmdn.org/tmview/",
+    "kind": "intl",
+    "access": "open",
+    "data": "api",
+    "desc": "Společný vyhledávač ochranných známek napříč všemi národními úřady EU, EUIPO a desítkami dalších zemí. Jedno hledání podle majitele ukáže portfolio značek celé skupiny bez obcházení 27 rejstříků",
     "country": "EU",
     "verified": "2026-08-28"
   }

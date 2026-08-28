@@ -250,5 +250,29 @@
     "desc": "Litevský adresní registr vedený Registrų centras — **obce, ulice, adresní body a budovy se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Litvy",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-nma",
+    "topic": "spending",
+    "name": "NMA — Nacionalinė mokėjimo agentūra",
+    "url": "https://www.nma.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-vpb",
+    "topic": "ip",
+    "name": "VPB — Valstybinis patentų biuras",
+    "url": "https://vpb.lrv.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Litevský státní patentový úřad. Vede rejstříky patentů, známek a vzorů. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

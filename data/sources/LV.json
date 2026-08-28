@@ -310,5 +310,29 @@
     "desc": "Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-lad",
+    "topic": "spending",
+    "name": "LAD — Lauku atbalsta dienests",
+    "url": "https://www.lad.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Lotyšská agentura vydává seznam příjemců jako otevřená data a k tomu geoprostorový registr zemědělských bloků",
+    "country": "LV",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-lrpv",
+    "topic": "ip",
+    "name": "Patentu valde",
+    "url": "https://www.lrpv.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Lotyšský patentový úřad. Rejstříky patentů, známek a vzorů jsou veřejné a publikuje k nim úřední věstník se zápisy a námitkami",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

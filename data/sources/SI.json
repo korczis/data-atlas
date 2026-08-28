@@ -334,5 +334,29 @@
     "desc": "Veřejná oznámení AJPES — **insolvenční řízení, nucené vyrovnání, likvidace, výmazy a dražby**, dohledatelné podle subjektu a zdarma. Slovinská obdoba insolvenčního rejstříku",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-akts",
+    "topic": "spending",
+    "name": "Agencija za kmetijske trge in razvoj podeželja",
+    "url": "https://www.gov.si/drzavni-organi/organi-v-sestavi/agencija-za-kmetijske-trge-in-razvoj-podezelja/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Slovinská agentura zveřejňuje seznam příjemců; platby jsou navíc dohledatelné v Eraru po jednotlivých transakcích",
+    "country": "SI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "si-uil",
+    "topic": "ip",
+    "name": "Urad RS za intelektualno lastnino",
+    "url": "https://www.gov.si/drzavni-organi/organi-v-sestavi/urad-za-intelektualno-lastnino/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Slovinský úřad pro duševní vlastnictví. Vede rejstříky patentů, známek a vzorů a dohlíží na kolektivní správu autorských práv",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

@@ -226,5 +226,29 @@
     "desc": "Elektronické služby kyperského pozemkového úřadu, součástí je **INSPIRE prohlížečka s tématem Adresy**. Podle metadat samotného úřadu ale **adresní data pokrývají jen asi 4 % území Kypru** — zbytek adresován není. Kypr samostatný celostátní adresní registr nemá",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-capo",
+    "topic": "spending",
+    "name": "CAPO — Κυπριακός Οργανισμός Αγροτικών Πληρωμών",
+    "url": "https://www.capo.gov.cy/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Kyperská CAPO vyplácí přímé platby i podpory rozvoje venkova",
+    "country": "CY",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-ip",
+    "topic": "ip",
+    "name": "Intellectual Property Section",
+    "url": "https://www.intellectualproperty.gov.cy/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Kyperská sekce průmyslového vlastnictví při ministerstvu hospodářství. Vede rejstřík ochranných známek a patentů; kyperské holdingy si sem často registrují značky skupiny",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

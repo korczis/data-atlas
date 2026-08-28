@@ -262,5 +262,29 @@
     "desc": "Irský systém poštovních kódů — **každá adresa v Irsku má vlastní sedmimístný kód**, protože irské venkovské adresy nemají čísla popisná. Vyhledání jednotlivé adresy je zdarma, **hromadná databáze ECAD je licencovaná a placená** — proto Eircode chybí v otevřených datech GeoHive",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-dafm",
+    "topic": "spending",
+    "name": "Department of Agriculture, Food and the Marine",
+    "url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Irské ministerstvo zveřejňuje seznam příjemců i registr stád a schválených potravinářských provozoven",
+    "country": "IE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-ipoi",
+    "topic": "ip",
+    "name": "Intellectual Property Office of Ireland",
+    "url": "https://www.ipoi.gov.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Irský úřad průmyslového vlastnictví v Kilkenny. Rejstříky patentů, známek a vzorů jsou veřejné a obsahují i historii převodů a zástav",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

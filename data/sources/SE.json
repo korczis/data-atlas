@@ -312,5 +312,29 @@
     "desc": "Švédský model terénu z laserového skenování — **mřížka 1 m pro celé Švédsko, zdarma ke stažení** pod otevřenou licencí. Součást otevření švédských geodat z roku 2022",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-jordbruksverket",
+    "topic": "spending",
+    "name": "Jordbruksverket",
+    "url": "https://jordbruksverket.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Švédský zemědělský úřad vydává seznam příjemců i statistiky a registry zvířat jako otevřená data",
+    "country": "SE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "se-prv",
+    "topic": "ip",
+    "name": "PRV — Patent- och registreringsverket",
+    "url": "https://www.prv.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Švédský patentový a registrační úřad. Vedle patentů a známek vede i registr periodického tisku a osobních jmen chráněných jako značka",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

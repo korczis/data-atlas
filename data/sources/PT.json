@@ -346,5 +346,29 @@
     "desc": "Vyhledávání portugalských poštovních směrovacích čísel u pošty CTT — **de facto referenční adresní zdroj Portugalska**, protože samostatný státní adresní registr neexistuje. Hromadná databáze kódů je licencovaná a placená",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-ifap",
+    "topic": "spending",
+    "name": "IFAP",
+    "url": "https://www.ifap.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Portugalský IFAP provozuje i geoprostorový systém parcel iSIP, ze kterého se čerpá při kontrolách",
+    "country": "PT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-inpi",
+    "topic": "ip",
+    "name": "INPI Portugal",
+    "url": "https://inpi.justica.gov.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Portugalský institut průmyslového vlastnictví. Rejstříky známek a patentů jsou veřejné a provázané s obchodním rejstříkem, takže majitel se dohledá i podle NIPC",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

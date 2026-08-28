@@ -277,7 +277,7 @@
   },
   {
     "id": "sk-indprop",
-    "topic": "companies",
+    "topic": "ip",
     "name": "Úrad priemyselného vlastníctva SR",
     "url": "https://www.indprop.gov.sk/",
     "kind": "official",
@@ -380,6 +380,18 @@
     "access": "open",
     "data": "bulk",
     "desc": "Slovenský register adries vedený ministerstvem vnitra — **obce, ulice a súpisné i orientačné čísla se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Slovenska; ZBGIS ji zobrazuje v mapě",
+    "country": "SK",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-apa",
+    "topic": "spending",
+    "name": "PPA — Pôdohospodárska platobná agentúra",
+    "url": "https://www.apa.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Slovenská PPA zveřejňuje seznam příjemců; platby jsou navíc v Centrálnom registri zmlúv a v Rozpočte.sk",
     "country": "SK",
     "verified": "2026-08-28"
   }

@@ -286,5 +286,41 @@
     "desc": "Finská data leteckého laserového skenování — **bodová mračna 5 bodů/m² z národního programu, zdarma a pod otevřenou licencí**. Finsko skenuje celé území v šestiletém cyklu",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-ruokavirasto",
+    "topic": "spending",
+    "name": "Ruokavirasto",
+    "url": "https://www.ruokavirasto.fi/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Finský potravinový úřad je zároveň dozorem nad potravinovým řetězcem — registry schválených provozoven a kontrolní zprávy jsou tady",
+    "country": "FI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-patenttitietopalvelu",
+    "topic": "ip",
+    "name": "Patenttitietopalvelu",
+    "url": "https://patenttitietopalvelu.prh.fi/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Finská patentová informační služba úřadu PRH. Obsahuje národní i validované evropské patenty a hledá se v ní podle přihlašovatele, vynálezce i klasifikace",
+    "country": "FI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-tavaramerkki",
+    "topic": "ip",
+    "name": "Tavaramerkkitietopalvelu",
+    "url": "https://tavaramerkkitietopalvelu.prh.fi/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Finský rejstřík ochranných známek. Ukazuje i historii převodů a zástav, takže je vidět, kdy značka přešla na jinou firmu ve skupině",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

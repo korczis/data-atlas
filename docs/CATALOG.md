@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1050** položek v **33** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **998** doplněných rešerší.
+**1102** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1050** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -15,34 +15,34 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Země
 
 - `GLOBAL` Celosvětové — 130
-- `CZ` Česko — 94
-- `PL` Polsko — 57
-- `EU` Evropská unie — 55
-- `DE` Německo — 40
-- `FR` Francie — 39
-- `IT` Itálie — 35
-- `AT` Rakousko — 34
-- `HU` Maďarsko — 32
-- `SK` Slovensko — 32
-- `BE` Belgie — 31
-- `NL` Nizozemsko — 31
-- `ES` Španělsko — 31
-- `BG` Bulharsko — 29
+- `CZ` Česko — 95
+- `PL` Polsko — 59
+- `EU` Evropská unie — 58
+- `FR` Francie — 41
+- `DE` Německo — 41
+- `IT` Itálie — 37
+- `AT` Rakousko — 37
+- `HU` Maďarsko — 34
+- `BE` Belgie — 33
+- `NL` Nizozemsko — 33
+- `SK` Slovensko — 33
+- `ES` Španělsko — 33
+- `BG` Bulharsko — 31
+- `DK` Dánsko — 31
+- `PT` Portugalsko — 31
+- `SI` Slovinsko — 30
 - `HR` Chorvatsko — 29
-- `DK` Dánsko — 29
-- `PT` Portugalsko — 29
-- `SI` Slovinsko — 28
-- `LV` Lotyšsko — 26
-- `SE` Švédsko — 26
-- `EE` Estonsko — 24
-- `FI` Finsko — 24
-- `RO` Rumunsko — 24
-- `LU` Lucembursko — 23
-- `IE` Irsko — 22
-- `LT` Litva — 21
-- `GR` Řecko — 21
-- `CY` Kypr — 19
-- `MT` Malta — 19
+- `LV` Lotyšsko — 28
+- `SE` Švédsko — 28
+- `FI` Finsko — 27
+- `EE` Estonsko — 26
+- `LU` Lucembursko — 25
+- `RO` Rumunsko — 25
+- `IE` Irsko — 24
+- `LT` Litva — 23
+- `GR` Řecko — 22
+- `CY` Kypr — 21
+- `MT` Malta — 21
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
 
@@ -60,21 +60,22 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
 - [Globální referenční geodata](#globální-referenční-geodata) — 17
 
-**Veřejná data a správa** — 222
+**Veřejná data a správa** — 247
 
 - [Otevřená data](#otevřená-data) — 37
 - [Statistika a demografie](#statistika-a-demografie) — 59
 - [Legislativa a věstníky](#legislativa-a-věstníky) — 45
 - [Veřejné zakázky](#veřejné-zakázky) — 40
-- [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 41
+- [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 66
 
-**Firmy a due diligence** — 292
+**Firmy a due diligence** — 319
 
-- [Obchodní rejstříky](#obchodní-rejstříky) — 60
+- [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
 - [Účetní závěrky a listiny](#účetní-závěrky-a-listiny) — 30
 - [Insolvence a exekuce](#insolvence-a-exekuce) — 24
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
+- [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 32
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 67
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 18
 
@@ -636,43 +637,68 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `EU` | [Kohesio](https://kohesio.ec.europa.eu/en/) | `kohesio.ec.europa.eu` | Projekty financované z politiky soudržnosti napříč EU — přes 1,5 milionu záznamů s příjemcem, lokalizací, tématem a částkou, prohledatelné na mapě. Otevřená data ke stažení; doplňuje národní dotační rejstříky tam, kde jsou neúplné. Na automat vrací 403, v prohlížeči funguje | open | bulk | reference |
 | `EU` | [Cohesion Open Data Platform](https://cohesiondata.ec.europa.eu/) | `cohesiondata.ec.europa.eu` | Alokace a čerpání fondů soudržnosti po státech, programech a tématech, včetně plnění cílů — agregovaný pohled nad tím, co Kohesio ukazuje po projektech. Datové sady přes API i ke stažení | open | api | reference |
 | `EU` | [CORDIS](https://cordis.europa.eu/) | `cordis.europa.eu` | Databáze výzkumných projektů financovaných EU od 4. rámcového programu po Horizon Europe — účastníci včetně firem, jejich role, rozpočet a výstupy. Kompletní datové sady ke stažení; ukazuje výzkumné a konsorciální vazby, které v obchodním rejstříku nejsou | open | bulk | reference |
+| `EU` | [Příjemci dotací SZP — rozcestník](https://agriculture.ec.europa.eu/common-agricultural-policy/financing-cap/beneficiaries_en) | `agriculture.ec.europa.eu` | Rozcestník Komise po národních seznamech příjemců zemědělských dotací — pro každý členský stát odkaz na jeho platební agenturu. Zveřejňování je povinné, ale formát i hloubka se stát od státu liší, takže odsud se začíná, když je potřeba dohledat příjemce v zemi, jejíž systém člověk nezná | open | none | reference |
 | `AT` | [Transparenzportal](https://transparenzportal.gv.at/tdb/tp/startpage) | `transparenzportal.gv.at` | Rakouský transparenční portál — přehled dávek, dotací a podpor vyplácených spolkem, podle druhu, poskytovatele a roku. Ukazuje strukturu veřejných transferů; jmenný seznam příjemců u sociálních dávek z povahy věci neobsahuje | open | search | reference |
 | `AT` | [Offener Haushalt](https://www.offenerhaushalt.at/) | `offenerhaushalt.at` | Rozpočty rakouských obcí a měst v jednotné podobě, srovnatelné mezi sebou a v čase, s daty ke stažení. Provozuje KDZ; obce zveřejňují rozpočty v neporovnatelných formátech a tohle je jediné místo, kde jsou sjednocené | open | bulk | reference |
+| `AT` | [AMA — Agrarmarkt Austria](https://www.ama.at/) | `ama.at` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Rakouská AMA vede vedle toho registry zemědělských podniků, značky kvality a tržní statistiky | open | search | reference |
 | `BE` | [SPF Finances / FOD Financiën](https://finances.belgium.be/) | `finances.belgium.be` | Belgická federální finanční správa — rozpočtové a daňové statistiky, katastrální data, UBO registr a Fisconet s daňovou legislativou a výklady. Rozcestník po federálních finančních službách | open | download | reference |
+| `BE` | [Landbouw en Visserij (Vlaanderen)](https://www.vlaanderen.be/landbouw-en-visserij) | `vlaanderen.be` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Belgie ji má rozdělenou po regionech — Flandry, Valonsko a Brusel vyplácejí a zveřejňují odděleně, federální seznam neexistuje | open | download | reference |
 | `BG` | [Министерство на финансите](https://www.minfin.bg/) | `minfin.bg` | Bulharské ministerstvo financí — státní rozpočet a jeho plnění, finanční data obcí a fiskální statistiky, s měsíčními přehledy ke stažení | open | download | reference |
+| `BG` | [ДФ „Земеделие“](https://www.dfz.bg/bg/home) | `dfz.bg` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Bulharský fond zveřejňuje i seznamy schválených projektů z programu rozvoje venkova | open | search | reference |
 | `HR` | [Ministarstvo financija](https://mfin.gov.hr/) | `mfin.gov.hr` | Chorvatské ministerstvo financí — **státní rozpočet a jeho plnění, finanční výkazy obcí a žup, daňová legislativa a seznam daňových dlužníků**. Seznam dlužníků je při prověrce chorvatské protistrany relevantní | open | download | reference |
 | `CY` | [Treasury of the Republic of Cyprus](https://www.treasury.gov.cy/) | `treasury.gov.cy` | Kyperská státní pokladna — **plnění rozpočtu, platby a účetní výkazy státu**, a zároveň provozovatel systému veřejných zakázek. Doplňuje ministerstvo financí o čísla na úrovni plateb | open | download | reference |
+| `CY` | [CAPO — Κυπριακός Οργανισμός Αγροτικών Πληρωμών](https://www.capo.gov.cy/) | `capo.gov.cy` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Kyperská CAPO vyplácí přímé platby i podpory rozvoje venkova | open | search | reference |
 | `CZ` | [Monitor státní pokladny](https://monitor.statnipokladna.gov.cz/) | `monitor.statnipokladna.gov.cz` | Rozpočty a účetní výkazy obcí, krajů a státních institucí — včetně ročních dumpů ke stažení | open | api | reference |
 | `CZ` | [Otevřená data Ministerstva financí](https://data.mf.gov.cz/) | `data.mf.gov.cz` | Datový portál MF — dotace a návratné výpomoci ze státního rozpočtu z evidence CEDR a IS ReD (příjemce, titul, částka, rozhodnutí), rozpočty a majetek státu, v kvartálně aktualizovaných balících CSV. Původní web cedr.mfcr.cz už neodpovídá | open | bulk | reference |
 | `CZ` | [DotaceEU](https://www.dotaceeu.cz/cs/uvod) | `dotaceeu.cz` | Portál evropských fondů v ČR — seznam podpořených projektů s příjemcem, programem a částkou, výzvy a pravidla. Národní protějšek evropského Kohesia; u příjemců dotací je vhodné projít obojí, protože se rozsahem liší | open | search | reference |
 | `CZ` | [CityVizor](https://cityvizor.cz/landing) | `cityvizor.cz` | Rozklikávací rozpočty obcí a měst až na jednotlivé faktury, propojené s registrem smluv a obchodním rejstříkem dodavatele. Provozuje Otevřená města; ukazuje, komu konkrétní obec reálně platí, což z účetních výkazů poznat nejde | open | api | reference |
 | `CZ` | [NKÚ — kontrolní závěry](https://www.nku.cz/) | `nku.cz` | Kontrolní závěry Nejvyššího kontrolního úřadu — prověrky konkrétních programů, resortů a velkých investic s vyčíslením zjištěných nedostatků. Často jediný veřejný rozbor toho, jak dopadl konkrétní veřejný projekt | open | download | reference |
+| `CZ` | [SZIF — seznam příjemců dotací](https://szif.gov.cz/cs/seznam-prijemcu-dotaci) | `szif.gov.cz` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Český seznam jde prohledávat podle jména i IČO a ukazuje částky po jednotlivých opatřeních — u zemědělských podniků nejrychlejší cesta ke zjištění, kolik berou z veřejných peněz | open | search | reference |
 | `DK` | [Økonomistyrelsen](https://oes.dk/) | `oes.dk` | Dánská agentura pro veřejné finance — státní rozpočet a jeho plnění, účetní data institucí a **otevřená data o veřejných výdajích**. Rozklikávací pohled na dánské státní finance | open | bulk | reference |
+| `DK` | [Landbrugsstyrelsen](https://lbst.dk/) | `lbst.dk` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Dánská agentura vydává seznam příjemců i jako otevřená data a k tomu registr zemědělských bloků | open | bulk | reference |
 | `EE` | [Rahandusministeerium](https://www.fin.ee/) | `fin.ee` | Estonské ministerstvo financí — **státní rozpočet a jeho plnění, finanční data obcí a otevřené datové sady o veřejných výdajích**. Estonsko zveřejňuje rozpočtová data strojově čitelně | open | bulk | reference |
+| `EE` | [PRIA](https://www.pria.ee/) | `pria.ee` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Estonská PRIA vede navíc registr zemědělských zvířat a pozemků a vyhledávání je propojené s obchodním rejstříkem | open | search | reference |
 | `FI` | [Tutki hankintoja](https://tutkihankintoja.fi/) | `tutkihankintoja.fi` | **Každá nákupní faktura finského státu — dodavatel, částka, účel a datum**, prohledatelné a ke stažení. Provozuje státní pokladna Valtiokonttori. Nejpřímější pohled na to, komu finský stát platí | open | bulk | reference |
 | `FI` | [Valtiokonttori](https://www.valtiokonttori.fi/) | `valtiokonttori.fi` | Finská státní pokladna — rozpočtové plnění, účetní výkazy státních institucí a **otevřená data o veřejných financích a dotacích** | open | bulk | reference |
+| `FI` | [Ruokavirasto](https://www.ruokavirasto.fi/) | `ruokavirasto.fi` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Finský potravinový úřad je zároveň dozorem nad potravinovým řetězcem — registry schválených provozoven a kontrolní zprávy jsou tady | open | search | reference |
 | `FR` | [DECP — données essentielles de la commande publique](https://www.data.gouv.fr/fr/datasets/decp/) | `data.gouv.fr` | **Povinně zveřejňovaná data o všech francouzských veřejných zakázkách nad 40 tis. € — zadavatel, dodavatel, hodnota, předmět a doba plnění**, konsolidovaně ke stažení. Doplňuje BOAMP o výsledky, ne jen vyhlášení | open | bulk | reference |
+| `FR` | [ASP — Agence de services et de paiement](https://www.asp-public.fr/) | `asp-public.fr` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Francouzská ASP vyplácí vedle zemědělských dotací i zaměstnanecké a sociální podpory a data o příjemcích publikuje jako otevřená na data.gouv.fr | open | bulk | reference |
 | `DE` | [Bundeshaushalt](https://www.bundeshaushalt.de/) | `bundeshaushalt.de` | Rozklikávací spolkový rozpočet — příjmy a výdaje po kapitolách, titulech a letech, s exportem. Ukáže, kolik jde do kterého programu; jmenný seznam příjemců spolkových dotací veřejný není | open | bulk | reference |
+| `DE` | [Agrar-Fischerei-Zahlungen](https://www.agrarzahlungen.de/) | `agrarzahlungen.de` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Německý seznam pokrývá i platby z rybářského fondu a hledá se v něm podle jména, obce i spolkové země | open | search | reference |
 | `GR` | [Υπουργείο Εθνικής Οικονομίας και Οικονομικών](https://minfin.gov.gr/) | `minfin.gov.gr` | Řecké ministerstvo financí — státní rozpočet, plnění a fiskální statistiky. Jednotlivé platby a rozhodnutí s výdajovým dopadem jsou dohledatelné v Διαύγεια, která je pro sledování řeckých veřejných peněz použitelnější | open | download | reference |
 | `HU` | [Kormany.hu — rozpočet a veřejné výdaje](https://kormany.hu/) | `kormany.hu` | Portál maďarské vlády — rozpočtové zákony a jejich plnění, resortní zprávy a veřejné konzultace. Maďarsko nemá rozklikávací rozpočtový portál typu českého Monitoru státní pokladny; čísla jsou v dokumentech | open | download | reference |
+| `HU` | [Magyar Államkincstár](https://www.allamkincstar.gov.hu/) | `allamkincstar.gov.hu` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Maďarskou agendu převzala od MVH státní pokladna; ta vedle toho vede evidenci veřejných výdajů a rozpočtových organizací | open | search | reference |
 | `IE` | [Department of Public Expenditure](https://www.gov.ie/en/organisation/department-of-public-expenditure-and-reform/) | `gov.ie` | Irské ministerstvo veřejných výdajů — rozpočet a jeho plnění, **databáze investičních projektů a hodnocení výdajových programů**. Na automat vrací 403, v prohlížeči funguje | open | download | reference |
+| `IE` | [Department of Agriculture, Food and the Marine](https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/) | `gov.ie` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Irské ministerstvo zveřejňuje seznam příjemců i registr stád a schválených potravinářských provozoven | open | download | reference |
 | `IT` | [OpenCoesione](https://opencoesione.gov.it/) | `opencoesione.gov.it` | Projekty financované z fondů soudržnosti v Itálii — přes milion záznamů s příjemcem, lokalizací, tématem, částkou a stavem plnění, ke stažení. Jeden z prvních a nejlépe udělaných národních portálů dotační transparentnosti | open | bulk | reference |
 | `IT` | [OpenBDAP](https://openbdap.rgs.mef.gov.it/) | `openbdap.rgs.mef.gov.it` | Otevřená databáze italských veřejných financí od státní pokladny — rozpočty a plnění státu, regionů, obcí a zdravotnických zařízení, s otevřenými daty. Rozklikávací pohled na italské veřejné výdaje | open | bulk | reference |
+| `IT` | [AGEA](https://www.agea.gov.it/) | `agea.gov.it` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Italská AGEA koordinuje regionální platební agentury; seznam příjemců je společný, ale výplaty jdou přes ně | open | search | reference |
 | `LV` | [Valsts kase](https://www.kase.gov.lv/) | `kase.gov.lv` | Lotyšská státní pokladna — **plnění rozpočtu, platby státních institucí a finanční výkazy obcí jako otevřená data**. Rozklikávací pohled na lotyšské veřejné výdaje | open | bulk | reference |
+| `LV` | [LAD — Lauku atbalsta dienests](https://www.lad.gov.lv/) | `lad.gov.lv` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Lotyšská agentura vydává seznam příjemců jako otevřená data a k tomu geoprostorový registr zemědělských bloků | open | bulk | reference |
 | `LT` | [Finansų ministerija](https://finmin.lrv.lt/) | `finmin.lrv.lt` | Litevské ministerstvo financí — státní rozpočet a jeho plnění, fiskální statistiky a finanční data obcí. Na automat vrací 403, v prohlížeči funguje | open | download | reference |
+| `LT` | [NMA — Nacionalinė mokėjimo agentūra](https://www.nma.lt/) | `nma.lt` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `LU` | [Budget.public.lu](https://budget.public.lu/) | `budget.public.lu` | Lucemburský státní rozpočet — příjmy a výdaje po ministerstvech a článcích, víceleté plánování a plnění, s exportem a otevřenými daty na data.public.lu | open | download | reference |
+| `LU` | [Agriculture.public.lu](https://agriculture.public.lu/) | `agriculture.public.lu` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Lucemburské ministerstvo zemědělství zveřejňuje seznam příjemců i vinařské a lesnické registry | open | download | reference |
 | `MT` | [Ministry for Finance Malta](https://finance.gov.mt/) | `finance.gov.mt` | Maltské ministerstvo financí — státní rozpočet, plnění a fiskální statistiky, s ročními dokumenty ke stažení. Na automat vrací 403, v prohlížeči funguje | open | download | reference |
+| `MT` | [ARPA — Agriculture and Rural Payments Agency](https://arpa.gov.mt/) | `arpa.gov.mt` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Maltská ARPA je nejmenší platební agentura v EU. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `NL` | [Rijksfinanciën](https://www.rijksfinancien.nl/) | `rijksfinancien.nl` | Nizozemské státní finance — rozpočet a výsledky hospodaření po ministerstvech a článcích, s otevřenými daty ke stažení a historickými řadami. Rozklikávací pohled na to, kam nizozemský stát dává peníze | open | bulk | reference |
 | `NL` | [RVO — Rijksdienst voor Ondernemend Nederland](https://www.rvo.nl/) | `rvo.nl` | Agentura pro podnikání — dotační programy, jejich příjemci a registry jako evidence zemědělské půdy nebo energetických štítků budov. U nizozemských firem odpoví, jaké veřejné podpory čerpaly | open | download | reference |
+| `NL` | [RVO — Gemeenschappelijk landbouwbeleid](https://www.rvo.nl/onderwerpen/glb) | `rvo.nl` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Nizozemská RVO zveřejňuje seznam příjemců a k tomu registr zemědělských pozemků a energetických štítků | open | download | reference |
 | `PL` | [Mapa Dotacji UE](https://mapadotacji.gov.pl/) | `mapadotacji.gov.pl` | Projekty spolufinancované z fondů EU v Polsku — příjemce, program, částka a místo realizace na mapě, od roku 2004. Data ke stažení; u polských firem odpoví, kolik a odkud dostaly evropských peněz | open | bulk | reference |
 | `PL` | [Rejestr Umów](https://rejestrumow.gov.pl/) | `rejestrumow.gov.pl` | Centrální rejstřík smluv subjektů veřejných financí, povinný od roku 2022 — protistrana, předmět, hodnota a doba plnění nad zákonným limitem. Polská obdoba českého registru smluv, byť s kratší historií a bez plných textů | open | bulk | reference |
+| `PL` | [ARiMR](https://www.gov.pl/web/arimr) | `gov.pl` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Polská ARiMR vede navíc evidenci hospodářských zvířat a producentů | open | search | reference |
 | `PT` | [Portal da Transparência](https://transparencia.gov.pt/) | `transparencia.gov.pt` | Portugalský transparenční portál — veřejné výdaje, zaměstnanost ve státní správě, smlouvy a dotace v přehledech s exportem. Sjednocuje čísla, která jinak leží v jednotlivých resortech | open | bulk | reference |
+| `PT` | [IFAP](https://www.ifap.pt/) | `ifap.pt` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Portugalský IFAP provozuje i geoprostorový systém parcel iSIP, ze kterého se čerpá při kontrolách | open | search | reference |
 | `RO` | [Ministerul Finanțelor](https://mfinante.gov.ro/) | `mfinante.gov.ro` | Rumunské ministerstvo financí — **veřejná databáze účetních výkazů firem podle CUI** (bilanț, obrat, zisk, zaměstnanci), rozpočet a daňová legislativa. Bezplatná cesta k rumunským firemním číslům, když je výpis z rejstříku placený | open | search | reference |
 | `SK` | [Rozpočet.sk](https://www.rozpocet.sk/web/) | `rozpocet.sk` | Rozklikávací rozpočty slovenských obcí, měst a státu v jednotné podobě, včetně faktur a objednávek. Provozuje INEKO; obce zveřejňují data v neporovnatelných formátech a tady jsou sjednocené a srovnatelné v čase | open | bulk | reference |
 | `SK` | [NKÚ SR](https://www.nku.gov.sk/) | `nku.gov.sk` | Nejvyšší kontrolní úřad SR — kontrolní závěry k programům, resortům a samosprávám s vyčíslením zjištěných nedostatků, plus datové výstupy k hospodaření obcí. Často jediný veřejný rozbor konkrétního slovenského veřejného projektu | open | download | reference |
+| `SK` | [PPA — Pôdohospodárska platobná agentúra](https://www.apa.sk/) | `apa.sk` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Slovenská PPA zveřejňuje seznam příjemců; platby jsou navíc v Centrálnom registri zmlúv a v Rozpočte.sk | open | search | reference |
 | `SI` | [Erar](https://erar.si/) | `erar.si` | **Každá transakce slovinského veřejného sektoru** — kdo komu kdy kolik zaplatil, od ministerstev po obce, dohledatelné z obou stran a propojené s obchodním rejstříkem. Provozuje protikorupční komise. Nejotevřenější nástroj pro sledování veřejných peněz v EU; obdobu tomu nemá žádný jiný členský stát | open | bulk | reference |
+| `SI` | [Agencija za kmetijske trge in razvoj podeželja](https://www.gov.si/drzavni-organi/organi-v-sestavi/agencija-za-kmetijske-trge-in-razvoj-podezelja/) | `gov.si` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Slovinská agentura zveřejňuje seznam příjemců; platby jsou navíc dohledatelné v Eraru po jednotlivých transakcích | open | search | reference |
 | `ES` | [BDNS — databáze dotací](https://www.pap.hacienda.gob.es/bdnstrans/GE/es/index) | `pap.hacienda.gob.es` | Národní databáze dotací — **každá vyplacená veřejná podpora ve Španělsku s příjemcem, částkou, poskytovatelem a účelem**, ze všech úrovní správy. Data ke stažení; u španělské firmy odpoví, kolik veřejných peněz dostala | open | bulk | reference |
+| `ES` | [FEGA](https://www.fega.gob.es/es) | `fega.gob.es` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Španělská FEGA zveřejňuje seznam příjemců ke stažení; k tomu vede registr zemědělských podniků a statistiky trhu | open | download | reference |
 | `SE` | [Statskontoret / ESV — státní finance](https://www.esv.se/) | `esv.se` | Švédská správa státních financí — plnění rozpočtu, výkazy státních úřadů a prognózy. Švédsko nemá rozklikávací rozpočtový portál na úrovni faktur; jednotlivé dokumenty se získávají podle zásady veřejnosti | open | download | reference |
+| `SE` | [Jordbruksverket](https://jordbruksverket.se/) | `jordbruksverket.se` | Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Švédský zemědělský úřad vydává seznam příjemců i statistiky a registry zvířat jako otevřená data | open | bulk | reference |
 
 # Firmy a due diligence
 
@@ -685,10 +711,8 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `EU` | [e-Justice — rejstříky členských států](https://e-justice.europa.eu/topics/registers-business-insolvency-land_en) | `e-justice.europa.eu` | Rozcestník Komise po národních obchodních, insolvenčních a pozemkových rejstřících — pro každý stát odkaz, rozsah údajů, jazyk a podmínky přístupu. První místo, kam jít, když je potřeba zjistit, kde se v dané zemi firma nebo pozemek vůbec dohledá | open | search | reference |
 | `EU` | [BRIS — vyhledání firmy v EU](https://e-justice.europa.eu/topics/registers-business-insolvency-land/business-registers-search-company-eu_en) | `e-justice.europa.eu` | Propojení obchodních rejstříků všech členských států — jedno vyhledávací pole nad všemi národními rejstříky, výsledkem základní údaje a odkaz do rejstříku země. Zdarma; listiny a výpisy si za svých podmínek účtuje každý národní rejstřík zvlášť | open | search | reference |
 | `EU` | [VIES — ověření DIČ](https://ec.europa.eu/taxation_customs/vies/) | `ec.europa.eu` | Ověření platnosti DIČ pro účely DPH ve všech členských státech — vrací, jestli je číslo aktivní, a u většiny států i jméno a adresu plátce. Má SOAP i REST rozhraní; standardní krok při prověření existence obchodního partnera před fakturací | open | api | reference |
-| `EU` | [EUIPO eSearch](https://euipo.europa.eu/eSearch/) | `euipo.europa.eu` | Ochranné známky EU a průmyslové vzory — vyhledání podle názvu, majitele nebo třídy, se stavem řízení, historií převodů a zástupci. Majitel známky bývá první vodítko k propojení firem, které v rejstříku vazbu nemají. API po registraci | open | api | reference |
 | `GLOBAL` | [GLEIF — globální rejstřík LEI](https://www.gleif.org/) | `gleif.org` | Registr identifikátorů právnických osob LEI — pro každý subjekt oficiální název, sídlo, právní forma a hlavně vztah k přímé i konečné mateřské společnosti. Kompletní data pod CC0 ke stažení i přes API; jediný veřejný a globální zdroj strukturovaných vlastnických vazeb mezi firmami napříč jurisdikcemi | open | bulk | reference |
 | `GLOBAL` | [OpenCorporates](https://opencorporates.com/) | `opencorporates.com` | Agregátor obchodních rejstříků z více než stovky jurisdikcí — firmy, statutární orgány a vazby napříč zeměmi na jednom místě, s uvedením zdroje a data stažení. Vyhledávání zdarma, API a hromadná data placené; nenahrazuje národní rejstřík, ale najde firmu, o jejíž zemi člověk neví | mixed | api | reference |
-| `GLOBAL` | [Espacenet](https://worldwide.espacenet.com/) | `worldwide.espacenet.com` | Patentová databáze Evropského patentového úřadu — přes 150 milionů dokumentů ze všech hlavních úřadů, s rodinami patentů, citacemi a právním stavem. Přihlašovatel a vynálezce prozradí, čím se firma technicky zabývá a kdo za tím stojí. OPS API po registraci; na automat vrací 403 | open | api | reference |
 | `AT` | [Firmenbuchabfrage (JustizOnline)](https://justizonline.gv.at/jop/web/firmenbuchabfrage) | `justizonline.gv.at` | Rakouský obchodní rejstřík vedený soudy — společnosti, statutární orgány, sídlo a základní kapitál. Vyhledání firmy je zdarma, ale každý výpis a každá listina jsou zpoplatněné; bezplatnou obdobu českého ARESu Rakousko nemá | paid | search | reference |
 | `AT` | [WKO Firmen A–Z](https://firmen.wko.at/) | `firmen.wko.at` | Databáze členů Hospodářské komory — prakticky všechny rakouské živnosti a firmy s oborem činnosti, kontaktem a živnostenským oprávněním, zdarma. Členství je povinné, takže je to bezplatný způsob, jak si rakouskou firmu předběžně ověřit bez placení Firmenbuchu | open | search | reference |
 | `BE` | [Staatsbladmonitor](https://www.staatsbladmonitor.be/) | `staatsbladmonitor.be` | Komerční nadstavba nad Moniteur belge — firemní oznámení strukturovaná po společnostech s historií změn, orgány a vazbami. Úřední zdroj je věstník, tohle je použitelnější, když je potřeba sledovat firmu v čase | mixed | search | reference |
@@ -701,7 +725,6 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `CZ` | [Obchodní rejstřík](https://or.justice.cz/) | `or.justice.cz` | Veřejný rejstřík — vazby, sídla, statutáři | open | search | history |
 | `CZ` | [Registr živnostenského podnikání](https://rzp.gov.cz/) | `rzp.gov.cz` | Živnostenská oprávnění fyzických i právnických osob — včetně seznamu provozoven s adresami (geokódovatelné) | open | search | reference |
 | `CZ` | [Registr plátců DPH a nespolehlivých plátců](https://adisreg.mfcr.cz/dpr/DphReg) | `adisreg.mfcr.cz` | Ověření, jestli je subjekt plátcem DPH, od kdy, a hlavně jestli je označený jako nespolehlivý plátce nebo nespolehlivá osoba — a jaké má zveřejněné bankovní účty. Platba na účet mimo seznam zakládá ručení za nezaplacenou daň, takže je to praktický krok před úhradou faktury | open | search | reference |
-| `CZ` | [ISDV — rejstříky Úřadu průmyslového vlastnictví](https://isdv.upv.gov.cz/) | `isdv.upv.gov.cz` | České ochranné známky, patenty, užitné a průmyslové vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení, převody a zástavními právy. Majitel známky často odhalí propojení firem, které v obchodním rejstříku není vidět | open | search | reference |
 | `DK` | [CVR — Det Centrale Virksomhedsregister](https://datacvr.virk.dk/) | `datacvr.virk.dk` | Dánský registr firem — společnosti, vedení, historie změn a **účetní závěrky, všechno zdarma a bez registrace**, včetně hromadného výdeje. Jeden z nejotevřenějších firemních registrů v EU. Údaje o skutečných majitelích jsou vedené zvlášť a od roku 2022 podléhají řízení o oprávněném zájmu. Na automat vrací 403, v prohlížeči funguje | open | bulk | reference |
 | `EE` | [e-Äriregister](https://ariregister.rik.ee/) | `ariregister.rik.ee` | Estonský obchodní rejstřík — společnosti, vedení, **společníci, roční výkazy a historie změn**, se základním výpisem zdarma a bez přihlášení. Roční účetní výkazy jsou veřejné; podrobné výpisy a dokumenty za poplatek. Má otevřená data i API | mixed | api | reference |
 | `FI` | [PRH — Patentti- ja rekisterihallitus](https://www.prh.fi/) | `prh.fi` | Finský patentový a registrační úřad — **obchodní rejstřík, rejstřík spolků a nadací, ochranné známky a patenty**. Základní údaje o firmách jsou zdarma přes YTJ, výpisy a dokumenty zpoplatněné přes Virre | mixed | api | reference |
@@ -710,7 +733,6 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `FR` | [Infogreffe](https://www.infogreffe.fr/) | `infogreffe.fr` | Portál francouzských rejstříkových soudů (greffes) — výpisy Kbis, listiny a účetní závěrky. Základní údaje zdarma, ověřené výpisy a dokumenty zpoplatněné. Od vzniku RNE u INPI je pro bezplatnou rešerši lepší Annuaire des Entreprises. Na automat vrací 403 | mixed | search | reference |
 | `FR` | [Pappers](https://www.pappers.fr/) | `pappers.fr` | Komerční nadstavba nad francouzskými otevřenými registry — firmy, orgány, závěrky a vazby mezi osobami v použitelné podobě, se sledováním změn. Základ zdarma, API a exporty placené. Na automat vrací 403 | mixed | api | reference |
 | `DE` | [Handelsregister](https://www.handelsregister.de/rp_web/welcome.xhtml) | `handelsregister.de` | Německý obchodní rejstřík vedený rejstříkovými soudy — firmy, statutární orgány, sídlo, kapitál a uložené listiny. Od srpna 2022 je náhled i stahování dokumentů **zdarma**, dřív se platilo za každý výpis; společníci s.r.o. jsou v seznamu společníků mezi listinami | open | search | reference |
-| `DE` | [DPMAregister](https://register.dpma.de/DPMAregister/Uebersicht) | `register.dpma.de` | Německé ochranné známky, patenty, užitné a průmyslové vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení, převody a zástavami. Majitel známky často odhalí propojení firem, které v obchodním rejstříku vidět není | open | search | reference |
 | `GR` | [ΓΕΜΗ — Γενικό Εμπορικό Μητρώο](https://www.businessportal.gr/) | `businessportal.gr` | Řecký obchodní rejstřík (ΓΕΜΗ) — společnosti, orgány, kapitál a stav. Základní údaje zdarma, **výpisy a listiny zpoplatněné**. Povinná zveřejnění firem vycházejí na publicity.businessportal.gr | mixed | search | reference |
 | `GR` | [ΑΑΔΕ / gsis.gr — daňové služby](https://www.gsis.gr/) | `gsis.gr` | Řecká daňová správa — **ověření DIČ (ΑΦΜ) a stavu registrace subjektu**, seznamy daňových dlužníků a elektronické služby. Ověření ΑΦΜ je bezplatný krok před obchodem s řeckou protistranou. Na automat vrací 403 | open | api | reference |
 | `HU` | [e-Cégjegyzék](https://www.e-cegjegyzek.hu/) | `e-cegjegyzek.hu` | Maďarský obchodní rejstřík — vyhledání společnosti podle názvu, čísla nebo daňového čísla se základními údaji zdarma; **úplný výpis a historie změn jsou zpoplatněné**. Provozuje ministerstvo spravedlnosti | mixed | search | reference |
@@ -734,7 +756,6 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `SK` | [Obchodný register SR](https://www.orsr.sk/) | `orsr.sk` | Slovenský obchodní rejstřík vedený soudy — společnosti, statutární orgány, společníci a základní kapitál, včetně historických výpisů. Zdarma a bez registrace; společníci jsou u s.r.o. přímo ve výpisu, což v řadě států veřejné není | open | search | reference |
 | `SK` | [Register právnických osôb (RPO)](https://rpo.statistics.sk/rpo/) | `rpo.statistics.sk` | Referenční registr všech slovenských právnických osob a podnikatelů vedený statistickým úřadem — identifikace, právní forma, sídlo a stav napříč zdrojovými registry. Má otevřené API; slovenská obdoba ARESu | open | api | reference |
 | `SK` | [FinStat](https://www.finstat.sk/) | `finstat.sk` | Komerční nadstavba nad slovenskými registry — firmy s finančními ukazateli, vazbami mezi osobami, dluhy vůči institucím a skóre. Základ zdarma, hlubší analýzy a API za předplatné; nenahrazuje ORSR, ale spojuje data, která jsou jinak roztroušená. Na automat vrací 403 | mixed | api | reference |
-| `SK` | [Úrad priemyselného vlastníctva SR](https://www.indprop.gov.sk/) | `indprop.gov.sk` | Slovenské ochranné známky, patenty a vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení a převody. Původní upv.gov.sk neodpovídá, úřad má dnes doménu indprop | open | search | reference |
 | `SI` | [AJPES](https://www.ajpes.si/) | `ajpes.si` | Slovinská agentura pro veřejné právní záznamy — obchodní rejstřík, **účetní závěrky všech slovinských firem zdarma**, insolvenční řízení, registr transakčních účtů a statistiky. Jeden z nejucelenějších firemních registrů v EU na jednom místě | open | bulk | reference |
 | `ES` | [Registradores de España](https://www.registradores.org/) | `registradores.org` | Sdružení španělských rejstříkových úředníků — vstup do obchodního rejstříku (Registro Mercantil) i katastru nemovitostních práv (Registro de la Propiedad). **Každý výpis je zpoplatněný**; bezplatná obdoba francouzského Annuaire des Entreprises ve Španělsku neexistuje | paid | search | reference |
 | `ES` | [Registro Mercantil Central](https://www.rmc.es/) | `rmc.es` | Centrální obchodní rejstřík — ověření, jestli je název firmy volný, a centrální index všech španělských společností s odkazem na příslušný provinční rejstřík. Ověření názvu zdarma, výpisy a listiny placené | mixed | search | reference |
@@ -908,6 +929,43 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `ES` | [Tribunal Constitucional (Španělsko)](https://www.tribunalconstitucional.es/) | `tribunalconstitucional.es` | Španělský ústavní soud — nálezy o ústavnosti státních i regionálních předpisů, včetně sporů o kompetence mezi státem a autonomními společenstvími. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `ES` | [Ministerio de Justicia](https://www.mjusticia.gob.es/) | `mjusticia.gob.es` | Španělské ministerstvo spravedlnosti — rejstříky (spolky, nadace, poslední vůle), insolvenční agenda a Registro Público Concursal. **Španělsko nemá bezplatný insolvenční rejstřík jako ISIR**; úpadky se vyhlašují v BOE a spisy vede veřejný konkurzní registr s omezeným rozsahem | open | none | reference |
 | `SE` | [Sveriges Domstolar](https://www.domstol.se/) | `domstol.se` | Švédská soudní správa — rozhodnutí vyšších soudů, soudní kalendáře a informace o řízeních. **Švédská zásada veřejnosti dokumentů (offentlighetsprincipen) znamená, že spisy jsou na žádost přístupné, ale online se plošně nezveřejňují** | open | search | reference |
+
+## Průmyslové vlastnictví
+
+| Země | Web | Doména | Popis | Přístup | Data | Zdroj |
+|---|---|---|---|---|---|---|
+| `EU` | [EUIPO eSearch](https://euipo.europa.eu/eSearch/) | `euipo.europa.eu` | Ochranné známky EU a průmyslové vzory — vyhledání podle názvu, majitele nebo třídy, se stavem řízení, historií převodů a zástupci. Majitel známky bývá první vodítko k propojení firem, které v rejstříku vazbu nemají. API po registraci | open | api | reference |
+| `EU` | [EPO — European Patent Office](https://www.epo.org/) | `epo.org` | Evropský patentový úřad uděluje patenty s účinkem ve 39 státech. Vedle registru nabízí statistiky přihlášek po zemích a oborech, což je dobrý ukazatel toho, kde která firma opravdu vyvíjí | open | search | reference |
+| `EU` | [TMview](https://www.tmdn.org/tmview/) | `tmdn.org` | Společný vyhledávač ochranných známek napříč všemi národními úřady EU, EUIPO a desítkami dalších zemí. Jedno hledání podle majitele ukáže portfolio značek celé skupiny bez obcházení 27 rejstříků | open | api | reference |
+| `GLOBAL` | [Espacenet](https://worldwide.espacenet.com/) | `worldwide.espacenet.com` | Patentová databáze Evropského patentového úřadu — přes 150 milionů dokumentů ze všech hlavních úřadů, s rodinami patentů, citacemi a právním stavem. Přihlašovatel a vynálezce prozradí, čím se firma technicky zabývá a kdo za tím stojí. OPS API po registraci; na automat vrací 403 | open | api | reference |
+| `AT` | [Österreichisches Patentamt](https://www.patentamt.at/) | `patentamt.at` | Rakouský patentový úřad. Vede rejstříky patentů, ochranných známek a průmyslových vzorů — u due diligence se z nich čte, jaké značky firma skutečně vlastní a jestli na nich neváznou licence nebo zástavy | open | search | reference |
+| `AT` | [see·IP — rešeršní databáze](https://seeip.patentamt.at/) | `seeip.patentamt.at` | Vyhledávač rakouského patentového úřadu nad patenty, známkami a vzory. Hledá se podle majitele, takže z něj jde postavit přehled nehmotného majetku jedné firmy | open | api | reference |
+| `BE` | [Belgian Intellectual Property Office](https://economie.fgov.be/en/themes/intellectual-property) | `economie.fgov.be` | Belgický úřad průmyslového vlastnictví spadá pod ministerstvo hospodářství. Známky se pro Belgii, Nizozemsko a Lucembursko zapisují společně u Benelux Office, patenty národně tady | open | none | reference |
+| `BG` | [Патентно ведомство](https://www.bpo.bg/) | `bpo.bg` | Bulharský patentový úřad s rejstříky patentů, známek, vzorů a zeměpisných označení. Databáze jsou veřejné a hledá se v nich i podle přihlašovatele | open | search | reference |
+| `CY` | [Intellectual Property Section](https://www.intellectualproperty.gov.cy/) | `intellectualproperty.gov.cy` | Kyperská sekce průmyslového vlastnictví při ministerstvu hospodářství. Vede rejstřík ochranných známek a patentů; kyperské holdingy si sem často registrují značky skupiny | open | search | reference |
+| `CZ` | [ISDV — rejstříky Úřadu průmyslového vlastnictví](https://isdv.upv.gov.cz/) | `isdv.upv.gov.cz` | České ochranné známky, patenty, užitné a průmyslové vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení, převody a zástavními právy. Majitel známky často odhalí propojení firem, které v obchodním rejstříku není vidět | open | search | reference |
+| `DK` | [Patent- og Varemærkestyrelsen](https://www.dkpto.dk/) | `dkpto.dk` | Dánský patentový a známkový úřad. Rejstříky jsou veřejné a napojené na obchodní rejstřík CVR, takže majitele známky lze rovnou dohledat jako firmu | open | search | reference |
+| `EE` | [Patendiamet](https://www.epa.ee/) | `epa.ee` | Estonský patentový úřad. Vede rejstříky patentů, užitných vzorů, známek a vzorů; vyhledávání je jako většina estonské správy dostupné i anglicky | open | search | reference |
+| `FI` | [Patenttitietopalvelu](https://patenttitietopalvelu.prh.fi/) | `patenttitietopalvelu.prh.fi` | Finská patentová informační služba úřadu PRH. Obsahuje národní i validované evropské patenty a hledá se v ní podle přihlašovatele, vynálezce i klasifikace | open | search | reference |
+| `FI` | [Tavaramerkkitietopalvelu](https://tavaramerkkitietopalvelu.prh.fi/) | `tavaramerkkitietopalvelu.prh.fi` | Finský rejstřík ochranných známek. Ukazuje i historii převodů a zástav, takže je vidět, kdy značka přešla na jinou firmu ve skupině | open | search | reference |
+| `FR` | [Base marques INPI](https://bases-marques.inpi.fr/) | `bases-marques.inpi.fr` | Francouzský rejstřík ochranných známek u INPI. Hledá se podle znění značky i podle majitele, takže z něj jde sestavit portfolio značek jedné skupiny; patenty a vzory mají u INPI vlastní databáze | open | search | reference |
+| `DE` | [DPMAregister](https://register.dpma.de/DPMAregister/Uebersicht) | `register.dpma.de` | Německé ochranné známky, patenty, užitné a průmyslové vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení, převody a zástavami. Majitel známky často odhalí propojení firem, které v obchodním rejstříku vidět není | open | search | reference |
+| `GR` | [ΟΒΙ — Οργανισμός Βιομηχανικής Ιδιοκτησίας](https://www.obi.gr/) | `obi.gr` | Řecký úřad průmyslového vlastnictví. Vede rejstříky patentů a užitných vzorů; ochranné známky spravuje odděleně ministerstvo rozvoje | open | search | reference |
+| `HU` | [SZTNH — Szellemi Tulajdon Nemzeti Hivatala](https://www.hipo.gov.hu/) | `hipo.gov.hu` | Maďarský úřad duševního vlastnictví. Vedle rejstříků patentů a známek vede i evidenci kolektivních správců autorských práv | open | search | reference |
+| `IE` | [Intellectual Property Office of Ireland](https://www.ipoi.gov.ie/) | `ipoi.gov.ie` | Irský úřad průmyslového vlastnictví v Kilkenny. Rejstříky patentů, známek a vzorů jsou veřejné a obsahují i historii převodů a zástav | open | search | reference |
+| `IT` | [UIBM — Ufficio Italiano Brevetti e Marchi](https://uibm.mise.gov.it/) | `uibm.mise.gov.it` | Italský patentový a známkový úřad při ministerstvu podniků. Databáze jde prohledávat podle majitele a ukazuje i změny vlastnictví značky | open | search | reference |
+| `LV` | [Patentu valde](https://www.lrpv.gov.lv/) | `lrpv.gov.lv` | Lotyšský patentový úřad. Rejstříky patentů, známek a vzorů jsou veřejné a publikuje k nim úřední věstník se zápisy a námitkami | open | search | reference |
+| `LT` | [VPB — Valstybinis patentų biuras](https://vpb.lrv.lt/) | `vpb.lrv.lt` | Litevský státní patentový úřad. Vede rejstříky patentů, známek a vzorů. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `LU` | [IPIL — Institut de la Propriété Intellectuelle Luxembourg](https://ipil.lu/) | `ipil.lu` | Lucemburský institut průmyslového vlastnictví. Národní patenty se zapisují tady, známky společně s Belgií a Nizozemskem u Benelux Office. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `MT` | [Industrial Property Registrations Directorate](https://commerce.gov.mt/en/Intellectual_Property/) | `commerce.gov.mt` | Maltský registr průmyslového vlastnictví při ministerstvu obchodu. Vede známky, patenty a vzory. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `NL` | [Octrooicentrum Nederland](https://www.octrooicentrum.nl/) | `octrooicentrum.nl` | Nizozemské patentové centrum spadá pod agenturu RVO. Národní patentový rejstřík je tady, známky pro Benelux vede společný úřad BOIP | open | search | reference |
+| `PL` | [Urząd Patentowy RP](https://uprp.gov.pl/) | `uprp.gov.pl` | Polský patentový úřad. Databáze patentů, známek a vzorů jsou veřejné a vyhledávání podle majitele odhalí i značky držené přes jiné firmy skupiny | open | search | reference |
+| `PT` | [INPI Portugal](https://inpi.justica.gov.pt/) | `inpi.justica.gov.pt` | Portugalský institut průmyslového vlastnictví. Rejstříky známek a patentů jsou veřejné a provázané s obchodním rejstříkem, takže majitel se dohledá i podle NIPC | open | search | reference |
+| `RO` | [OSIM](https://osim.ro/) | `osim.ro` | Rumunský úřad pro patenty a ochranné známky. Vede národní rejstříky a publikuje úřední věstník BOPI s novými zápisy | open | search | reference |
+| `SK` | [Úrad priemyselného vlastníctva SR](https://www.indprop.gov.sk/) | `indprop.gov.sk` | Slovenské ochranné známky, patenty a vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení a převody. Původní upv.gov.sk neodpovídá, úřad má dnes doménu indprop | open | search | reference |
+| `SI` | [Urad RS za intelektualno lastnino](https://www.gov.si/drzavni-organi/organi-v-sestavi/urad-za-intelektualno-lastnino/) | `gov.si` | Slovinský úřad pro duševní vlastnictví. Vede rejstříky patentů, známek a vzorů a dohlíží na kolektivní správu autorských práv | open | none | reference |
+| `ES` | [OEPM — Oficina Española de Patentes y Marcas](https://www.oepm.es/) | `oepm.es` | Španělský patentový a známkový úřad. Nabízí rešeršní nástroje nad patenty i známkami a publikuje Boletín Oficial de la Propiedad Industrial s dennímii zápisy | open | search | reference |
+| `SE` | [PRV — Patent- och registreringsverket](https://www.prv.se/) | `prv.se` | Švédský patentový a registrační úřad. Vedle patentů a známek vede i registr periodického tisku a osobních jmen chráněných jako značka | open | search | reference |
 
 ## Regulace a licencované subjekty
 

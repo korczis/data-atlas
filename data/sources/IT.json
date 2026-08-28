@@ -418,5 +418,29 @@
     "desc": "Digitální model terénu celé Itálie v rozlišení 10 m, sestavený INGV — **jediný volně dostupný celostátní italský výškopis**, protože podrobnější LiDAR data vedou regiony a ministerstvo životního prostředí odděleně",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-agea",
+    "topic": "spending",
+    "name": "AGEA",
+    "url": "https://www.agea.gov.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Italská AGEA koordinuje regionální platební agentury; seznam příjemců je společný, ale výplaty jdou přes ně",
+    "country": "IT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "it-uibm",
+    "topic": "ip",
+    "name": "UIBM — Ufficio Italiano Brevetti e Marchi",
+    "url": "https://uibm.mise.gov.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Italský patentový a známkový úřad při ministerstvu podniků. Databáze jde prohledávat podle majitele a ukazuje i změny vlastnictví značky",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

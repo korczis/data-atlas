@@ -901,7 +901,7 @@
   },
   {
     "id": "cz-isdv-upv",
-    "topic": "companies",
+    "topic": "ip",
     "name": "ISDV — rejstříky Úřadu průmyslového vlastnictví",
     "url": "https://isdv.upv.gov.cz/",
     "kind": "official",
@@ -1124,6 +1124,18 @@
     "access": "open",
     "data": "none",
     "desc": "Rozcestník územního plánování — evidence územně plánovací činnosti obcí a krajů, územní studie, limity využití území a metodiky. Odsud se zjistí, jestli má obec platný územní plán a kde se dá najít, což o využitelnosti pozemku rozhoduje víc než katastr",
+    "country": "CZ",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-szif-prijemci",
+    "topic": "spending",
+    "name": "SZIF — seznam příjemců dotací",
+    "url": "https://szif.gov.cz/cs/seznam-prijemcu-dotaci",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Český seznam jde prohledávat podle jména i IČO a ukazuje částky po jednotlivých opatřeních — u zemědělských podniků nejrychlejší cesta ke zjištění, kolik berou z veřejných peněz",
     "country": "CZ",
     "verified": "2026-08-28"
   }

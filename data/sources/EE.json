@@ -286,5 +286,29 @@
     "desc": "Estonský adresní systém — **vyhledání jakékoli estonské adresy se souřadnicemi, katastrální parcelou a budovou**, zdarma a s otevřeným API. Referenční adresní zdroj, na kterém stojí estonské e-služby",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-pria",
+    "topic": "spending",
+    "name": "PRIA",
+    "url": "https://www.pria.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Estonská PRIA vede navíc registr zemědělských zvířat a pozemků a vyhledávání je propojené s obchodním rejstříkem",
+    "country": "EE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-epa",
+    "topic": "ip",
+    "name": "Patendiamet",
+    "url": "https://www.epa.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Estonský patentový úřad. Vede rejstříky patentů, užitných vzorů, známek a vzorů; vyhledávání je jako většina estonské správy dostupné i anglicky",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

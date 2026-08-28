@@ -371,5 +371,29 @@
     "desc": "Španělská data leteckého laserového skenování — **bodová mračna a modely terénu pro celé Španělsko ve dvou až třech generacích**, zdarma ke stažení po listech. Ortofota PNOA jsou v témže centru",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-fega",
+    "topic": "spending",
+    "name": "FEGA",
+    "url": "https://www.fega.gob.es/es",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Španělská FEGA zveřejňuje seznam příjemců ke stažení; k tomu vede registr zemědělských podniků a statistiky trhu",
+    "country": "ES",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "es-oepm",
+    "topic": "ip",
+    "name": "OEPM — Oficina Española de Patentes y Marcas",
+    "url": "https://www.oepm.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Španělský patentový a známkový úřad. Nabízí rešeršní nástroje nad patenty i známkami a publikuje Boletín Oficial de la Propiedad Industrial s dennímii zápisy",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

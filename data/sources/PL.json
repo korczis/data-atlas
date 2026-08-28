@@ -682,5 +682,29 @@
     "desc": "Úřad veřejných zakázek — Biuletyn Zamówień Publicznych s podlimitními zakázkami, výroční zprávy o trhu zakázek a rozhodnutí odvolací komory KIO. Doplňuje e-Zamówienia, kde probíhá samotné řízení, o dohledovou a statistickou vrstvu",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-arimr",
+    "topic": "spending",
+    "name": "ARiMR",
+    "url": "https://www.gov.pl/web/arimr",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Polská ARiMR vede navíc evidenci hospodářských zvířat a producentů",
+    "country": "PL",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-uprp",
+    "topic": "ip",
+    "name": "Urząd Patentowy RP",
+    "url": "https://uprp.gov.pl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Polský patentový úřad. Databáze patentů, známek a vzorů jsou veřejné a vyhledávání podle majitele odhalí i značky držené přes jiné firmy skupiny",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

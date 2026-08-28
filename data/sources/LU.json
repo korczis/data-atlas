@@ -274,5 +274,29 @@
     "desc": "Lucemburská katastrální mapa — **parcely s čísly, výměrami a obcí, plus vrstvy budov a hranic**, veřejně a zdarma v mapové aplikaci i jako služby. Vede ji Administration du cadastre et de la topographie",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-agriculture",
+    "topic": "spending",
+    "name": "Agriculture.public.lu",
+    "url": "https://agriculture.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Lucemburské ministerstvo zemědělství zveřejňuje seznam příjemců i vinařské a lesnické registry",
+    "country": "LU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-ipil",
+    "topic": "ip",
+    "name": "IPIL — Institut de la Propriété Intellectuelle Luxembourg",
+    "url": "https://ipil.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Lucemburský institut průmyslového vlastnictví. Národní patenty se zapisují tady, známky společně s Belgií a Nizozemskem u Benelux Office. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

@@ -286,5 +286,17 @@
     "desc": "Rumunský registr administrativně-územních jednotek — **kraje, obce, města a vesnice s kódy SIRUTA**, jako otevřená data ke stažení. Referenční územní číselník Rumunska. Adresy na úrovni ulic má vést RENNS u ANCPI, jeho ohlašovaná adresa `renns.ancpi.ro` ale neexistuje ani v DNS; na úrovni ulic tak zbývá vyhledávač PSČ Poșta Română",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-osim",
+    "topic": "ip",
+    "name": "OSIM",
+    "url": "https://osim.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Rumunský úřad pro patenty a ochranné známky. Vede národní rejstříky a publikuje úřední věstník BOPI s novými zápisy",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

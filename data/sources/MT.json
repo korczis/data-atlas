@@ -226,5 +226,29 @@
     "desc": "Vyhledávač maltských poštovních směrovacích čísel podle lokality a ulice — **de facto referenční adresní zdroj Malty**, protože samostatný státní adresní registr neexistuje. Prostorovou stránku adres nese mapa Planning Authority",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-arpa",
+    "topic": "spending",
+    "name": "ARPA — Agriculture and Rural Payments Agency",
+    "url": "https://arpa.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Maltská ARPA je nejmenší platební agentura v EU. Na automat vrací 403, v prohlížeči funguje",
+    "country": "MT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-ipr",
+    "topic": "ip",
+    "name": "Industrial Property Registrations Directorate",
+    "url": "https://commerce.gov.mt/en/Intellectual_Property/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Maltský registr průmyslového vlastnictví při ministerstvu obchodu. Vede známky, patenty a vzory. Na automat vrací 403, v prohlížeči funguje",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

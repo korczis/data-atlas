@@ -408,5 +408,41 @@
     "desc": "Rakouský adresní registr vedený BEV — **všechny adresy Rakouska se souřadnicemi, obcí, katastrálním územím a vazbou na budovu**, čtvrtletně a zdarma ke stažení. Podklad pro geokódování rakouských adres; část webu BEV odmítá automatické klienty",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-ama",
+    "topic": "spending",
+    "name": "AMA — Agrarmarkt Austria",
+    "url": "https://www.ama.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Rakouská AMA vede vedle toho registry zemědělských podniků, značky kvality a tržní statistiky",
+    "country": "AT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "at-patentamt",
+    "topic": "ip",
+    "name": "Österreichisches Patentamt",
+    "url": "https://www.patentamt.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Rakouský patentový úřad. Vede rejstříky patentů, ochranných známek a průmyslových vzorů — u due diligence se z nich čte, jaké značky firma skutečně vlastní a jestli na nich neváznou licence nebo zástavy",
+    "country": "AT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "at-seeip",
+    "topic": "ip",
+    "name": "see·IP — rešeršní databáze",
+    "url": "https://seeip.patentamt.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Vyhledávač rakouského patentového úřadu nad patenty, známkami a vzory. Hledá se podle majitele, takže z něj jde postavit přehled nehmotného majetku jedné firmy",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]
