@@ -70,6 +70,42 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
   // takže dva sloupce zmizely za okrajem — proto se to měří.
   const box = d.querySelector('.scroll-x');
   const innerOverflow = box ? box.scrollWidth - box.clientWidth : 0;
+
+  // Překryv se nepozná, dokud se nescrolluje: `position: sticky` do té doby
+  // nic nedělá. Lepivá hlavička tabulky proto překryla první řádek a všechny
+  // brány prošly. Kontroluje se po odscrollování a jen u prvků, které
+  // *neplavou* u horního ani dolního okraje — pod horní lištou a nad souhrnnou
+  // lištou obsah projíždět má, uprostřed viewportu ne.
+  const occluders = [...d.querySelectorAll('body *')].filter(el => {
+    const pos = d.defaultView.getComputedStyle(el).position;
+    return pos === 'fixed' || pos === 'sticky';
+  });
+  const overlaps = [];
+  const vh = d.documentElement.clientHeight;
+  const EDGE = 8;   // tolerance pro „přilepené k okraji"
+  for (const y of [0, 400, 1200]) {
+    f.contentWindow.scrollTo(0, y);
+    for (const el of occluders) {
+      const a = el.getBoundingClientRect();
+      if (a.width === 0 || a.height === 0) continue;
+      if (a.top <= EDGE || a.bottom >= vh - EDGE) continue;   // banner u okraje
+      for (const row of d.querySelectorAll('tr[data-row], ul[role="list"] > li')) {
+        const b = row.getBoundingClientRect();
+        if (b.height === 0) continue;
+        if (b.bottom < 0 || b.top > vh) continue;
+        const dx = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        const dy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (dx > 1 && dy > 1) {
+          overlaps.push((el.tagName + (el.className && typeof el.className === 'string'
+            ? '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.') : ''))
+            + ` překrývá řádek o ${Math.round(dy)}px při scrollu ${y}`);
+          break;
+        }
+      }
+    }
+    if (overlaps.length) break;
+  }
+  f.contentWindow.scrollTo(0, 0);
   const out = document.createElement('div');
   out.id = 'probe-result';
   out.textContent = JSON.stringify({
@@ -81,6 +117,7 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
     mainInSidebar: !!(side && main && side.contains(main)),
     visibleRows: rows,
     innerOverflow: Math.max(0, innerOverflow),
+    overlaps: overlaps.slice(0, 3),
     guilty: guilty.slice(0, 5),
   });
   document.body.appendChild(out);
@@ -161,6 +198,8 @@ def main() -> int:
         if w >= 768 and r["innerOverflow"] > 0:
             problems.append(f"tabulka je o {r['innerOverflow']}px širší než okno "
                             "— sloupce zmizí za okrajem")
+        for o in r.get("overlaps", []):
+            problems.append(o)
         failed |= bool(problems)
         print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
               f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
