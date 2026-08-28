@@ -11,7 +11,7 @@ je zrovna nemám v historii.
 
 ## Co v tom je
 
-218 položek v 17 kategoriích:
+252 položek ve 20 kategoriích:
 
 | | |
 |---|---|
@@ -19,6 +19,9 @@ je zrovna nemám v historii.
 | Globální geodata | Natural Earth, GADM, geoBoundaries, Overture, TIGER/Line, Geofabrik |
 | ČR — katastr a geodata | ČÚZK (KN, geoportál, ZABAGED, DMR), ArcČR, DIBAVOD, LPIS, ČGS |
 | ČR — doprava a mobilita | Golemio, ŘSD, NDIC/dopravniinfo, PID |
+| Polsko — katastr a geodata | Geoportal/GUGiK, ULDK, Krajowa Integracja, RCN, ISOK, BDL |
+| Polsko — doprava a mobilita | GDDKiA, PKP PLK (MILK2), Portal Pasażera, GTFS |
+| Open data a registry PL | dane.gov.pl, GUS (BDL, TERYT), KRS, KRZ, CRBR, CEIDG |
 | Crime, IZS, bezpečnost | SFPD dashboard, data.police.uk, portály HZS, ACLED, GDELT |
 | Remote sensing | Copernicus, EarthExplorer, NASA Earthdata, OpenTopography, STAC |
 | Statistika a demografie | ČSÚ, Eurostat GISCO, WorldPop, GHSL |
@@ -71,20 +74,20 @@ Z Flowbite se bundluje jen to, co markup opravdu používá: plný `flowbite.min
 má 133 kB a nese accordion, carousel či datepicker, které tu nejsou — výřez
 s jediným šuplíkem má 9 kB.
 
-Hlídá to 83 testů ve čtyřech sadách (`smoke` · `interact` · `meta` · `flowbite`),
+Hlídá to 100 testů ve čtyřech sadách (`smoke` · `interact` · `meta` · `flowbite`),
 linter konvencí, měření responzivity a audit přístupnosti přes axe-core —
 vše v `just check`.
 
 ### Rozvržení
 
 Aplikační shell adaptovaný z Flowbite Pro Admin Dashboardu — horní lišta,
-postranní panel se všemi 17 kategoriemi a jejich počty, hlavní obsah a lepivá
+postranní panel se všemi 20 kategoriemi a jejich počty, hlavní obsah a lepivá
 souhrnná lišta. Podrobnosti k licenci jsou v [`NOTICE.md`](NOTICE.md).
 
-Katalog má dvě úrovně: **skupina → kategorie**. Sedmnáct kategorií v plochém
-seznamu je na 218 položek moc, tak je panel řadí do pěti skupin (Data — svět,
-Data — Česko, Události a rizika, Nástroje, Učení) a výsledky se člení po
-kategoriích. Filtr se propisuje do URL, takže výřez katalogu jde poslat dál.
+Katalog má dvě úrovně: **skupina → kategorie**. Dvacet kategorií v plochém
+seznamu je na 252 položek moc, tak je panel řadí do šesti skupin (Data — svět,
+Data — Česko, Data — Polsko, Události a rizika, Nástroje, Učení) a výsledky se
+člení po kategoriích. Filtr se propisuje do URL, takže výřez katalogu jde poslat dál.
 
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
 s řaditelnými sloupci — tabulka o šesti sloupcích se na telefon nevejde.

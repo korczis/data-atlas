@@ -2,7 +2,7 @@
 
 # Katalog
 
-**218** položek v **17** kategoriích — **52** doložených v datech prohlížeče, **166** doplněných referenčně.
+**252** položek v **20** kategoriích — **52** doložených v datech prohlížeče, **200** doplněných referenčně.
 
 Sloupec **Zdroj**: `bookmarks` / `history` / `bookmarks+history` znamená, že položka
 je doložená v exportu; `reference` znamená doplněno ručně.
@@ -27,15 +27,21 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 - [13. Open data / registry CZ](#13-open-data--registry-cz) — 11
 - [16. Nemovitosti / trh](#16-nemovitosti--trh) — 7
 
-**Události a rizika** — 36
+**Data — Polsko** — 32
+
+- [18. Polsko — katastr a geodata](#18-polsko--katastr-a-geodata) — 16
+- [19. Polsko — doprava / mobilita](#19-polsko--doprava--mobilita) — 5
+- [20. Open data / registry PL](#20-open-data--registry-pl) — 11
+
+**Události a rizika** — 37
 
 - [5. Crime / IZS / bezpečnost](#5-crime--izs--bezpečnost) — 13
 - [14. OSINT / investigace](#14-osint--investigace) — 13
-- [15. Počasí / klima](#15-počasí--klima) — 10
+- [15. Počasí / klima](#15-počasí--klima) — 11
 
-**Nástroje** — 74
+**Nástroje** — 75
 
-- [1. Gazetteer / geokódování](#1-gazetteer--geokódování) — 12
+- [1. Gazetteer / geokódování](#1-gazetteer--geokódování) — 13
 - [9. Mapové knihovny / basemapy](#9-mapové-knihovny--basemapy) — 15
 - [10. Spatial DB / analytika](#10-spatial-db--analytika) — 23
 - [11. Routing / síťová analýza](#11-routing--síťová-analýza) — 11
@@ -190,6 +196,56 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [Valuo](https://www.valuo.cz/) | `valuo.cz` | Odhady cen nemovitostí v ČR — mapa realizovaných prodejů z katastru a inzerce a cenový index; mapa a odhad zdarma, PROFI a API za 5 000–10 000 Kč/rok bez DPH | reference | – | – |
 | [ČNB — finanční stabilita](https://www.cnb.cz/cs/financni-stabilita/) | `cnb.cz` | Zprávy o finanční stabilitě, zátěžové testy a limity úvěrových ukazatelů LTV, DTI a DSTI — makro pohled na trh bydlení | reference | – | – |
 
+# Data — Polsko
+
+
+## 18. Polsko — katastr a geodata
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [Geoportal krajowy](https://www.geoportal.gov.pl/) | `geoportal.gov.pl` | Národní geoportál GUGiK a rozcestník polské infrastruktury prostorových dat — vyhledávání dat PZGiK, přehled licencí a odkazy na prohlížecí i stahovací služby | reference | – | – |
+| [Geoportal — mapová aplikace](https://mapy.geoportal.gov.pl/imap/Imgp_2.html) | `mapy.geoportal.gov.pl` | Hlavní mapový klient geoportálu — ortofoto, BDOT10k, parcely EGiB, NMT, adresy a hranice v jednom okně, s možností připojit vlastní WMS | reference | – | – |
+| [GUGiK](https://www.gov.pl/web/gugik) | `gov.pl` | Główny Urząd Geodezji i Kartografii — polská obdoba ČÚZK: správce státního geodetického fondu PZGiK, geoportálu a celostátních registrů PRG, PRNG a EGiB | reference | – | – |
+| [Geoportal — přehled datových sad](https://www.geoportal.gov.pl/pl/dane/) | `geoportal.gov.pl` | Rozcestník všech sad PZGiK s popisem, formáty a podmínkami užití — PRG, PRNG, BDOO, BDOT10k, ortofoto, NMT/NMPT, LIDAR, EGiB, GESUT, BDOT500 a RCN | reference | – | – |
+| [Otevřená data GUGiK](https://opendata.geoportal.gov.pl/) | `opendata.geoportal.gov.pl` | Stahovací služba pro otevřená data geoportálu — ortofoto, NMT a NMPT, mračna LIDAR, BDOT10k a PRG po listech a okresech, bez registrace | reference | – | – |
+| [Wykaz usług (WMS/WMTS/WFS)](https://www.geoportal.gov.pl/wykaz-uslug/) | `geoportal.gov.pl` | Katalog síťových služeb geoportálu s adresami endpointů — prohlížecí WMS a WMTS, stahovací WFS a ATOM ke každé sadě PZGiK | reference | – | – |
+| [ULDK — lokalizace parcel](https://uldk.gugik.gov.pl/) | `uldk.gugik.gov.pl` | Usługa lokalizacji działek katastralnych — REST dotaz na geometrii parcely podle identifikátoru nebo souřadnic; službě stačí ID, příslušnou okresní bázi EGiB si najde sama a vrací WKB | reference | – | – |
+| [Krajowa Integracja (GUGiK)](https://integracja.gugik.gov.pl/) | `integracja.gugik.gov.pl` | Celostátně sjednocené služby nad 380 okresními bázemi — KIEG (parcely), KIUG (druhy pozemků), KINA (adresy), UUG (geokódování), KICN a RCN (ceny); k tomu validátor a monitoring okresních WMS a WFS | reference | – | – |
+| [Rejestr Cen Nieruchomości (RCN)](https://www.geoportal.gov.pl/pl/dane/rejestr-cen-nieruchomosci-rcn/) | `geoportal.gov.pl` | Registr cen z realitních transakcí, který vede 385 okresních úřadů. Novelou geodetického zákona z 26. 9. 2025 se poskytuje bezplatně a od února 2026 je v geoportálu jako WMS/WFS vrstva s cenou i parametry transakce | reference | – | – |
+| [Przeglądarka ksiąg wieczystych](https://przegladarka-ekw.ms.gov.pl/) | `przegladarka-ekw.ms.gov.pl` | Veřejné nahlížení do pozemkových knih — vlastník, věcná břemena a hypotéky podle čísla KW; samotné číslo se dohledá přes EGiB nebo okresní geoportál | reference | – | – |
+| [Portal Geostatystyczny (GUS)](https://portal.geo.stat.gov.pl/) | `portal.geo.stat.gov.pl` | Prostorová statistika GUS — data ze sčítání a Banku Danych Lokalnych na mapě, po územních jednotkách i v gridech, se službami podle INSPIRE | reference | – | – |
+| [CBDG (PIG-PIB)](https://baza.pgi.gov.pl/) | `baza.pgi.gov.pl` | Centralna Baza Danych Geologicznych polské geologické služby — vrty, geologické mapy, ložiska surovin a archivní dokumentace | reference | – | – |
+| [Geoserwis GDOŚ](https://geoserwis.gdos.gov.pl/mapy/) | `geoserwis.gdos.gov.pl` | Mapy chráněných území Generální ředitelství ochrany životního prostředí — Natura 2000, národní parky a rezervace ke stažení i jako WMS. Na automat odpovídá Incapsula, v prohlížeči web funguje | reference | – | – |
+| [Bank Danych o Lasach](https://www.bdl.lasy.gov.pl/portal/) | `bdl.lasy.gov.pl` | Data o polských lesích od Lasów Państwowych — porostní mapa, taxační údaje, mapové služby a mobilní aplikace mBDL | reference | – | – |
+| [Hydroportal ISOK](https://wody.isok.gov.pl/index.html) | `wody.isok.gov.pl` | Informatyczny System Osłony Kraju — mapy povodňového ohrožení a rizika, plány hospodaření s vodami a odpovídající služby INSPIRE | reference | – | – |
+| [Geoportal e-mapa.net](https://polska.e-mapa.net/) | `polska.e-mapa.net` | Celostátní prohlížeč skládající data okresních a obecních geoportálů provozovaných Geo-Systemem — parcely, adresy a územní plány tam, kde úřad nemá vlastní veřejnou aplikaci | reference | – | – |
+
+## 19. Polsko — doprava / mobilita
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [GDDKiA](https://www.gov.pl/web/gddkia) | `gov.pl` | Generalna Dyrekcja Dróg Krajowych i Autostrad — správce státních silnic a dálnic: stav výstavby, generální sčítání dopravy (GPR) a data o síti | reference | – | – |
+| [MILK2 — mapa železnic PKP PLK](https://mapa.plk-sa.pl/) | `mapa.plk-sa.pl` | Interaktivní mapa železniční sítě správce infrastruktury PKP PLK — tratě, stanice, parametry úseků a probíhající modernizace | reference | – | – |
+| [Portal Pasażera](https://portalpasazera.pl/) | `portalpasazera.pl` | Celostátní vyhledávač spojení provozovaný PKP PLK — jízdní řády železničních dopravců a informace o zpožděních | reference | – | – |
+| [GTFS feeds (mkuran.pl)](https://mkuran.pl/gtfs/) | `mkuran.pl` | Nejúplnější sada polských GTFS na jednom místě — městské sítě i vlaky (polish_trains.zip), denně aktualizované. Od 31. 3. 2026 se polregio.zip, pkpic.zip a kolejemazowieckie.zip přestaly udržovat | reference | – | – |
+| [Warszawski Transport Publiczny](https://www.wtp.waw.pl/) | `wtp.waw.pl` | Integrovaná varšavská doprava — linky, zastávky a jízdní řády; k tomu městské API na api.um.warszawa.pl s polohami vozidel | reference | – | – |
+
+## 20. Open data / registry PL
+
+| Web | Doména | Popis | Zdroj | Návštěv | Poslední |
+|---|---|---|---|--:|---|
+| [dane.gov.pl](https://dane.gov.pl/) | `dane.gov.pl` | Národní katalog otevřených dat — datasety státní správy i samosprávy, katalog API a metadata; polská obdoba data.gov.cz | reference | – | – |
+| [Bank Danych Lokalnych (GUS)](https://bdl.stat.gov.pl/bdl/) | `bdl.stat.gov.pl` | Nejpodrobnější veřejná statistika GUS až na úroveň gmin — časové řady po dimenzích, hromadný export i REST API | reference | – | – |
+| [TERYT](https://eteryt.stat.gov.pl/eTeryt/rejestr_teryt/udostepnianie_danych/baza_teryt/uzytkownicy_indywidualni/pobieranie/pliki_pelne.aspx) | `eteryt.stat.gov.pl` | Registr územního členění — vojvodství, okresy, gminy, sídla a ulice s kódy TERC, SIMC a ULIC; plné soubory ke stažení, obdoba českého číselníku území | reference | – | – |
+| [API GUS](https://api.stat.gov.pl/) | `api.stat.gov.pl` | Rozcestník API polského statistického úřadu — REGON (BIR1), TERYT, BDL, SDP, STRATEG a další; REGON vyžaduje registraci a klíč | reference | – | – |
+| [Portal Rejestrów Sądowych](https://prs.ms.gov.pl/) | `prs.ms.gov.pl` | Soudní rejstříky KRS — aktuální i úplné výpisy, sbírka listin a elektronická podání; strojově přes REST na api-krs.ms.gov.pl, které vrací výpis v JSON | reference | – | – |
+| [Wyszukiwarka KRS](https://wyszukiwarka-krs.ms.gov.pl/) | `wyszukiwarka-krs.ms.gov.pl` | Vyhledávání v obchodním a spolkovém rejstříku podle názvu, čísla KRS, NIP nebo REGON. Na automat odpovídá Incapsula, v prohlížeči funguje | reference | – | – |
+| [Krajowy Rejestr Zadłużonych](https://krz.ms.gov.pl/) | `krz.ms.gov.pl` | Insolvenční rejstřík provozovaný od prosince 2021 — úpadky, restrukturalizace, zákazy podnikatelské činnosti a neúspěšné exekuce. Polská obdoba ISIR | reference | – | – |
+| [CRBR — skuteční majitelé](https://crbr.podatki.gov.pl/adcrbr/) | `crbr.podatki.gov.pl` | Centralny Rejestr Beneficjentów Rzeczywistych — veřejný a bezplatný výpis skutečných majitelů podle NIP; obdoba evidence skutečných majitelů | reference | – | – |
+| [Hurtownia danych CEIDG](https://dane.biznes.gov.pl/pl/portal/034872) | `dane.biznes.gov.pl` | Datový sklad CEIDG a Biznes.gov.pl — data, statistiky a reporty o živnostnících; vyžaduje účet, o který se žádá formulářem | reference | – | – |
+| [e-Zamówienia](https://ezamowienia.gov.pl/pl/) | `ezamowienia.gov.pl` | Centrální platforma veřejných zakázek — vyhledávání řízení, dokumentace i podávání nabídek; obdoba NEN | reference | – | – |
+| [rejestr.io](https://rejestr.io/) | `rejestr.io` | Komerční nadstavba nad KRS — firmy, lidé a jejich vazby včetně historie změn; základní výpis zdarma, propojení a exporty placené. Na automat vrací 403 | reference | – | – |
+
 # Události a rizika
 
 
@@ -243,6 +299,7 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [NOAA NOMADS](https://nomads.ncep.noaa.gov/) | `nomads.ncep.noaa.gov` | Operativní modely NCEP (GFS, GEFS, HRRR) v GRIB2 a přes OPeNDAP — včetně částečného stahování polí přes filtry | reference | – | – |
 | [Copernicus Atmosphere Data Store](https://ads.atmosphere.copernicus.eu/) | `ads.atmosphere.copernicus.eu` | CAMS analýzy a předpovědi kvality ovzduší, aerosolů a složení atmosféry — stejné katalogové rozhraní, API i earthkit jako Climate Data Store | reference | – | – |
 | [Klimatická změna (CzechGlobe)](https://www.klimatickazmena.cz/) | `klimatickazmena.cz` | Klimatický portál Ústavu výzkumu globální změny AV ČR — mapy, grafy a infografiky ke klimatu ČR: pozorované změny, scénáře a dopady na lesnictví, zemědělství a vodní prostředí | reference | – | – |
+| [IMGW — Dane publiczne](https://danepubliczne.imgw.pl/) | `danepubliczne.imgw.pl` | Otevřená data polského hydrometeorologického ústavu — aktuální i archivní meteorologická a hydrologická měření, výstrahy a REST API; historické řady jako soubory ke stažení | reference | – | – |
 
 # Nástroje
 
@@ -257,6 +314,7 @@ statistika celé domény se na ně nepřenáší, aby `github.com` nedělal doje
 | [Who's on First](https://whosonfirst.org/) | `whosonfirst.org` | Gazetteer admin i POI entit se stabilními ID a hierarchií, podklad Pelias | reference | – | – |
 | [OpenAddresses](https://openaddresses.io/) | `openaddresses.io` | Agregované otevřené adresní body globálně — živý pipeline na batch.openaddresses.io vydává týdenní kolekce po zemích a regionech v line-delimited GeoJSON, starý CSV výstup na results.openaddresses.io je zamrzlý archiv z 10/2021 | reference | – | – |
 | [RÚIAN / VDP ČÚZK](https://vdp.cuzk.cz/) | `vdp.cuzk.cz` | Autoritativní CZ registr adres a územní identifikace — výměnný formát, adresní body, definiční body parcel | reference | – | – |
+| [PRNG — Państwowy Rejestr Nazw Geograficznych](https://www.geoportal.gov.pl/pl/dane/panstwowy-rejestr-nazw-geograficznych-prng/) | `geoportal.gov.pl` | Autoritativní registr polských zeměpisných jmen — jména sídel, vodstva a terénních objektů se souřadnicemi, typem objektu a územním zařazením; ke stažení a jako služba přes geoportál | reference | – | – |
 | [Mapy.com REST API](https://developer.mapy.com/) | `developer.mapy.com` | CZ geokódování, suggest, routing, dlaždice. Máš tam aktivní projekt s consumption trackingem | bookmarks+history | 0 | 2026-08-27 |
 | [Photon](https://photon.komoot.io/) | `photon.komoot.io` | Rychlý OSM geocoder s type-ahead, snadný self-hosting | reference | – | – |
 | [OpenCage Geocoding API](https://opencagedata.com/) | `opencagedata.com` | Hostované geokódovací API nad OSM a dalšími otevřenými geokodéry — forward i reverse, u výsledku časová zóna, Wikidata ID, NUTS a FIPS kódy, výsledky lze ukládat; free trial 2 500 dotazů/den, dál placené tarify | reference | – | – |
