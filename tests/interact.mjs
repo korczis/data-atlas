@@ -96,6 +96,26 @@ check('textový filtr zemí seznam zúží',
       `${s.countryList.length} zemí`);
 s.cq = '';
 
+// ── panel musí říct, že počty jsou křížené ────────────────────────────────
+// Uživatel čte počty u zemí, ale filtr tématu je jinde v odscrollovaném panelu.
+// Bez téhle hlášky vypadalo „Rakousko 2" jako celý katalog místo počtu
+// obchodních rejstříků.
+// jsdom nepočítá layout, takže offsetParent je vždycky null — skryté prvky
+// se poznají podle toho, co na ně napsal x-show.
+const banner = () => [...d.getElementById('sidebar').querySelectorAll('p')]
+  .filter(e => e.style.display !== 'none')
+  .map(e => e.textContent.replace(/\s+/g, ' ').trim())
+  .filter(t => t.startsWith('počty jen'));
+
+s.reset(); await tick();
+check('bez filtru se o křížení nemluví', banner().length === 0);
+s.topic = 'companies'; await tick();
+check('vybrané téma je vidět u seznamu zemí',
+      banner().some(t => t.includes('Obchodní rejstříky')), banner()[0] || '—');
+s.reset(); s.country = 'CZ'; await tick();
+check('vybraná země je vidět u seznamu témat',
+      banner().some(t => t.includes('Česko')), banner()[0] || '—');
+
 // ── odznaky u „Vše" musí odpovídat tomu, co se po kliknutí stane ───────────
 s.reset(); s.topic = 'companies'; await tick();
 const companiesTotal = catalog.filter(r => r['Téma ID'] === 'companies').length;

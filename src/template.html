@@ -112,10 +112,21 @@
       </div>
 
       <div x-show="view === 'catalog'">
-        <div class="mb-2 flex items-center justify-between px-3">
-          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Země</h2>
-          <button type="button" @click="country = ''" x-show="country"
-            class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+        <!-- Hlavička je lepivá a nese kontext druhé osy. Panel se scrolluje
+             odděleně od obsahu, takže při čtení počtů u zemí nebylo vidět,
+             že je zapnuté téma — a čísla „1, 2, 1" vypadala jako celý katalog
+             místo počtu obchodních rejstříků. -->
+        <div class="sticky top-0 z-10 -mx-3 mb-2 bg-white px-3 pt-1 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Země</h2>
+            <button type="button" @click="country = ''" x-show="country"
+              class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+          </div>
+          <p x-show="topic" class="mt-1 flex items-center gap-1 rounded bg-amber-50 px-2 py-1 text-[11px] leading-tight text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+            <span>počty jen v tématu <span class="font-semibold" x-text="topicLabel(topic)"></span></span>
+            <button type="button" @click="topic = ''" aria-label="Zrušit filtr tématu"
+              class="ms-auto shrink-0 font-semibold underline">zrušit</button>
+          </p>
         </div>
         <!-- Sedmadvacet členských států plus nadnárodní rozsahy se do panelu
              nevejde jako plochý seznam. Hledání nad zemí je levnější než
@@ -157,10 +168,17 @@
           </li>
         </ul>
 
-        <div class="mb-2 mt-6 flex items-center justify-between px-3">
-          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Téma</h2>
-          <button type="button" @click="topic = ''" x-show="topic"
-            class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+        <div class="sticky top-0 z-10 -mx-3 mb-2 mt-6 bg-white px-3 pt-1 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Téma</h2>
+            <button type="button" @click="topic = ''" x-show="topic"
+              class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
+          </div>
+          <p x-show="country" class="mt-1 flex items-center gap-1 rounded bg-amber-50 px-2 py-1 text-[11px] leading-tight text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+            <span>počty jen pro <span class="font-semibold" x-text="placeLabel(country)"></span></span>
+            <button type="button" @click="country = ''" aria-label="Zrušit filtr země"
+              class="ms-auto shrink-0 font-semibold underline">zrušit</button>
+          </p>
         </div>
         <ul class="space-y-0.5">
           <li>
