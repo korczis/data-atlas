@@ -466,5 +466,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Portugalská BNP provozuje Biblioteca Nacional Digital s digitalizovanými tisky a periodiky",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-concorrencia",
+    "topic": "regulators",
+    "name": "AdC — Autoridade da Concorrência",
+    "url": "https://www.concorrencia.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Portugalská AdC publikuje rozhodnutí a **otevřená data o fúzích a sankcích** včetně částek",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

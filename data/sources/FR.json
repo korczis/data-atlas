@@ -586,5 +586,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Francouzská BnF provozuje **Gallicu** — jednu z největších digitálních knihoven v Evropě s miliony stran novin, map a rukopisů, s otevřeným API",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-adlc",
+    "topic": "regulators",
+    "name": "Autorité de la concurrence",
+    "url": "https://www.autoritedelaconcurrence.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Francouzský úřad publikuje rozhodnutí, stanoviska k odvětvím a **otevřená data o schválených fúzích**",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

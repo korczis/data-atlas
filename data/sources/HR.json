@@ -430,5 +430,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Chorvatská NSK archivuje chorvatský web a provozuje digitalizovanou sbírku novin a starých tisků",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-aztn",
+    "topic": "regulators",
+    "name": "AZTN",
+    "url": "https://www.aztn.hr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Chorvatská AZTN dohlíží vedle soutěže i na trh elektronických médií",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

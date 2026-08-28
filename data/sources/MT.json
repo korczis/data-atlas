@@ -346,5 +346,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maltská národní knihovna ve Vallettě drží archiv Řádu maltézských rytířů a digitalizovaný historický tisk",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-mccaa",
+    "topic": "regulators",
+    "name": "MCCAA — Malta Competition and Consumer Affairs Authority",
+    "url": "https://mccaa.org.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Maltská MCCAA spojuje soutěž, ochranu spotřebitele, standardizaci a metrologii v jednom úřadu",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

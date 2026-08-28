@@ -526,5 +526,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Itálie má dvě centrální národní knihovny, ve Florencii a v Římě; florentská vede národní bibliografii BNI",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-agcm",
+    "topic": "regulators",
+    "name": "AGCM",
+    "url": "https://www.agcm.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Italská AGCM řeší i klamavou reklamu a nekalé obchodní praktiky a vede rating legality firem",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

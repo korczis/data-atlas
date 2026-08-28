@@ -322,5 +322,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Kyperský komisař zveřejňuje rozhodnutí i pokyny k jednotlivým odvětvím",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-competition",
+    "topic": "regulators",
+    "name": "Επιτροπή Προστασίας του Ανταγωνισμού",
+    "url": "https://www.competition.gov.cy/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Kyperská komise publikuje rozhodnutí i schválené fúze",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

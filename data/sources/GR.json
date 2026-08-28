@@ -358,5 +358,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Řecká národní knihovna zpřístupňuje digitalizované rukopisy a periodika",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-epant",
+    "topic": "regulators",
+    "name": "Επιτροπή Ανταγωνισμού",
+    "url": "https://www.epant.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Řecká komise publikuje rozhodnutí i odvětvová šetření",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]
