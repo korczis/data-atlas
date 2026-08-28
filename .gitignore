@@ -12,3 +12,7 @@ dist/
 
 # Site-specific hostnames vlastní sítě — nikdy se necommitují.
 config/private-hosts.txt
+
+# Python bytecode z tools/
+__pycache__/
+*.pyc

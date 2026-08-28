@@ -1,4 +1,4 @@
-# Geodata Atlas — katalog GIS a geodatových zdrojů
+# Geodata Atlas — katalog geodat, otevřených dat, registrů a OSINT/DD zdrojů EU
 #
 # `just` vypíše všechny recepty, `just help` shrne workflow.
 
@@ -13,20 +13,25 @@ help:
     @echo "Geodata Atlas"
     @echo
     @echo "  just install      instalace npm závislostí"
-    @echo "  just build        postaví dist/index.html z data/*.csv"
+    @echo "  just catalog      složí data/catalog.csv z data/sources/*.json"
+    @echo "  just build        postaví dist/index.html z data/catalog.csv"
+    @echo "  just validate     kontrola kurátorovaných dat (schéma + kvalita)"
     @echo "  just test         ověří, že stránka odpovídá datům"
     @echo "  just serve        lokální náhled na http://localhost:8000"
     @echo "  just lint         konvence Flowbite + Alpine (docs/UI-RULES.md)"
     @echo "  just responsive   měření přetečení v headless Chrome"
     @echo "  just a11y         audit přístupnosti přes axe-core"
     @echo "  just links        ověření odkazů v katalogu (chodí po síti)"
+    @echo "                    zúžení: --country AT · --topic companies · --changed"
     @echo "  just check        build + lint + test + responsive + a11y"
     @echo "  just assets       přegeneruje ikony a OG kartu"
     @echo
     @echo "Data (jen lokálně, potřebuje Chrome profil na disku):"
-    @echo "  just refresh      celý řetěz extract → scan → catalog → sanitize → build"
+    @echo "  just refresh      extract → scan → longlist → provenance → catalog → build"
     @echo
-    @echo "Katalog v data/catalog.csv se edituje ručně nebo přes tools/build_catalog.py."
+    @echo "Zdrojem pravdy jsou data/sources/*.json — jeden soubor na zemi nebo rozsah."
+    @echo "data/catalog.csv, docs/CATALOG.md i docs/COVERAGE.md se z nich generují."
+    @echo "Jak přidat zemi nebo zdroj: docs/EU-EXPANSION-PLAN.md"
 
 # ── build ─────────────────────────────────────────────────────────────────────
 
@@ -35,12 +40,17 @@ help:
 install:
     npm install
 
+# Složí data/catalog.csv z kurátorovaných zdrojů v data/sources/
+[group('build')]
+catalog:
+    python3 tools/build_catalog.py
+
 # Postaví jednosouborovou stránku do dist/
 [group('build')]
 build:
     python3 tools/build_page.py
 
-# Vygeneruje docs/CATALOG.md z data/catalog.csv
+# Vygeneruje docs/CATALOG.md a docs/COVERAGE.md z data/catalog.csv
 [group('build')]
 docs:
     python3 tools/build_docs.py
@@ -52,7 +62,7 @@ assets:
 
 # Build + testy — stejné, co běží v CI
 [group('build')]
-check: build lint test responsive a11y
+check: validate catalog build lint test responsive a11y
 
 # ── testy ─────────────────────────────────────────────────────────────────────
 
@@ -69,6 +79,11 @@ test:
 lint:
     python3 tools/lint_ui.py
 
+# Ověří kurátorovaná data: schéma, duplicity, kvalita popisů
+[group('test')]
+validate:
+    python3 tools/validate_sources.py
+
 # Změří vodorovné přetečení v headless Chrome na 320–1536 px
 [group('test')]
 responsive:
@@ -79,10 +94,10 @@ responsive:
 a11y:
     python3 tools/check_a11y.py
 
-# Ověří, že odkazy v katalogu někam vedou (chodí po síti, v `check` není)
+# Ověří odkazy (síť, mimo `check`); zúžení: --country AT --topic companies --changed
 [group('test')]
-links:
-    python3 tools/check_links.py
+links *ARGS:
+    python3 tools/check_links.py {{ ARGS }}
 
 # Lokální náhled postavené stránky
 [group('test')]
@@ -103,10 +118,15 @@ extract profile="":
 scan:
     python3 tools/scan.py
 
-# Sestaví kurátorovaný katalog a syrový long list
+# Vyrobí syrový long list kandidátů z .cache/candidates.json
 [group('data')]
-catalog:
-    python3 tools/build_catalog.py
+longlist:
+    python3 tools/build_longlist.py
+
+# Přepočítá doložení z prohlížeče do data/provenance.csv (chce .cache/raw.json)
+[group('data')]
+provenance:
+    python3 tools/build_provenance.py
 
 # Vyčistí long list do zveřejnitelné podoby
 [group('data')]
@@ -115,7 +135,7 @@ sanitize:
 
 # Celý datový řetěz od Chrome až po postavenou stránku
 [group('data')]
-refresh: extract scan catalog sanitize docs build
+refresh: extract scan longlist sanitize provenance catalog docs build
 
 # ── údržba ────────────────────────────────────────────────────────────────────
 

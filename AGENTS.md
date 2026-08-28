@@ -3,10 +3,14 @@
 Než sáhneš na `src/template.html`, přečti si **[`docs/UI-RULES.md`](docs/UI-RULES.md)**.
 Je to závazná část, ne doporučení: vynucuje ji `tools/lint_ui.py` a CI.
 
+Než přidáš zemi nebo zdroj do katalogu, přečti si
+**[`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md)** — je tam schéma,
+číselníky a pravidla pro klasifikaci přístupu.
+
 ## Než něco pošleš dál
 
 ```bash
-just check      # build + lint + testy + kontrola responzivity
+just check      # validate + catalog + build + lint + testy + responzivita + a11y
 ```
 
 Samotné `just build` nestačí — projde i s rozbitou integrací Flowbite,
@@ -16,7 +20,10 @@ protože ta selhává tiše.
 
 | Cesta | Co v ní je |
 |---|---|
-| `data/*.csv` | Zdroj pravdy. Stránka se staví z něj. |
+| `data/sources/*.json` | **Zdroj pravdy.** Kurátorované zdroje, jeden soubor na zemi nebo rozsah. |
+| `data/topics.json`, `data/countries.json` | Číselníky témat a zemí; pořadí klíčů je pořadí v UI. |
+| `data/provenance.csv` | Doložení z prohlížeče, klíčované `id`. Generuje `tools/build_provenance.py`. |
+| `data/catalog.csv`, `data/longlist.csv` | **Generované.** Stránka a dokumentace se staví z nich. |
 | `src/template.html` | Markup + Alpine komponenta. Platí pro něj `docs/UI-RULES.md`. |
 | `src/assets/` | Zdroje ikon a OG karty (`just assets` je přerenderuje) |
 | `tools/` | Datový řetěz a build |
@@ -26,15 +33,24 @@ protože ta selhává tiše.
 
 ## Co si pohlídat
 
-- **Počty nikdy nepiš ručně.** `142`, `17`, `53` se odvozují z CSV — v popisu
-  stránky, na OG kartě i v testech. Ručně opsané číslo zestárne při první změně.
-- **Do `data/` jen přes `tools/sanitize.py`.** Syrový výstup obsahuje osobní
-  historii prohlížení a interní hostnames. Hostnames vlastní sítě patří do
-  `config/private-hosts.txt`, který je mimo repozitář.
+- **Zdroj pravdy je `data/sources/*.json`, ne `data/catalog.csv`.** CSV,
+  `docs/CATALOG.md` i `docs/COVERAGE.md` se generují — ruční úprava se ztratí
+  při příštím `just catalog`.
+- **Počty nikdy nepiš ručně.** Odvozují se z CSV — v popisu stránky, na OG kartě,
+  v horní liště i v testech. Ručně opsané číslo zestárne při první změně.
+- **Veřejný build nesmí sáhnout na `.cache/`.** Kurátorovaný katalog musí jít
+  přegenerovat na čistém klonu bez cizího Chrome profilu; osobní export čte
+  jedině `tools/build_provenance.py` a `tools/build_longlist.py`.
+  Hlídá to `tools/validate_sources.py`.
+- **Do `data/longlist.csv` jen přes `tools/sanitize.py`.** Syrový výstup obsahuje
+  osobní historii prohlížení a interní hostnames. Hostnames vlastní sítě patří
+  do `config/private-hosts.txt`, který je mimo repozitář.
 - **Flowbite `data-*` nepatří do `x-for`.** Důvod je v `docs/UI-RULES.md`;
   selhává to tiše, bez chyby v konzoli.
-- **URL v katalogu ověřuj, nevymýšlej.** `just links` je od toho. Zdrojem
-  pravdy je `tools/build_catalog.py`, ne `data/catalog.csv` — ten se generuje.
+- **URL v katalogu ověřuj, nevymýšlej.** `just links --changed` projde jen to,
+  co jsi přidal; `just links` projde všechno.
+- **Veřejné vyhledávání není otevřená data.** Klasifikace `access` a `data` má
+  říkat pravdu o tom, co se z toho zdroje dá reálně dostat.
 - **Nespoléhej na jsdom u layoutu.** Umí DOM, ne rozvržení. Přetečení do strany
   odhalí jedině `just responsive`.
 
