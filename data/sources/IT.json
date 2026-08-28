@@ -454,5 +454,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Italská ARERA pokrývá elektřinu, plyn, vodu a odpady; rozhodnutí a tarify jsou v otevřené databázi",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-omi",
+    "topic": "property",
+    "name": "OMI — Osservatorio del Mercato Immobiliare",
+    "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Italská observatoř trhu s nemovitostmi při daňové správě. Publikuje **rozpětí cen za metr čtvereční pro každou zónu každé obce**, pololetně a ke stažení — základ pro odhady i pro daňové kontroly podhodnocených kupních cen",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

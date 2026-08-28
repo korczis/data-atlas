@@ -431,5 +431,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Španělská CNMC spojuje regulaci energetiky, telekomunikací, dopravy a ochranu soutěže; rozhodnutí i data publikuje otevřeně",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-mivau",
+    "topic": "property",
+    "name": "MIVAU — Ministerio de Vivienda y Agenda Urbana",
+    "url": "https://www.mivau.gob.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Španělské ministerstvo bydlení publikuje **statistiky cen bydlení, transakcí a odhadů** po provinciích a obcích, včetně řad zpět do 90. let. Agendu převzalo v roce 2023 od ministerstva dopravy, jehož adresa už nefunguje",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

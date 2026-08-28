@@ -310,5 +310,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Litevská VERT reguluje energetiku i vodárenství. Na automat vrací 403, v prohlížeči funguje",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-rc-turgus",
+    "topic": "property",
+    "name": "Registrų centras — statistika trhu s nemovitostmi",
+    "url": "https://www.registrucentras.lt/p/1090",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Litevský registr publikuje **statistiku realizovaných transakcí** — počty, průměrné ceny a plochy po obcích a typech nemovitostí. Jednotlivé kupní ceny jsou dostupné jen za poplatek",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

@@ -346,5 +346,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lucemburský ILR reguluje energetiku, telekomunikace, poštu i železnici v jednom úřadu",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-observatoire-habitat",
+    "topic": "property",
+    "name": "Observatoire de l'Habitat",
+    "url": "https://logement.public.lu/fr/observatoire-habitat.html",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Lucemburská observatoř bydlení. Publikuje **ceny prodaných bytů a domů po obcích** i ceny stavebních pozemků a nájmů, čtvrtletně a s otevřenými daty",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

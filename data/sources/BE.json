@@ -430,5 +430,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Belgický federální regulátor dohlíží na přenos a velkoobchod; distribuce spadá pod regionální regulátory VREG, CWaPE a Brugel",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-statbel-vastgoed",
+    "topic": "property",
+    "name": "Statbel — index cen nemovitostí",
+    "url": "https://statbel.fgov.be/en/themes/housing/house-price-index",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Belgický statistický úřad publikuje index cen bydlení a **mediánové ceny podle obcí** z daňových přiznání k převodu nemovitosti. Jednotlivé transakce veřejné nejsou, obecní mediány ano",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

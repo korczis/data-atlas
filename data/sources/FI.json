@@ -358,5 +358,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Finský energetický úřad spravuje také registr záruk původu a systém emisních povolenek",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-ashi",
+    "topic": "property",
+    "name": "Asuntojen hinnat (Tilastokeskus)",
+    "url": "https://stat.fi/fi/tilasto/ashi",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Finská statistika cen bytů — čtvrtletní ceny podle obcí, čtvrtí a stáří domu, s API do databáze PxWeb. Jednotlivé transakce vede pozemkový úřad a veřejné nejsou",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

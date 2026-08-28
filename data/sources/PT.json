@@ -406,5 +406,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Portugalský regulátor zveřejňuje tarify, statistiky trhu a srovnávač nabídek dodavatelů",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-habitacao",
+    "topic": "property",
+    "name": "Portal da Habitação",
+    "url": "https://www.portaldahabitacao.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Portugalský portál bydlení spravovaný IHRU. Vedle podpor a programů zpřístupňuje statistiky trhu a evidenci nájemních smluv; ceny transakcí publikuje statistický úřad po obcích",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

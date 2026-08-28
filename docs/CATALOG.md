@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1176** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1124** doplněných rešerší.
+**1185** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1133** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -21,24 +21,24 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `DE` Německo — 45
 - `FR` Francie — 44
 - `AT` Rakousko — 40
-- `IT` Itálie — 38
-- `BE` Belgie — 36
+- `IT` Itálie — 39
+- `BE` Belgie — 37
+- `SK` Slovensko — 37
+- `ES` Španělsko — 37
 - `HU` Maďarsko — 36
 - `NL` Nizozemsko — 36
-- `SK` Slovensko — 36
-- `ES` Španělsko — 36
+- `PT` Portugalsko — 35
 - `BG` Bulharsko — 34
 - `DK` Dánsko — 34
-- `PT` Portugalsko — 34
 - `SI` Slovinsko — 33
 - `HR` Chorvatsko — 32
+- `FI` Finsko — 31
 - `SE` Švédsko — 31
-- `FI` Finsko — 30
+- `EE` Estonsko — 30
 - `LV` Lotyšsko — 30
-- `EE` Estonsko — 29
-- `LU` Lucembursko — 29
+- `LU` Lucembursko — 30
 - `IE` Irsko — 27
-- `LT` Litva — 26
+- `LT` Litva — 27
 - `RO` Rumunsko — 26
 - `GR` Řecko — 25
 - `MT` Malta — 24
@@ -68,7 +68,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 66
 
-**Firmy a due diligence** — 366
+**Firmy a due diligence** — 375
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
@@ -77,7 +77,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
 - [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 32
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 114
-- [Nemovitosti a trh](#nemovitosti-a-trh) — 18
+- [Nemovitosti a trh](#nemovitosti-a-trh) — 27
 
 **Rizika a OSINT** — 198
 
@@ -1094,6 +1094,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | Země | Web | Doména | Popis | Přístup | Data | Zdroj |
 |---|---|---|---|---|---|---|
 | `AT` | [Ediktsdatei — nucené dražby nemovitostí](https://edikte.justiz.gv.at/edikte/ex/exedi3.nsf/suchedi) | `edikte.justiz.gv.at` | Exekuční dražby nemovitostí v Rakousku — dražební vyhlášky s katastrálním označením, znaleckým odhadem, vyvolávací cenou a termínem. Jediný veřejný a bezplatný pohled na oceněné rakouské nemovitosti, když je pozemková kniha zpoplatněná | open | search | reference |
+| `BE` | [Statbel — index cen nemovitostí](https://statbel.fgov.be/en/themes/housing/house-price-index) | `statbel.fgov.be` | Belgický statistický úřad publikuje index cen bydlení a **mediánové ceny podle obcí** z daňových přiznání k převodu nemovitosti. Jednotlivé transakce veřejné nejsou, obecní mediány ano | open | bulk | reference |
 | `CZ` | [Nabídka majetku státu (ÚZSVM)](https://nabidkamajetku.gov.cz/) | `nabidkamajetku.gov.cz` | Katalog ÚZSVM s nabídkami státního majetku — prodeje, elektronické dražby a pronájmy nemovitostí, filtrovatelné podle kraje a obce | open | search | reference |
 | `CZ` | [Sreality](https://www.sreality.cz/) | `sreality.cz` | Největší český inzertní portál nemovitostí — nabídkové (ne realizované) ceny bytů, domů a pozemků s lokalizací; nedokumentované JSON API za webem se běžně používá k rešerši trhu | open | api | history |
 | `CZ` | [Flat Zone](https://www.flatzone.cz/) | `flatzone.cz` | Vyhledávač novostaveb a developerských projektů v ČR — odhad ceny a datová platforma; B2B větev běží na b2b.flatzone.cz (dataligence.cz tam dnes redirectuje) | paid | none | history |
@@ -1104,13 +1105,21 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `CZ` | [Portál územního plánování (ÚÚR)](https://portal.uur.cz/) | `portal.uur.cz` | Rozcestník územního plánování — evidence územně plánovací činnosti obcí a krajů, územní studie, limity využití území a metodiky. Odsud se zjistí, jestli má obec platný územní plán a kde se dá najít, což o využitelnosti pozemku rozhoduje víc než katastr | open | none | reference |
 | `DK` | [BBR — Bygnings- og Boligregistret](https://bbr.dk/) | `bbr.dk` | Dánský registr budov a bytů — **pro každou budovu rok výstavby, plocha, materiál, vytápění a využití**, veřejně a zdarma podle adresy. Nejpodrobnější veřejná evidence stavebního fondu v EU vedle nizozemského BAG | open | api | reference |
 | `DK` | [OIS — Den Offentlige Informationsserver](https://www.ois.dk/) | `ois.dk` | Veřejný informační server o dánských nemovitostech — spojuje BBR, katastr, ocenění, územní plánování a **realizované prodejní ceny** na jednu adresu. Praktický vstup, když je potřeba všechno o jedné dánské nemovitosti | open | search | reference |
+| `EE` | [Maa- ja Ruumiamet](https://maaruum.ee/) | `maaruum.ee` | Estonský pozemkový a prostorový úřad, nástupce Maa-amet. Provozuje **databázi realizovaných transakcí** s cenami, plochami a typy nemovitostí po obcích — Estonsko patří k mála zemím EU, kde jsou kupní ceny plošně veřejné | open | search | reference |
+| `FI` | [Asuntojen hinnat (Tilastokeskus)](https://stat.fi/fi/tilasto/ashi) | `stat.fi` | Finská statistika cen bytů — čtvrtletní ceny podle obcí, čtvrtí a stáří domu, s API do databáze PxWeb. Jednotlivé transakce vede pozemkový úřad a veřejné nejsou | open | api | reference |
 | `FR` | [DVF — Demandes de valeurs foncières](https://app.dvf.etalab.gouv.fr/) | `app.dvf.etalab.gouv.fr` | **Realizované ceny nemovitostních transakcí** ve Francii — každý prodej za posledních pět let s cenou, plochou, typem a parcelou, na mapě i ke stažení. Jedna z mála zemí EU, kde jsou skutečné kupní ceny veřejné a plošné, ne jen nabídkové | open | bulk | reference |
 | `DE` | [BORIS-D — Bodenrichtwerte](https://www.bodenrichtwerte-boris.de/boris-d/) | `bodenrichtwerte-boris.de` | Celoněmecká mapa úředních směrných hodnot pozemků (Bodenrichtwerte) sestavovaná znaleckými komisemi — hodnota za m² podle lokality a využití, srovnatelná napříč zeměmi. Jediný národní pohled na německé ceny pozemků; realizované ceny transakcí veřejné nejsou | open | ogc | reference |
 | `HU` | [E-építés](https://e-epites.hu/) | `e-epites.hu` | Maďarský portál stavebního řízení — evidence stavebních povolení, územních plánů obcí a stavební dokumentace. U maďarské nemovitosti odpoví, co se na pozemku smí. Server má vadný řetěz certifikátů, obsah je dostupný | open | search | reference |
 | `IE` | [Residential Property Price Register](https://www.propertypriceregister.ie/) | `propertypriceregister.ie` | **Realizované ceny všech prodejů rezidenčních nemovitostí v Irsku od roku 2010** — adresa, datum, cena, nová nebo starší stavba, ke stažení jako CSV. Vedle Francie je Irsko jediná země EU s takto plošně veřejnými kupními cenami | open | bulk | reference |
+| `IT` | [OMI — Osservatorio del Mercato Immobiliare](https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi) | `agenziaentrate.gov.it` | Italská observatoř trhu s nemovitostmi při daňové správě. Publikuje **rozpětí cen za metr čtvereční pro každou zónu každé obce**, pololetně a ke stažení — základ pro odhady i pro daňové kontroly podhodnocených kupních cen | open | bulk | reference |
+| `LT` | [Registrų centras — statistika trhu s nemovitostmi](https://www.registrucentras.lt/p/1090) | `registrucentras.lt` | Litevský registr publikuje **statistiku realizovaných transakcí** — počty, průměrné ceny a plochy po obcích a typech nemovitostí. Jednotlivé kupní ceny jsou dostupné jen za poplatek | open | download | reference |
+| `LU` | [Observatoire de l'Habitat](https://logement.public.lu/fr/observatoire-habitat.html) | `logement.public.lu` | Lucemburská observatoř bydlení. Publikuje **ceny prodaných bytů a domů po obcích** i ceny stavebních pozemků a nájmů, čtvrtletně a s otevřenými daty | open | bulk | reference |
 | `MT` | [Planning Authority Malta](https://www.pa.org.mt/) | `pa.org.mt` | Maltský územně plánovací úřad — **mapová aplikace se stavebními povoleními, územními plány a ochrannými zónami**, a rejstřík všech žádostí o povolení. Na Maltě je to hlavní veřejný zdroj o tom, co se kde smí a co se kde staví. Na automat vrací 403, v prohlížeči funguje | open | ogc | reference |
 | `PL` | [Rejestr Cen Nieruchomości (RCN)](https://www.geoportal.gov.pl/pl/dane/rejestr-cen-nieruchomosci-rcn/) | `geoportal.gov.pl` | Registr cen z realitních transakcí, který vede 385 okresních úřadů. Novelou geodetického zákona z 26. 9. 2025 se poskytuje bezplatně a od února 2026 je v geoportálu jako WMS/WFS vrstva s cenou i parametry transakce | open | ogc | reference |
+| `PT` | [Portal da Habitação](https://www.portaldahabitacao.pt/) | `portaldahabitacao.pt` | Portugalský portál bydlení spravovaný IHRU. Vedle podpor a programů zpřístupňuje statistiky trhu a evidenci nájemních smluv; ceny transakcí publikuje statistický úřad po obcích | open | none | reference |
+| `SK` | [NBS — ceny nehnuteľností na bývanie](https://www.nbs.sk/statisticke-udaje/vybrane-makroekonomicke-ukazovatele/ceny-nehnutelnosti-na-byvanie/) | `nbs.sk` | Slovenská národní banka publikuje **čtvrtletní ceny bydlení za metr čtvereční** po krajích a typech nemovitostí, včetně dlouhých časových řad ke stažení | open | bulk | reference |
 | `SI` | [Prostorski informacijski sistem (PIS)](https://ipi.eprostor.gov.si/) | `ipi.eprostor.gov.si` | Slovinský prostorový informační systém — územní plány obcí a státu, stavební povolení, chráněná území a omezení využití pozemku na jednom místě. U slovinské nemovitosti odpoví, co se na pozemku smí | open | ogc | reference |
+| `ES` | [MIVAU — Ministerio de Vivienda y Agenda Urbana](https://www.mivau.gob.es/) | `mivau.gob.es` | Španělské ministerstvo bydlení publikuje **statistiky cen bydlení, transakcí a odhadů** po provinciích a obcích, včetně řad zpět do 90. let. Agendu převzalo v roce 2023 od ministerstva dopravy, jehož adresa už nefunguje | open | bulk | reference |
 
 # Rizika a OSINT
 

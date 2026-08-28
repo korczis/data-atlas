@@ -430,5 +430,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovenský úřad reguluje energetiku i vodárenství a zveřejňuje cenová rozhodnutí pro jednotlivé provozovatele",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-nbs-ceny",
+    "topic": "property",
+    "name": "NBS — ceny nehnuteľností na bývanie",
+    "url": "https://www.nbs.sk/statisticke-udaje/vybrane-makroekonomicke-ukazovatele/ceny-nehnutelnosti-na-byvanie/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Slovenská národní banka publikuje **čtvrtletní ceny bydlení za metr čtvereční** po krajích a typech nemovitostí, včetně dlouhých časových řad ke stažení",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

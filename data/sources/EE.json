@@ -346,5 +346,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Estonsko sloučilo energetickou regulaci s úřadem pro ochranu hospodářské soutěže, takže jeden úřad řeší kartely i síťové tarify",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-maaruum",
+    "topic": "property",
+    "name": "Maa- ja Ruumiamet",
+    "url": "https://maaruum.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Estonský pozemkový a prostorový úřad, nástupce Maa-amet. Provozuje **databázi realizovaných transakcí** s cenami, plochami a typy nemovitostí po obcích — Estonsko patří k mála zemím EU, kde jsou kupní ceny plošně veřejné",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]
