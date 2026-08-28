@@ -1186,5 +1186,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Český úřad publikuje rozhodnutí, výroční zprávy a metodiky; od roku 2023 dohlíží i na neveřejné části registru skutečných majitelů",
     "country": "CZ",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-nkp",
+    "topic": "archives",
+    "name": "Národní knihovna ČR",
+    "url": "https://www.nkp.cz/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Česká NK provozuje **Kramerius s digitalizovanými novinami a časopisy** a katalog vydává jako otevřená data",
+    "country": "CZ",
+    "verified": "2026-08-28"
   }
 ]

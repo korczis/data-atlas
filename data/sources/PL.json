@@ -754,5 +754,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Polský UODO zveřejňuje rozhodnutí, pokuty a rozsáhlou sbírku výkladových stanovisek",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-bn",
+    "topic": "archives",
+    "name": "Biblioteka Narodowa",
+    "url": "https://www.bn.org.pl/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Polská BN stojí za portálem Polona s miliony digitalizovaných objektů a vydává katalog jako otevřená data",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

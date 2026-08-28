@@ -490,5 +490,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Belgický úřad má oddělenou rozhodovací komoru a publikuje její rozsudky v plném znění",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-kbr",
+    "topic": "archives",
+    "name": "KBR — Koninklijke Bibliotheek van België",
+    "url": "https://www.kbr.be/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Belgická KBR provozuje BelgicaPress s digitalizovanými novinami a otevřená data svého katalogu",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

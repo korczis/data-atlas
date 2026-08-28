@@ -394,5 +394,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Lucemburská CNPD dohlíží i na velké finanční a technologické skupiny se sídlem v zemi a publikuje rozhodnutí i roční přehled sankcí",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-bnl",
+    "topic": "archives",
+    "name": "Bibliothèque nationale du Luxembourg",
+    "url": "https://bnl.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Lucemburská BnL digitalizovala celý historický lucemburský tisk a zpřístupňuje ho jako otevřená data",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

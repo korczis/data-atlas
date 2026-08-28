@@ -454,5 +454,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Portugalská CNPD publikuje rozhodnutí i stanoviska k legislativním návrhům",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-bnp",
+    "topic": "archives",
+    "name": "Biblioteca Nacional de Portugal",
+    "url": "https://www.bnportugal.gov.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Portugalská BNP provozuje Biblioteca Nacional Digital s digitalizovanými tisky a periodiky",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

@@ -358,5 +358,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Rumunský úřad zveřejňuje rozhodnutí o pokutách včetně jmen sankcionovaných firem",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-bibnat",
+    "topic": "archives",
+    "name": "Biblioteca Naţională a României",
+    "url": "https://www.bibnat.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rumunská národní knihovna vede národní bibliografii a digitalizuje historický tisk",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

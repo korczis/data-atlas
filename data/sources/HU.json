@@ -478,5 +478,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Maďarský NAIH dohlíží současně na ochranu údajů i na **svobodný přístup k informacím**, a rozhoduje tedy i spory o poskytnutí dokumentů",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-oszk",
+    "topic": "archives",
+    "name": "Országos Széchényi Könyvtár",
+    "url": "https://www.oszk.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maďarská OSZK stojí za portálem Hungaricana a digitalizovanými novinami v Arcanum, které pokrývají celé Uhry",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

@@ -370,5 +370,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Irská DPC je hlavním dozorem pro většinu velkých technologických firem, které mají v Irsku evropské sídlo — její rozhodnutí mají dopad na celou EU",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-nli",
+    "topic": "archives",
+    "name": "National Library of Ireland",
+    "url": "https://www.nli.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Irská NLI digitalizovala matriky katolických farností a rozsáhlou fotografickou sbírku, obojí volně",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

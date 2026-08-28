@@ -406,5 +406,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Estonský inspektorát dohlíží kromě GDPR i na **přístup k informacím** — obě agendy vede jeden úřad",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-rara",
+    "topic": "archives",
+    "name": "Rahvusraamatukogu",
+    "url": "https://www.rara.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Estonská národní knihovna provozuje DIGAR s digitalizovanými novinami a knihami a archivuje estonský web",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

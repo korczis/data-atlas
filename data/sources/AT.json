@@ -528,5 +528,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Rakouský úřad publikuje anonymizovaná rozhodnutí a stanoviska k výkladu GDPR",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-onb",
+    "topic": "archives",
+    "name": "Österreichische Nationalbibliothek",
+    "url": "https://www.onb.ac.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rakouská ÖNB digitalizovala historické noviny v ANNO a mapovou sbírku; obojí je volně přístupné",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

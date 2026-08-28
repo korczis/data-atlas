@@ -454,5 +454,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Dánský úřad publikuje rozhodnutí i praktické návody a rozhoduje o oznámeních porušení zabezpečení",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-kb",
+    "topic": "archives",
+    "name": "Det Kgl. Bibliotek",
+    "url": "https://www.kb.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Dánská královská knihovna digitalizovala noviny v Mediestream a nabízí rozhraní k datům sbírek",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

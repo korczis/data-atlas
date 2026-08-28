@@ -478,5 +478,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Slovenský úřad publikuje rozhodnutí, metodiky a přehled uložených pokut",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-snk",
+    "topic": "archives",
+    "name": "Slovenská národná knižnica",
+    "url": "https://www.snk.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Slovenská SNK digitalizuje tisk a knihy a provozuje portál Slovakiana s kulturním dědictvím",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

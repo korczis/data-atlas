@@ -466,5 +466,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Nizozemský úřad publikuje rozhodnutí i **statistiky ohlášených úniků dat** po odvětvích",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-kb",
+    "topic": "archives",
+    "name": "Koninklijke Bibliotheek",
+    "url": "https://www.kb.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Nizozemská KB provozuje **Delpher** s digitalizovanými novinami, časopisy a knihami a nabízí k nim otevřená API",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

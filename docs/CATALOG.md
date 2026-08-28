@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1280** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1228** doplněných rešerší.
+**1306** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1254** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -15,33 +15,33 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Země
 
 - `GLOBAL` Celosvětové — 130
-- `CZ` Česko — 99
-- `PL` Polsko — 63
+- `CZ` Česko — 100
+- `PL` Polsko — 64
 - `EU` Evropská unie — 58
-- `FR` Francie — 48
-- `DE` Německo — 48
-- `AT` Rakousko — 44
-- `IT` Itálie — 43
-- `BE` Belgie — 41
-- `HU` Maďarsko — 40
-- `SK` Slovensko — 40
-- `ES` Španělsko — 40
-- `NL` Nizozemsko — 39
-- `BG` Bulharsko — 38
-- `DK` Dánsko — 38
-- `PT` Portugalsko — 38
-- `SI` Slovinsko — 37
-- `HR` Chorvatsko — 35
-- `SE` Švédsko — 35
-- `EE` Estonsko — 34
-- `FI` Finsko — 34
-- `LV` Lotyšsko — 33
-- `LU` Lucembursko — 33
-- `IE` Irsko — 31
-- `LT` Litva — 31
-- `RO` Rumunsko — 30
-- `GR` Řecko — 29
-- `MT` Malta — 28
+- `FR` Francie — 49
+- `DE` Německo — 49
+- `AT` Rakousko — 45
+- `IT` Itálie — 44
+- `BE` Belgie — 42
+- `HU` Maďarsko — 41
+- `SK` Slovensko — 41
+- `ES` Španělsko — 41
+- `NL` Nizozemsko — 40
+- `BG` Bulharsko — 39
+- `DK` Dánsko — 39
+- `PT` Portugalsko — 39
+- `SI` Slovinsko — 38
+- `HR` Chorvatsko — 36
+- `SE` Švédsko — 36
+- `EE` Estonsko — 35
+- `FI` Finsko — 35
+- `LV` Lotyšsko — 34
+- `LU` Lucembursko — 34
+- `IE` Irsko — 32
+- `LT` Litva — 32
+- `RO` Rumunsko — 31
+- `GR` Řecko — 30
+- `MT` Malta — 29
 - `CY` Kypr — 27
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
@@ -79,7 +79,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 185
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 27
 
-**Rizika a OSINT** — 198
+**Rizika a OSINT** — 224
 
 - [Sankce a compliance](#sankce-a-compliance) — 3
 - [Kriminalita, IZS, bezpečnost](#kriminalita-izs-bezpečnost) — 41
@@ -87,7 +87,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Počasí a klima](#počasí-a-klima) — 36
 - [Transparentnost, volby, lobbing](#transparentnost-volby-lobbing) — 42
 - [OSINT a investigace](#osint-a-investigace) — 10
-- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 34
+- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 60
 
 **Nástroje** — 72
 
@@ -1422,31 +1422,57 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `GLOBAL` | [Mapire (Arcanum Maps)](https://maps.arcanum.com/en/) | `maps.arcanum.com` | Habsburská vojenská mapování (I.-III.) georeferencovaná — ideální pro ČR | mixed | none | reference |
 | `GLOBAL` | [Allmaps](https://allmaps.org/) | `allmaps.org` | Georeferencování IIIF map přímo v prohlížeči — editor, viewer a tile server, který z Georeference Annotation udělá XYZ vrstvu pro QGIS, MapLibre, OpenLayers i Leaflet bez vytváření GeoTIFFů | open | api | reference |
 | `AT` | [Österreichisches Staatsarchiv](https://www.oesta.gv.at/) | `oesta.gv.at` | Rakouský státní archiv. Drží spisy habsburské monarchie, takže se v něm hledají pozemkové a firemní záznamy pro celou střední Evropu do roku 1918 — často jediné místo, kde je dohledatelný původ nemovitosti z té doby | open | search | reference |
+| `AT` | [Österreichische Nationalbibliothek](https://www.onb.ac.at/) | `onb.ac.at` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rakouská ÖNB digitalizovala historické noviny v ANNO a mapovou sbírku; obojí je volně přístupné | open | bulk | reference |
 | `BE` | [Rijksarchief / Archives de l'État](https://www.arch.be/) | `arch.be` | Belgický státní archiv se sítí depozitářů v provinciích. Digitalizované matriky, notářské spisy a katastrální mapy jsou přístupné online po bezplatné registraci | registration | search | reference |
+| `BE` | [KBR — Koninklijke Bibliotheek van België](https://www.kbr.be/) | `kbr.be` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Belgická KBR provozuje BelgicaPress s digitalizovanými novinami a otevřená data svého katalogu | open | bulk | reference |
 | `BG` | [Държавна агенция „Архиви“](https://www.archives.government.bg/) | `archives.government.bg` | Bulharská státní archivní agentura. Vede ústřední i regionální archivy a postupně zpřístupňuje inventáře a digitalizované fondy přes vlastní informační systém | open | search | reference |
+| `BG` | [Национална библиотека „Св. св. Кирил и Методий“](https://www.nationallibrary.bg/) | `nationallibrary.bg` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Bulharská národní knihovna digitalizuje periodika a rukopisy a vede národní bibliografii | open | search | reference |
 | `HR` | [Hrvatski državni arhiv](https://www.arhiv.hr/) | `arhiv.hr` | Chorvatský státní archiv. Vede ústřední fondy a koordinuje síť župních archivů; digitalizované matriky a katastrální mapy jsou přístupné přes portál ARHiNET | open | search | reference |
+| `HR` | [Nacionalna i sveučilišna knjižnica](https://www.nsk.hr/) | `nsk.hr` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Chorvatská NSK archivuje chorvatský web a provozuje digitalizovanou sbírku novin a starých tisků | open | search | reference |
 | `CZ` | [Archivní mapy ČÚZK](https://ags.cuzk.gov.cz/archiv/) | `ags.cuzk.gov.cz` | Archivní mapy ČÚZK — císařské otisky a indikační skici stabilního katastru, stará státní mapová díla a archiv leteckých měřických snímků od roku 1936 | open | download | reference |
 | `CZ` | [Chartae Antiquae](https://www.chartae-antiquae.cz/cs/) | `chartae-antiquae.cz` | Virtuální mapová sbírka historických map ČR | open | search | reference |
 | `CZ` | [Národní archiv](https://www.nacr.cz/) | `nacr.cz` | Ústřední archiv České republiky. Odsud vede cesta k digitálním archivům jednotlivých oblastí — matriky, pozemkové knihy a spisy podniků jsou volně prohlížitelné a u starších nemovitostních sporů bývají rozhodující | open | search | reference |
+| `CZ` | [Národní knihovna ČR](https://www.nkp.cz/) | `nkp.cz` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Česká NK provozuje **Kramerius s digitalizovanými novinami a časopisy** a katalog vydává jako otevřená data | open | bulk | reference |
 | `DK` | [Rigsarkivet](https://www.rigsarkivet.dk/) | `rigsarkivet.dk` | Dánský státní archiv. Portál Daisy umožňuje objednat i prohledávat fondy; velká část matrik a sčítání lidu je digitalizovaná a volně dostupná | open | search | reference |
+| `DK` | [Det Kgl. Bibliotek](https://www.kb.dk/) | `kb.dk` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Dánská královská knihovna digitalizovala noviny v Mediestream a nabízí rozhraní k datům sbírek | open | api | reference |
 | `EE` | [Rahvusarhiiv](https://www.ra.ee/) | `ra.ee` | Estonský národní archiv. Portál Saaga a AIS mají digitalizované matriky, pozemkové knihy a mapy; estonský archiv patří k nejlépe digitalizovaným v EU | open | search | reference |
+| `EE` | [Rahvusraamatukogu](https://www.rara.ee/) | `rara.ee` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Estonská národní knihovna provozuje DIGAR s digitalizovanými novinami a knihami a archivuje estonský web | open | search | reference |
 | `FI` | [Kansallisarkisto](https://kansallisarkisto.fi/etusivu) | `kansallisarkisto.fi` | Finský národní archiv. Služba Astia zpřístupňuje fondy online; matriky, katastr a soudní spisy jsou z velké části digitalizované | open | search | reference |
+| `FI` | [Kansalliskirjasto](https://www.kansalliskirjasto.fi/) | `kansalliskirjasto.fi` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Finská národní knihovna má v digi.kansalliskirjasto.fi digitalizované noviny od roku 1771. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `FR` | [Archives nationales](https://www.archives-nationales.culture.gouv.fr/) | `archives-nationales.culture.gouv.fr` | Francouzský národní archiv. Vedle vlastních fondů odsud vede cesta k departementálním archivům, kde jsou digitalizované matriky, notářské spisy a katastr | open | search | reference |
+| `FR` | [BnF — Bibliothèque nationale de France](https://www.bnf.fr/) | `bnf.fr` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Francouzská BnF provozuje **Gallicu** — jednu z největších digitálních knihoven v Evropě s miliony stran novin, map a rukopisů, s otevřeným API | open | api | reference |
 | `DE` | [Bundesarchiv](https://www.bundesarchiv.de/) | `bundesarchiv.de` | Německý spolkový archiv. Databáze Invenio zpřístupňuje inventáře i digitalizáty; vedle spisů spolkových úřadů drží i fondy NDR a firemní archivy zestátněných podniků | open | search | reference |
+| `DE` | [Deutsche Nationalbibliothek](https://www.dnb.de/) | `dnb.de` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Německá DNB vydává celý katalog jako **propojená otevřená data** včetně normovaného rejstříku osob a organizací GND — užitečné při ověřování identit | open | bulk | reference |
 | `GR` | [ΓΑΚ — Γενικά Αρχεία του Κράτους](https://portal.gak.gr/) | `portal.gak.gr` | Řecký státní archiv. Portál zpřístupňuje inventáře ústředního i prefekturních archivů a rostoucí objem digitalizovaných fondů | open | search | reference |
+| `GR` | [Εθνική Βιβλιοθήκη της Ελλάδος](https://www.nlg.gr/) | `nlg.gr` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Řecká národní knihovna zpřístupňuje digitalizované rukopisy a periodika | open | search | reference |
 | `HU` | [Magyar Nemzeti Levéltár](https://mnl.gov.hu/) | `mnl.gov.hu` | Maďarský národní archiv. Databáze Hungaricana zpřístupňuje digitalizované mapy, urbáře a katastrální operáty pro celé území historických Uher | open | search | reference |
+| `HU` | [Országos Széchényi Könyvtár](https://www.oszk.hu/) | `oszk.hu` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maďarská OSZK stojí za portálem Hungaricana a digitalizovanými novinami v Arcanum, které pokrývají celé Uhry | open | bulk | reference |
 | `IE` | [National Archives of Ireland](https://www.nationalarchives.ie/) | `nationalarchives.ie` | Irský národní archiv. Sčítání lidu z let 1901 a 1911 je online zdarma, stejně jako závěti a soudní spisy; velká část starších fondů shořela v roce 1922 | open | search | reference |
+| `IE` | [National Library of Ireland](https://www.nli.ie/) | `nli.ie` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Irská NLI digitalizovala matriky katolických farností a rozsáhlou fotografickou sbírku, obojí volně | open | search | reference |
+| `IT` | [Biblioteca Nazionale Centrale di Firenze](https://bncf.cultura.gov.it/) | `bncf.cultura.gov.it` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Itálie má dvě centrální národní knihovny, ve Florencii a v Římě; florentská vede národní bibliografii BNI | open | search | reference |
 | `LV` | [Latvijas Nacionālais arhīvs](https://www.arhivi.gov.lv/) | `arhivi.gov.lv` | Lotyšský národní archiv. Portál Raduraksti má digitalizované matriky a revizní seznamy; novější fondy včetně podnikových se objednávají online | open | search | reference |
+| `LV` | [Latvijas Nacionālā bibliotēka](https://lnb.gov.lv/) | `lnb.gov.lv` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Lotyšská LNB provozuje periodika.lv s digitalizovaným tiskem a archivuje lotyšský web | open | search | reference |
 | `LT` | [Lietuvos archyvai](https://www.archyvai.lt/) | `archyvai.lt` | Litevský archivní portál. Systém EAIS zpřístupňuje inventáře i digitalizované matriky. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `LT` | [Lietuvos nacionalinė Martyno Mažvydo biblioteka](https://www.lnb.lt/) | `lnb.lt` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Litevská národní knihovna provozuje epaveldas.lt s digitalizovaným kulturním dědictvím | open | search | reference |
 | `LU` | [Archives nationales de Luxembourg](https://anlux.public.lu/) | `anlux.public.lu` | Lucemburský národní archiv. Fondy jdou prohledávat online a část notářských a katastrálních spisů je digitalizovaná | open | search | reference |
+| `LU` | [Bibliothèque nationale du Luxembourg](https://bnl.public.lu/) | `bnl.public.lu` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Lucemburská BnL digitalizovala celý historický lucemburský tisk a zpřístupňuje ho jako otevřená data | open | bulk | reference |
 | `MT` | [National Archives of Malta](https://nationalarchives.gov.mt/) | `nationalarchives.gov.mt` | Maltský národní archiv v Rabatu. Drží soudní, notářské a koloniální fondy. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `MT` | [Malta Libraries](https://maltalibraries.gov.mt/) | `maltalibraries.gov.mt` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maltská národní knihovna ve Vallettě drží archiv Řádu maltézských rytířů a digitalizovaný historický tisk | open | search | reference |
 | `NL` | [Nationaal Archief](https://www.nationaalarchief.nl/) | `nationaalarchief.nl` | Nizozemský národní archiv. Velká část fondů je digitalizovaná a dostupná pod otevřenou licencí, včetně map a spisů Východoindické společnosti | open | bulk | reference |
+| `NL` | [Koninklijke Bibliotheek](https://www.kb.nl/) | `kb.nl` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Nizozemská KB provozuje **Delpher** s digitalizovanými novinami, časopisy a knihami a nabízí k nim otevřená API | open | api | reference |
 | `PL` | [Naczelna Dyrekcja Archiwów Państwowych](https://www.archiwa.gov.pl/) | `archiwa.gov.pl` | Polská archivní správa. Portál szukajwarchiwach.gov.pl zpřístupňuje desítky milionů naskenovaných stran — matriky, pozemkové knihy i spisy meziválečných firem | open | search | reference |
+| `PL` | [Biblioteka Narodowa](https://www.bn.org.pl/) | `bn.org.pl` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Polská BN stojí za portálem Polona s miliony digitalizovaných objektů a vydává katalog jako otevřená data | open | bulk | reference |
 | `PT` | [DigitArq — Arquivo Nacional Torre do Tombo](https://digitarq.arquivos.pt/) | `digitarq.arquivos.pt` | Portugalský národní archiv Torre do Tombo. Katalog DigitArq má miliony digitalizovaných obrazů včetně notářských knih a inkvizičních procesů | open | search | reference |
+| `PT` | [Biblioteca Nacional de Portugal](https://www.bnportugal.gov.pt/) | `bnportugal.gov.pt` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Portugalská BNP provozuje Biblioteca Nacional Digital s digitalizovanými tisky a periodiky | open | search | reference |
+| `RO` | [Biblioteca Naţională a României](https://www.bibnat.ro/) | `bibnat.ro` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rumunská národní knihovna vede národní bibliografii a digitalizuje historický tisk | open | search | reference |
 | `SK` | [Štátne archívy SR](https://www.minv.sk/?archivy) | `minv.sk` | Slovenské státní archivy pod ministerstvem vnitra. Portál slovakiana a digitálny archív zpřístupňují matriky a mapy; pozemkové knihy jsou k dispozici v regionálních pracovištích | open | search | reference |
+| `SK` | [Slovenská národná knižnica](https://www.snk.sk/) | `snk.sk` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Slovenská SNK digitalizuje tisk a knihy a provozuje portál Slovakiana s kulturním dědictvím | open | search | reference |
 | `SI` | [Arhiv Republike Slovenije](https://www.gov.si/drzavni-organi/organi-v-sestavi/arhiv-republike-slovenije/) | `gov.si` | Slovinský státní archiv. Systém SIRAnet zpřístupňuje inventáře ústředního i regionálních archivů a rostoucí objem digitalizátů | open | none | reference |
+| `SI` | [Narodna in univerzitetna knjižnica](https://www.nuk.uni-lj.si/) | `nuk.uni-lj.si` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Slovinská NUK provozuje dLib.si s digitalizovanými periodiky a rukopisy | open | search | reference |
 | `ES` | [PARES — Portal de Archivos Españoles](https://pares.cultura.gob.es/) | `pares.cultura.gob.es` | Společný portál španělských státních archivů. Prohledává fondy Archivo Histórico Nacional, Archivo de Indias i dalších najednou a velká část je digitalizovaná | open | search | reference |
+| `ES` | [Biblioteca Nacional de España](https://www.bne.es/) | `bne.es` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Španělská BNE provozuje Hemeroteca Digital s historickým tiskem a vydává katalog jako otevřená data. Na automat vrací 403, v prohlížeči funguje | open | bulk | reference |
 | `SE` | [Riksarkivet](https://riksarkivet.se/) | `riksarkivet.se` | Švédský národní archiv. Digitala forskarsalen zpřístupňuje matriky, sčítání a pozemkové knihy; velká část je volně dostupná bez registrace | open | search | reference |
+| `SE` | [Kungliga biblioteket](https://www.kb.se/) | `kb.se` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Švédská KB archivuje švédský web, digitalizuje noviny a vydává katalog Libris jako propojená otevřená data | open | bulk | reference |
 | `GB` | [National Library of Scotland — Map Images](https://maps.nls.uk/) | `maps.nls.uk` | Zoomovatelné mapy Britských ostrovů 16.–20. století, velká část georeferencovaná — side-by-side a spyglass prohlížeč, vrstvy použitelné jako XYZ v QGIS přes Historic Maps API | open | download | reference |
 | `US` | [David Rumsey Map Collection](https://www.davidrumsey.com/) | `davidrumsey.com` | Přes 150 000 naskenovaných map a atlasů online s IIIF — georeferencovaná přes Georeferencer je jen část sbírky | open | download | reference |
 | `US` | [USGS topoView](https://ngmdb.usgs.gov/topoview/) | `ngmdb.usgs.gov` | Přes 178 000 historických topografických map USGS z let 1884–2006 — zdarma ke stažení jako GeoTIFF, GeoPDF, KMZ nebo JPEG | open | download | reference |

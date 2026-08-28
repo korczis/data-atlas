@@ -454,5 +454,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Bulharská komise vede i registr správců a zveřejňuje praxi k přeshraničním případům",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-nationallibrary",
+    "topic": "archives",
+    "name": "Национална библиотека „Св. св. Кирил и Методий“",
+    "url": "https://www.nationallibrary.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Bulharská národní knihovna digitalizuje periodika a rukopisy a vede národní bibliografii",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

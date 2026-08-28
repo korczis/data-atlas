@@ -574,5 +574,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Německý spolkový pověřenec dohlíží na federální úřady a telekomunikace; soukromý sektor spadá pod dozorové úřady jednotlivých spolkových zemí",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-dnb",
+    "topic": "archives",
+    "name": "Deutsche Nationalbibliothek",
+    "url": "https://www.dnb.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Německá DNB vydává celý katalog jako **propojená otevřená data** včetně normovaného rejstříku osob a organizací GND — užitečné při ověřování identit",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

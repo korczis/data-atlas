@@ -574,5 +574,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Francouzská CNIL je nejstarší dozorový úřad v Evropě a publikuje **otevřená data o svých sankcích a kontrolách** i podrobné metodiky pro jednotlivé sektory",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-bnf",
+    "topic": "archives",
+    "name": "BnF — Bibliothèque nationale de France",
+    "url": "https://www.bnf.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Francouzská BnF provozuje **Gallicu** — jednu z největších digitálních knihoven v Evropě s miliony stran novin, map a rukopisů, s otevřeným API",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

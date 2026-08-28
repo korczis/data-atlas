@@ -370,5 +370,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Litevská inspekce zveřejňuje rozhodnutí i metodiky. Na automat vrací 403, v prohlížeči funguje",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-lnb",
+    "topic": "archives",
+    "name": "Lietuvos nacionalinė Martyno Mažvydo biblioteka",
+    "url": "https://www.lnb.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Litevská národní knihovna provozuje epaveldas.lt s digitalizovaným kulturním dědictvím",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

@@ -334,5 +334,17 @@
     "desc": "Dozorový úřad pro ochranu osobních údajů podle GDPR. Zveřejňuje **rozhodnutí a pokuty**, což je u prověřování protistrany konkrétní doklad o tom, jak zachází s daty — a zároveň mez, kterou musí respektovat i rešerše vedená z tohoto katalogu. Maltský komisař dohlíží současně na ochranu údajů a na přístup k informacím",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-libraries",
+    "topic": "archives",
+    "name": "Malta Libraries",
+    "url": "https://maltalibraries.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maltská národní knihovna ve Vallettě drží archiv Řádu maltézských rytířů a digitalizovaný historický tisk",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]
