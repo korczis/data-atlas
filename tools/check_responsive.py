@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
-"""Změří vodorovné přetečení stránky v reálném prohlížeči.
+"""Změří v reálném prohlížeči, jestli je stránka vidět a neteče do strany.
 
 jsdom umí DOM, ale ne layout — přetečení do strany v něm nezjistíš. Tenhle
 skript proto pouští headless Chrome na několika šířkách a ptá se přímo
 stránky, jestli `documentElement.scrollWidth` přerostl viewport, a který
 konkrétní prvek za to může.
 
-Vrací nenulový kód, když se stránka na kterékoli šířce roztáhne do strany.
+Vedle přetečení kontroluje i to, že hlavní obsah **skutečně něco zabírá**.
+Vzniklo z chyby, kterou neodhalila žádná jiná brána: chybějící `</aside>`
+zanořilo `#main-content` do postranního panelu, ten je pod `lg` mimo plátno,
+takže stránka byla prázdná — a přitom v DOM byly všechny řádky (jsdom testy
+prošly), nic neteklo do strany (tahle sonda prošla) a axe nehlásil nic.
+Měřit rozvržení znamená měřit i to, že obsah má nenulovou plochu.
+
+Vrací nenulový kód, když se stránka roztáhne do strany nebo není vidět obsah.
 """
 from __future__ import annotations
 
@@ -51,12 +58,23 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
         ' @' + Math.round(r.right) + 'px');
     }
   }
+  // Obsah musí mít nenulovou plochu a nesmí být zanořený v panelu —
+  // jinak je stránka „vykreslená" a přitom prázdná.
+  const main = d.getElementById('main-content');
+  const side = d.getElementById('sidebar');
+  const mainBox = main ? main.getBoundingClientRect() : { width: 0, height: 0 };
+  const rows = [...d.querySelectorAll('table tbody tr[data-row], ul[role="list"] > li')]
+    .filter(el => el.getBoundingClientRect().height > 0).length;
   const out = document.createElement('div');
   out.id = 'probe-result';
   out.textContent = JSON.stringify({
     viewport: w,
     scrollWidth: d.documentElement.scrollWidth,
     overflow: d.documentElement.scrollWidth - w,
+    mainWidth: Math.round(mainBox.width),
+    mainHeight: Math.round(mainBox.height),
+    mainInSidebar: !!(side && main && side.contains(main)),
+    visibleRows: rows,
     guilty: guilty.slice(0, 5),
   });
   document.body.appendChild(out);
@@ -122,13 +140,27 @@ def main() -> int:
     failed = False
     for w in args.widths:
         r = measure(w)
-        ok = r["overflow"] <= 0
-        failed |= not ok
-        print(f"  {'✓' if ok else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} přetečení={r['overflow']:>4}px")
-        if not ok:
+        problems = []
+        if r["overflow"] > 0:
+            problems.append(f"teče do strany o {r['overflow']}px")
+        # Prázdná stránka se pozná jinak než přetečením: obsah je v DOM,
+        # ale nic nezabírá — typicky když se zanoří do off-canvas panelu.
+        if r["mainInSidebar"]:
+            problems.append("#main-content je zanořený v #sidebar")
+        if r["mainWidth"] <= 0 or r["mainHeight"] <= 0:
+            problems.append(f"hlavní obsah nic nezabírá ({r['mainWidth']}×{r['mainHeight']}px)")
+        if r["visibleRows"] == 0:
+            problems.append("není vidět ani jedna položka katalogu")
+        failed |= bool(problems)
+        print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
+              f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
+              f"položek={r['visibleRows']}")
+        for problem in problems:
+            print(f"        {problem}")
+        if r["overflow"] > 0:
             for g in r["guilty"]:
                 print(f"        viník: {g}")
-    print("\nbez vodorovného přetečení" if not failed else "\nstránka se roztahuje do strany")
+    print("\nrozvržení v pořádku" if not failed else "\nrozvržení je rozbité")
     return 1 if failed else 0
 
 

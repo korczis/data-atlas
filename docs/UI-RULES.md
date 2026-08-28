@@ -178,6 +178,23 @@ Z toho plyne zbytek:
 |---|---|
 | `responsive/mobile-first` — žádné `max-*:` varianty | Breakpointy se skládají odspodu nahoru |
 | `responsive/min-width` — `min-w-[…]` jen uvnitř `overflow-x-auto` | Jinak roztáhne celou stránku do strany |
+| `html/structure` — blokové značky se musí zavírat, a ve správném pořadí | Prohlížeč nevyvážený markup tiše dorovná; jednou chybějící `</aside>` zanořilo celý obsah do panelu |
+
+### Prázdná stránka se nepozná měřením přetečení
+
+Jedna chybějící `</aside>` zanořila `#main-content` do postranního panelu.
+Ten je pod `lg` mimo plátno, takže **stránka byla prázdná** — a přitom:
+
+- **jsdom testy prošly**: v DOM bylo všech 1050 řádků, jen je nebylo vidět;
+- **měření přetečení prošlo**: nic neteklo do strany, všechno se vešlo do `w-64`;
+- **axe neohlásil nic**: obsah formálně existoval.
+
+Z toho plynou dvě pravidla. Za prvé, strukturu markupu hlídá **linter**
+(`html/structure`), protože prohlížeč nevyvážené značky tiše dorovná a v DOM
+už je chyba neviditelná. Za druhé, `check_responsive.py` měří i to, že
+**hlavní obsah má nenulovou plochu, není zanořený v panelu a je vidět aspoň
+jedna položka** — měřit rozvržení znamená měřit i to, že obsah něco zabírá,
+ne jen že nic nepřetéká.
 
 Linter tu ale nestačí — konvence nezaručí layout. Skutečné přetečení měří
 `tools/check_responsive.py` (`just responsive`): pustí stránku v headless Chrome

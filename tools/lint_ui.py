@@ -9,6 +9,7 @@ Každé pravidlo tu je proto, že jeho porušení něco reálně rozbije. U kaž
 napsáno co, aby se dalo posoudit, jestli pořád dává smysl.
 """
 import re, sys
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,10 +36,68 @@ def line_of(text: str, idx: int) -> int:
     return text.count("\n", 0, idx) + 1
 
 
+VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+        "meta", "param", "source", "track", "wbr"}
+
+
+class Structure(HTMLParser):
+    """Hlídá, že se blokové značky zavírají a ve správném pořadí.
+
+    Vzniklo z chyby, která shodila celou stránku a **prošla všemi ostatními
+    branami**: chybějící `</aside>` zanořilo `#main-content` do postranního
+    panelu. V DOM byly všechny řádky, takže jsdom testy prošly; panel je pod
+    `lg` mimo plátno, takže měření přetečení nic nenašlo; a axe nehlásil nic,
+    protože obsah formálně existoval. V prohlížeči byla stránka prázdná.
+
+    Prohlížeč nevyvážené značky tiše dorovná — proto to musí zachytit linter,
+    ne test v DOM.
+    """
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack: list[tuple[str, int]] = []
+        self.problems: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag not in VOID:
+            self.stack.append((tag, self.getpos()[0]))
+
+    def handle_startendtag(self, tag, attrs):
+        pass
+
+    def handle_endtag(self, tag):
+        if tag in VOID:
+            return
+        if not self.stack:
+            self.problems.append(f"řádek {self.getpos()[0]}: </{tag}> bez otevírací značky")
+            return
+        if self.stack[-1][0] == tag:
+            self.stack.pop()
+            return
+        # Zavírá se něco jiného, než co je navrchu — hledej, jestli je to
+        # vůbec otevřené, a nahlas, co zůstalo nezavřené mezi tím.
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                unclosed = ", ".join(f"<{t}> z řádku {ln}" for t, ln in self.stack[i + 1:])
+                self.problems.append(
+                    f"řádek {self.getpos()[0]}: </{tag}> zavírá přes nezavřené {unclosed}")
+                del self.stack[i:]
+                return
+        self.problems.append(f"řádek {self.getpos()[0]}: </{tag}> bez otevírací značky")
+
+
 def check(html: str) -> None:
     # Tělo bez <script> — pravidla o markupu nemají koukat do JS.
     markup = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
     script = "\n".join(re.findall(r"<script\b.*?>(.*?)</script>", html, flags=re.S))
+
+    # ── Struktura: vyvážené značky ────────────────────────────────────────────
+    structure = Structure()
+    structure.feed(re.sub(r"<!--.*?-->", "", markup, flags=re.S))
+    for problem in structure.problems:
+        fail("html/structure", problem)
+    for name, line in structure.stack:
+        fail("html/structure", f"řádek {line}: <{name}> se nikdy nezavírá")
 
     # ── Flowbite: inicializace ────────────────────────────────────────────────
     # Flowbite váže chování na data atributy jediným skenem DOM. Cokoli
