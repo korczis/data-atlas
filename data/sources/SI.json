@@ -310,5 +310,29 @@
     "desc": "Slovinská data leteckého laserového skenování — **bodová mračna a model terénu 1 m pro celé Slovinsko, zdarma ke stažení po blocích**. Slovinsko naskenovalo celé území jako jeden z prvních států v EU",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-kataster",
+    "topic": "cadastre",
+    "name": "Kataster nepremičnin (JGP)",
+    "url": "https://ipi.eprostor.gov.si/jgp/kataster",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Slovinský katastr nemovitostí — **parcely, stavby a jejich části se souřadnicemi**, jako veřejné geodetické údaje zdarma ke stažení. Slovinsko sloučilo katastr pozemků a budov do jedné evidence",
+    "country": "SI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "si-ajpes-eobjave",
+    "topic": "insolvency",
+    "name": "AJPES eObjave",
+    "url": "https://www.ajpes.si/eObjave/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Veřejná oznámení AJPES — **insolvenční řízení, nucené vyrovnání, likvidace, výmazy a dražby**, dohledatelné podle subjektu a zdarma. Slovinská obdoba insolvenčního rejstříku",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

@@ -334,5 +334,17 @@
     "desc": "Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-matriklen",
+    "topic": "cadastre",
+    "name": "Matriklen",
+    "url": "https://www.matriklen.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Dánský katastr — **parcely, jejich hranice, výměry a katastrální označení pro celé Dánsko**, jako základní registr. Geometrie je zdarma přes Dataforsyningen a Datafordeleren; vlastnická práva vede zvlášť pozemková kniha Tinglysning",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

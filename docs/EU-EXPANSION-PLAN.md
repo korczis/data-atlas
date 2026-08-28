@@ -1033,7 +1033,7 @@ a je to doložené:
 | Kyberbezpečnost | CY, GR, MT | `digitalsecurityauthority.cy`, `ncsa.gov.gr` a `csirt.gov.mt` neodpovídají |
 | Judikatura správních soudů | RO | `orzeczenia`-obdoba `scj.ro` a `ccr.ro` neodpovídají (503) |
 | Geologie | HU | `mbfsz.gov.hu` neodpovídá; agenda přešla pod dozorový úřad bez veřejného portálu |
-| Insolvenční rejstřík | GR, MT, RO, SI | Samostatný veřejný rejstřík neexistuje — úpadky jsou ve věstníku nebo v obchodním rejstříku, což popisy říkají |
+| Insolvenční rejstřík | GR, IT, MT, RO | Samostatný veřejný rejstřík neexistuje — úpadky jsou ve věstníku (GR: ΦΕΚ, IT: Gazzetta Ufficiale, MT: Government Gazette) nebo v obchodním rejstříku (RO: BPI u ONRC, zpoplatněný). Popisy to u příslušných položek říkají |
 | Výškopis jako samostatná položka | 16 států | Není to samostatná služba: u většiny států je výškopis součástí geoportálu nebo katastru, které v katalogu jsou. Kde má vlastní produktovou stránku (NL, ES, FR, IT, SI, SE, FI, DK, LV, HR, CZ), je v katalogu zvlášť |
 | Ceny nemovitostních transakcí | 17 států | Veřejně neexistují. Plošně je mají jen **FR** (DVF), **IE** (Property Price Register), **DK** (OIS) a částečně **PL** (RCN) a **IT** (OMI, jen agregovaně po zónách) |
 
@@ -1068,3 +1068,24 @@ kdy by se podle názvu domény do katalogu dostalo něco úplně jiného.
 A `renns.ancpi.ro`, `geoportal.ancpi.ro` i `ran.mai.gov.ro` vracejí **NXDOMAIN** —
 nejde o filtrování ze zahraničí, ty hostitele prostě nikdo neprovozuje, přestože
 je odborné články i obecní weby dál uvádějí.
+
+
+## Uzavření zbylých rodin
+
+Po doplnění adres dorovnaly i tři rodiny, kde chyběla samostatná položka, přestože
+služba existuje:
+
+- **Katastr 24 → 27/27.** Dánsko (Matriklen), Lucembursko (katastrální téma
+  geoportálu) a Slovinsko (kataster nepremičnin v JGP) měly katastr schovaný
+  pod geoportálem nebo adresním registrem.
+- **Insolvence 22 → 23/27.** Slovinsko dostalo AJPES eObjave, což je jeho obdoba
+  insolvenčního rejstříku. Zbylé čtyři (GR, IT, MT, RO) samostatný veřejný
+  rejstřík skutečně nemají.
+
+Stav povinných rodin napříč členskými státy:
+
+| 27/27 | adresy · prostředí · doprava · statistika · otevřená data · věstníky · zakázky · výdaje · firmy · skuteční majitelé · soudy · regulace · bezpečnost · katastr |
+|---|---|
+| **26/27** | účetní závěrky (chybí CY — dokumenty u DRCOR jsou zpoplatněné a bez samostatné služby) |
+| **24/27** | geoportál (GR, MT, RO) · kyberbezpečnost (CY, GR, MT) — weby neodpovídají nebo neexistují |
+| **23/27** | insolvence (GR, IT, MT, RO) — samostatný rejstřík neexistuje |

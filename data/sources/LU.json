@@ -262,5 +262,17 @@
     "desc": "Lucemburská katastrální a topografická správa — **adresní registr, katastrální parcely, budovy a topografická data**, vydávaná jako otevřená data přes geoportál a data.public.lu. Lucembursko vede adresy centrálně u jedné instituce",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-cadastre",
+    "topic": "cadastre",
+    "name": "Cadastre (geoportail.lu)",
+    "url": "https://map.geoportail.lu/theme/cadastre",
+    "kind": "official",
+    "access": "open",
+    "data": "ogc",
+    "desc": "Lucemburská katastrální mapa — **parcely s čísly, výměrami a obcí, plus vrstvy budov a hranic**, veřejně a zdarma v mapové aplikaci i jako služby. Vede ji Administration du cadastre et de la topographie",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

@@ -16,7 +16,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 1 | 2 | 1 | 1 | 1 | 2 | 2 |  | 2 | 1 | **29** |
 | `CY` Kypr | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |  | 1 | 2 | 2 |  | 1 | 1 | **19** |
 | `CZ` Česko | 7 | 5 | 2 | 12 | 10 | 3 | 1 | 3 | 3 | 5 | 5 | 1 | 1 | 2 | 4 | 6 | 8 | 7 | 3 | **94** |
-| `DK` Dánsko | 3 |  | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 | 2 | 2 | 1 | **28** |
+| `DK` Dánsko | 3 | 1 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 | 2 | 2 | 1 | **29** |
 | `EE` Estonsko | 1 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 3 | 2 |  | 2 | 1 | **24** |
 | `FI` Finsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 1 |  | 2 | 1 | **24** |
 | `FR` Francie | 4 | 2 | 1 | 1 | 4 | 3 | 1 | 2 | 2 | 1 | 3 | 1 | 2 | 1 | 3 | 3 | 1 | 3 | 1 | **39** |
@@ -27,14 +27,14 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `IT` Itálie | 4 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 2 | 2 | 1 | 1 | 1 |  | 3 | 3 |  | 2 | 3 | **35** |
 | `LV` Lotyšsko | 2 | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 2 | 1 | 1 | 1 | 2 | 1 |  | 2 | 1 | **26** |
 | `LT` Litva | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 | 1 |  | 2 | 1 | **21** |
-| `LU` Lucembursko | 1 |  | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 |  | 2 | 1 | **22** |
+| `LU` Lucembursko | 1 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 |  | 2 | 1 | **23** |
 | `MT` Malta |  | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 1 | 1 |  | 1 | 1 | 1 | 1 | 1 | **19** |
 | `NL` Nizozemsko | 3 | 1 | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 2 | 2 |  | 2 | 2 | **31** |
 | `PL` Polsko | 6 | 3 | 2 | 5 | 5 | 3 | 1 | 3 | 2 | 2 | 5 | 1 | 3 | 1 | 4 | 4 | 1 | 4 | 2 | **57** |
 | `PT` Portugalsko | 2 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 2 | 3 |  | 2 | 2 | **29** |
 | `RO` Rumunsko |  | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 2 | 1 | 1 |  | 3 | 2 |  | 3 | 1 | **24** |
 | `SK` Slovensko | 1 | 2 | 1 | 1 | 4 | 2 | 1 | 1 | 2 | 2 | 4 | 1 | 2 | 1 | 2 | 2 |  | 2 | 1 | **32** |
-| `SI` Slovinsko | 2 |  | 1 | 1 | 2 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 1 |  | 3 | 2 | 1 | 2 | 1 | **26** |
+| `SI` Slovinsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 3 | 2 | 1 | 2 | 1 | **28** |
 | `ES` Španělsko | 4 | 1 | 1 | 2 | 4 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 3 | 2 |  | 3 | 1 | **31** |
 | `SE` Švédsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 |  | 2 | 1 | **26** |
 | `GB` Spojené království |  |  |  |  |  |  |  |  |  |  | 1 |  |  |  |  |  |  | 1 |  | **3** |
@@ -47,7 +47,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Téma | Zdrojů | Zemí | Z toho úředních | S API nebo bulk |
 |---|--:|--:|--:|--:|
 | Geoportály a NSDI | 43 | 24 | 42 | 37 |
-| Katastr a pozemkové knihy | 39 | 24 | 39 | 23 |
+| Katastr a pozemkové knihy | 42 | 27 | 42 | 26 |
 | Adresy a územní členění | 30 | 28 | 26 | 22 |
 | Ortofoto, výškopis, topografie | 12 | 12 | 11 | 12 |
 | Životní prostředí, geologie, rizika | 64 | 29 | 61 | 35 |
@@ -62,7 +62,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Obchodní rejstříky | 60 | 30 | 51 | 30 |
 | Skuteční majitelé | 27 | 27 | 27 | 3 |
 | Účetní závěrky a listiny | 30 | 26 | 29 | 9 |
-| Insolvence a exekuce | 23 | 22 | 23 | 2 |
+| Insolvence a exekuce | 24 | 23 | 24 | 2 |
 | Soudy a judikatura | 66 | 28 | 63 | 4 |
 | Regulace a licencované subjekty | 67 | 28 | 67 | 23 |
 | Nemovitosti a trh | 18 | 10 | 13 | 8 |
@@ -84,7 +84,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 
 | Přístup | Zdrojů |
 |---|--:|
-| `open` | 900 |
+| `open` | 904 |
 | `mixed` | 63 |
 | `registration` | 38 |
 | `restricted` | 25 |
@@ -92,17 +92,17 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 
 | Data | Zdrojů |
 |---|--:|
-| `api` | 266 |
-| `search` | 252 |
-| `bulk` | 172 |
+| `api` | 267 |
+| `search` | 253 |
+| `bulk` | 173 |
 | `download` | 119 |
 | `none` | 111 |
-| `ogc` | 80 |
+| `ogc` | 81 |
 | `sw` | 46 |
 
 | Vydavatel | Zdrojů |
 |---|--:|
-| `official` | 796 |
+| `official` | 800 |
 | `ngo` | 105 |
 | `intl` | 61 |
 | `commercial` | 46 |

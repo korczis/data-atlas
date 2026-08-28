@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1046** položek v **33** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **994** doplněných rešerší.
+**1050** položek v **33** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **998** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -29,16 +29,16 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `ES` Španělsko — 31
 - `BG` Bulharsko — 29
 - `HR` Chorvatsko — 29
+- `DK` Dánsko — 29
 - `PT` Portugalsko — 29
-- `DK` Dánsko — 28
+- `SI` Slovinsko — 28
 - `LV` Lotyšsko — 26
-- `SI` Slovinsko — 26
 - `SE` Švédsko — 26
 - `EE` Estonsko — 24
 - `FI` Finsko — 24
 - `RO` Rumunsko — 24
+- `LU` Lucembursko — 23
 - `IE` Irsko — 22
-- `LU` Lucembursko — 22
 - `LT` Litva — 21
 - `GR` Řecko — 21
 - `CY` Kypr — 19
@@ -49,10 +49,10 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Témata
 
 
-**Geodata** — 277
+**Geodata** — 280
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
-- [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 39
+- [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 42
 - [Adresy a územní členění](#adresy-a-územní-členění) — 30
 - [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 12
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
@@ -68,12 +68,12 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 41
 
-**Firmy a due diligence** — 291
+**Firmy a due diligence** — 292
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 60
 - [Skuteční majitelé](#skuteční-majitelé) — 27
 - [Účetní závěrky a listiny](#účetní-závěrky-a-listiny) — 30
-- [Insolvence a exekuce](#insolvence-a-exekuce) — 23
+- [Insolvence a exekuce](#insolvence-a-exekuce) — 24
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 67
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 18
@@ -170,6 +170,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `CZ` | [SGI Nahlížení do KN](https://sgi-nahlizenidokn.cuzk.gov.cz/) | `sgi-nahlizenidokn.cuzk.gov.cz` | Grafická část — katastrální mapa, mapové služby | open | ogc | history |
 | `CZ` | [ČÚZK — Žádosti](https://zadosti.cuzk.gov.cz/) | `zadosti.cuzk.gov.cz` | Žádosti o zřízení dálkového přístupu do KN, o výdej dat ve výměnném formátu ISKN (VFK) a o souhlas se šířením údajů katastru | registration | none | history |
 | `CZ` | [REST API dat katastru nemovitostí (ČÚZK)](https://api-kn.cuzk.gov.cz/) | `api-kn.cuzk.gov.cz` | Bezplatné REST API ke katastru — parcely, budovy, jednotky a řízení v JSON, po registraci přes Identitu občana nebo účet dálkového přístupu | open | api | reference |
+| `DK` | [Matriklen](https://www.matriklen.dk/) | `matriklen.dk` | Dánský katastr — **parcely, jejich hranice, výměry a katastrální označení pro celé Dánsko**, jako základní registr. Geometrie je zdarma přes Dataforsyningen a Datafordeleren; vlastnická práva vede zvlášť pozemková kniha Tinglysning | open | api | reference |
 | `EE` | [X-GIS / Maainfo](https://xgis.maaamet.ee/) | `xgis.maaamet.ee` | Mapová aplikace estonského katastru — **parcely s katastrálním číslem, výměrou, účelem využití a cenou zdarma a bez přihlášení**; jméno vlastníka je chráněné. Součástí jsou i geologické, půdní a ochranné vrstvy | open | ogc | reference |
 | `FI` | [Maanmittauslaitos](https://www.maanmittauslaitos.fi/) | `maanmittauslaitos.fi` | Finský zeměměřický úřad — **katastr, pozemková kniha, adresy, budovy, ortofota a laserové skenování**. Referenční geodata jsou od roku 2012 otevřená a zdarma; **výpisy z pozemkové knihy s vlastníkem jsou zpoplatněné** | mixed | api | reference |
 | `FR` | [Cadastre (data.gouv.fr)](https://cadastre.data.gouv.fr/) | `cadastre.data.gouv.fr` | Francouzský katastrální plán jako otevřená data — parcely, budovy a sekce v GeoJSON a shapefile po departementech, měsíčně aktualizované. Geometrie je otevřená; vlastníky vede daňová správa a veřejné nejsou | open | bulk | reference |
@@ -184,6 +185,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `LV` | [Kadastrs.lv](https://www.kadastrs.lv/) | `kadastrs.lv` | Lotyšský katastrální portál — **parcely, budovy, výměry, katastrální hodnota a využití zdarma**; údaje o vlastníkovi a podrobné výpisy jsou zpoplatněné. Provozuje Státní pozemková služba | mixed | search | reference |
 | `LV` | [VZD — Valsts zemes dienests](https://www.vzd.gov.lv/) | `vzd.gov.lv` | Lotyšská státní pozemková služba — správce katastru, adresního registru a evidence budov, s otevřenými datovými sadami a placenými výdejními službami | mixed | api | reference |
 | `LT` | [Registrų centras — Nekilnojamojo turto registras](https://www.registrucentras.lt/nekilnojamas-turtas/) | `registrucentras.lt` | Litevský nemovitostní registr a katastr vedený Registrų centras — parcely, budovy, vlastnická práva a věcná břemena, s mapovou prohlížečkou. Základní údaje a mapové vrstvy zdarma, **výpisy jsou zpoplatněné za dokument**. Obchodní rejstřík, adresy, insolvence a skuteční majitelé jsou u téže instituce, ale jako samostatné registry | mixed | api | reference |
+| `LU` | [Cadastre (geoportail.lu)](https://map.geoportail.lu/theme/cadastre) | `map.geoportail.lu` | Lucemburská katastrální mapa — **parcely s čísly, výměrami a obcí, plus vrstvy budov a hranic**, veřejně a zdarma v mapové aplikaci i jako služby. Vede ji Administration du cadastre et de la topographie | open | ogc | reference |
 | `MT` | [Lands Authority Malta](https://www.landsauthority.org.mt/) | `landsauthority.org.mt` | Maltský pozemkový úřad — správa státní půdy, evidence pozemků a veřejné dražby. **Malta nemá plošný katastr** srovnatelný s kontinentálními; evidence pozemkových práv stojí na registraci listin, ne parcel | open | search | reference |
 | `NL` | [Kadaster](https://www.kadaster.nl/) | `kadaster.nl` | Nizozemský katastr — správce základních registrů BAG (adresy a budovy), BGT (velkoměřítková topografie) a BRK (parcely a vlastnická práva). Geometrie je přes PDOK zdarma, **vlastnická data z BRK jsou zpoplatněná** za dotaz | paid | api | reference |
 | `PL` | [ULDK — lokalizace parcel](https://uldk.gugik.gov.pl/) | `uldk.gugik.gov.pl` | Usługa lokalizacji działek katastralnych — REST dotaz na geometrii parcely podle identifikátoru nebo souřadnic; službě stačí ID, příslušnou okresní bázi EGiB si najde sama a vrací WKB | open | api | reference |
@@ -193,6 +195,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `RO` | [ANCPI](https://www.ancpi.ro/) | `ancpi.ro` | Rumunská agentura pro katastr a nemovitostní publicitu — katastrální mapa, pozemková kniha a ortofota. Náhled do mapy je veřejný, **výpisy z pozemkové knihy jsou zpoplatněné**. Geoportál geoportal.ancpi.ro mimo Rumunsko neodpovídá | mixed | ogc | reference |
 | `SK` | [ZBGIS mapový klient](https://zbgis.skgeodesy.sk/mapka/) | `zbgis.skgeodesy.sk` | Základní báze údajů geografického informačního systému — katastrální mapa, parcely, budovy, adresní body a ortofoto Slovenska v jedné prohlížečce zdarma. Vlastníka u parcely ukáže bez přihlášení, což je proti Rakousku i Německu neobvyklá otevřenost | open | ogc | reference |
 | `SK` | [ESKN portál (kataster)](https://kataster.skgeodesy.sk/eskn-portal/) | `kataster.skgeodesy.sk` | Elektronické služby katastru nemovitostí — výpisy z listu vlastnictví, sledování stavu vkladových řízení a služby pro geodety. Informativní výpisy zdarma, úředně ověřené za poplatek; má i strojová rozhraní pro dávkový výdej | open | api | reference |
+| `SI` | [Kataster nepremičnin (JGP)](https://ipi.eprostor.gov.si/jgp/kataster) | `ipi.eprostor.gov.si` | Slovinský katastr nemovitostí — **parcely, stavby a jejich části se souřadnicemi**, jako veřejné geodetické údaje zdarma ke stažení. Slovinsko sloučilo katastr pozemků a budov do jedné evidence | open | bulk | reference |
 | `ES` | [Sede Electrónica del Catastro](https://www.sedecatastro.gob.es/) | `sedecatastro.gob.es` | Španělský katastr — parcely, budovy, roky výstavby, plochy a využití pro celé Španělsko kromě Baskicka a Navarry, které vedou vlastní. Nemovitostní údaje jsou veřejné zdarma; jméno vlastníka je chráněný údaj a vydává se jen při doloženém oprávněném zájmu. Má INSPIRE služby a hromadné stahování | open | ogc | reference |
 | `SE` | [Lantmäteriet](https://www.lantmateriet.se/) | `lantmateriet.se` | Švédský zeměměřický úřad — **katastr (fastighetsregister), pozemková kniha, adresy, budovy, ortofota a výškopis**. Referenční geodata jsou od roku 2022 z velké části otevřená; **údaje o vlastníkovi nemovitosti jsou zpoplatněné** a jejich hromadné šíření omezené | mixed | api | reference |
 
@@ -831,6 +834,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `PL` | [Krajowy Rejestr Zadłużonych](https://krz.ms.gov.pl/) | `krz.ms.gov.pl` | Insolvenční rejstřík provozovaný od prosince 2021 — úpadky, restrukturalizace, zákazy podnikatelské činnosti a neúspěšné exekuce. Polská obdoba ISIR | open | search | reference |
 | `PT` | [Citius — soudní zveřejnění](https://www.citius.mj.pt/) | `citius.mj.pt` | Portál portugalské justice — **veřejná insolvenční zveřejnění** (prohlášení úpadku, správce, lhůty pro přihlášky, plány) a soudní vyhlášky, zdarma. Portugalská obdoba insolvenčního rejstříku | open | search | reference |
 | `SK` | [Register úpadcov](https://replik.justice.sk/ru-verejnost-web/) | `replik.justice.sk` | Slovenský insolvenční registr — konkurzy, restrukturalizace a oddlužení včetně správce, lhůt a soupisů majetku, dohledatelné podle IČO i jména. Slovenská obdoba ISIR | open | search | reference |
+| `SI` | [AJPES eObjave](https://www.ajpes.si/eObjave/) | `ajpes.si` | Veřejná oznámení AJPES — **insolvenční řízení, nucené vyrovnání, likvidace, výmazy a dražby**, dohledatelné podle subjektu a zdarma. Slovinská obdoba insolvenčního rejstříku | open | search | reference |
 | `ES` | [Registro Público Concursal](https://www.publicidadconcursal.es/) | `publicidadconcursal.es` | Španělský veřejný konkurzní registr — **úpadky, restrukturalizační plány a rozhodnutí** s vyhledáváním podle dlužníka. Rozsah je omezenější než u české ISIR; úplná vyhlášení jsou v BOE | open | search | reference |
 | `SE` | [Kronofogden](https://kronofogden.se/) | `kronofogden.se` | Švédský exekuční úřad — **konkurzy, exekuce, platební rozkazy a záznamy o platební nekázni (betalningsanmärkningar)**. Údaje o konkrétním subjektu se vydávají na žádost podle zásady veřejnosti dokumentů; komerční nadstavby je prodávají online | open | none | reference |
 
