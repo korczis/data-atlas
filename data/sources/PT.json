@@ -382,5 +382,17 @@
     "desc": "Portugalský národní archiv Torre do Tombo. Katalog DigitArq má miliony digitalizovaných obrazů včetně notářských knih a inkvizičních procesů",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-financas",
+    "topic": "regulators",
+    "name": "Portal das Finanças — informação",
+    "url": "https://info.portaldasfinancas.gov.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Portugalská finanční správa publikuje oběžníky, sazby a formuláře; ověření NIF a plátce DPH běží na hlavním portálu",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

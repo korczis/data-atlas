@@ -250,5 +250,17 @@
     "desc": "Kyperská sekce průmyslového vlastnictví při ministerstvu hospodářství. Vede rejstřík ochranných známek a patentů; kyperské holdingy si sem často registrují značky skupiny",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-tax",
+    "topic": "regulators",
+    "name": "Tax Department",
+    "url": "https://www.gov.cy/mof-tax/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Kyperský daňový odbor vede registr plátců DPH a od roku 2023 i evidenci daňových rezidentů podle nových pravidel",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

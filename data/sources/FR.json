@@ -502,5 +502,17 @@
     "desc": "Francouzský národní archiv. Vedle vlastních fondů odsud vede cesta k departementálním archivům, kde jsou digitalizované matriky, notářské spisy a katastr",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-impots",
+    "topic": "regulators",
+    "name": "impots.gouv.fr",
+    "url": "https://www.impots.gouv.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Francouzská daňová správa nabízí ověření DIČ a přístup k daňovým údajům o nemovitostech; hodnoty transakcí publikuje jako otevřená data DVF",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

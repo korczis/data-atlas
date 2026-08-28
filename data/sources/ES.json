@@ -407,5 +407,17 @@
     "desc": "Společný portál španělských státních archivů. Prohledává fondy Archivo Histórico Nacional, Archivo de Indias i dalších najednou a velká část je digitalizovaná",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-aeat",
+    "topic": "regulators",
+    "name": "Agencia Tributaria — sede electrónica",
+    "url": "https://sede.agenciatributaria.gob.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Španělská AEAT zveřejňuje seznam významných daňových dlužníků a umožňuje ověření NIF; elektronické podání běží tady",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

@@ -456,5 +456,17 @@
     "desc": "Rakouský státní archiv. Drží spisy habsburské monarchie, takže se v něm hledají pozemkové a firemní záznamy pro celou střední Evropu do roku 1918 — často jediné místo, kde je dohledatelný původ nemovitosti z té doby",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-bmf",
+    "topic": "regulators",
+    "name": "BMF — Bundesministerium für Finanzen",
+    "url": "https://www.bmf.gv.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Rakouské ministerstvo financí zveřejňuje daňové předpisy, sazby a rozhodnutí Finanzdokumentation; samotné podání běží přes FinanzOnline",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

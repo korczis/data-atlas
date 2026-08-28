@@ -418,5 +418,17 @@
     "desc": "Maďarský národní archiv. Databáze Hungaricana zpřístupňuje digitalizované mapy, urbáře a katastrální operáty pro celé území historických Uher",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-nav",
+    "topic": "regulators",
+    "name": "NAV — Nemzeti Adó- és Vámhivatal",
+    "url": "https://nav.gov.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maďarská NAV zveřejňuje databáze plátců DPH, daňových dlužníků a subjektů s odebraným daňovým číslem — všechny jsou volně prohledávatelné",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

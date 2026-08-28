@@ -382,5 +382,17 @@
     "desc": "Dánský státní archiv. Portál Daisy umožňuje objednat i prohledávat fondy; velká část matrik a sčítání lidu je digitalizovaná a volně dostupná",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-skat",
+    "topic": "regulators",
+    "name": "Skattestyrelsen",
+    "url": "https://skat.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Dánská daňová správa napojuje ověření na obchodní rejstřík CVR a firemní údaje se dohledávají pod stejným číslem",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

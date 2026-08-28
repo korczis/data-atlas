@@ -370,5 +370,17 @@
     "desc": "Slovinský státní archiv. Systém SIRAnet zpřístupňuje inventáře ústředního i regionálních archivů a rostoucí objem digitalizátů",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-fu",
+    "topic": "regulators",
+    "name": "FURS — Finančna uprava",
+    "url": "https://www.fu.gov.si/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Slovinská finanční správa zveřejňuje seznamy daňových dlužníků a neplatičů odvodů jako otevřená data",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

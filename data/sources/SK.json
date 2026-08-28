@@ -406,5 +406,17 @@
     "desc": "Slovenské státní archivy pod ministerstvem vnitra. Portál slovakiana a digitálny archív zpřístupňují matriky a mapy; pozemkové knihy jsou k dispozici v regionálních pracovištích",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-financnasprava",
+    "topic": "regulators",
+    "name": "Finančná správa SR",
+    "url": "https://www.financnasprava.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Slovenská finanční správa zveřejňuje **seznamy daňových dlužníků, platitelů DPH a subjektů s vymazanou registrací** — všechny jako otevřené datové sady",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

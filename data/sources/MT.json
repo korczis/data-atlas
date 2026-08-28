@@ -262,5 +262,17 @@
     "desc": "Maltský národní archiv v Rabatu. Drží soudní, notářské a koloniální fondy. Na automat vrací 403, v prohlížeči funguje",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-cfr",
+    "topic": "regulators",
+    "name": "Commissioner for Tax and Customs",
+    "url": "https://cfr.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maltská daňová správa vede registr plátců DPH a evidenci daňových zástupců. Na automat vrací 403, v prohlížeči funguje",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

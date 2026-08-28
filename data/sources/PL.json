@@ -718,5 +718,17 @@
     "desc": "Polská archivní správa. Portál szukajwarchiwach.gov.pl zpřístupňuje desítky milionů naskenovaných stran — matriky, pozemkové knihy i spisy meziválečných firem",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-podatki",
+    "topic": "regulators",
+    "name": "podatki.gov.pl",
+    "url": "https://www.podatki.gov.pl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Polský portál daňové správy s **Bílým seznamem plátců DPH** — kromě statusu ukazuje i bankovní účty, na které je bezpečné platit; platba mimo ně zakládá ručení za nezaplacenou daň",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

@@ -348,5 +348,17 @@
     "desc": "Švédský národní archiv. Digitala forskarsalen zpřístupňuje matriky, sčítání a pozemkové knihy; velká část je volně dostupná bez registrace",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-skatteverket",
+    "topic": "regulators",
+    "name": "Skatteverket",
+    "url": "https://www.skatteverket.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Švédská daňová správa vede navíc **registr obyvatel** — ve Švédsku je matriční agenda daňová, ne obecní, což z ní dělá klíčový identitní registr",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

@@ -274,5 +274,17 @@
     "desc": "Řecký státní archiv. Portál zpřístupňuje inventáře ústředního i prefekturních archivů a rostoucí objem digitalizovaných fondů",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-aade",
+    "topic": "regulators",
+    "name": "ΑΑΔΕ — Ανεξάρτητη Αρχή Δημοσίων Εσόδων",
+    "url": "https://www.aade.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Řecká nezávislá daňová správa provozuje ověření ΑΦΜ a registr plátců DPH. Na automat vrací 403, v prohlížeči funguje",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

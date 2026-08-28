@@ -298,5 +298,17 @@
     "desc": "Irský národní archiv. Sčítání lidu z let 1901 a 1911 je online zdarma, stejně jako závěti a soudní spisy; velká část starších fondů shořela v roce 1922",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-revenue",
+    "topic": "regulators",
+    "name": "Revenue Commissioners",
+    "url": "https://www.revenue.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Irská Revenue zveřejňuje čtvrtletní **seznam daňových úniků a pokut** (Tax Defaulters List), který je pro prověření protistrany často zajímavější než rejstříkový výpis",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

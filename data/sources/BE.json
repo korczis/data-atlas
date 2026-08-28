@@ -406,5 +406,17 @@
     "desc": "Belgický státní archiv se sítí depozitářů v provinciích. Digitalizované matriky, notářské spisy a katastrální mapy jsou přístupné online po bezplatné registraci",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-dhmv",
+    "topic": "terrain",
+    "name": "DHMV II — Digitaal Hoogtemodel Vlaanderen",
+    "url": "https://download.vlaanderen.be/product/939-digitaal-hoogtemodel-vlaanderen-ii",
+    "kind": "regional",
+    "access": "open",
+    "data": "download",
+    "desc": "Flanderský lidarový výškopis — digitální model terénu i povrchu v rozlišení 1 m, volně ke stažení po mapových listech. Valonsko a Brusel mají vlastní modely, federální výškopis pro celou Belgii neexistuje",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

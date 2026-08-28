@@ -502,5 +502,29 @@
     "desc": "Německý spolkový archiv. Databáze Invenio zpřístupňuje inventáře i digitalizáty; vedle spisů spolkových úřadů drží i fondy NDR a firemní archivy zestátněných podniků",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-bkg-dgm",
+    "topic": "terrain",
+    "name": "Digitale Geländemodelle (BKG)",
+    "url": "https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle.html",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Celoněmecké digitální modely terénu od spolkového kartografického úřadu — DGM v rozlišení od 5 do 200 m, pod otevřenou licencí dl-de/by-2-0. Podrobnější lidar drží jednotlivé spolkové země samostatně",
+    "country": "DE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "de-bzst",
+    "topic": "regulators",
+    "name": "BZSt — Bundeszentralamt für Steuern",
+    "url": "https://www.bzst.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Německý spolkový daňový úřad provozuje ověření DIČ pro plátce z EU a vede centrální evidenci daňových identifikačních čísel. Kořen webu odpovídá na HEAD chybou 400, prohlížeč i běžné stažení projdou",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

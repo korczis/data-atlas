@@ -358,5 +358,17 @@
     "desc": "Chorvatský státní archiv. Vede ústřední fondy a koordinuje síť župních archivů; digitalizované matriky a katastrální mapy jsou přístupné přes portál ARHiNET",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-porezna",
+    "topic": "regulators",
+    "name": "Porezna uprava",
+    "url": "https://porezna-uprava.gov.hr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Chorvatská daňová správa zveřejňuje **seznam daňových dlužníků** nad stanovenou hranicí i registr plátců DPH",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

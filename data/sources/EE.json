@@ -322,5 +322,17 @@
     "desc": "Estonský národní archiv. Portál Saaga a AIS mají digitalizované matriky, pozemkové knihy a mapy; estonský archiv patří k nejlépe digitalizovaným v EU",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-emta",
+    "topic": "regulators",
+    "name": "EMTA — Maksu- ja Tolliamet",
+    "url": "https://www.emta.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Estonská daňová a celní správa zveřejňuje **daňové dluhy firem, obraty a počty zaměstnanců po čtvrtletích** jako otevřená data — v EU výjimečná míra transparentnosti, která z ní dělá nejrychlejší nástroj na prověření estonského partnera",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

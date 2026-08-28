@@ -382,5 +382,17 @@
     "desc": "Bulharská státní archivní agentura. Vede ústřední i regionální archivy a postupně zpřístupňuje inventáře a digitalizované fondy přes vlastní informační systém",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-nra",
+    "topic": "regulators",
+    "name": "НАП — Национална агенция за приходите",
+    "url": "https://nra.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Bulharská NAP zveřejňuje registr plátců DPH a seznam daňových dlužníků",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

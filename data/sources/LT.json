@@ -286,5 +286,17 @@
     "desc": "Litevský archivní portál. Systém EAIS zpřístupňuje inventáře i digitalizované matriky. Na automat vrací 403, v prohlížeči funguje",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-vmi",
+    "topic": "regulators",
+    "name": "VMI — Valstybinė mokesčių inspekcija",
+    "url": "https://www.vmi.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Litevská daňová inspekce zveřejňuje registr plátců DPH a seznam subjektů s daňovým dluhem",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

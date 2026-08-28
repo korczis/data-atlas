@@ -310,5 +310,29 @@
     "desc": "Lucemburský národní archiv. Fondy jdou prohledávat online a část notářských a katastrálních spisů je digitalizovaná",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-lidar-mnt",
+    "topic": "terrain",
+    "name": "LiDAR 2019 — Modèle numérique de terrain",
+    "url": "https://data.public.lu/en/datasets/lidar-2019-modele-numerique-de-terrain-mnt/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Lucemburský lidarový model terénu z náletu 2019 v rozlišení 0,5 m, celé území ke stažení jako otevřená data. Ke stejnému náletu existuje i model povrchu a klasifikované mračno bodů",
+    "country": "LU",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-impotsdirects",
+    "topic": "regulators",
+    "name": "Administration des contributions directes",
+    "url": "https://impotsdirects.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Lucemburská správa přímých daní publikuje oběžníky a daňové výklady; ověření DPH vede oddělená správa nepřímých daní AED",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

@@ -334,5 +334,17 @@
     "desc": "Finský národní archiv. Služba Astia zpřístupňuje fondy online; matriky, katastr a soudní spisy jsou z velké části digitalizované",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-vero",
+    "topic": "regulators",
+    "name": "Verohallinto",
+    "url": "https://www.vero.fi/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Finská daňová správa provozuje veřejnou službu Yritys- ja yhteisötietojärjestelmä s daňovými registracemi firem a zveřejňuje i daňové dluhy",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

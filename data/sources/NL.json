@@ -406,5 +406,17 @@
     "desc": "Nizozemský národní archiv. Velká část fondů je digitalizovaná a dostupná pod otevřenou licencí, včetně map a spisů Východoindické společnosti",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-belastingdienst",
+    "topic": "regulators",
+    "name": "Belastingdienst",
+    "url": "https://www.belastingdienst.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Nizozemská daňová správa nabízí ověření BTW-nummer a vede evidenci kvalifikovaných daňových poradců",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]
