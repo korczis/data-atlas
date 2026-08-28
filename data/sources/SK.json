@@ -394,5 +394,17 @@
     "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Slovenská PPA zveřejňuje seznam příjemců; platby jsou navíc v Centrálnom registri zmlúv a v Rozpočte.sk",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-archivy",
+    "topic": "archives",
+    "name": "Štátne archívy SR",
+    "url": "https://www.minv.sk/?archivy",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Slovenské státní archivy pod ministerstvem vnitra. Portál slovakiana a digitálny archív zpřístupňují matriky a mapy; pozemkové knihy jsou k dispozici v regionálních pracovištích",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

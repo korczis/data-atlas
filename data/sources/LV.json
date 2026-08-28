@@ -334,5 +334,17 @@
     "desc": "Lotyšský patentový úřad. Rejstříky patentů, známek a vzorů jsou veřejné a publikuje k nim úřední věstník se zápisy a námitkami",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-arhivi",
+    "topic": "archives",
+    "name": "Latvijas Nacionālais arhīvs",
+    "url": "https://www.arhivi.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Lotyšský národní archiv. Portál Raduraksti má digitalizované matriky a revizní seznamy; novější fondy včetně podnikových se objednávají online",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

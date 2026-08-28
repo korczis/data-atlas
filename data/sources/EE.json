@@ -310,5 +310,17 @@
     "desc": "Estonský patentový úřad. Vede rejstříky patentů, užitných vzorů, známek a vzorů; vyhledávání je jako většina estonské správy dostupné i anglicky",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-ra",
+    "topic": "archives",
+    "name": "Rahvusarhiiv",
+    "url": "https://www.ra.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Estonský národní archiv. Portál Saaga a AIS mají digitalizované matriky, pozemkové knihy a mapy; estonský archiv patří k nejlépe digitalizovaným v EU",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

@@ -286,5 +286,17 @@
     "desc": "Irský úřad průmyslového vlastnictví v Kilkenny. Rejstříky patentů, známek a vzorů jsou veřejné a obsahují i historii převodů a zástav",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-nai",
+    "topic": "archives",
+    "name": "National Archives of Ireland",
+    "url": "https://www.nationalarchives.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Irský národní archiv. Sčítání lidu z let 1901 a 1911 je online zdarma, stejně jako závěti a soudní spisy; velká část starších fondů shořela v roce 1922",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

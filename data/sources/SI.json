@@ -358,5 +358,17 @@
     "desc": "Slovinský úřad pro duševní vlastnictví. Vede rejstříky patentů, známek a vzorů a dohlíží na kolektivní správu autorských práv",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-arhiv",
+    "topic": "archives",
+    "name": "Arhiv Republike Slovenije",
+    "url": "https://www.gov.si/drzavni-organi/organi-v-sestavi/arhiv-republike-slovenije/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Slovinský státní archiv. Systém SIRAnet zpřístupňuje inventáře ústředního i regionálních archivů a rostoucí objem digitalizátů",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

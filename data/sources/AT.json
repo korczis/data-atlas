@@ -444,5 +444,17 @@
     "desc": "Vyhledávač rakouského patentového úřadu nad patenty, známkami a vzory. Hledá se podle majitele, takže z něj jde postavit přehled nehmotného majetku jedné firmy",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-oesta",
+    "topic": "archives",
+    "name": "Österreichisches Staatsarchiv",
+    "url": "https://www.oesta.gv.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Rakouský státní archiv. Drží spisy habsburské monarchie, takže se v něm hledají pozemkové a firemní záznamy pro celou střední Evropu do roku 1918 — často jediné místo, kde je dohledatelný původ nemovitosti z té doby",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

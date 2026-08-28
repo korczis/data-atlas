@@ -370,5 +370,17 @@
     "desc": "Dánský patentový a známkový úřad. Rejstříky jsou veřejné a napojené na obchodní rejstřík CVR, takže majitele známky lze rovnou dohledat jako firmu",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-rigsarkivet",
+    "topic": "archives",
+    "name": "Rigsarkivet",
+    "url": "https://www.rigsarkivet.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Dánský státní archiv. Portál Daisy umožňuje objednat i prohledávat fondy; velká část matrik a sčítání lidu je digitalizovaná a volně dostupná",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

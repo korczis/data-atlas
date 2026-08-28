@@ -394,5 +394,17 @@
     "desc": "Nizozemské patentové centrum spadá pod agenturu RVO. Národní patentový rejstřík je tady, známky pro Benelux vede společný úřad BOIP",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-nationaalarchief",
+    "topic": "archives",
+    "name": "Nationaal Archief",
+    "url": "https://www.nationaalarchief.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Nizozemský národní archiv. Velká část fondů je digitalizovaná a dostupná pod otevřenou licencí, včetně map a spisů Východoindické společnosti",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

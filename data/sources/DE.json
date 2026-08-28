@@ -490,5 +490,17 @@
     "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Německý seznam pokrývá i platby z rybářského fondu a hledá se v něm podle jména, obce i spolkové země",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-bundesarchiv",
+    "topic": "archives",
+    "name": "Bundesarchiv",
+    "url": "https://www.bundesarchiv.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Německý spolkový archiv. Databáze Invenio zpřístupňuje inventáře i digitalizáty; vedle spisů spolkových úřadů drží i fondy NDR a firemní archivy zestátněných podniků",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

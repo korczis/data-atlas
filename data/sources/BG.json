@@ -370,5 +370,17 @@
     "desc": "Bulharský patentový úřad s rejstříky patentů, známek, vzorů a zeměpisných označení. Databáze jsou veřejné a hledá se v nich i podle přihlašovatele",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-archives",
+    "topic": "archives",
+    "name": "Държавна агенция „Архиви“",
+    "url": "https://www.archives.government.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Bulharská státní archivní agentura. Vede ústřední i regionální archivy a postupně zpřístupňuje inventáře a digitalizované fondy přes vlastní informační systém",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

@@ -394,5 +394,17 @@
     "desc": "Belgický úřad průmyslového vlastnictví spadá pod ministerstvo hospodářství. Známky se pro Belgii, Nizozemsko a Lucembursko zapisují společně u Benelux Office, patenty národně tady",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-arch",
+    "topic": "archives",
+    "name": "Rijksarchief / Archives de l'État",
+    "url": "https://www.arch.be/",
+    "kind": "official",
+    "access": "registration",
+    "data": "search",
+    "desc": "Belgický státní archiv se sítí depozitářů v provinciích. Digitalizované matriky, notářské spisy a katastrální mapy jsou přístupné online po bezplatné registraci",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

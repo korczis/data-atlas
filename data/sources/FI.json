@@ -322,5 +322,17 @@
     "desc": "Finský rejstřík ochranných známek. Ukazuje i historii převodů a zástav, takže je vidět, kdy značka přešla na jinou firmu ve skupině",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-kansallisarkisto",
+    "topic": "archives",
+    "name": "Kansallisarkisto",
+    "url": "https://kansallisarkisto.fi/etusivu",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Finský národní archiv. Služba Astia zpřístupňuje fondy online; matriky, katastr a soudní spisy jsou z velké části digitalizované",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

@@ -274,5 +274,17 @@
     "desc": "Litevský státní patentový úřad. Vede rejstříky patentů, známek a vzorů. Na automat vrací 403, v prohlížeči funguje",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-archyvai",
+    "topic": "archives",
+    "name": "Lietuvos archyvai",
+    "url": "https://www.archyvai.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Litevský archivní portál. Systém EAIS zpřístupňuje inventáře i digitalizované matriky. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

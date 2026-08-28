@@ -1138,5 +1138,17 @@
     "desc": "Platební agentura Společné zemědělské politiky. Podle nařízení 1306/2013 musí každý stát **zveřejňovat příjemce zemědělských dotací** — jméno, obec a částku podle opatření, s dvouletou dostupností. Český seznam jde prohledávat podle jména i IČO a ukazuje částky po jednotlivých opatřeních — u zemědělských podniků nejrychlejší cesta ke zjištění, kolik berou z veřejných peněz",
     "country": "CZ",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-nacr",
+    "topic": "archives",
+    "name": "Národní archiv",
+    "url": "https://www.nacr.cz/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Ústřední archiv České republiky. Odsud vede cesta k digitálním archivům jednotlivých oblastí — matriky, pozemkové knihy a spisy podniků jsou volně prohlížitelné a u starších nemovitostních sporů bývají rozhodující",
+    "country": "CZ",
+    "verified": "2026-08-28"
   }
 ]

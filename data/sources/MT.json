@@ -250,5 +250,17 @@
     "desc": "Maltský registr průmyslového vlastnictví při ministerstvu obchodu. Vede známky, patenty a vzory. Na automat vrací 403, v prohlížeči funguje",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-nam",
+    "topic": "archives",
+    "name": "National Archives of Malta",
+    "url": "https://nationalarchives.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Maltský národní archiv v Rabatu. Drží soudní, notářské a koloniální fondy. Na automat vrací 403, v prohlížeči funguje",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

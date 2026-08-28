@@ -262,5 +262,17 @@
     "desc": "Řecký úřad průmyslového vlastnictví. Vede rejstříky patentů a užitných vzorů; ochranné známky spravuje odděleně ministerstvo rozvoje",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-gak",
+    "topic": "archives",
+    "name": "ΓΑΚ — Γενικά Αρχεία του Κράτους",
+    "url": "https://portal.gak.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Řecký státní archiv. Portál zpřístupňuje inventáře ústředního i prefekturních archivů a rostoucí objem digitalizovaných fondů",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

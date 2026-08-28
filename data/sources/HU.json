@@ -406,5 +406,17 @@
     "desc": "Maďarský úřad duševního vlastnictví. Vedle rejstříků patentů a známek vede i evidenci kolektivních správců autorských práv",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-mnl",
+    "topic": "archives",
+    "name": "Magyar Nemzeti Levéltár",
+    "url": "https://mnl.gov.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Maďarský národní archiv. Databáze Hungaricana zpřístupňuje digitalizované mapy, urbáře a katastrální operáty pro celé území historických Uher",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1102** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1050** doplněných rešerší.
+**1126** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1074** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -15,34 +15,34 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Země
 
 - `GLOBAL` Celosvětové — 130
-- `CZ` Česko — 95
-- `PL` Polsko — 59
+- `CZ` Česko — 96
+- `PL` Polsko — 60
 - `EU` Evropská unie — 58
-- `FR` Francie — 41
-- `DE` Německo — 41
+- `FR` Francie — 42
+- `DE` Německo — 42
+- `AT` Rakousko — 38
 - `IT` Itálie — 37
-- `AT` Rakousko — 37
-- `HU` Maďarsko — 34
-- `BE` Belgie — 33
-- `NL` Nizozemsko — 33
-- `SK` Slovensko — 33
-- `ES` Španělsko — 33
-- `BG` Bulharsko — 31
-- `DK` Dánsko — 31
-- `PT` Portugalsko — 31
-- `SI` Slovinsko — 30
-- `HR` Chorvatsko — 29
-- `LV` Lotyšsko — 28
-- `SE` Švédsko — 28
-- `FI` Finsko — 27
-- `EE` Estonsko — 26
-- `LU` Lucembursko — 25
+- `HU` Maďarsko — 35
+- `BE` Belgie — 34
+- `NL` Nizozemsko — 34
+- `SK` Slovensko — 34
+- `ES` Španělsko — 34
+- `BG` Bulharsko — 32
+- `DK` Dánsko — 32
+- `PT` Portugalsko — 32
+- `SI` Slovinsko — 31
+- `HR` Chorvatsko — 30
+- `LV` Lotyšsko — 29
+- `SE` Švédsko — 29
+- `FI` Finsko — 28
+- `EE` Estonsko — 27
+- `LU` Lucembursko — 26
+- `IE` Irsko — 25
 - `RO` Rumunsko — 25
-- `IE` Irsko — 24
-- `LT` Litva — 23
-- `GR` Řecko — 22
+- `LT` Litva — 24
+- `GR` Řecko — 23
+- `MT` Malta — 22
 - `CY` Kypr — 21
-- `MT` Malta — 21
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
 
@@ -79,7 +79,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 67
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 18
 
-**Rizika a OSINT** — 174
+**Rizika a OSINT** — 198
 
 - [Sankce a compliance](#sankce-a-compliance) — 3
 - [Kriminalita, IZS, bezpečnost](#kriminalita-izs-bezpečnost) — 41
@@ -87,7 +87,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Počasí a klima](#počasí-a-klima) — 36
 - [Transparentnost, volby, lobbing](#transparentnost-volby-lobbing) — 42
 - [OSINT a investigace](#osint-a-investigace) — 10
-- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 10
+- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 34
 
 **Nástroje** — 72
 
@@ -1267,8 +1267,32 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `GLOBAL` | [Old Maps Online](https://www.oldmapsonline.org/) | `oldmapsonline.org` | Meta-vyhledávač historických map podle místa a času | open | search | reference |
 | `GLOBAL` | [Mapire (Arcanum Maps)](https://maps.arcanum.com/en/) | `maps.arcanum.com` | Habsburská vojenská mapování (I.-III.) georeferencovaná — ideální pro ČR | mixed | none | reference |
 | `GLOBAL` | [Allmaps](https://allmaps.org/) | `allmaps.org` | Georeferencování IIIF map přímo v prohlížeči — editor, viewer a tile server, který z Georeference Annotation udělá XYZ vrstvu pro QGIS, MapLibre, OpenLayers i Leaflet bez vytváření GeoTIFFů | open | api | reference |
+| `AT` | [Österreichisches Staatsarchiv](https://www.oesta.gv.at/) | `oesta.gv.at` | Rakouský státní archiv. Drží spisy habsburské monarchie, takže se v něm hledají pozemkové a firemní záznamy pro celou střední Evropu do roku 1918 — často jediné místo, kde je dohledatelný původ nemovitosti z té doby | open | search | reference |
+| `BE` | [Rijksarchief / Archives de l'État](https://www.arch.be/) | `arch.be` | Belgický státní archiv se sítí depozitářů v provinciích. Digitalizované matriky, notářské spisy a katastrální mapy jsou přístupné online po bezplatné registraci | registration | search | reference |
+| `BG` | [Държавна агенция „Архиви“](https://www.archives.government.bg/) | `archives.government.bg` | Bulharská státní archivní agentura. Vede ústřední i regionální archivy a postupně zpřístupňuje inventáře a digitalizované fondy přes vlastní informační systém | open | search | reference |
+| `HR` | [Hrvatski državni arhiv](https://www.arhiv.hr/) | `arhiv.hr` | Chorvatský státní archiv. Vede ústřední fondy a koordinuje síť župních archivů; digitalizované matriky a katastrální mapy jsou přístupné přes portál ARHiNET | open | search | reference |
 | `CZ` | [Archivní mapy ČÚZK](https://ags.cuzk.gov.cz/archiv/) | `ags.cuzk.gov.cz` | Archivní mapy ČÚZK — císařské otisky a indikační skici stabilního katastru, stará státní mapová díla a archiv leteckých měřických snímků od roku 1936 | open | download | reference |
 | `CZ` | [Chartae Antiquae](https://www.chartae-antiquae.cz/cs/) | `chartae-antiquae.cz` | Virtuální mapová sbírka historických map ČR | open | search | reference |
+| `CZ` | [Národní archiv](https://www.nacr.cz/) | `nacr.cz` | Ústřední archiv České republiky. Odsud vede cesta k digitálním archivům jednotlivých oblastí — matriky, pozemkové knihy a spisy podniků jsou volně prohlížitelné a u starších nemovitostních sporů bývají rozhodující | open | search | reference |
+| `DK` | [Rigsarkivet](https://www.rigsarkivet.dk/) | `rigsarkivet.dk` | Dánský státní archiv. Portál Daisy umožňuje objednat i prohledávat fondy; velká část matrik a sčítání lidu je digitalizovaná a volně dostupná | open | search | reference |
+| `EE` | [Rahvusarhiiv](https://www.ra.ee/) | `ra.ee` | Estonský národní archiv. Portál Saaga a AIS mají digitalizované matriky, pozemkové knihy a mapy; estonský archiv patří k nejlépe digitalizovaným v EU | open | search | reference |
+| `FI` | [Kansallisarkisto](https://kansallisarkisto.fi/etusivu) | `kansallisarkisto.fi` | Finský národní archiv. Služba Astia zpřístupňuje fondy online; matriky, katastr a soudní spisy jsou z velké části digitalizované | open | search | reference |
+| `FR` | [Archives nationales](https://www.archives-nationales.culture.gouv.fr/) | `archives-nationales.culture.gouv.fr` | Francouzský národní archiv. Vedle vlastních fondů odsud vede cesta k departementálním archivům, kde jsou digitalizované matriky, notářské spisy a katastr | open | search | reference |
+| `DE` | [Bundesarchiv](https://www.bundesarchiv.de/) | `bundesarchiv.de` | Německý spolkový archiv. Databáze Invenio zpřístupňuje inventáře i digitalizáty; vedle spisů spolkových úřadů drží i fondy NDR a firemní archivy zestátněných podniků | open | search | reference |
+| `GR` | [ΓΑΚ — Γενικά Αρχεία του Κράτους](https://portal.gak.gr/) | `portal.gak.gr` | Řecký státní archiv. Portál zpřístupňuje inventáře ústředního i prefekturních archivů a rostoucí objem digitalizovaných fondů | open | search | reference |
+| `HU` | [Magyar Nemzeti Levéltár](https://mnl.gov.hu/) | `mnl.gov.hu` | Maďarský národní archiv. Databáze Hungaricana zpřístupňuje digitalizované mapy, urbáře a katastrální operáty pro celé území historických Uher | open | search | reference |
+| `IE` | [National Archives of Ireland](https://www.nationalarchives.ie/) | `nationalarchives.ie` | Irský národní archiv. Sčítání lidu z let 1901 a 1911 je online zdarma, stejně jako závěti a soudní spisy; velká část starších fondů shořela v roce 1922 | open | search | reference |
+| `LV` | [Latvijas Nacionālais arhīvs](https://www.arhivi.gov.lv/) | `arhivi.gov.lv` | Lotyšský národní archiv. Portál Raduraksti má digitalizované matriky a revizní seznamy; novější fondy včetně podnikových se objednávají online | open | search | reference |
+| `LT` | [Lietuvos archyvai](https://www.archyvai.lt/) | `archyvai.lt` | Litevský archivní portál. Systém EAIS zpřístupňuje inventáře i digitalizované matriky. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `LU` | [Archives nationales de Luxembourg](https://anlux.public.lu/) | `anlux.public.lu` | Lucemburský národní archiv. Fondy jdou prohledávat online a část notářských a katastrálních spisů je digitalizovaná | open | search | reference |
+| `MT` | [National Archives of Malta](https://nationalarchives.gov.mt/) | `nationalarchives.gov.mt` | Maltský národní archiv v Rabatu. Drží soudní, notářské a koloniální fondy. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `NL` | [Nationaal Archief](https://www.nationaalarchief.nl/) | `nationaalarchief.nl` | Nizozemský národní archiv. Velká část fondů je digitalizovaná a dostupná pod otevřenou licencí, včetně map a spisů Východoindické společnosti | open | bulk | reference |
+| `PL` | [Naczelna Dyrekcja Archiwów Państwowych](https://www.archiwa.gov.pl/) | `archiwa.gov.pl` | Polská archivní správa. Portál szukajwarchiwach.gov.pl zpřístupňuje desítky milionů naskenovaných stran — matriky, pozemkové knihy i spisy meziválečných firem | open | search | reference |
+| `PT` | [DigitArq — Arquivo Nacional Torre do Tombo](https://digitarq.arquivos.pt/) | `digitarq.arquivos.pt` | Portugalský národní archiv Torre do Tombo. Katalog DigitArq má miliony digitalizovaných obrazů včetně notářských knih a inkvizičních procesů | open | search | reference |
+| `SK` | [Štátne archívy SR](https://www.minv.sk/?archivy) | `minv.sk` | Slovenské státní archivy pod ministerstvem vnitra. Portál slovakiana a digitálny archív zpřístupňují matriky a mapy; pozemkové knihy jsou k dispozici v regionálních pracovištích | open | search | reference |
+| `SI` | [Arhiv Republike Slovenije](https://www.gov.si/drzavni-organi/organi-v-sestavi/arhiv-republike-slovenije/) | `gov.si` | Slovinský státní archiv. Systém SIRAnet zpřístupňuje inventáře ústředního i regionálních archivů a rostoucí objem digitalizátů | open | none | reference |
+| `ES` | [PARES — Portal de Archivos Españoles](https://pares.cultura.gob.es/) | `pares.cultura.gob.es` | Společný portál španělských státních archivů. Prohledává fondy Archivo Histórico Nacional, Archivo de Indias i dalších najednou a velká část je digitalizovaná | open | search | reference |
+| `SE` | [Riksarkivet](https://riksarkivet.se/) | `riksarkivet.se` | Švédský národní archiv. Digitala forskarsalen zpřístupňuje matriky, sčítání a pozemkové knihy; velká část je volně dostupná bez registrace | open | search | reference |
 | `GB` | [National Library of Scotland — Map Images](https://maps.nls.uk/) | `maps.nls.uk` | Zoomovatelné mapy Britských ostrovů 16.–20. století, velká část georeferencovaná — side-by-side a spyglass prohlížeč, vrstvy použitelné jako XYZ v QGIS přes Historic Maps API | open | download | reference |
 | `US` | [David Rumsey Map Collection](https://www.davidrumsey.com/) | `davidrumsey.com` | Přes 150 000 naskenovaných map a atlasů online s IIIF — georeferencovaná přes Georeferencer je jen část sbírky | open | download | reference |
 | `US` | [USGS topoView](https://ngmdb.usgs.gov/topoview/) | `ngmdb.usgs.gov` | Přes 178 000 historických topografických map USGS z let 1884–2006 — zdarma ke stažení jako GeoTIFF, GeoPDF, KMZ nebo JPEG | open | download | reference |

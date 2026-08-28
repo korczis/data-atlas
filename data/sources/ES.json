@@ -395,5 +395,17 @@
     "desc": "Španělský patentový a známkový úřad. Nabízí rešeršní nástroje nad patenty i známkami a publikuje Boletín Oficial de la Propiedad Industrial s dennímii zápisy",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-pares",
+    "topic": "archives",
+    "name": "PARES — Portal de Archivos Españoles",
+    "url": "https://pares.cultura.gob.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Společný portál španělských státních archivů. Prohledává fondy Archivo Histórico Nacional, Archivo de Indias i dalších najednou a velká část je digitalizovaná",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

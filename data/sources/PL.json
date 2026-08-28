@@ -706,5 +706,17 @@
     "desc": "Polský patentový úřad. Databáze patentů, známek a vzorů jsou veřejné a vyhledávání podle majitele odhalí i značky držené přes jiné firmy skupiny",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-archiwa",
+    "topic": "archives",
+    "name": "Naczelna Dyrekcja Archiwów Państwowych",
+    "url": "https://www.archiwa.gov.pl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Polská archivní správa. Portál szukajwarchiwach.gov.pl zpřístupňuje desítky milionů naskenovaných stran — matriky, pozemkové knihy i spisy meziválečných firem",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]

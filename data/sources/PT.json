@@ -370,5 +370,17 @@
     "desc": "Portugalský institut průmyslového vlastnictví. Rejstříky známek a patentů jsou veřejné a provázané s obchodním rejstříkem, takže majitel se dohledá i podle NIPC",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-digitarq",
+    "topic": "archives",
+    "name": "DigitArq — Arquivo Nacional Torre do Tombo",
+    "url": "https://digitarq.arquivos.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Portugalský národní archiv Torre do Tombo. Katalog DigitArq má miliony digitalizovaných obrazů včetně notářských knih a inkvizičních procesů",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

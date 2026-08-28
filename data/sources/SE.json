@@ -336,5 +336,17 @@
     "desc": "Švédský patentový a registrační úřad. Vedle patentů a známek vede i registr periodického tisku a osobních jmen chráněných jako značka",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-riksarkivet",
+    "topic": "archives",
+    "name": "Riksarkivet",
+    "url": "https://riksarkivet.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Švédský národní archiv. Digitala forskarsalen zpřístupňuje matriky, sčítání a pozemkové knihy; velká část je volně dostupná bez registrace",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

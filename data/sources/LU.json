@@ -298,5 +298,17 @@
     "desc": "Lucemburský institut průmyslového vlastnictví. Národní patenty se zapisují tady, známky společně s Belgií a Nizozemskem u Benelux Office. Na automat vrací 403, v prohlížeči funguje",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-anlux",
+    "topic": "archives",
+    "name": "Archives nationales de Luxembourg",
+    "url": "https://anlux.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Lucemburský národní archiv. Fondy jdou prohledávat online a část notářských a katastrálních spisů je digitalizovaná",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

@@ -490,5 +490,17 @@
     "desc": "Francouzský rejstřík ochranných známek u INPI. Hledá se podle znění značky i podle majitele, takže z něj jde sestavit portfolio značek jedné skupiny; patenty a vzory mají u INPI vlastní databáze",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-archives-nationales",
+    "topic": "archives",
+    "name": "Archives nationales",
+    "url": "https://www.archives-nationales.culture.gouv.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Francouzský národní archiv. Vedle vlastních fondů odsud vede cesta k departementálním archivům, kde jsou digitalizované matriky, notářské spisy a katastr",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]
