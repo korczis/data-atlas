@@ -54,7 +54,10 @@ def main() -> int:
             errors.append(f"{where}: 'verified' není datum ve tvaru RRRR-MM-DD")
 
         u = urlsplit(s["url"])
-        key = (u.hostname or "").lower().removeprefix("www.") + u.path.rstrip("/")
+        # Query patří do klíče: část portálů routuje přes ni (minv.sk/?register-adries)
+        # a bez ní by dvě různé stránky vypadaly jako jedno místo.
+        key = ((u.hostname or "").lower().removeprefix("www.") + u.path.rstrip("/")
+               + ("?" + u.query if u.query else ""))
         if key in seen_path:
             errors.append(f"{where}: stejné místo jako {seen_path[key]} (liší se jen schéma nebo lomítko)")
         seen_path[key] = where

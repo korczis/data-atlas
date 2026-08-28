@@ -115,6 +115,20 @@ by u sedmadvaceti států říkaly „něco tu je" místo „tady je toho kolik"
 a filtr zdroje se do počtů schválně nepromítají — poskakovaly by při každém
 stisku klávesy.
 
+**Křížení se ale nesmí promítnout do *délky* seznamů.** Původně se položky
+s nulovým počtem ze seznamu vyhazovaly: po výběru tématu spadl seznam zemí
+z jednatřiceti na třiadvacet a na zbylé země se nedalo přepnout — uživatel
+zůstal v pasti a vypadalo to, že se z katalogu ztratila data. Nula se proto
+ukáže jako nula, položka zůstane klikatelná a jen zešedne. Výjimka je textový
+filtr nad zeměmi: ten seznam zúžit smí, protože o to uživatel výslovně požádal.
+
+**Odznaky u „Všechny země" a „Všechna témata" počítají v rámci druhé osy**, ne
+celý katalog — mají odpovídat tomu, co se po kliknutí skutečně stane. Se zvoleným
+tématem `companies` ukáže „Všechny země" šedesát, ne tisíc.
+
+Hlídají to testy *„výběr tématu nezkrátí seznam zemí"*, *„výběr země nezkrátí
+seznam témat"* a *„odznak … počítá v rámci …"*.
+
 **Seznam zemí má vlastní filtrovací pole.** Sedmadvacet států plus nadnárodní
 rozsahy se do plochého seznamu v panelu nevejde; skládací strom je na telefonu
 horší než hledání.

@@ -68,6 +68,47 @@ check('počty zemí respektují vybrané téma',
       s.placeCounts.get('PL') === plCompanies,
       `PL v companies = ${s.placeCounts.get('PL')}`);
 
+// ── panel nesmí položky schovávat ──────────────────────────────────────────
+// Křížové počty se dřív promítaly i do *délky* seznamů: po výběru tématu
+// zmizely země, které v něm nic nemají, takže se na ně nedalo přepnout —
+// a vypadalo to, že se z katalogu ztratila data.
+const allPlaces = new Set(catalog.map(r => r['Kód'])).size;
+const allTopics = new Set(catalog.map(r => r['Téma ID'])).size;
+const sidebarCounts = sel => [...d.getElementById('sidebar').querySelectorAll(sel)]
+  .map(b => parseInt(b.querySelector('[data-count]').textContent, 10));
+
+s.reset(); s.topic = 'addresses'; await tick();
+check('výběr tématu nezkrátí seznam zemí',
+      sidebarCounts('button[data-filter="country"]').length === allPlaces,
+      `${sidebarCounts('button[data-filter="country"]').length} z ${allPlaces}`);
+s.reset(); s.country = 'MT'; await tick();
+check('výběr země nezkrátí seznam témat',
+      sidebarCounts('button[data-filter="topic"]').length === allTopics,
+      `${sidebarCounts('button[data-filter="topic"]').length} z ${allTopics}`);
+check('prázdná kombinace se v panelu ukáže jako nula, ne zmizením',
+      sidebarCounts('button[data-filter="topic"]').includes(0));
+
+// Textový filtr nad zeměmi seznam zkrátit smí — o to uživatel výslovně požádal.
+s.reset(); s.cq = 'pol'; await tick();
+check('textový filtr zemí seznam zúží',
+      s.countryList.length < allPlaces && s.countryList.every(p =>
+        (p.name + p.code).toLowerCase().includes('pol')),
+      `${s.countryList.length} zemí`);
+s.cq = '';
+
+// ── odznaky u „Vše" musí odpovídat tomu, co se po kliknutí stane ───────────
+s.reset(); s.topic = 'companies'; await tick();
+const companiesTotal = catalog.filter(r => r['Téma ID'] === 'companies').length;
+check('odznak „Všechny země" počítá v rámci vybraného tématu',
+      s.allCountriesCount === companiesTotal, `${s.allCountriesCount} z ${companiesTotal}`);
+s.reset(); s.country = 'MT'; await tick();
+const mtTotal = catalog.filter(r => r['Kód'] === 'MT').length;
+check('odznak „Všechna témata" počítá v rámci vybrané země',
+      s.allTopicsCount === mtTotal, `${s.allTopicsCount} z ${mtTotal}`);
+s.reset(); await tick();
+check('bez filtru oba odznaky ukazují celý katalog',
+      s.allCountriesCount === catalog.length && s.allTopicsCount === catalog.length);
+
 // ── zdroj ───────────────────────────────────────────────────────────────────
 s.reset(); s.source = 'data'; await tick();
 const inData = tableRows();

@@ -132,15 +132,16 @@
                                      : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
               class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-start text-sm">
               <span>Všechny země</span>
-              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="catalog.length"></span>
+              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="allCountriesCount"></span>
             </button>
           </li>
           <template x-for="p in countryList" :key="p.code">
             <li>
               <button type="button" data-filter="country" @click="country = (country === p.code ? '' : p.code)"
                 :aria-pressed="country === p.code ? 'true' : 'false'"
-                :class="country === p.code ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
-                                           : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+                :class="[country === p.code ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
+                         p.count ? '' : 'opacity-50']"
                 class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
                 <span class="flex min-w-0 items-center gap-2">
                   <span class="shrink-0 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-600 dark:text-gray-200"
@@ -168,8 +169,7 @@
                                    : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
               class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-start text-sm">
               <span>Všechna témata</span>
-              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300"
-                    x-text="country ? placeCounts.get(country) : catalog.length"></span>
+              <span class="text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="allTopicsCount"></span>
             </button>
           </li>
         </ul>
@@ -187,8 +187,9 @@
                 <li>
                   <button type="button" data-filter="topic" @click="topic = (topic === t.id ? '' : t.id)"
                     :aria-pressed="topic === t.id ? 'true' : 'false'"
-                    :class="topic === t.id ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
-                                           : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
+                    :class="[topic === t.id ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
+                                            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
+                             t.count ? '' : 'opacity-50']"
                     class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
                     <span class="truncate" x-text="t.label"></span>
                     <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="t.count"></span>
@@ -404,7 +405,13 @@
       <div x-show="filtered.length === 0" class="px-4 pb-8">
         <div class="rounded-lg border border-gray-200 bg-white px-4 py-12 text-center dark:border-gray-700 dark:bg-gray-800">
           <p class="text-sm font-medium text-gray-900 dark:text-white">Nic neodpovídá filtru</p>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Zkus jiný výraz nebo zruš filtry.</p>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400"
+             x-text="country && topic ? placeLabel(country) + ' nemá v tématu „' + topicLabel(topic) + '\u201c žádný zdroj.'
+                                      : 'Zkus jiný výraz nebo zruš filtry.'"></p>
+          <button type="button" x-show="country && topic" @click="topic = ''"
+            class="mt-3 text-sm font-medium text-primary-700 hover:underline dark:text-primary-400">
+            Zobrazit všechna témata pro <span x-text="placeLabel(country)"></span>
+          </button>
           <button type="button" @click="reset()"
             class="mt-4 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700">
             Zrušit filtry
@@ -662,28 +669,49 @@ document.addEventListener('alpine:init', () => {
       return m;
     },
 
-    /** Skupina → téma, jen s tématy, která v aktuálním výřezu něco nesou. */
+    /** Skupina → téma. Témata se ze seznamu **nevyhazují**, ani když je jejich
+     *  počet v aktuálním výřezu nula.
+     *
+     *  Filtrovat seznam podle druhé osy vypadá čistě, ale zavře uživatele
+     *  v pasti: vyber Polsko a seznam témat spadne na sedmnáct, takže se
+     *  nedostaneš k tématu, které Polsko nemá — a hlavně to vypadá, že se
+     *  data ztratila. Nula se ukáže jako nula a položka zůstane klikatelná. */
     get groups() {
       const counts = this.topicCounts;
-      return this.taxonomy
-        .map(g => ({
-          name: g.label,
-          topics: g.topics.filter(t => counts.get(t.id)).map(t => ({ ...t, count: counts.get(t.id) })),
-        }))
-        .filter(g => g.topics.length)
-        .map(g => ({ ...g, count: g.topics.reduce((a, t) => a + t.count, 0) }));
+      return this.taxonomy.map(g => {
+        const topics = g.topics.map(t => ({ ...t, count: counts.get(t.id) || 0 }));
+        return { name: g.label, topics, count: topics.reduce((a, t) => a + t.count, 0) };
+      });
     },
 
     /** Seznam zemí do panelu. Nadnárodní rozsahy (EU, celosvětové) stojí
      *  navrchu: filtr země je přesná shoda, takže při vybraném Rakousku se
-     *  celoevropské zdroje nezobrazí a musí být na dosah. */
+     *  celoevropské zdroje nezobrazí a musí být na dosah.
+     *
+     *  Ze stejného důvodu jako u témat se země s nulovým počtem **nevyhazují** —
+     *  jinak se po výběru tématu nedá přepnout na zemi, která v tom tématu nic
+     *  nemá. Textový filtr `cq` je něco jiného: ten seznam zúžit smí, protože
+     *  o to uživatel výslovně požádal. */
     get countryList() {
       const counts = this.placeCounts;
       const q = this.cq.trim().toLowerCase();
       return this.places
-        .filter(p => counts.get(p.code))
         .filter(p => !q || p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q))
-        .map(p => ({ ...p, count: counts.get(p.code) }));
+        .map(p => ({ ...p, count: counts.get(p.code) || 0 }));
+    },
+
+    /** Počty u „Všechny země" a „Všechna témata" musí odpovídat tomu, co se
+     *  po kliknutí stane — tedy druhé ose, která zůstane nastavená. Ukazovat
+     *  tam velikost celého katalogu je lež: se zvoleným tématem jich zbude pár. */
+    get allCountriesCount() {
+      let n = 0;
+      for (const v of this.placeCounts.values()) n += v;
+      return n;
+    },
+    get allTopicsCount() {
+      let n = 0;
+      for (const v of this.topicCounts.values()) n += v;
+      return n;
     },
 
     /** Výsledky rozdělené po tématech. Členění dává smysl jen v pořadí IA
