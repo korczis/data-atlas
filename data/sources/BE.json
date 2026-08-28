@@ -442,5 +442,17 @@
     "desc": "Belgický statistický úřad publikuje index cen bydlení a **mediánové ceny podle obcí** z daňových přiznání k převodu nemovitosti. Jednotlivé transakce veřejné nejsou, obecní mediány ano",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-bipt",
+    "topic": "regulators",
+    "name": "BIPT / IBPT",
+    "url": "https://www.bipt.be/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Belgický regulátor zveřejňuje mapy pokrytí mobilních sítí a měření kvality od jednotlivých operátorů",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

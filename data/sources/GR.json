@@ -298,5 +298,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Řecký regulátor byl v roce 2023 rozšířen o vodu a odpady, proto se z RAE přejmenoval na RAAEY",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-eett",
+    "topic": "regulators",
+    "name": "ΕΕΤΤ",
+    "url": "https://www.eett.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Řecký regulátor dohlíží i na poštovní trh a vede registr domén .gr",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

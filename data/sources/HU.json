@@ -430,5 +430,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maďarská NAV zveřejňuje databáze plátců DPH, daňových dlužníků a subjektů s odebraným daňovým číslem — všechny jsou volně prohledávatelné",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-nmhh",
+    "topic": "regulators",
+    "name": "NMHH — Nemzeti Média- és Hírközlési Hatóság",
+    "url": "https://nmhh.hu/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Maďarský úřad spojuje telekomunikační a mediální regulaci v jednom, což je v EU neobvyklé; vede i registr médií",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

@@ -274,5 +274,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Kyperský regulátor otevírá dosud monopolní trh s elektřinou. Na automat vrací 403, v prohlížeči funguje",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-ocecpr",
+    "topic": "regulators",
+    "name": "ΓΕΡΗΕΤ — Γραφείο Επιτρόπου Ρυθμίσεως Ηλεκτρονικών Επικοινωνιών",
+    "url": "https://ocecpr.ee.cy/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Kyperský regulátor dohlíží na telekomunikace i poštovní služby",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

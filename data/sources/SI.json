@@ -394,5 +394,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovinská agentura zveřejňuje licence, tarify a roční zprávu o stavu energetiky jako otevřená data",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-akos",
+    "topic": "regulators",
+    "name": "AKOS",
+    "url": "https://www.akos-rs.si/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Slovinský AKOS reguluje telekomunikace, poštu, média i železnici a vede registry poskytovatelů všech těchto odvětví",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

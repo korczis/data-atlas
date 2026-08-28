@@ -526,5 +526,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Francouzská CRE publikuje rozhodnutí o tarifech a analýzy velkoobchodního trhu. Na automat vrací 403, v prohlížeči funguje",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-arcep",
+    "topic": "regulators",
+    "name": "ARCEP",
+    "url": "https://www.arcep.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Francouzský ARCEP publikuje **otevřená data o pokrytí a kvalitě mobilních sítí** až na úroveň obcí, včetně nezávislých měření",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

@@ -322,5 +322,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Irská CRU reguluje energetiku i vodárenství a zveřejňuje seznam registrovaných dodavatelů",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-comreg",
+    "topic": "regulators",
+    "name": "ComReg",
+    "url": "https://www.comreg.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Irský ComReg publikuje čtvrtletní data o trhu a mapy pokrytí; vede také registr prémiových čísel a poštovních operátorů",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

@@ -406,5 +406,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Bulharská komise reguluje vedle energetiky i vodárenství a zveřejňuje rozhodnutí o cenách obou odvětví",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-crc",
+    "topic": "regulators",
+    "name": "КРС — Комисия за регулиране на съобщенията",
+    "url": "https://crc.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Bulharská komise vede veřejný registr operátorů a přidělených kmitočtů",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

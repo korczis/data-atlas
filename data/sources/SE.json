@@ -372,5 +372,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Švédská inspekce dohlíží na síťové tarify a vede statistiky o dodavatelích a cenách",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-pts",
+    "topic": "regulators",
+    "name": "PTS — Post- och telestyrelsen",
+    "url": "https://www.pts.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Švédský PTS reguluje telekomunikace i poštu a vydává roční mapování širokopásmového pokrytí jako otevřená data",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

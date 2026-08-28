@@ -466,5 +466,17 @@
     "desc": "Italská observatoř trhu s nemovitostmi při daňové správě. Publikuje **rozpětí cen za metr čtvereční pro každou zónu každé obce**, pololetně a ke stažení — základ pro odhady i pro daňové kontroly podhodnocených kupních cen",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-agcom",
+    "topic": "regulators",
+    "name": "AGCOM",
+    "url": "https://www.agcom.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Italský AGCOM reguluje telekomunikace i média a vede **Registro degli Operatori di Comunicazione** — veřejný rejstřík vydavatelů, vysílatelů a operátorů včetně jejich vlastnické struktury",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

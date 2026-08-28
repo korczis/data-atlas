@@ -286,5 +286,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Maltský regulátor pokrývá elektřinu, vodu a pohonné hmoty; ostrovní trh má jediného dodavatele, takže regulace cen je tu zásadní",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-mca",
+    "topic": "regulators",
+    "name": "MCA — Malta Communications Authority",
+    "url": "https://www.mca.org.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Maltský regulátor pokrývá telekomunikace, poštu i elektronický obchod a publikuje statistiky trhu",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

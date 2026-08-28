@@ -480,5 +480,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Rakouský regulátor provozuje i srovnávač cen dodavatelů a publikuje statistiky spotřeby a výroby po spolkových zemích",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-rtr",
+    "topic": "regulators",
+    "name": "RTR — Rundfunk und Telekom Regulierungs-GmbH",
+    "url": "https://www.rtr.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Rakouská RTR reguluje vedle telekomunikací i vysílání a poštu a publikuje čtvrtletní zprávu o trhu s otevřenými daty",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

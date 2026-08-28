@@ -322,5 +322,17 @@
     "desc": "Litevský registr publikuje **statistiku realizovaných transakcí** — počty, průměrné ceny a plochy po obcích a typech nemovitostí. Jednotlivé kupní ceny jsou dostupné jen za poplatek",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-rrt",
+    "topic": "regulators",
+    "name": "RRT — Ryšių reguliavimo tarnyba",
+    "url": "https://www.rrt.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Litevská RRT spravuje i doménu .lt a národní CERT",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

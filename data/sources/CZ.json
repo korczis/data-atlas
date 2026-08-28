@@ -1162,5 +1162,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Český ERÚ zveřejňuje licence v otevřeném rejstříku i cenová rozhodnutí a roční zprávy o trhu",
     "country": "CZ",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-ctu",
+    "topic": "regulators",
+    "name": "Český telekomunikační úřad",
+    "url": "https://ctu.gov.cz/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. ČTÚ zveřejňuje evidenci podnikatelů v elektronických komunikacích, kmitočtové přídělové tabulky a měření pokrytí jako otevřená data",
+    "country": "CZ",
+    "verified": "2026-08-28"
   }
 ]

@@ -406,5 +406,17 @@
     "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Dánský dozor pokrývá elektřinu, plyn i teplo a publikuje cenové statistiky jako otevřená data",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-ens",
+    "topic": "regulators",
+    "name": "Energistyrelsen — telekomunikace",
+    "url": "https://www.ens.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Dánsko sloučilo telekomunikační regulaci s energetickou agenturou; ta vede registr operátorů i statistiky trhu",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

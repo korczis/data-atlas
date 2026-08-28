@@ -442,5 +442,17 @@
     "desc": "Slovenská národní banka publikuje **čtvrtletní ceny bydlení za metr čtvereční** po krajích a typech nemovitostí, včetně dlouhých časových řad ke stažení",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-teleoff",
+    "topic": "regulators",
+    "name": "Úrad pre reguláciu elektronických komunikácií a poštových služieb",
+    "url": "https://www.teleoff.gov.sk/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní telekomunikační regulátor. Vede **rejstřík poskytovatelů elektronických komunikací** a přiděluje kmitočty a čísla, takže se z něj dá ověřit, kdo smí provozovat síť nebo službu. Slovenský úřad vede registry operátorů, přidělených kmitočtů a poštovních podniků",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]
