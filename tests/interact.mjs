@@ -221,4 +221,43 @@ for (const [label, setup] of [['seskupeně', () => { s.reset(); s.sort = { key: 
   check(`sloupce sedí (${label})`, headers === visible, `${headers} hlaviček / ${visible} buněk`);
 }
 
+// ── přepínač motivu ────────────────────────────────────────────────────────
+// Tři stavy, ne dva: „podle systému" je volba, ne absence volby, a artefakt
+// se v ní vykresluje jinak než v obou explicitních.
+const root = d.documentElement;
+s.theme = 'system'; root.removeAttribute('data-theme');
+s.cycleTheme(); await tick();
+check('motiv: systém → světlý', s.theme === 'light' && root.getAttribute('data-theme') === 'light');
+s.cycleTheme(); await tick();
+check('motiv: světlý → tmavý', s.theme === 'dark' && root.getAttribute('data-theme') === 'dark');
+s.cycleTheme(); await tick();
+check('motiv: tmavý → zpět na systém',
+      s.theme === 'system' && root.getAttribute('data-theme') === null,
+      'systémový stav nesmí razit data-theme, jinak přestane platit media query');
+// jsdom bez `url` nemá localStorage — a přesně tak se chová i artefakt
+// v přísném sandboxu. Přepínání proto musí fungovat i bez něj; kde úložiště
+// je, musí se volba uložit.
+const store = (() => { try { return w.localStorage; } catch (e) { return null; } })();
+s.cycleTheme(); await tick();
+check('motiv jde přepnout i bez localStorage',
+      s.theme === 'light' && root.getAttribute('data-theme') === 'light',
+      store ? 'úložiště je k dispozici' : 'úložiště chybí, jako v sandboxu');
+if (store) {
+  check('explicitní volba se uloží', store.getItem('geodata-atlas-theme') === 'light');
+  s.theme = 'dark'; s.cycleTheme();
+  check('návrat na systém volbu smaže', store.getItem('geodata-atlas-theme') === null);
+}
+
+// ── čipy aktivních filtrů ─────────────────────────────────────────────────
+s.reset(); s.country = 'DE'; s.topic = 'companies'; s.q = 'register'; s.source = 'reference';
+await tick();
+check('každý aktivní filtr má vlastní čip',
+      s.filterChips.map(c => c.kind).sort().join() === 'country,q,source,topic',
+      s.filterChips.map(c => c.label).join(' · '));
+s.clearFilter('country'); await tick();
+check('čip maže jen svůj filtr',
+      s.country === '' && s.topic === 'companies' && s.q === 'register' && s.source === 'reference');
+s.reset(); await tick();
+check('bez filtru nejsou čipy', s.filterChips.length === 0);
+
 check.report(errors);

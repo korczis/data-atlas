@@ -5,6 +5,11 @@
 Stránka staví na [Flowbite](https://flowbite.com/) 2.5 pod licencí MIT.
 Bundluje se jen výřez, který markup skutečně používá — viz `src/js/flowbite-entry.js`.
 
+Z open-source dokumentace (šuplík, dropdown, navbar, tabulka, toast a vzor
+přepínače motivu) je markup **adaptovaný**, ne opsaný: přepínač má tři stavy
+místo dvou a razí `data-theme` místo třídy `.dark`, protože artefakt se
+vykresluje i ve stavu „podle systému".
+
 ## Flowbite Pro
 
 Rozvržení aplikace (horní lišta + postranní panel + hlavní obsah), záhlaví

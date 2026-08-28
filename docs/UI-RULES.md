@@ -55,6 +55,21 @@ Tmavý režim je nastavený jako `darkMode: ['variant', …]` v `src/tailwind.co
 protože artefakt se vykresluje ve **třech** stavech, ne dvou: explicitní volba razí
 `data-theme` na `:root`, výchozí „system" nerazí nic a rozhoduje media query.
 
+### Přepínač motivu má tři stavy
+
+Flowbite ve svých dokumentech přepíná třídu `.dark` mezi dvěma stavy. Tady to
+nejde: „podle systému" je **volba, ne absence volby**, a stránka se v ní chová
+jinak než v obou explicitních — proto `data-theme` a cyklus
+světlý → tmavý → podle systému. Návrat na systém musí atribut **odstranit**,
+ne nastavit na prázdno, jinak přestane platit media query.
+
+Volba se ukládá do `localStorage` a razí se na `:root` **inline skriptem
+v hlavičce, ještě před vykreslením** — jinak by při uložené volbě „tmavý"
+problikla světlá stránka. Zápis i čtení jsou v `try`: v přísném sandboxu
+`localStorage` vůbec neexistuje (přesně jako v jsdomu, kde běží testy)
+a výjimka by shodila start komponenty. Hlídá to test
+*„motiv jde přepnout i bez localStorage"*.
+
 ## Alpine
 
 ### Past, která stála nejvíc času
@@ -197,9 +212,18 @@ Dva nálezy z prvního běhu stojí za zapamatování:
 Aplikační shell podle Flowbite Pro Admin Dashboardu (viz [`NOTICE.md`](../NOTICE.md)):
 horní lišta, postranní panel, hlavní obsah, lepivá souhrnná lišta.
 
+- **Horní lišta** nese značku, **hledání** a přepínač motivu. Hledání je
+  nejpoužívanější ovládací prvek, takže patří do lišty, která zůstává na očích,
+  ne do záhlaví stránky, které odscrolluje.
 - **Postranní panel** nese přepínání pohledu, filtr zdroje, seznam zemí
-  s vlastním hledáním a témata seskupená po rodinách, obojí s počty.
+  s vlastním hledáním a témata seskupená po rodinách, obojí s počty, a v patičce
+  odkazy na plný výpis, matici pokrytí a zdrojová data.
   Pod `lg` je to Flowbite šuplík, od `lg` výš stojí napevno.
+- **Čipy aktivních filtrů** v záhlaví stránky. Filtr je jinak vidět jen v panelu,
+  který se scrolluje zvlášť; každý čip maže **jen svůj** filtr. Druh filtru nesou
+  jako řetězec, nikdy jako callback — viz past s `x-show="crumb.action"` výš.
+- **Hlavička tabulky je lepivá** pod horní lištou (`sticky top-16`), aby se
+  u tisícovky řádků dalo poznat, který sloupec je který.
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný
   scroll uvnitř řádku je horší než karta.
 - `≥ md` — tabulka s řaditelnými sloupci.

@@ -28,6 +28,18 @@
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 </style>
 
+<script>
+// Motiv se razí na :root ještě před vykreslením, jinak by při uložené volbě
+// „tmavý" problikla světlá stránka. Flowbite k tomu používá třídu .dark;
+// tady je to atribut data-theme, protože artefakt má tři stavy, ne dva:
+// explicitní světlý, explicitní tmavý a výchozí „podle systému", který
+// nerazí nic a rozhoduje o něm media query.
+try {
+  var t = localStorage.getItem('geodata-atlas-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+} catch (e) { /* sandbox bez localStorage; zůstane systémový motiv */ }
+</script>
+
 <div x-data="atlas" x-cloak
      @keydown.slash.window.prevent="$refs.search.focus()"
      @keydown.escape.window="reset()"
@@ -35,40 +47,80 @@
 
   <!-- ══════════ HORNÍ LIŠTA ══════════ -->
   <header class="fixed top-0 z-40 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-    <div class="flex items-center justify-between gap-3 px-3 py-3 lg:px-5">
-      <div class="flex items-center gap-2">
-        <button type="button" data-drawer-target="sidebar" data-drawer-toggle="sidebar"
-                aria-controls="sidebar"
-                class="rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 lg:hidden">
-          <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
-          </svg>
-          <span class="sr-only">Otevřít postranní panel</span>
-        </button>
+    <div class="flex items-center gap-3 px-3 py-2.5 lg:px-5">
+      <button type="button" data-drawer-target="sidebar" data-drawer-toggle="sidebar"
+              aria-controls="sidebar"
+              class="shrink-0 rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 lg:hidden">
+        <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+        </svg>
+        <span class="sr-only">Otevřít postranní panel</span>
+      </button>
 
-        <span class="flex items-center gap-2">
-          <svg class="h-7 w-7" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-            <rect width="512" height="512" rx="112" fill="#1d4ed8"/>
-            <g fill="#93c5fd" fill-opacity=".45">
-              <rect x="104" y="104" width="92" height="92" rx="14"/><rect x="210" y="104" width="92" height="92" rx="14"/>
-              <rect x="316" y="104" width="92" height="92" rx="14"/><rect x="104" y="210" width="92" height="92" rx="14"/>
-              <rect x="316" y="210" width="92" height="92" rx="14"/><rect x="104" y="316" width="92" height="92" rx="14"/>
-              <rect x="210" y="316" width="92" height="92" rx="14"/><rect x="316" y="316" width="92" height="92" rx="14"/>
-            </g>
-            <rect x="204" y="204" width="104" height="104" rx="18" fill="#fff"/>
-            <circle cx="256" cy="256" r="26" fill="#1d4ed8"/>
-          </svg>
-          <span class="whitespace-nowrap text-lg font-semibold text-gray-900 dark:text-white sm:text-xl">Geodata&nbsp;Atlas</span>
-        </span>
+      <span class="flex shrink-0 items-center gap-2">
+        <svg class="h-7 w-7" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" rx="112" fill="#1d4ed8"/>
+          <g fill="#93c5fd" fill-opacity=".45">
+            <rect x="104" y="104" width="92" height="92" rx="14"/><rect x="210" y="104" width="92" height="92" rx="14"/>
+            <rect x="316" y="104" width="92" height="92" rx="14"/><rect x="104" y="210" width="92" height="92" rx="14"/>
+            <rect x="316" y="210" width="92" height="92" rx="14"/><rect x="104" y="316" width="92" height="92" rx="14"/>
+            <rect x="210" y="316" width="92" height="92" rx="14"/><rect x="316" y="316" width="92" height="92" rx="14"/>
+          </g>
+          <rect x="204" y="204" width="104" height="104" rx="18" fill="#fff"/>
+          <circle cx="256" cy="256" r="26" fill="#1d4ed8"/>
+        </svg>
+        <span class="hidden whitespace-nowrap text-lg font-semibold text-gray-900 dark:text-white sm:inline">Geodata&nbsp;Atlas</span>
+      </span>
+
+      <!-- Hledání patří do lišty, ne do záhlaví stránky: je to nejpoužívanější
+           ovládací prvek a takhle zůstává na očích i po odscrollování obsahu. -->
+      <div class="min-w-0 flex-1 md:mx-4 md:max-w-xl">
+        <label for="search" class="sr-only">Hledat v katalogu</label>
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <svg class="h-4 w-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="9" r="6"/><path d="M14 14l4 4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <input id="search" type="search" x-ref="search" x-model.debounce.200ms="q"
+            placeholder="Hledat web, doménu, popis, zemi…"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+          <div class="pointer-events-none absolute inset-y-0 end-0 hidden items-center pe-3 lg:flex">
+            <kbd class="rounded border border-gray-200 bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100">/</kbd>
+          </div>
+        </div>
       </div>
 
-      <div class="hidden items-center gap-2 text-xs text-gray-500 dark:text-gray-400 xl:flex">
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-              x-text="catalog.length + ' zdrojů'"></span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-              x-text="places.length + ' zemí a rozsahů'"></span>
-        <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-              x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0) + ' témat'"></span>
+      <div class="ms-auto flex shrink-0 items-center gap-1">
+        <span class="hidden items-center gap-2 pe-2 text-xs text-gray-500 dark:text-gray-400 xl:flex">
+          <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                x-text="catalog.length + ' zdrojů'"></span>
+          <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                x-text="places.length + ' zemí'"></span>
+        </span>
+
+        <!-- Tři stavy, ne dva: světlý → tmavý → podle systému. Ikona i aria-label
+             říkají aktuální stav, ne ten příští, aby odečítač nelhal. -->
+        <button type="button" @click="cycleTheme()" :aria-label="themeLabel"
+          class="rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
+          <svg x-show="theme === 'light'" class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+          </svg>
+          <svg x-show="theme === 'dark'" class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+          </svg>
+          <svg x-show="theme === 'system'" class="h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="3.5" width="15" height="10" rx="1.5"/><path d="M7 17h6M10 13.5V17" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <a href="https://github.com/korczis/geodata-atlas" target="_blank" rel="noopener noreferrer"
+           aria-label="Repozitář na GitHubu"
+           class="hidden rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 sm:block">
+          <svg class="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </header>
@@ -218,8 +270,28 @@
           </div>
         </template>
       </div>
+
+      <!-- Panel má patičku, ne jen seznam bez konce: odsud vedou cesty
+           k plnému výpisu, matici pokrytí a zdrojovým datům. -->
+      <div class="mt-6 border-t border-gray-200 pt-4 text-xs dark:border-gray-700">
+        <ul class="space-y-1">
+          <li><a href="https://github.com/korczis/geodata-atlas/blob/main/docs/CATALOG.md"
+                 target="_blank" rel="noopener noreferrer"
+                 class="block rounded px-3 py-1.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Plný výpis katalogu</a></li>
+          <li><a href="https://github.com/korczis/geodata-atlas/blob/main/docs/COVERAGE.md"
+                 target="_blank" rel="noopener noreferrer"
+                 class="block rounded px-3 py-1.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Matice pokrytí</a></li>
+          <li><a href="https://github.com/korczis/geodata-atlas/blob/main/data/catalog.csv"
+                 target="_blank" rel="noopener noreferrer"
+                 class="block rounded px-3 py-1.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Data jako CSV</a></li>
+        </ul>
+        <p class="mt-3 px-3 leading-relaxed text-gray-500 dark:text-gray-400">
+          <span x-text="catalog.length"></span> zdrojů ·
+          <span x-text="places.length"></span> zemí a rozsahů ·
+          <span x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0)"></span> témat
+        </p>
+      </div>
     </div>
-  </aside>
   <div id="sidebarBackdrop" class="fixed inset-0 z-20 hidden bg-gray-900/50 dark:bg-gray-900/80 lg:hidden"></div>
 
   <!-- ══════════ OBSAH ══════════ -->
@@ -246,56 +318,58 @@
           <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" x-text="heading"></h1>
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" x-text="subheading"></p>
 
-          <div class="mt-4 block items-center gap-4 sm:flex sm:divide-x sm:divide-gray-100 sm:dark:divide-gray-700">
-            <div class="mb-3 sm:mb-0 sm:pe-4">
-              <label for="search" class="sr-only">Hledat v katalogu</label>
-              <div class="relative sm:w-64 xl:w-96">
-                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-                  <svg class="h-4 w-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2">
-                    <circle cx="9" cy="9" r="6"/><path d="M14 14l4 4" stroke-linecap="round"/>
+          <!-- Čipy aktivních filtrů. Filtr je jinak vidět jen v panelu, který
+               se scrolluje zvlášť — dvakrát se stalo, že člověk četl počty
+               a netušil, pod jakým filtrem je čte. -->
+          <div x-show="activeFilters" class="mt-3 flex flex-wrap items-center gap-2">
+            <template x-for="chip in filterChips" :key="chip.kind">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 ps-3 pe-1.5 text-xs font-medium text-primary-800 dark:bg-primary-900/40 dark:text-primary-200">
+                <span x-text="chip.label"></span>
+                <button type="button" @click="clearFilter(chip.kind)" :aria-label="'Zrušit filtr: ' + chip.label"
+                  class="rounded-full p-0.5 hover:bg-primary-200 dark:hover:bg-primary-800">
+                  <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                   </svg>
-                </div>
-                <input id="search" type="search" x-ref="search" x-model.debounce.200ms="q"
-                  placeholder="Hledat web, doménu, popis, zemi…"
-                  class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 pe-16 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
-                <div class="pointer-events-none absolute inset-y-0 end-0 hidden items-center pe-3 lg:flex">
-                  <kbd class="rounded-lg border border-gray-200 bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100">/</kbd>
-                </div>
-              </div>
+                </button>
+              </span>
+            </template>
+            <button type="button" @click="reset()"
+              class="text-xs font-medium text-gray-500 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+              zrušit vše
+            </button>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center gap-2">
+            <button type="button" data-dropdown-toggle="sort-dropdown"
+              class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
+                <path d="M6 4v12m0 0-3-3m3 3 3-3M14 16V4m0 0-3 3m3-3 3 3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span x-text="'Řadit: ' + sortLabel"></span>
+            </button>
+            <div id="sort-dropdown" class="z-40 hidden w-56 rounded-lg bg-white shadow-sm dark:bg-gray-700">
+              <ul class="p-2 text-sm text-gray-700 dark:text-gray-200">
+                <template x-for="col in sortable" :key="col.key">
+                  <li>
+                    <button type="button" @click="sortBy(col.key)" :aria-pressed="sort.key === col.key ? 'true' : 'false'"
+                      :class="sort.key === col.key ? 'bg-gray-100 font-semibold dark:bg-gray-600' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
+                      class="flex w-full items-center justify-between rounded px-3 py-2 text-start">
+                      <span x-text="col.label"></span>
+                      <span class="text-[10px]" x-text="arrow(col.key)"></span>
+                    </button>
+                  </li>
+                </template>
+              </ul>
             </div>
 
-            <div class="flex items-center gap-2 sm:ps-4">
-              <button type="button" data-dropdown-toggle="sort-dropdown"
-                class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
-                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
-                  <path d="M6 4v12m0 0-3-3m3 3 3-3M14 16V4m0 0-3 3m3-3 3 3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span x-text="'Řadit: ' + sortLabel"></span>
-              </button>
-              <div id="sort-dropdown" class="z-40 hidden w-56 rounded-lg bg-white shadow-sm dark:bg-gray-700">
-                <ul class="p-2 text-sm text-gray-700 dark:text-gray-200">
-                  <template x-for="col in sortable" :key="col.key">
-                    <li>
-                      <button type="button" @click="sortBy(col.key)" :aria-pressed="sort.key === col.key ? 'true' : 'false'"
-                        :class="sort.key === col.key ? 'bg-gray-100 font-semibold dark:bg-gray-600' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
-                        class="flex w-full items-center justify-between rounded px-3 py-2 text-start">
-                        <span x-text="col.label"></span>
-                        <span class="text-[10px]" x-text="arrow(col.key)"></span>
-                      </button>
-                    </li>
-                  </template>
-                </ul>
-              </div>
-
-              <button type="button" @click="copyCsv()"
-                class="inline-flex items-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
-                  <rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 4H5a2 2 0 00-2 2v8" stroke-linecap="round"/>
-                </svg>
-                <span class="hidden sm:inline">Kopírovat CSV</span>
-                <span class="sm:hidden">CSV</span>
-              </button>
-            </div>
+            <button type="button" @click="copyCsv()"
+              class="inline-flex items-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.8">
+                <rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 4H5a2 2 0 00-2 2v8" stroke-linecap="round"/>
+              </svg>
+              <span class="hidden sm:inline">Kopírovat CSV</span>
+              <span class="sm:hidden">CSV</span>
+            </button>
           </div>
         </div>
       </div>
@@ -357,7 +431,7 @@
           <div class="scroll-x overflow-x-auto">
             <table class="min-w-full table-fixed divide-y divide-gray-200 dark:divide-gray-600">
               <caption class="sr-only">Katalog veřejných datových zdrojů</caption>
-              <thead class="bg-gray-50 dark:bg-gray-700">
+              <thead class="sticky top-16 z-10 bg-gray-50 dark:bg-gray-700">
                 <tr>
                   <template x-for="col in columns" :key="col.key">
                     <th scope="col" :class="col.width + ' ' + (col.numeric ? 'text-end' : 'text-start')"
@@ -527,6 +601,10 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('atlas', () => ({
     view: 'catalog', q: '', topic: '', country: '', source: '', cq: '',
     toast: '', _syncing: false,
+    // 'system' nerazí na :root nic a nechá rozhodnout media query; ostatní
+    // dvě hodnoty razí data-theme. Skutečná hodnota se čte z DOM, aby stav
+    // odpovídal tomu, co už nastavil bootstrap skript v hlavičce.
+    theme: 'system',
     // Karty (< md) a tabulka (≥ md) vykreslují týž seznam. Držet v DOM obě
     // větve stálo u tisícovky položek zhruba vteřinu navíc a dvojnásobek uzlů,
     // z toho polovinu neviditelných. Tenhle příznak nechá vzniknout jen tu,
@@ -563,6 +641,7 @@ document.addEventListener('alpine:init', () => {
       window.initFlowbite && window.initFlowbite();
       this.syncSidebarAria();
       this.watchBreakpoint();
+      this.theme = document.documentElement.getAttribute('data-theme') || 'system';
       // Filtr patří do URL: bez toho se výřez katalogu nedá poslat dál.
       for (const k of ['view', 'q', 'topic', 'country', 'source'])
         this.$watch(k, () => this.writeHash());
@@ -609,6 +688,42 @@ document.addEventListener('alpine:init', () => {
         /* URL se přepsat nedá; stránka funguje dál */
       }
       return hash;
+    },
+
+    /** Světlý → tmavý → podle systému. Tři stavy, protože „podle systému"
+     *  je legitimní volba, ne absence volby — a artefakt se v ní vykresluje
+     *  jinak než v obou explicitních. */
+    cycleTheme() {
+      this.theme = { light: 'dark', dark: 'system', system: 'light' }[this.theme];
+      const root = document.documentElement;
+      if (this.theme === 'system') root.removeAttribute('data-theme');
+      else root.setAttribute('data-theme', this.theme);
+      try {
+        if (this.theme === 'system') localStorage.removeItem('geodata-atlas-theme');
+        else localStorage.setItem('geodata-atlas-theme', this.theme);
+      } catch (e) { /* sandbox bez localStorage; volba platí do zavření karty */ }
+    },
+    get themeLabel() {
+      return { light: 'Motiv: světlý', dark: 'Motiv: tmavý',
+               system: 'Motiv: podle systému' }[this.theme];
+    },
+
+    /** Čipy nesou druh filtru jako řetězec, ne callback — Alpine u výrazu,
+     *  který vrátí funkci, tu funkci zavolá a filtr by se mazal sám. */
+    get filterChips() {
+      const out = [];
+      if (this.q) out.push({ kind: 'q', label: `„${this.q}"` });
+      if (this.country) out.push({ kind: 'country', label: this.placeLabel(this.country) });
+      if (this.topic) out.push({ kind: 'topic', label: this.topicLabel(this.topic) });
+      if (this.source) out.push({ kind: 'source',
+        label: (this.sourceFilters.find(s => s.k === this.source) || {}).label });
+      return out;
+    },
+    clearFilter(kind) {
+      if (kind === 'q') this.q = '';
+      else if (kind === 'country') this.country = '';
+      else if (kind === 'topic') this.topic = '';
+      else if (kind === 'source') this.source = '';
     },
 
     /** Vykresluje se jen ta větev seznamu, která je na dané šířce vidět.

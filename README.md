@@ -115,6 +115,12 @@ Aplikační shell adaptovaný z Flowbite Pro Admin Dashboardu — horní lišta,
 postranní panel, hlavní obsah a lepivá souhrnná lišta. Podrobnosti k licenci
 jsou v [`NOTICE.md`](NOTICE.md).
 
+V liště sedí **hledání** (nejpoužívanější prvek patří tam, kde neodscrolluje)
+a **přepínač motivu se třemi stavy**: světlý → tmavý → podle systému. Volba se
+ukládá a razí se ještě před vykreslením, aby při uložené tmavé neproblikla
+světlá stránka. Pod záhlavím stránky stojí **čipy aktivních filtrů**, každý
+maže jen svůj filtr; hlavička tabulky je lepivá.
+
 Panel nese obě osy: **země** s vlastním filtrovacím polem (sedmadvacet států
 plus nadnárodní rozsahy se do plochého seznamu nevejde) a **témata** seskupená
 do šesti rodin. Počty se počítají křížem — při vybraném Rakousku ukazují témata
