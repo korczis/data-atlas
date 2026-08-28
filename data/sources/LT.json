@@ -298,5 +298,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Litevská daňová inspekce zveřejňuje registr plátců DPH a seznam subjektů s daňovým dluhem",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-vert",
+    "topic": "regulators",
+    "name": "VERT — Valstybinė energetikos reguliavimo taryba",
+    "url": "https://www.vert.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Litevská VERT reguluje energetiku i vodárenství. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

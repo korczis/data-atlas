@@ -468,5 +468,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Rakouské ministerstvo financí zveřejňuje daňové předpisy, sazby a rozhodnutí Finanzdokumentation; samotné podání běží přes FinanzOnline",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-econtrol",
+    "topic": "regulators",
+    "name": "E-Control",
+    "url": "https://www.e-control.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Rakouský regulátor provozuje i srovnávač cen dodavatelů a publikuje statistiky spotřeby a výroby po spolkových zemích",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

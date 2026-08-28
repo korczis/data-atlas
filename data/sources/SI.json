@@ -382,5 +382,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Slovinská finanční správa zveřejňuje seznamy daňových dlužníků a neplatičů odvodů jako otevřená data",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-agen",
+    "topic": "regulators",
+    "name": "AGEN-RS — Agencija za energijo",
+    "url": "https://www.agen-rs.si/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovinská agentura zveřejňuje licence, tarify a roční zprávu o stavu energetiky jako otevřená data",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]

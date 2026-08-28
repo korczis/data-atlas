@@ -346,5 +346,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Finská daňová správa provozuje veřejnou službu Yritys- ja yhteisötietojärjestelmä s daňovými registracemi firem a zveřejňuje i daňové dluhy",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-energiavirasto",
+    "topic": "regulators",
+    "name": "Energiavirasto",
+    "url": "https://energiavirasto.fi/etusivu",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Finský energetický úřad spravuje také registr záruk původu a systém emisních povolenek",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

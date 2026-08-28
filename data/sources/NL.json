@@ -418,5 +418,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Nizozemská daňová správa nabízí ověření BTW-nummer a vede evidenci kvalifikovaných daňových poradců",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-acm",
+    "topic": "regulators",
+    "name": "ACM — Autoriteit Consument & Markt",
+    "url": "https://www.acm.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Nizozemská ACM spojuje regulaci energetiky, telekomunikací, dopravy a ochranu spotřebitele i soutěže; rozhodnutí jsou veřejná",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

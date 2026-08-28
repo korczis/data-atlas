@@ -514,5 +514,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Francouzská daňová správa nabízí ověření DIČ a přístup k daňovým údajům o nemovitostech; hodnoty transakcí publikuje jako otevřená data DVF",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-cre",
+    "topic": "regulators",
+    "name": "CRE — Commission de régulation de l'énergie",
+    "url": "https://www.cre.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Francouzská CRE publikuje rozhodnutí o tarifech a analýzy velkoobchodního trhu. Na automat vrací 403, v prohlížeči funguje",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

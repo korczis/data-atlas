@@ -286,5 +286,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Řecká nezávislá daňová správa provozuje ověření ΑΦΜ a registr plátců DPH. Na automat vrací 403, v prohlížeči funguje",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-raaey",
+    "topic": "regulators",
+    "name": "ΡΑΑΕΥ",
+    "url": "https://www.raaey.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Řecký regulátor byl v roce 2023 rozšířen o vodu a odpady, proto se z RAE přejmenoval na RAAEY",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

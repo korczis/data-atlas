@@ -418,5 +418,17 @@
     "desc": "Flanderský lidarový výškopis — digitální model terénu i povrchu v rozlišení 1 m, volně ke stažení po mapových listech. Valonsko a Brusel mají vlastní modely, federální výškopis pro celou Belgii neexistuje",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-creg",
+    "topic": "regulators",
+    "name": "CREG",
+    "url": "https://www.creg.be/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Belgický federální regulátor dohlíží na přenos a velkoobchod; distribuce spadá pod regionální regulátory VREG, CWaPE a Brugel",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

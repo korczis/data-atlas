@@ -346,5 +346,17 @@
     "desc": "Lotyšský národní archiv. Portál Raduraksti má digitalizované matriky a revizní seznamy; novější fondy včetně podnikových se objednávají online",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-sprk",
+    "topic": "regulators",
+    "name": "SPRK — Sabiedrisko pakalpojumu regulēšanas komisija",
+    "url": "https://www.sprk.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lotyšská komise reguluje energetiku, vodárenství, odpady, poštu i telekomunikace a vede registr poskytovatelů",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

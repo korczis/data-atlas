@@ -394,5 +394,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Portugalská finanční správa publikuje oběžníky, sazby a formuláře; ověření NIF a plátce DPH běží na hlavním portálu",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-erse",
+    "topic": "regulators",
+    "name": "ERSE",
+    "url": "https://www.erse.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Portugalský regulátor zveřejňuje tarify, statistiky trhu a srovnávač nabídek dodavatelů",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

@@ -334,5 +334,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Estonská daňová a celní správa zveřejňuje **daňové dluhy firem, obraty a počty zaměstnanců po čtvrtletích** jako otevřená data — v EU výjimečná míra transparentnosti, která z ní dělá nejrychlejší nástroj na prověření estonského partnera",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-konkurentsiamet",
+    "topic": "regulators",
+    "name": "Konkurentsiamet",
+    "url": "https://www.konkurentsiamet.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Estonsko sloučilo energetickou regulaci s úřadem pro ochranu hospodářské soutěže, takže jeden úřad řeší kartely i síťové tarify",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

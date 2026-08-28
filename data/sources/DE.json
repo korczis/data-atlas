@@ -526,5 +526,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Německý spolkový daňový úřad provozuje ověření DIČ pro plátce z EU a vede centrální evidenci daňových identifikačních čísel. Kořen webu odpovídá na HEAD chybou 400, prohlížeč i běžné stažení projdou",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-bnetza",
+    "topic": "regulators",
+    "name": "Bundesnetzagentur",
+    "url": "https://www.bundesnetzagentur.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Německá agentura reguluje energetiku, telekomunikace, poštu i železnici. Provozuje **Marktstammdatenregister** se všemi výrobnami elektřiny v zemi, od velkých elektráren po střešní fotovoltaiku",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

@@ -419,5 +419,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Španělská AEAT zveřejňuje seznam významných daňových dlužníků a umožňuje ověření NIF; elektronické podání běží tady",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-cnmc",
+    "topic": "regulators",
+    "name": "CNMC",
+    "url": "https://www.cnmc.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Španělská CNMC spojuje regulaci energetiky, telekomunikací, dopravy a ochranu soutěže; rozhodnutí i data publikuje otevřeně",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

@@ -442,5 +442,17 @@
     "desc": "Italský patentový a známkový úřad při ministerstvu podniků. Databáze jde prohledávat podle majitele a ukazuje i změny vlastnictví značky",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-arera",
+    "topic": "regulators",
+    "name": "ARERA",
+    "url": "https://www.arera.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Italská ARERA pokrývá elektřinu, plyn, vodu a odpady; rozhodnutí a tarify jsou v otevřené databázi",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

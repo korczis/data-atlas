@@ -360,5 +360,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Švédská daňová správa vede navíc **registr obyvatel** — ve Švédsku je matriční agenda daňová, ne obecní, což z ní dělá klíčový identitní registr",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-ei",
+    "topic": "regulators",
+    "name": "Ei — Energimarknadsinspektionen",
+    "url": "https://www.ei.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Švédská inspekce dohlíží na síťové tarify a vede statistiky o dodavatelích a cenách",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

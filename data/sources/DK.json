@@ -394,5 +394,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Dánská daňová správa napojuje ověření na obchodní rejstřík CVR a firemní údaje se dohledávají pod stejným číslem",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-forsyningstilsynet",
+    "topic": "regulators",
+    "name": "Forsyningstilsynet",
+    "url": "https://forsyningstilsynet.dk/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Dánský dozor pokrývá elektřinu, plyn i teplo a publikuje cenové statistiky jako otevřená data",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

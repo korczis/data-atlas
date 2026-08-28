@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1151** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1099** doplněných rešerší.
+**1176** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1124** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -15,34 +15,34 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Země
 
 - `GLOBAL` Celosvětové — 130
-- `CZ` Česko — 96
+- `CZ` Česko — 97
 - `PL` Polsko — 61
 - `EU` Evropská unie — 58
-- `DE` Německo — 44
-- `FR` Francie — 43
-- `AT` Rakousko — 39
-- `IT` Itálie — 37
+- `DE` Německo — 45
+- `FR` Francie — 44
+- `AT` Rakousko — 40
+- `IT` Itálie — 38
+- `BE` Belgie — 36
 - `HU` Maďarsko — 36
-- `BE` Belgie — 35
-- `NL` Nizozemsko — 35
-- `SK` Slovensko — 35
-- `ES` Španělsko — 35
-- `BG` Bulharsko — 33
-- `DK` Dánsko — 33
-- `PT` Portugalsko — 33
-- `SI` Slovinsko — 32
-- `HR` Chorvatsko — 31
-- `SE` Švédsko — 30
-- `FI` Finsko — 29
-- `LV` Lotyšsko — 29
-- `EE` Estonsko — 28
-- `LU` Lucembursko — 28
-- `IE` Irsko — 26
-- `LT` Litva — 25
-- `RO` Rumunsko — 25
-- `GR` Řecko — 24
-- `MT` Malta — 23
-- `CY` Kypr — 22
+- `NL` Nizozemsko — 36
+- `SK` Slovensko — 36
+- `ES` Španělsko — 36
+- `BG` Bulharsko — 34
+- `DK` Dánsko — 34
+- `PT` Portugalsko — 34
+- `SI` Slovinsko — 33
+- `HR` Chorvatsko — 32
+- `SE` Švédsko — 31
+- `FI` Finsko — 30
+- `LV` Lotyšsko — 30
+- `EE` Estonsko — 29
+- `LU` Lucembursko — 29
+- `IE` Irsko — 27
+- `LT` Litva — 26
+- `RO` Rumunsko — 26
+- `GR` Řecko — 25
+- `MT` Malta — 24
+- `CY` Kypr — 23
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
 
@@ -68,7 +68,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 66
 
-**Firmy a due diligence** — 341
+**Firmy a due diligence** — 366
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
@@ -76,7 +76,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Insolvence a exekuce](#insolvence-a-exekuce) — 24
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
 - [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 32
-- [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 89
+- [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 114
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 18
 
 **Rizika a OSINT** — 198
@@ -983,62 +983,81 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `AT` | [FMA — Finanzmarktaufsicht](https://www.fma.gv.at/) | `fma.gv.at` | Rakouský dohled nad finančním trhem — databáze licencovaných bank, pojišťoven, investičních firem a fondů, seznam přeshraničně působících subjektů a veřejná varování před poskytovateli bez licence. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `AT` | [OeNB — statistika a dohled](https://www.oenb.at/Statistik.html) | `oenb.at` | Rakouská národní banka — bankovní a měnová statistika, úvěry a vklady po sektorech, platební bilance a ukazatele finanční stability, s vlastním datovým rozhraním. Doplňuje FMA o čísla, ne o licence | open | api | reference |
 | `AT` | [BMF — Bundesministerium für Finanzen](https://www.bmf.gv.at/) | `bmf.gv.at` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Rakouské ministerstvo financí zveřejňuje daňové předpisy, sazby a rozhodnutí Finanzdokumentation; samotné podání běží přes FinanzOnline | open | none | reference |
+| `AT` | [E-Control](https://www.e-control.at/) | `e-control.at` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Rakouský regulátor provozuje i srovnávač cen dodavatelů a publikuje statistiky spotřeby a výroby po spolkových zemích | open | search | reference |
 | `BE` | [FSMA](https://www.fsma.be/en) | `fsma.be` | Belgický dohled nad finančními trhy — registry zprostředkovatelů, poradců, fondů a poskytovatelů úvěrů, plus veřejná varování před subjekty bez licence. Banky a pojišťovny dohlíží NBB, FSMA řeší chování na trhu | open | search | reference |
 | `BE` | [Nationale Bank van België / BNB](https://www.nbb.be/en) | `nbb.be` | Belgická národní banka — obezřetnostní dohled nad bankami a pojišťovnami se seznamy licencovaných subjektů, statistika úvěrů a platební bilance, a provoz centrály účetních závěrek. Doména bnb.be má vadný certifikát, funkční je nbb.be | open | api | reference |
+| `BE` | [CREG](https://www.creg.be/) | `creg.be` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Belgický federální regulátor dohlíží na přenos a velkoobchod; distribuce spadá pod regionální regulátory VREG, CWaPE a Brugel | open | none | reference |
 | `BG` | [БНБ — Българска народна банка](https://www.bnb.bg/) | `bnb.bg` | Bulharská národní banka — registr licencovaných bank, platebních institucí a směnáren, statistiky a zprávy o finanční stabilitě. Nebankovní trh dohlíží KFN | open | download | reference |
 | `BG` | [КФН — Комисия за финансов надзор](https://www.fsc.bg/) | `fsc.bg` | Bulharská komise pro finanční dohled — registry pojišťoven, penzijních fondů, investičních firem a zprostředkovatelů, schválené prospekty a varování před nelicencovanými subjekty | open | search | reference |
 | `BG` | [НАП — Национална агенция за приходите](https://nra.bg/) | `nra.bg` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Bulharská NAP zveřejňuje registr plátců DPH a seznam daňových dlužníků | open | search | reference |
+| `BG` | [КЕВР — Комисия за енергийно и водно регулиране](https://www.dker.bg/) | `dker.bg` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Bulharská komise reguluje vedle energetiky i vodárenství a zveřejňuje rozhodnutí o cenách obou odvětví | open | none | reference |
 | `HR` | [HNB — Hrvatska narodna banka](https://www.hnb.hr/) | `hnb.hr` | Chorvatská národní banka — registr licencovaných úvěrových a platebních institucí, statistiky a zprávy o finanční stabilitě. Kapitálový trh a pojišťovnictví dohlíží HANFA | open | api | reference |
 | `HR` | [HANFA](https://www.hanfa.hr/) | `hanfa.hr` | Chorvatská agentura pro dohled nad finančními službami — registry pojišťoven, penzijních fondů, investičních společností a leasingu, statistiky trhu a varování před nelicencovanými subjekty | open | download | reference |
 | `HR` | [Porezna uprava](https://porezna-uprava.gov.hr/) | `porezna-uprava.gov.hr` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Chorvatská daňová správa zveřejňuje **seznam daňových dlužníků** nad stanovenou hranicí i registr plátců DPH | open | search | reference |
+| `HR` | [HERA](https://www.hera.hr/) | `hera.hr` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Chorvatská HERA reguluje elektřinu, plyn, teplo i ropovody a vede registr účastníků trhu | open | search | reference |
 | `CY` | [Central Bank of Cyprus](https://www.centralbank.cy/) | `centralbank.cy` | Kyperská centrální banka — registr licencovaných bank a platebních institucí, statistiky a zprávy o finanční stabilitě. Investiční firmy a fondy dohlíží CySEC | open | download | reference |
 | `CY` | [CySEC](https://www.cysec.gov.cy/) | `cysec.gov.cy` | Kyperská komise pro cenné papíry — **registr investičních firem (CIF), fondů a poskytovatelů služeb**, sankce a veřejná varování. Kypr je sídlem velkého počtu investičních firem působících přeshraničně, takže je tenhle registr v prověrkách často potřeba | open | search | reference |
 | `CY` | [Tax Department](https://www.gov.cy/mof-tax/) | `gov.cy` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Kyperský daňový odbor vede registr plátců DPH a od roku 2023 i evidenci daňových rezidentů podle nových pravidel | open | search | reference |
+| `CY` | [CERA — Ρυθμιστική Αρχή Ενέργειας Κύπρου](https://www.cera.org.cy/) | `cera.org.cy` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Kyperský regulátor otevírá dosud monopolní trh s elektřinou. Na automat vrací 403, v prohlížeči funguje | open | none | reference |
 | `CZ` | [ČNB — finanční stabilita](https://www.cnb.cz/cs/financni-stabilita/) | `cnb.cz` | Zprávy o finanční stabilitě, zátěžové testy a limity úvěrových ukazatelů LTV, DTI a DSTI — makro pohled na trh bydlení | open | download | reference |
 | `CZ` | [ČNB — seznam regulovaných subjektů (JERRS)](https://jerrs.cnb.cz/apljerrsdad/JERRS.WEB07.INTRO_PAGE) | `jerrs.cnb.cz` | Jednotný registr subjektů pod dohledem ČNB — banky, spořitelní družstva, pojišťovny, investiční společnosti a fondy, směnárny, platební instituce a zprostředkovatelé, s rozsahem oprávnění a historií změn. Ke stažení; ověří, jestli protistrana licenci opravdu má | open | download | reference |
 | `CZ` | [ERÚ — licence v energetice](https://licence.eru.cz/) | `licence.eru.cz` | Registr licencí Energetického regulačního úřadu — výroba, přenos, distribuce a obchod s elektřinou, plynem a teplem, včetně seznamu provozoven a jejich instalovaného výkonu. U energetických projektů je to veřejný doklad, kdo co smí provozovat a kde | open | search | reference |
 | `CZ` | [ČTÚ — vyhledávací databáze](https://ctu.gov.cz/databaze) | `ctu.gov.cz` | Veřejné registry Českého telekomunikačního úřadu — evidence podnikatelů v elektronických komunikacích podle všeobecného oprávnění, přidělená čísla a kmitočty, provozovatelé poštovních služeb a schválená zařízení. Odsud se ověří, kdo v Česku smí provozovat síť nebo službu | open | search | reference |
 | `CZ` | [SÚKL — otevřené přehledy](https://prehledy.sukl.cz/) | `prehledy.sukl.cz` | Data Státního ústavu pro kontrolu léčiv — registrované léčivé přípravky, ceny a úhrady, dodávky do lékáren, hlášení o závadách a distributorské licence. Ke stažení; u firem ve zdravotnictví je to jediný veřejný pohled na objemy jejich produktů | open | download | reference |
 | `CZ` | [ÚOHS — sbírky rozhodnutí](https://uohs.gov.cz/cs/hospodarska-soutez/sbirky-rozhodnuti.html) | `uohs.gov.cz` | Rozhodnutí Úřadu pro ochranu hospodářské soutěže — kartely a zneužití dominance, spojování soutěžitelů a přezkum veřejných zakázek, s odůvodněním a uloženými pokutami. Sankce za bid rigging nebo kartel je pro prověrku protistrany zásadní údaj a jinde veřejná není | open | search | reference |
+| `CZ` | [Energetický regulační úřad](https://eru.gov.cz/) | `eru.gov.cz` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Český ERÚ zveřejňuje licence v otevřeném rejstříku i cenová rozhodnutí a roční zprávy o trhu | open | search | reference |
 | `DK` | [Finanstilsynet](https://www.finanstilsynet.dk/) | `finanstilsynet.dk` | Dánský jednotný finanční dohled — registry licencovaných bank, pojišťoven, fondů a platebních institucí, rozhodnutí, sankce a varování před nelicencovanými subjekty | open | download | reference |
 | `DK` | [Danmarks Nationalbank](https://www.nationalbanken.dk/) | `nationalbanken.dk` | Dánská centrální banka — statistiky úvěrů, sazeb a platební bilance s datovým rozhraním a zprávy o finanční stabilitě. Dohled vykonává Finanstilsynet | open | api | reference |
 | `DK` | [Skattestyrelsen](https://skat.dk/) | `skat.dk` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Dánská daňová správa napojuje ověření na obchodní rejstřík CVR a firemní údaje se dohledávají pod stejným číslem | open | search | reference |
+| `DK` | [Forsyningstilsynet](https://forsyningstilsynet.dk/) | `forsyningstilsynet.dk` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Dánský dozor pokrývá elektřinu, plyn i teplo a publikuje cenové statistiky jako otevřená data | open | none | reference |
 | `EE` | [Finantsinspektsioon](https://www.fi.ee/) | `fi.ee` | Estonský jednotný finanční dohled — registry licencovaných bank, pojišťoven, fondů a platebních institucí, sankce a varování před nelicencovanými subjekty | open | search | reference |
 | `EE` | [Eesti Pank](https://www.eestipank.ee/) | `eestipank.ee` | Estonská centrální banka — statistiky úvěrů, platební bilance a finanční stability s datovým rozhraním. Dohled vykonává Finantsinspektsioon | open | api | reference |
 | `EE` | [EMTA — Maksu- ja Tolliamet](https://www.emta.ee/) | `emta.ee` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Estonská daňová a celní správa zveřejňuje **daňové dluhy firem, obraty a počty zaměstnanců po čtvrtletích** jako otevřená data — v EU výjimečná míra transparentnosti, která z ní dělá nejrychlejší nástroj na prověření estonského partnera | open | bulk | reference |
+| `EE` | [Konkurentsiamet](https://www.konkurentsiamet.ee/) | `konkurentsiamet.ee` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Estonsko sloučilo energetickou regulaci s úřadem pro ochranu hospodářské soutěže, takže jeden úřad řeší kartely i síťové tarify | open | none | reference |
 | `FI` | [Finanssivalvonta (FIN-FSA)](https://www.finanssivalvonta.fi/) | `finanssivalvonta.fi` | Finský jednotný finanční dohled — registry licencovaných bank, pojišťoven, fondů a platebních institucí, sankce a varování před nelicencovanými subjekty | open | search | reference |
 | `FI` | [Verohallinto](https://www.vero.fi/) | `vero.fi` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Finská daňová správa provozuje veřejnou službu Yritys- ja yhteisötietojärjestelmä s daňovými registracemi firem a zveřejňuje i daňové dluhy | open | search | reference |
+| `FI` | [Energiavirasto](https://energiavirasto.fi/etusivu) | `energiavirasto.fi` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Finský energetický úřad spravuje také registr záruk původu a systém emisních povolenek | open | none | reference |
 | `FR` | [REGAFI — registr finančních subjektů](https://www.regafi.fr/) | `regafi.fr` | Registr subjektů oprávněných poskytovat bankovní a platební služby ve Francii, vedený ACPR — banky, platební a e-money instituce, včetně přeshraničně působících. Ověří, jestli protistrana licenci opravdu má | open | download | reference |
 | `FR` | [ACPR — Banque de France](https://acpr.banque-france.fr/) | `acpr.banque-france.fr` | Francouzský obezřetnostní dohled nad bankami a pojišťovnami — rozhodnutí a sankce, seznamy dohlížených subjektů a veřejná varování před nelicencovanými nabídkami. Registr subjektů samotný je REGAFI a Refassu | open | download | reference |
 | `FR` | [AMF — Autorité des marchés financiers](https://www.amf-france.org/) | `amf-france.org` | Francouzský dohled nad kapitálovým trhem — registr GECO se správci fondů a poradci, schválené prospekty, sankce a černá listina neoprávněných nabídek. Doplněk k ACPR, který řeší banky a pojišťovny | open | search | reference |
 | `FR` | [impots.gouv.fr](https://www.impots.gouv.fr/) | `impots.gouv.fr` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Francouzská daňová správa nabízí ověření DIČ a přístup k daňovým údajům o nemovitostech; hodnoty transakcí publikuje jako otevřená data DVF | open | none | reference |
+| `FR` | [CRE — Commission de régulation de l'énergie](https://www.cre.fr/) | `cre.fr` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Francouzská CRE publikuje rozhodnutí o tarifech a analýzy velkoobchodního trhu. Na automat vrací 403, v prohlížeči funguje | open | none | reference |
 | `DE` | [BaFin — databáze institucí](https://portal.mvp.bafin.de/database/InstInfo/) | `portal.mvp.bafin.de` | Vyhledávání v registrech německého finančního dohledu — banky, pojišťovny, investiční firmy, platební instituce a fondy s rozsahem povolení a identifikátory. Vedle toho BaFin vydává veřejná varování před subjekty bez licence | open | search | reference |
 | `DE` | [Deutsche Bundesbank](https://www.bundesbank.de/de) | `bundesbank.de` | Německá centrální banka — časové řady k úvěrům, sazbám, platební bilanci a cenám nemovitostí, s vlastním datovým rozhraním, a spolu s BaFin dohled nad bankami. Doplňuje BaFin o čísla, ne o licence | open | api | reference |
 | `DE` | [Wettbewerbsregister](https://www.bundeskartellamt.de/DE/Aufgaben/Wettbewerbsregister/wettbewerbsregister_node.html) | `bundeskartellamt.de` | Registr firem vyloučených ze zadávacích řízení kvůli hospodářským deliktům, vedený Bundeskartellamtem. Dotaz smí podat jen zadavatel — veřejnosti přístupný není, což je pro prověrku dodavatele podstatné omezení. Stránka vysvětluje rozsah a podmínky | restricted | none | reference |
 | `DE` | [Marktstammdatenregister](https://www.marktstammdatenregister.de/MaStR) | `marktstammdatenregister.de` | Registr všech účastníků německého energetického trhu — každá elektrárna, fotovoltaika, větrník i baterie s výkonem, lokalizací, provozovatelem a datem uvedení do provozu, ke stažení. Nejpodrobnější veřejná databáze energetických zařízení v Evropě | open | bulk | reference |
 | `DE` | [BZSt — Bundeszentralamt für Steuern](https://www.bzst.de/) | `bzst.de` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Německý spolkový daňový úřad provozuje ověření DIČ pro plátce z EU a vede centrální evidenci daňových identifikačních čísel. Kořen webu odpovídá na HEAD chybou 400, prohlížeč i běžné stažení projdou | open | search | reference |
+| `DE` | [Bundesnetzagentur](https://www.bundesnetzagentur.de/) | `bundesnetzagentur.de` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Německá agentura reguluje energetiku, telekomunikace, poštu i železnici. Provozuje **Marktstammdatenregister** se všemi výrobnami elektřiny v zemi, od velkých elektráren po střešní fotovoltaiku | open | bulk | reference |
 | `GR` | [Τράπεζα της Ελλάδος](https://www.bankofgreece.gr/) | `bankofgreece.gr` | Řecká centrální banka — registr licencovaných bank, platebních institucí a pojišťoven, statistická databáze a zprávy o finanční stabilitě. Pojišťovnictví spadá v Řecku pod centrální banku. Na automat vrací 403 | open | api | reference |
 | `GR` | [ΑΑΔΕ — Ανεξάρτητη Αρχή Δημοσίων Εσόδων](https://www.aade.gr/) | `aade.gr` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Řecká nezávislá daňová správa provozuje ověření ΑΦΜ a registr plátců DPH. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `GR` | [ΡΑΑΕΥ](https://www.raaey.gr/) | `raaey.gr` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Řecký regulátor byl v roce 2023 rozšířen o vodu a odpady, proto se z RAE přejmenoval na RAAEY | open | none | reference |
 | `HU` | [MNB — Magyar Nemzeti Bank](https://www.mnb.hu/) | `mnb.hu` | Maďarská národní banka jako jednotný dohled nad celým finančním trhem — statistiky, rozhodnutí a sankce, varování před nelicencovanými subjekty. Registr dohlížených institucí je na intezmenykereso.mnb.hu | open | api | reference |
 | `HU` | [MNB — vyhledávač institucí](https://intezmenykereso.mnb.hu/) | `intezmenykereso.mnb.hu` | Registr subjektů pod dohledem MNB — banky, pojišťovny, fondy, platební instituce a zprostředkovatelé, s rozsahem oprávnění a historií. Ověří licenci maďarské protistrany | open | search | reference |
 | `HU` | [GVH — soutěžní úřad](https://www.gvh.hu/) | `gvh.hu` | Maďarský úřad pro hospodářskou soutěž — rozhodnutí o kartelech, zneužití dominance a spojování podniků, uložené pokuty a řízení o klamavé reklamě. Sankce za soutěžní delikt je pro prověrku podstatný údaj | open | search | reference |
 | `HU` | [NAV — Nemzeti Adó- és Vámhivatal](https://nav.gov.hu/) | `nav.gov.hu` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maďarská NAV zveřejňuje databáze plátců DPH, daňových dlužníků a subjektů s odebraným daňovým číslem — všechny jsou volně prohledávatelné | open | search | reference |
 | `IE` | [Central Bank of Ireland](https://www.centralbank.ie/) | `centralbank.ie` | Irská centrální banka jako jednotný dohled — **registry licencovaných bank, pojišťoven, fondů, platebních institucí a zprostředkovatelů ke stažení**, sankce a varování. Irsko hostí velké množství fondů a přeshraničních subjektů, takže je tenhle registr v prověrkách často potřeba | open | bulk | reference |
 | `IE` | [Revenue Commissioners](https://www.revenue.ie/) | `revenue.ie` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Irská Revenue zveřejňuje čtvrtletní **seznam daňových úniků a pokut** (Tax Defaulters List), který je pro prověření protistrany často zajímavější než rejstříkový výpis | open | search | reference |
+| `IE` | [CRU — Commission for Regulation of Utilities](https://www.cru.ie/) | `cru.ie` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Irská CRU reguluje energetiku i vodárenství a zveřejňuje seznam registrovaných dodavatelů | open | none | reference |
 | `IT` | [Banca d'Italia](https://www.bancaditalia.it/) | `bancaditalia.it` | Italská centrální banka — registry licencovaných bank, platebních institucí a zprostředkovatelů, statistická databáze a Centrale dei Rischi. Vydává i varování před nelicencovanými subjekty | open | api | reference |
 | `IT` | [CONSOB](https://www.consob.it/) | `consob.it` | Italský dohled nad kapitálovým trhem — registry investičních firem a poradců, významné podíly v kótovaných společnostech, prospekty a **černá listina neoprávněných nabídek**. Server má bot management | open | search | reference |
 | `IT` | [IVASS](https://www.ivass.it/) | `ivass.it` | Italský dohled nad pojišťovnictvím — registr pojišťoven a zprostředkovatelů (RUI), statistiky trhu a varování před nelegálními pojistiteli. Ověří, jestli italský zprostředkovatel smí pojištění nabízet | open | search | reference |
+| `IT` | [ARERA](https://www.arera.it/) | `arera.it` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Italská ARERA pokrývá elektřinu, plyn, vodu a odpady; rozhodnutí a tarify jsou v otevřené databázi | open | search | reference |
 | `LV` | [Latvijas Banka](https://www.bank.lv/) | `bank.lv` | Lotyšská centrální banka, do níž se od roku 2023 **sloučila komise finančního a kapitálového trhu (FKTK)** — registry licencovaných bank, pojišťoven a platebních institucí, statistiky a varování. Doména fktk.lv sem vede | open | api | reference |
+| `LV` | [SPRK — Sabiedrisko pakalpojumu regulēšanas komisija](https://www.sprk.gov.lv/) | `sprk.gov.lv` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lotyšská komise reguluje energetiku, vodárenství, odpady, poštu i telekomunikace a vede registr poskytovatelů | open | search | reference |
 | `LT` | [Lietuvos bankas](https://www.lb.lt/) | `lb.lt` | Litevská centrální banka jako jednotný finanční dohled — **registr licencovaných bank, platebních a e-money institucí, pojišťoven a fondů**. Litva vydala velké množství licencí fintechům působícím přeshraničně, takže je tenhle registr v prověrkách často potřeba. Na automat vrací 403 | open | search | reference |
 | `LT` | [VMI — Valstybinė mokesčių inspekcija](https://www.vmi.lt/) | `vmi.lt` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Litevská daňová inspekce zveřejňuje registr plátců DPH a seznam subjektů s daňovým dluhem | open | search | reference |
+| `LT` | [VERT — Valstybinė energetikos reguliavimo taryba](https://www.vert.lt/) | `vert.lt` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Litevská VERT reguluje energetiku i vodárenství. Na automat vrací 403, v prohlížeči funguje | open | none | reference |
 | `LU` | [CSSF](https://www.cssf.lu/) | `cssf.lu` | Lucemburský dohled nad finančním sektorem — **registry bank, investičních fondů, správcovských společností, platebních institucí a poskytovatelů služeb, ke stažení**. Lucembursko je druhé největší fondové centrum světa, takže je tenhle registr v přeshraničních prověrkách jeden z nejpoužívanějších v EU | open | bulk | reference |
 | `LU` | [Portail Qualité](https://portail-qualite.public.lu/) | `portail-qualite.public.lu` | Lucemburský portál kvality a akreditace — **registr akreditovaných laboratoří, certifikačních a inspekčních orgánů**, normy a metrologie. Ověří, jestli certifikát, kterým se protistrana ohání, vydal akreditovaný subjekt | open | search | reference |
 | `LU` | [Administration des contributions directes](https://impotsdirects.public.lu/) | `impotsdirects.public.lu` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Lucemburská správa přímých daní publikuje oběžníky a daňové výklady; ověření DPH vede oddělená správa nepřímých daní AED | open | none | reference |
+| `LU` | [ILR — Institut Luxembourgeois de Régulation](https://ilr.lu/) | `ilr.lu` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lucemburský ILR reguluje energetiku, telekomunikace, poštu i železnici v jednom úřadu | open | none | reference |
 | `MT` | [MFSA — Malta Financial Services Authority](https://www.mfsa.mt/) | `mfsa.mt` | Maltský jednotný dohled nad finančními službami — **registr licencovaných bank, pojišťoven, fondů, investičních firem a poskytovatelů služeb**, sankce a varování. Malta hostí velké množství přeshraničně působících subjektů, takže je tenhle registr v prověrkách často potřeba. Na automat vrací 403 | open | search | reference |
 | `MT` | [Commissioner for Tax and Customs](https://cfr.gov.mt/) | `cfr.gov.mt` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maltská daňová správa vede registr plátců DPH a evidenci daňových zástupců. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
+| `MT` | [REWS — Regulator for Energy and Water Services](https://rews.org.mt/) | `rews.org.mt` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Maltský regulátor pokrývá elektřinu, vodu a pohonné hmoty; ostrovní trh má jediného dodavatele, takže regulace cen je tu zásadní | open | none | reference |
 | `NL` | [AFM — Autoriteit Financiële Markten](https://www.afm.nl/) | `afm.nl` | Nizozemský dohled nad chováním na finančním trhu — veřejné registry poskytovatelů investičních a úvěrových služeb, zprostředkovatelů a fondů, plus varování před nelicencovanými subjekty. Obezřetnostní dohled dělá DNB | open | search | reference |
 | `NL` | [De Nederlandsche Bank](https://www.dnb.nl/en/) | `dnb.nl` | Nizozemská centrální banka — veřejný registr licencovaných bank, pojišťoven, penzijních fondů a platebních institucí, a k tomu statistická databáze. Na automat vrací 403, v prohlížeči funguje | open | api | reference |
 | `NL` | [Belastingdienst](https://www.belastingdienst.nl/) | `belastingdienst.nl` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Nizozemská daňová správa nabízí ověření BTW-nummer a vede evidenci kvalifikovaných daňových poradců | open | none | reference |
+| `NL` | [ACM — Autoriteit Consument & Markt](https://www.acm.nl/) | `acm.nl` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Nizozemská ACM spojuje regulaci energetiky, telekomunikací, dopravy a ochranu spotřebitele i soutěže; rozhodnutí jsou veřejná | open | search | reference |
 | `PL` | [KNF — podmioty rynku finansowego](https://www.knf.gov.pl/) | `knf.gov.pl` | Komise finančního dohledu — rejstříky bank, pojišťoven, investičních fondů, platebních institucí a zprostředkovatelů, plus veřejný seznam varování před subjekty bez licence. Ověří, jestli protistrana v Polsku vůbec smí finanční službu nabízet | open | search | reference |
 | `PL` | [UOKiK](https://uokik.gov.pl/) | `uokik.gov.pl` | Úřad ochrany hospodářské soutěže a spotřebitelů — rozhodnutí o kartelech, zneužití dominance a spojování podniků, registr klauzulí zakázaných ve spotřebitelských smlouvách a uložené pokuty. Sankce za soutěžní delikt je pro prověrku podstatný a jinde veřejná není | open | search | reference |
 | `PL` | [URE — energetický regulátor](https://www.ure.gov.pl/) | `ure.gov.pl` | Úřad regulace energetiky — koncese na výrobu, přenos, distribuci a obchod s elektřinou, plynem a teplem, registry výrobců z obnovitelných zdrojů a schválené tarify. Veřejný doklad o tom, kdo v Polsku smí energii provozovat a prodávat | open | search | reference |
@@ -1048,21 +1067,27 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `PT` | [CMVM](https://www.cmvm.pt/) | `cmvm.pt` | Portugalský dohled nad kapitálovým trhem — registry investičních firem, fondů a poradců, schválené prospekty, významné podíly a varování před nelicencovanými nabídkami | open | search | reference |
 | `PT` | [ASF — pojišťovnictví a penze](https://www.asf.com.pt/) | `asf.com.pt` | Portugalský dohled nad pojišťovnami a penzijními fondy — registr pojišťoven a zprostředkovatelů, statistiky trhu a rozhodnutí. Třetí z portugalských finančních regulátorů vedle BdP a CMVM | open | search | reference |
 | `PT` | [Portal das Finanças — informação](https://info.portaldasfinancas.gov.pt/) | `info.portaldasfinancas.gov.pt` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Portugalská finanční správa publikuje oběžníky, sazby a formuláře; ověření NIF a plátce DPH běží na hlavním portálu | open | none | reference |
+| `PT` | [ERSE](https://www.erse.pt/) | `erse.pt` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Portugalský regulátor zveřejňuje tarify, statistiky trhu a srovnávač nabídek dodavatelů | open | none | reference |
 | `RO` | [BNR — Banca Națională a României](https://www.bnr.ro/) | `bnr.ro` | Rumunská národní banka — registr licencovaných úvěrových a platebních institucí a směnáren, statistická databáze a zprávy o finanční stabilitě. Kapitálový trh, pojišťovnictví a penze dohlíží ASF | open | api | reference |
 | `RO` | [ASF — Autoritatea de Supraveghere Financiară](https://asfromania.ro/) | `asfromania.ro` | Rumunský dohled nad nebankovním finančním trhem — registry pojišťoven, penzijních fondů, investičních firem a zprostředkovatelů, sankce a varování. Ověří, jestli rumunská protistrana licenci má | open | search | reference |
+| `RO` | [ANRE](https://anre.ro/) | `anre.ro` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Rumunská ANRE vede veřejný registr licencí a povolení pro výrobu a obchod s energií | open | search | reference |
 | `SK` | [NBS — dohľad nad finančným trhom](https://nbs.sk/dohlad-nad-financnym-trhom/) | `nbs.sk` | Národní banka Slovenska jako jednotný dohled — rozhodnutí, sankce, metodika a upozornění na subjekty působící bez povolení. Slovensko má dohled nad bankami, pojišťovnami i kapitálovým trhem sloučený pod jednu instituci | open | download | reference |
 | `SK` | [NBS — registre dohliadaných subjektov](https://subjekty.nbs.sk/sk/) | `subjekty.nbs.sk` | Vyhledávání v registrech subjektů pod dohledem NBS — banky, pojišťovny, investiční a penzijní společnosti, platební instituce, finanční zprostředkovatelé a agenti, s rozsahem oprávnění a historií. Ověří licenci protistrany | open | search | reference |
 | `SK` | [Finančná správa SR](https://www.financnasprava.sk/) | `financnasprava.sk` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Slovenská finanční správa zveřejňuje **seznamy daňových dlužníků, platitelů DPH a subjektů s vymazanou registrací** — všechny jako otevřené datové sady | open | bulk | reference |
+| `SK` | [ÚRSO](https://www.urso.gov.sk/) | `urso.gov.sk` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovenský úřad reguluje energetiku i vodárenství a zveřejňuje cenová rozhodnutí pro jednotlivé provozovatele | open | search | reference |
 | `SI` | [Banka Slovenije](https://www.bsi.si/) | `bsi.si` | Slovinská centrální banka — registr licencovaných bank a platebních institucí, statistiky úvěrů a platební bilance, zprávy o finanční stabilitě. Kapitálový trh dohlíží ATVP, pojišťovnictví AZN | open | api | reference |
 | `SI` | [ATVP — dohled nad kapitálovým trhem](https://www.a-tvp.si/) | `a-tvp.si` | Slovinská agentura pro trh cenných papírů — registry investičních společností, fondů a poradců, schválené prospekty a varování před nelicencovanými nabídkami. Na automat vrací 403, v prohlížeči funguje | open | search | reference |
 | `SI` | [FURS — Finančna uprava](https://www.fu.gov.si/) | `fu.gov.si` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Slovinská finanční správa zveřejňuje seznamy daňových dlužníků a neplatičů odvodů jako otevřená data | open | bulk | reference |
+| `SI` | [AGEN-RS — Agencija za energijo](https://www.agen-rs.si/) | `agen-rs.si` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovinská agentura zveřejňuje licence, tarify a roční zprávu o stavu energetiky jako otevřená data | open | none | reference |
 | `ES` | [CNMV](https://www.cnmv.es/portal/home) | `cnmv.es` | Španělský dohled nad kapitálovým trhem — registry investičních firem, fondů a poradců, významné podíly v kótovaných společnostech, prospekty a veřejná varování před nelicencovanými subjekty (chiringuitos financieros). Data ke stažení | open | bulk | reference |
 | `ES` | [Banco de España](https://www.bde.es/) | `bde.es` | Španělská centrální banka — registr licencovaných bank, platebních institucí a směnáren, statistická databáze a Central de Balances s agregovanými firemními financemi. Doplňuje CNMV o bankovní sektor | open | api | reference |
 | `ES` | [Agencia Tributaria — sede electrónica](https://sede.agenciatributaria.gob.es/) | `sede.agenciatributaria.gob.es` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Španělská AEAT zveřejňuje seznam významných daňových dlužníků a umožňuje ověření NIF; elektronické podání běží tady | open | search | reference |
+| `ES` | [CNMC](https://www.cnmc.es/) | `cnmc.es` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Španělská CNMC spojuje regulaci energetiky, telekomunikací, dopravy a ochranu soutěže; rozhodnutí i data publikuje otevřeně | open | bulk | reference |
 | `SE` | [Finansinspektionen](https://www.fi.se/) | `fi.se` | Švédský jednotný finanční dohled — **registr licencovaných bank, pojišťoven, fondů a platebních institucí ke stažení**, insider transakce v kótovaných společnostech, sankce a varování. Registr insider obchodů je veřejný a je to cenný DD zdroj | open | bulk | reference |
 | `SE` | [Sveriges Riksbank](https://www.riksbank.se/) | `riksbank.se` | Švédská centrální banka — statistiky sazeb, kurzů a platebního styku s datovým rozhraním a zprávy o finanční stabilitě. Dohled vykonává Finansinspektionen | open | api | reference |
 | `SE` | [Konkurrensverket](https://www.konkurrensverket.se/) | `konkurrensverket.se` | Švédský soutěžní úřad — rozhodnutí o kartelech, zneužití dominance a spojování podniků, a zároveň **dohled nad veřejnými zakázkami** se sankcemi za nezákonné přímé zadání | open | search | reference |
 | `SE` | [Skatteverket](https://www.skatteverket.se/) | `skatteverket.se` | Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Švédská daňová správa vede navíc **registr obyvatel** — ve Švédsku je matriční agenda daňová, ne obecní, což z ní dělá klíčový identitní registr | open | search | reference |
+| `SE` | [Ei — Energimarknadsinspektionen](https://www.ei.se/) | `ei.se` | Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Švédská inspekce dohlíží na síťové tarify a vede statistiky o dodavatelích a cenách | open | none | reference |
 
 ## Nemovitosti a trh
 

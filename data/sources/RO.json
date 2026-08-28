@@ -298,5 +298,17 @@
     "desc": "Rumunský úřad pro patenty a ochranné známky. Vede národní rejstříky a publikuje úřední věstník BOPI s novými zápisy",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-anre",
+    "topic": "regulators",
+    "name": "ANRE",
+    "url": "https://anre.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Rumunská ANRE vede veřejný registr licencí a povolení pro výrobu a obchod s energií",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

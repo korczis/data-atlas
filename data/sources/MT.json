@@ -274,5 +274,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Maltská daňová správa vede registr plátců DPH a evidenci daňových zástupců. Na automat vrací 403, v prohlížeči funguje",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-rews",
+    "topic": "regulators",
+    "name": "REWS — Regulator for Energy and Water Services",
+    "url": "https://rews.org.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Maltský regulátor pokrývá elektřinu, vodu a pohonné hmoty; ostrovní trh má jediného dodavatele, takže regulace cen je tu zásadní",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

@@ -334,5 +334,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Lucemburská správa přímých daní publikuje oběžníky a daňové výklady; ověření DPH vede oddělená správa nepřímých daní AED",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-ilr",
+    "topic": "regulators",
+    "name": "ILR — Institut Luxembourgeois de Régulation",
+    "url": "https://ilr.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Lucemburský ILR reguluje energetiku, telekomunikace, poštu i železnici v jednom úřadu",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

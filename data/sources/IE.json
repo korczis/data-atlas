@@ -310,5 +310,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Irská Revenue zveřejňuje čtvrtletní **seznam daňových úniků a pokut** (Tax Defaulters List), který je pro prověření protistrany často zajímavější než rejstříkový výpis",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-cru",
+    "topic": "regulators",
+    "name": "CRU — Commission for Regulation of Utilities",
+    "url": "https://www.cru.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Irská CRU reguluje energetiku i vodárenství a zveřejňuje seznam registrovaných dodavatelů",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

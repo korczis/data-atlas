@@ -1150,5 +1150,17 @@
     "desc": "Ústřední archiv České republiky. Odsud vede cesta k digitálním archivům jednotlivých oblastí — matriky, pozemkové knihy a spisy podniků jsou volně prohlížitelné a u starších nemovitostních sporů bývají rozhodující",
     "country": "CZ",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-eru",
+    "topic": "regulators",
+    "name": "Energetický regulační úřad",
+    "url": "https://eru.gov.cz/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Český ERÚ zveřejňuje licence v otevřeném rejstříku i cenová rozhodnutí a roční zprávy o trhu",
+    "country": "CZ",
+    "verified": "2026-08-28"
   }
 ]

@@ -394,5 +394,17 @@
     "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Bulharská NAP zveřejňuje registr plátců DPH a seznam daňových dlužníků",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-dker",
+    "topic": "regulators",
+    "name": "КЕВР — Комисия за енергийно и водно регулиране",
+    "url": "https://www.dker.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Bulharská komise reguluje vedle energetiky i vodárenství a zveřejňuje rozhodnutí o cenách obou odvětví",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]
