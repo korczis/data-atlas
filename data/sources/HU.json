@@ -370,5 +370,17 @@
     "desc": "Portál maďarské vlády — rozpočtové zákony a jejich plnění, resortní zprávy a veřejné konzultace. Maďarsko nemá rozklikávací rozpočtový portál typu českého Monitoru státní pokladny; čísla jsou v dokumentech",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-helysegnevtar",
+    "topic": "addresses",
+    "name": "Magyarország helységnévtára (KSH)",
+    "url": "https://www.ksh.hu/apps/hntr.main",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Oficiální maďarský místopisný slovník — **všechny obce a jejich části s kódy KSH, okresem, župou a statistickými údaji**, ročně aktualizovaný a ke stažení. Referenční územní číselník Maďarska. Adresy na úrovni ulic vede Központi Címregiszter (KCR), který je ale úřední evidencí bez veřejného vyhledávání",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

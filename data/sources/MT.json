@@ -214,5 +214,17 @@
     "desc": "Online systém maltského obchodního rejstříku — zápisy, **uložené dokumenty a účetní závěrky**. Vyhledání zdarma, stažení dokumentu zpoplatněné. Na automat vrací 403, v prohlížeči funguje",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-postcode",
+    "topic": "addresses",
+    "name": "MaltaPost Postcode Finder",
+    "url": "https://www.maltapost.com/postcode/",
+    "kind": "commercial",
+    "access": "open",
+    "data": "search",
+    "desc": "Vyhledávač maltských poštovních směrovacích čísel podle lokality a ulice — **de facto referenční adresní zdroj Malty**, protože samostatný státní adresní registr neexistuje. Prostorovou stránku adres nese mapa Planning Authority",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

@@ -1029,12 +1029,12 @@ a je to doložené:
 
 | Co | Kde | Proč |
 |---|---|---|
-| Geoportál | GR, MT, RO | `geodata.gov.gr`, `geoportal.mt` a `geoportal.ancpi.ro` z našeho ověřování neodpovídají |
+| Geoportál | GR, MT, RO | `geodata.gov.gr` a `geoportal.mt` neodpovídají, `geoportal.ancpi.ro` **neexistuje ani v DNS** |
 | Kyberbezpečnost | CY, GR, MT | `digitalsecurityauthority.cy`, `ncsa.gov.gr` a `csirt.gov.mt` neodpovídají |
 | Judikatura správních soudů | RO | `orzeczenia`-obdoba `scj.ro` a `ccr.ro` neodpovídají (503) |
 | Geologie | HU | `mbfsz.gov.hu` neodpovídá; agenda přešla pod dozorový úřad bez veřejného portálu |
 | Insolvenční rejstřík | GR, MT, RO, SI | Samostatný veřejný rejstřík neexistuje — úpadky jsou ve věstníku nebo v obchodním rejstříku, což popisy říkají |
-| Adresní registr a výškopis jako samostatná položka | většina států | Nejsou to samostatné služby: adresy i výškopis jsou u většiny států součástí geoportálu nebo katastru, které v katalogu jsou. Rozepsat jednu službu na tři položky by katalog nafouklo bez informační hodnoty |
+| Výškopis jako samostatná položka | 16 států | Není to samostatná služba: u většiny států je výškopis součástí geoportálu nebo katastru, které v katalogu jsou. Kde má vlastní produktovou stránku (NL, ES, FR, IT, SI, SE, FI, DK, LV, HR, CZ), je v katalogu zvlášť |
 | Ceny nemovitostních transakcí | 17 států | Veřejně neexistují. Plošně je mají jen **FR** (DVF), **IE** (Property Price Register), **DK** (OIS) a částečně **PL** (RCN) a **IT** (OMI, jen agregovaně po zónách) |
 
 Kromě toho: **CBOSA** (polská judikatura správních soudů), **Bolagsverket** (švédský
@@ -1042,3 +1042,29 @@ rejstřík) a **CNCS** (portugalská kyberbezpečnost) odmítají automatické k
 že se od mrtvého odkazu nedají odlišit měřením. CBOSA a CNCS proto v katalogu
 nejsou pod vlastní adresou; Bolagsverket ano, ale s deklarací `check: anti-bot`,
 protože při první rešerši prokazatelně odpovídal.
+
+
+---
+
+## Doplnění adresních registrů (CY, GR, HU, MT, RO)
+
+Adresy se ukázaly jako nejslabší místo katalogu — původně šest zemí ze sedmadvaceti,
+protože jsem si do plánu napsal, že „adresy jsou u většiny států součástí geoportálu".
+Nebyla to pravda. Po dvou průchodech je to **27 z 27**, poslední pětice si vyžádala
+rešerši zvlášť, protože žádná z nich nemá adresní registr tam, kde by ho člověk čekal:
+
+| Stát | Co se našlo | Jak to je |
+|---|---|---|
+| **CY** | DLS e-Services / INSPIRE prohlížečka | Kypr celostátní adresní registr nemá; podle metadat úřadu **adresní data pokrývají asi 4 % území** |
+| **GR** | data.gov.gr — data Hellenic Cadastre | Řecko jednotný registr nemá, pojmenování ulic je v gesci obcí; ulice a čísla vycházejí tak, jak je nahlásili vlastníci při zakládání katastru |
+| **HU** | Helységnévtár (KSH) | Územní číselník obcí a jejich částí. Adresy na úrovni ulic vede **KCR, což je úřední evidence bez veřejného vyhledávání** |
+| **MT** | MaltaPost Postcode Finder | Státní adresní registr Malta nemá; vyhledávač PSČ je de facto referenční zdroj |
+| **RO** | SIRUTA (otevřená data) | Územní číselník krajů, obcí a vesnic. **RENNS existuje na papíře, ale jeho ohlašovaná adresa `renns.ancpi.ro` neexistuje ani v DNS** |
+
+**Dvě pasti, které ověřování odhalilo.** `kcr.hu` vypadá jako maďarský Központi
+Címregiszter, ale je to certifikát mediální firmy Lapcom Zrt. — druhý případ po
+`www.ubo.nl` (nizozemská „registr skutečných majitelů" = strojírna pro betonárny),
+kdy by se podle názvu domény do katalogu dostalo něco úplně jiného.
+A `renns.ancpi.ro`, `geoportal.ancpi.ro` i `ran.mai.gov.ro` vracejí **NXDOMAIN** —
+nejde o filtrování ze zahraničí, ty hostitele prostě nikdo neprovozuje, přestože
+je odborné články i obecní weby dál uvádějí.

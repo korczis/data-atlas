@@ -238,5 +238,17 @@
     "desc": "Nejvyšší soud Řecka — **databáze rozhodnutí v civilních a trestních věcech** s fulltextem, zdarma. Správní soudnictví vede Συμβούλιο της Επικρατείας, jehož web automatickým klientům neodpovídá",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-data-gov-addresses",
+    "topic": "addresses",
+    "name": "data.gov.gr — ulice a adresy Kτηματολόγιο",
+    "url": "https://data.gov.gr/dataset/",
+    "kind": "official",
+    "access": "registration",
+    "data": "api",
+    "desc": "Katalog řeckých otevřených dat, kde vycházejí **názvy ulic a čísla popisná sesbíraná při zakládání Hellenic Cadastre** (tak, jak je nahlásili vlastníci). Řecko nemá jednotný adresní registr: pojmenování ulic je v gesci obcí. Samostatný geoportál geodata.gov.gr, kde vycházela silniční síť, neodpovídá",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

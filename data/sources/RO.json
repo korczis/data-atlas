@@ -274,5 +274,17 @@
     "desc": "**Bezplatná databáze účetních výkazů rumunských firem** vedená ministerstvem financí — obrat, zisk, aktiva, počet zaměstnanců a daňový stav podle CUI. Náhrada za placený výpis z obchodního rejstříku",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-siruta",
+    "topic": "addresses",
+    "name": "SIRUTA — číselník územních jednotek",
+    "url": "https://data.gov.ro/dataset/siruta",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Rumunský registr administrativně-územních jednotek — **kraje, obce, města a vesnice s kódy SIRUTA**, jako otevřená data ke stažení. Referenční územní číselník Rumunska. Adresy na úrovni ulic má vést RENNS u ANCPI, jeho ohlašovaná adresa `renns.ancpi.ro` ale neexistuje ani v DNS; na úrovni ulic tak zbývá vyhledávač PSČ Poșta Română",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

@@ -214,5 +214,17 @@
     "desc": "Kyperská státní pokladna — **plnění rozpočtu, platby a účetní výkazy státu**, a zároveň provozovatel systému veřejných zakázek. Doplňuje ministerstvo financí o čísla na úrovni plateb",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-dls-eservices",
+    "topic": "addresses",
+    "name": "DLS e-Services / INSPIRE geoportál",
+    "url": "https://eservices.dls.moi.gov.cy/",
+    "kind": "official",
+    "access": "open",
+    "data": "ogc",
+    "desc": "Elektronické služby kyperského pozemkového úřadu, součástí je **INSPIRE prohlížečka s tématem Adresy**. Podle metadat samotného úřadu ale **adresní data pokrývají jen asi 4 % území Kypru** — zbytek adresován není. Kypr samostatný celostátní adresní registr nemá",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]
