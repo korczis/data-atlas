@@ -334,5 +334,17 @@
     "desc": "**Účetní závěrky bulharských firem zdarma** jako součást obchodního rejstříku — roční výkazy a zprávy uložené ke společnosti, veřejně přístupné bez registrace. Bulharsko patří k mála států, kde jsou firemní výkazy volně dostupné",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-grao",
+    "topic": "addresses",
+    "name": "ГРАО — адресен регистър",
+    "url": "https://www.grao.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Bulharská generální ředitelství GRAO — **národní klasifikátor územních jednotek (EKATTE) a adresní registr**, plus statistiky obyvatelstva po obcích a čtvrtích. EKATTE je referenční kód, na kterém stojí většina bulharských územních dat",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

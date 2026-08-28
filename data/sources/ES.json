@@ -347,5 +347,29 @@
     "desc": "Španělský veřejný konkurzní registr — **úpadky, restrukturalizační plány a rozhodnutí** s vyhledáváním podle dlužníka. Rozsah je omezenější než u české ISIR; úplná vyhlášení jsou v BOE",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-cartociudad",
+    "topic": "addresses",
+    "name": "CartoCiudad",
+    "url": "https://www.cartociudad.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Španělská referenční adresní a uliční síť od IGN — **adresy se souřadnicemi, uliční síť, PSČ a administrativní jednotky**, s geokódovacím API a stahováním po provinciích. Sjednocuje data katastru, INE a obcí",
+    "country": "ES",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "es-cnig-lidar",
+    "topic": "terrain",
+    "name": "PNOA-LiDAR (CNIG)",
+    "url": "https://centrodedescargas.cnig.es/CentroDescargas/lidar",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Španělská data leteckého laserového skenování — **bodová mračna a modely terénu pro celé Španělsko ve dvou až třech generacích**, zdarma ke stažení po listech. Ortofota PNOA jsou v témže centru",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

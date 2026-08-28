@@ -358,5 +358,17 @@
     "desc": "Objednání výpisů a **účetních závěrek nizozemských firem** z Handelsregistru. Vyhledání firmy je zdarma, dokumenty jsou zpoplatněné za kus",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-ahn",
+    "topic": "terrain",
+    "name": "AHN — Actueel Hoogtebestand Nederland",
+    "url": "https://www.ahn.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Výškopis Nizozemska z leteckého laserového skenování — **bodová mračna a modely terénu i povrchu v rozlišení 0,5 m pro celou zemi, zdarma**, s několika generacemi pro porovnání v čase. Jeden z nejhustších národních výškopisů na světě",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

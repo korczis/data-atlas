@@ -250,5 +250,17 @@
     "desc": "Lucemburská poslanecká sněmovna — poslanci a jejich **prohlášení o zájmech**, legislativní proces, otázky a zápisy z jednání",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-act",
+    "topic": "addresses",
+    "name": "ACT — Administration du cadastre et de la topographie",
+    "url": "https://act.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Lucemburská katastrální a topografická správa — **adresní registr, katastrální parcely, budovy a topografická data**, vydávaná jako otevřená data přes geoportál a data.public.lu. Lucembursko vede adresy centrálně u jedné instituce",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

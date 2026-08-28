@@ -322,5 +322,17 @@
     "desc": "Dánský parlament — poslanci a jejich **hlášené vedlejší funkce a příjmy**, legislativní proces, hlasování a zápisy, s otevřeným datovým rozhraním (oda.ft.dk). Na automat vrací 403, v prohlížeči funguje",
     "country": "DK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "dk-dhm",
+    "topic": "terrain",
+    "name": "Danmarks Højdemodel (DHM)",
+    "url": "https://dataforsyningen.dk/data/930",
+    "kind": "official",
+    "access": "registration",
+    "data": "bulk",
+    "desc": "Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy",
+    "country": "DK",
+    "verified": "2026-08-28"
   }
 ]

@@ -394,5 +394,29 @@
     "desc": "Italská národní meteorologická služba provozovaná vojenským letectvem — předpovědi, měření stanic, radar a klimatologie, s otevřeným API. Itálie nemá civilní meteorologickou službu; regionální data vedou agentury ARPA",
     "country": "IT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "it-anncsu",
+    "topic": "addresses",
+    "name": "ANNCSU — národní archiv ulic a čísel",
+    "url": "https://www.anncsu.it/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Archivio Nazionale dei Numeri Civici e delle Strade Urbane, vedený ISTAT a daňovou správou — **jediný celostátní seznam italských ulic a čísel popisných**, normalizovaný napříč obcemi. Italské adresy jinak vede každá obec zvlášť",
+    "country": "IT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "it-tinitaly",
+    "topic": "terrain",
+    "name": "TINITALY (INGV)",
+    "url": "https://tinitaly.pi.ingv.it/",
+    "kind": "research",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Digitální model terénu celé Itálie v rozlišení 10 m, sestavený INGV — **jediný volně dostupný celostátní italský výškopis**, protože podrobnější LiDAR data vedou regiony a ministerstvo životního prostředí odděleně",
+    "country": "IT",
+    "verified": "2026-08-28"
   }
 ]

@@ -262,5 +262,29 @@
     "desc": "Finský parlament — poslanci a jejich **majetková a zájmová přiznání**, legislativní proces, hlasování a zápisy, s otevřenými daty. Finsko vede i samostatný registr lobbistů od roku 2024. Na automat vrací 403, v prohlížeči funguje",
     "country": "FI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-dvv",
+    "topic": "addresses",
+    "name": "DVV — väestötietojärjestelmä",
+    "url": "https://dvv.fi/en/population-information-system",
+    "kind": "official",
+    "access": "mixed",
+    "data": "api",
+    "desc": "Finský registr obyvatel a budov — **autoritativní zdroj finských adres a stavebních údajů**, na který se napojuje adresní vrstva Maanmittauslaitos. Základní výdej je zpoplatněný, část dat vychází jako otevřená",
+    "country": "FI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "fi-laserkeilaus",
+    "topic": "terrain",
+    "name": "Laserkeilausaineisto (MML)",
+    "url": "https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/laser-scanning-data-05-p",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Finská data leteckého laserového skenování — **bodová mračna 5 bodů/m² z národního programu, zdarma a pod otevřenou licencí**. Finsko skenuje celé území v šestiletém cyklu",
+    "country": "FI",
+    "verified": "2026-08-28"
   }
 ]

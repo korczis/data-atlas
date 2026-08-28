@@ -370,5 +370,17 @@
     "desc": "Slovenské ministerstvo vnitra — **statistiky kriminality po krajích a okresech, dopravní nehody a výroční zprávy**, plus registry zbraní a bezpečnostních služeb",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-register-adries",
+    "topic": "addresses",
+    "name": "Register adries",
+    "url": "https://www.minv.sk/?register-adries",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Slovenský register adries vedený ministerstvem vnitra — **obce, ulice a súpisné i orientačné čísla se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Slovenska; ZBGIS ji zobrazuje v mapě",
+    "country": "SK",
+    "verified": "2026-08-28"
   }
 ]

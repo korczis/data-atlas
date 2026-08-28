@@ -334,5 +334,17 @@
     "desc": "Generální sekretariát portugalského ministerstva vnitra — **výroční zprávy o vnitřní bezpečnosti (RASI) se statistikami kriminality po okresech** a data o dopravních nehodách",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-codigo-postal",
+    "topic": "addresses",
+    "name": "Código Postal (CTT)",
+    "url": "https://www.ctt.pt/feapl_2/app/open/postalCodeSearch/postalCodeSearch.jspx",
+    "kind": "commercial",
+    "access": "open",
+    "data": "search",
+    "desc": "Vyhledávání portugalských poštovních směrovacích čísel u pošty CTT — **de facto referenční adresní zdroj Portugalska**, protože samostatný státní adresní registr neexistuje. Hromadná databáze kódů je licencovaná a placená",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

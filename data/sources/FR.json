@@ -454,5 +454,17 @@
     "desc": "**Povinně zveřejňovaná data o všech francouzských veřejných zakázkách nad 40 tis. € — zadavatel, dodavatel, hodnota, předmět a doba plnění**, konsolidovaně ke stažení. Doplňuje BOAMP o výsledky, ne jen vyhlášení",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-rge-alti",
+    "topic": "terrain",
+    "name": "RGE ALTI (IGN)",
+    "url": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_RGE-ALTI",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Francouzský referenční model terénu — **mřížka 1 m a 5 m pro celou Francii včetně zámoří, zdarma pod otevřenou licencí** od otevření dat IGN v roce 2021. Doplňuje ho program LiDAR HD s bodovými mračny",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

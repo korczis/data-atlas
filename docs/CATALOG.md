@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1014** položek v **33** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **962** doplněných rešerší.
+**1041** položek v **33** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **989** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -18,28 +18,28 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `CZ` Česko — 94
 - `PL` Polsko — 57
 - `EU` Evropská unie — 55
-- `DE` Německo — 39
-- `FR` Francie — 38
-- `IT` Itálie — 33
-- `AT` Rakousko — 33
+- `DE` Německo — 40
+- `FR` Francie — 39
+- `IT` Itálie — 35
+- `AT` Rakousko — 34
+- `SK` Slovensko — 32
+- `BE` Belgie — 31
 - `HU` Maďarsko — 31
-- `SK` Slovensko — 31
-- `BE` Belgie — 30
-- `NL` Nizozemsko — 30
-- `ES` Španělsko — 29
-- `BG` Bulharsko — 28
-- `PT` Portugalsko — 28
-- `HR` Chorvatsko — 27
-- `DK` Dánsko — 27
-- `LV` Lotyšsko — 24
-- `SI` Slovinsko — 24
-- `SE` Švédsko — 24
-- `EE` Estonsko — 23
+- `NL` Nizozemsko — 31
+- `ES` Španělsko — 31
+- `BG` Bulharsko — 29
+- `HR` Chorvatsko — 29
+- `PT` Portugalsko — 29
+- `DK` Dánsko — 28
+- `LV` Lotyšsko — 26
+- `SI` Slovinsko — 26
+- `SE` Švédsko — 26
+- `EE` Estonsko — 24
+- `FI` Finsko — 24
 - `RO` Rumunsko — 23
-- `FI` Finsko — 22
-- `IE` Irsko — 21
-- `LU` Lucembursko — 21
-- `LT` Litva — 20
+- `IE` Irsko — 22
+- `LU` Lucembursko — 22
+- `LT` Litva — 21
 - `GR` Řecko — 20
 - `CY` Kypr — 18
 - `MT` Malta — 18
@@ -49,12 +49,12 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Témata
 
 
-**Geodata** — 245
+**Geodata** — 272
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
 - [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 39
-- [Adresy a územní členění](#adresy-a-územní-členění) — 8
-- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 2
+- [Adresy a územní členění](#adresy-a-územní-členění) — 25
+- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 12
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
 - [Doprava a infrastruktura](#doprava-a-infrastruktura) — 57
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
@@ -183,7 +183,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `IT` | [Agenzia delle Entrate — katastr a nemovitosti](https://www.agenziaentrate.gov.it/portale/) | `agenziaentrate.gov.it` | Italská daňová a katastrální správa — výpisy z katastru (visure catastali), údaje o vlastnících a **statistiky nemovitostního trhu OMI se čtvrtletními cenami za m² po zónách**. Výpisy jsou zpoplatněné, statistiky OMI veřejné | paid | search | reference |
 | `LV` | [Kadastrs.lv](https://www.kadastrs.lv/) | `kadastrs.lv` | Lotyšský katastrální portál — **parcely, budovy, výměry, katastrální hodnota a využití zdarma**; údaje o vlastníkovi a podrobné výpisy jsou zpoplatněné. Provozuje Státní pozemková služba | mixed | search | reference |
 | `LV` | [VZD — Valsts zemes dienests](https://www.vzd.gov.lv/) | `vzd.gov.lv` | Lotyšská státní pozemková služba — správce katastru, adresního registru a evidence budov, s otevřenými datovými sadami a placenými výdejními službami | mixed | api | reference |
-| `LT` | [Registrų centras](https://www.registrucentras.lt/) | `registrucentras.lt` | Litevské centrum registrů — provozuje **katastr nemovitostí, obchodní rejstřík (JAR), adresní registr a registr skutečných majitelů (JANGIS)**. Základní údaje a mapové vrstvy zdarma, **výpisy a účetní závěrky zpoplatněné za dokument** | mixed | api | reference |
+| `LT` | [Registrų centras — Nekilnojamojo turto registras](https://www.registrucentras.lt/) | `registrucentras.lt` | Litevský nemovitostní registr a katastr vedený Registrų centras — parcely, budovy, vlastnická práva a věcná břemena, s mapovou prohlížečkou. Základní údaje a mapové vrstvy zdarma, **výpisy jsou zpoplatněné za dokument**. Obchodní rejstřík, adresy, insolvence a skuteční majitelé jsou u téže instituce, ale jako samostatné registry | mixed | api | reference |
 | `MT` | [Lands Authority Malta](https://www.landsauthority.org.mt/) | `landsauthority.org.mt` | Maltský pozemkový úřad — správa státní půdy, evidence pozemků a veřejné dražby. **Malta nemá plošný katastr** srovnatelný s kontinentálními; evidence pozemkových práv stojí na registraci listin, ne parcel | open | search | reference |
 | `NL` | [Kadaster](https://www.kadaster.nl/) | `kadaster.nl` | Nizozemský katastr — správce základních registrů BAG (adresy a budovy), BGT (velkoměřítková topografie) a BRK (parcely a vlastnická práva). Geometrie je přes PDOK zdarma, **vlastnická data z BRK jsou zpoplatněná** za dotaz | paid | api | reference |
 | `PL` | [ULDK — lokalizace parcel](https://uldk.gugik.gov.pl/) | `uldk.gugik.gov.pl` | Usługa lokalizacji działek katastralnych — REST dotaz na geometrii parcely podle identifikátoru nebo souřadnic; službě stačí ID, příslušnou okresní bázi EGiB si najde sama a vrací WKB | open | api | reference |
@@ -201,20 +201,47 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | Země | Web | Doména | Popis | Přístup | Data | Zdroj |
 |---|---|---|---|---|---|---|
 | `GLOBAL` | [OpenAddresses](https://openaddresses.io/) | `openaddresses.io` | Agregované otevřené adresní body globálně — živý pipeline na batch.openaddresses.io vydává týdenní kolekce po zemích a regionech v line-delimited GeoJSON, starý CSV výstup na results.openaddresses.io je zamrzlý archiv z 10/2021 | open | bulk | reference |
+| `AT` | [Adressregister (BEV)](https://www.bev.gv.at/Services/Produkte.html) | `bev.gv.at` | Rakouský adresní registr vedený BEV — **všechny adresy Rakouska se souřadnicemi, obcí, katastrálním územím a vazbou na budovu**, čtvrtletně a zdarma ke stažení. Podklad pro geokódování rakouských adres; část webu BEV odmítá automatické klienty | open | bulk | reference |
+| `BE` | [BeST — Belgian Street and Address registry](https://opendata.bosa.be/) | `opendata.bosa.be` | Sjednocený belgický adresní registr — **spojuje regionální zdroje CRAB (Flandry), ICAR (Valonsko) a UrbIS (Brusel) do jedné sady se souřadnicemi**, měsíčně aktualizované a zdarma ke stažení. Bez něj se belgické adresy geokódují ze tří nekompatibilních registrů | open | bulk | reference |
+| `BG` | [ГРАО — адресен регистър](https://www.grao.bg/) | `grao.bg` | Bulharská generální ředitelství GRAO — **národní klasifikátor územních jednotek (EKATTE) a adresní registr**, plus statistiky obyvatelstva po obcích a čtvrtích. EKATTE je referenční kód, na kterém stojí většina bulharských územních dat | open | search | reference |
+| `HR` | [Registar prostornih jedinica](https://geoportal.dgu.hr/rpj) | `geoportal.dgu.hr` | Chorvatský registr územních jednotek — **županije, obce, sídla, ulice a kućni brojevi (adresní body) se souřadnicemi**, jako mapové služby i ke stažení. Referenční územní a adresní vrstva Chorvatska | open | ogc | reference |
 | `CZ` | [ArcČR (ARCDATA Praha)](https://www.arcdata.cz/cs-cz/produkty/data/arccr) | `arcdata.cz` | ArcČR 4.3 — administrativní členění ČR s geometrií z RÚIAN k 1. 1. 2024 a napojenými statistikami ČSÚ a ÚAP, zdarma pod CC BY 4.0; starší ArcČR 500 v3.3 (sídla, vodstvo, doprava) je už jen archivní ke stažení | open | download | reference |
 | `CZ` | [RÚIAN / VDP ČÚZK](https://vdp.cuzk.gov.cz/) | `vdp.cuzk.gov.cz` | Autoritativní CZ registr adres a územní identifikace — výměnný formát, adresní body, definiční body parcel | open | bulk | reference |
 | `DK` | [Datafordeleren](https://datafordeler.dk/) | `datafordeler.dk` | Distribuční platforma dánských **základních registrů** — katastr (Matriklen), adresy (DAR), budovy (BBR), obyvatelstvo a firmy, přes API a předplatné datové balíky. Účet zdarma; jedno místo pro všechny dánské referenční registry | registration | api | reference |
+| `EE` | [ADS — aadressiandmete süsteem](https://inaadress.maaamet.ee/) | `inaadress.maaamet.ee` | Estonský adresní systém — **vyhledání jakékoli estonské adresy se souřadnicemi, katastrální parcelou a budovou**, zdarma a s otevřeným API. Referenční adresní zdroj, na kterém stojí estonské e-služby | open | api | reference |
+| `FI` | [DVV — väestötietojärjestelmä](https://dvv.fi/en/population-information-system) | `dvv.fi` | Finský registr obyvatel a budov — **autoritativní zdroj finských adres a stavebních údajů**, na který se napojuje adresní vrstva Maanmittauslaitos. Základní výdej je zpoplatněný, část dat vychází jako otevřená | mixed | api | reference |
 | `FR` | [Base Adresse Nationale](https://adresse.data.gouv.fr/) | `adresse.data.gouv.fr` | Národní adresní báze Francie — přes 25 milionů adres se souřadnicemi, pod otevřenou licencí, s geokódovacím API a hromadným stahováním. Referenční adresní zdroj, na kterém stojí většina francouzských veřejných služeb | open | api | reference |
+| `DE` | [Georeferenzierte Adressdaten (BKG)](https://gdz.bkg.bund.de/index.php/default/georeferenzierte-adressdaten-ga.html) | `gdz.bkg.bund.de` | Celoněmecké adresy se souřadnicemi, sestavené BKG z dat zeměměřických správ všech šestnácti zemí — **jediná adresní sada, která pokrývá Německo jako celek**. Ke stažení; samostatný spolkový adresní registr Německo nemá | open | bulk | reference |
+| `IE` | [Eircode](https://www.eircode.ie/) | `eircode.ie` | Irský systém poštovních kódů — **každá adresa v Irsku má vlastní sedmimístný kód**, protože irské venkovské adresy nemají čísla popisná. Vyhledání jednotlivé adresy je zdarma, **hromadná databáze ECAD je licencovaná a placená** — proto Eircode chybí v otevřených datech GeoHive | mixed | api | reference |
+| `IT` | [ANNCSU — národní archiv ulic a čísel](https://www.anncsu.it/) | `anncsu.it` | Archivio Nazionale dei Numeri Civici e delle Strade Urbane, vedený ISTAT a daňovou správou — **jediný celostátní seznam italských ulic a čísel popisných**, normalizovaný napříč obcemi. Italské adresy jinak vede každá obec zvlášť | open | search | reference |
+| `LV` | [Adrešu reģistrs](https://www.vzd.gov.lv/lv/adresu-registrs) | `vzd.gov.lv` | Lotyšský adresní registr vedený Státní pozemkovou službou — **hierarchie od obce po adresní bod, se souřadnicemi a vazbou na katastrální objekt**, s otevřenými daty ke stažení | open | bulk | reference |
+| `LT` | [Adresų registras](https://www.registrucentras.lt/adr/) | `registrucentras.lt` | Litevský adresní registr vedený Registrų centras — **obce, ulice, adresní body a budovy se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Litvy | open | bulk | reference |
+| `LU` | [ACT — Administration du cadastre et de la topographie](https://act.public.lu/) | `act.public.lu` | Lucemburská katastrální a topografická správa — **adresní registr, katastrální parcely, budovy a topografická data**, vydávaná jako otevřená data přes geoportál a data.public.lu. Lucembursko vede adresy centrálně u jedné instituce | open | bulk | reference |
 | `NL` | [BAG Viewer](https://bagviewer.kadaster.nl/) | `bagviewer.kadaster.nl` | Prohlížečka základní registrace adres a budov — pro každou nizozemskou budovu rok výstavby, plocha, účel užívání a status, zdarma a bez přihlášení. Nejpodrobnější veřejný pohled na stavební fond, jaký v EU existuje | open | api | reference |
 | `PL` | [TERYT](https://eteryt.stat.gov.pl/eTeryt/rejestr_teryt/udostepnianie_danych/baza_teryt/uzytkownicy_indywidualni/pobieranie/pliki_pelne.aspx) | `eteryt.stat.gov.pl` | Registr územního členění — vojvodství, okresy, gminy, sídla a ulice s kódy TERC, SIMC a ULIC; plné soubory ke stažení, obdoba českého číselníku území | open | download | reference |
 | `PL` | [PRNG — Państwowy Rejestr Nazw Geograficznych](https://www.geoportal.gov.pl/pl/dane/panstwowy-rejestr-nazw-geograficznych-prng/) | `geoportal.gov.pl` | Autoritativní registr polských zeměpisných jmen — jména sídel, vodstva a terénních objektů se souřadnicemi, typem objektu a územním zařazením; ke stažení a jako služba přes geoportál | open | download | reference |
+| `PT` | [Código Postal (CTT)](https://www.ctt.pt/feapl_2/app/open/postalCodeSearch/postalCodeSearch.jspx) | `ctt.pt` | Vyhledávání portugalských poštovních směrovacích čísel u pošty CTT — **de facto referenční adresní zdroj Portugalska**, protože samostatný státní adresní registr neexistuje. Hromadná databáze kódů je licencovaná a placená | open | search | reference |
+| `SK` | [Register adries](https://www.minv.sk/?register-adries) | `minv.sk` | Slovenský register adries vedený ministerstvem vnitra — **obce, ulice a súpisné i orientačné čísla se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Slovenska; ZBGIS ji zobrazuje v mapě | open | bulk | reference |
+| `SI` | [Javni geodetski podatki (RPE)](https://ipi.eprostor.gov.si/jgp/) | `ipi.eprostor.gov.si` | Veřejné geodetické údaje GURS — **register prostorskih enot (občine, naselja, ulice) a hišne številke se souřadnicemi**, plus katastr a registr budov, zdarma ke stažení. Referenční územní a adresní vrstva Slovinska | open | bulk | reference |
+| `ES` | [CartoCiudad](https://www.cartociudad.es/) | `cartociudad.es` | Španělská referenční adresní a uliční síť od IGN — **adresy se souřadnicemi, uliční síť, PSČ a administrativní jednotky**, s geokódovacím API a stahováním po provinciích. Sjednocuje data katastru, INE a obcí | open | api | reference |
+| `SE` | [Belägenhetsadresser (Lantmäteriet)](https://www.lantmateriet.se/sv/geodata/vara-produkter/produktlista/belagenhetsadress-direkt/) | `lantmateriet.se` | Švédský adresní registr — **všechny švédské adresy se souřadnicemi a vazbou na nemovitost**, přes přímé API. Adresní data jsou od roku 2022 z velké části otevřená, komerční plné využití zůstává licencované | mixed | api | reference |
 
 ## Ortofoto, výškopis, topografie
 
 | Země | Web | Doména | Popis | Přístup | Data | Zdroj |
 |---|---|---|---|---|---|---|
 | `EU` | [EGMS — pohyby zemského povrchu](https://egms.land.copernicus.eu/) | `egms.land.copernicus.eu` | Milimetrová měření pohybu terénu z interferometrie Sentinel-1 pro celou Evropu — poklesy nad doly a čerpanými kolektory, sesuvy, sedání staveb, s časovou řadou pro každý bod. Ke stažení po dlaždicích; u nemovitostí a liniových staveb je to jediný plošně dostupný důkaz o stabilitě podloží | open | bulk | reference |
+| `HR` | [Digitalni ortofoto (DGU)](https://geoportal.dgu.hr/dof) | `geoportal.dgu.hr` | Chorvatská digitální ortofotomozaika — **celostátní letecké snímky ve více generacích s rozlišením 10 až 50 cm**, jako mapová služba i ke stažení. Podklad pro porovnání stavu území v čase | open | ogc | reference |
 | `CZ` | [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | open | ogc | reference |
+| `DK` | [Danmarks Højdemodel (DHM)](https://dataforsyningen.dk/data/930) | `dataforsyningen.dk` | Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy | registration | bulk | reference |
+| `FI` | [Laserkeilausaineisto (MML)](https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/laser-scanning-data-05-p) | `maanmittauslaitos.fi` | Finská data leteckého laserového skenování — **bodová mračna 5 bodů/m² z národního programu, zdarma a pod otevřenou licencí**. Finsko skenuje celé území v šestiletém cyklu | open | bulk | reference |
+| `FR` | [RGE ALTI (IGN)](https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_RGE-ALTI) | `cartes.gouv.fr` | Francouzský referenční model terénu — **mřížka 1 m a 5 m pro celou Francii včetně zámoří, zdarma pod otevřenou licencí** od otevření dat IGN v roce 2021. Doplňuje ho program LiDAR HD s bodovými mračny | open | bulk | reference |
+| `IT` | [TINITALY (INGV)](https://tinitaly.pi.ingv.it/) | `tinitaly.pi.ingv.it` | Digitální model terénu celé Itálie v rozlišení 10 m, sestavený INGV — **jediný volně dostupný celostátní italský výškopis**, protože podrobnější LiDAR data vedou regiony a ministerstvo životního prostředí odděleně | open | bulk | reference |
+| `LV` | [Digitālais augstuma modelis (LĢIA)](https://www.lgia.gov.lv/lv/digitalais-augstuma-modelis) | `lgia.gov.lv` | Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné | mixed | bulk | reference |
+| `NL` | [AHN — Actueel Hoogtebestand Nederland](https://www.ahn.nl/) | `ahn.nl` | Výškopis Nizozemska z leteckého laserového skenování — **bodová mračna a modely terénu i povrchu v rozlišení 0,5 m pro celou zemi, zdarma**, s několika generacemi pro porovnání v čase. Jeden z nejhustších národních výškopisů na světě | open | bulk | reference |
+| `SI` | [Lidar (JGP)](https://ipi.eprostor.gov.si/jgp/lidar) | `ipi.eprostor.gov.si` | Slovinská data leteckého laserového skenování — **bodová mračna a model terénu 1 m pro celé Slovinsko, zdarma ke stažení po blocích**. Slovinsko naskenovalo celé území jako jeden z prvních států v EU | open | bulk | reference |
+| `ES` | [PNOA-LiDAR (CNIG)](https://centrodedescargas.cnig.es/CentroDescargas/lidar) | `centrodedescargas.cnig.es` | Španělská data leteckého laserového skenování — **bodová mračna a modely terénu pro celé Španělsko ve dvou až třech generacích**, zdarma ke stažení po listech. Ortofota PNOA jsou v témže centru | open | bulk | reference |
+| `SE` | [Markhöjdmodell (Lantmäteriet)](https://www.lantmateriet.se/sv/geodata/vara-produkter/produktlista/markhojdmodell-nedladdning/) | `lantmateriet.se` | Švédský model terénu z laserového skenování — **mřížka 1 m pro celé Švédsko, zdarma ke stažení** pod otevřenou licencí. Součást otevření švédských geodat z roku 2022 | open | bulk | reference |
 
 ## Životní prostředí, geologie, rizika
 

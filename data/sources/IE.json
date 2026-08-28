@@ -250,5 +250,17 @@
     "desc": "Výdejní kanál irského obchodního rejstříku — **výpisy, stanovy a účetní závěrky po jednotlivých dokumentech**, jednotky eur za kus. Na automat vrací 403, v prohlížeči funguje",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-eircode",
+    "topic": "addresses",
+    "name": "Eircode",
+    "url": "https://www.eircode.ie/",
+    "kind": "official",
+    "access": "mixed",
+    "data": "api",
+    "desc": "Irský systém poštovních kódů — **každá adresa v Irsku má vlastní sedmimístný kód**, protože irské venkovské adresy nemají čísla popisná. Vyhledání jednotlivé adresy je zdarma, **hromadná databáze ECAD je licencovaná a placená** — proto Eircode chybí v otevřených datech GeoHive",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

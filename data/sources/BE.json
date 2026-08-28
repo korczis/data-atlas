@@ -358,5 +358,17 @@
     "desc": "Belgický centrální insolvenční registr — spisy úpadků, přihlášky pohledávek a rozhodnutí. **Přístup je jen pro věřitele, správce a advokáty po přihlášení**; veřejnost se o úpadku dozví z vyhlášky v Moniteur belge",
     "country": "BE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "be-best",
+    "topic": "addresses",
+    "name": "BeST — Belgian Street and Address registry",
+    "url": "https://opendata.bosa.be/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Sjednocený belgický adresní registr — **spojuje regionální zdroje CRAB (Flandry), ICAR (Valonsko) a UrbIS (Brusel) do jedné sady se souřadnicemi**, měsíčně aktualizované a zdarma ke stažení. Bez něj se belgické adresy geokódují ze tří nekompatibilních registrů",
+    "country": "BE",
+    "verified": "2026-08-28"
   }
 ]

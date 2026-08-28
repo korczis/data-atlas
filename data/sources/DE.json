@@ -466,5 +466,17 @@
     "desc": "Spolkový kriminální úřad — policejní kriminální statistika po druzích činů, zemích a okresech s dlouhými řadami, situační zprávy k organizovanému zločinu, kyberkriminalitě a praní peněz. Zprávy o organizovaném zločinu jsou pro rizikovou analýzu použitelný podklad",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-ga",
+    "topic": "addresses",
+    "name": "Georeferenzierte Adressdaten (BKG)",
+    "url": "https://gdz.bkg.bund.de/index.php/default/georeferenzierte-adressdaten-ga.html",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Celoněmecké adresy se souřadnicemi, sestavené BKG z dat zeměměřických správ všech šestnácti zemí — **jediná adresní sada, která pokrývá Německo jako celek**. Ke stažení; samostatný spolkový adresní registr Německo nemá",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

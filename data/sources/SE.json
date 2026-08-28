@@ -288,5 +288,29 @@
     "desc": "Švédská správa státních financí — plnění rozpočtu, výkazy státních úřadů a prognózy. Švédsko nemá rozklikávací rozpočtový portál na úrovni faktur; jednotlivé dokumenty se získávají podle zásady veřejnosti",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-belagenhetsadress",
+    "topic": "addresses",
+    "name": "Belägenhetsadresser (Lantmäteriet)",
+    "url": "https://www.lantmateriet.se/sv/geodata/vara-produkter/produktlista/belagenhetsadress-direkt/",
+    "kind": "official",
+    "access": "mixed",
+    "data": "api",
+    "desc": "Švédský adresní registr — **všechny švédské adresy se souřadnicemi a vazbou na nemovitost**, přes přímé API. Adresní data jsou od roku 2022 z velké části otevřená, komerční plné využití zůstává licencované",
+    "country": "SE",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "se-markhojdmodell",
+    "topic": "terrain",
+    "name": "Markhöjdmodell (Lantmäteriet)",
+    "url": "https://www.lantmateriet.se/sv/geodata/vara-produkter/produktlista/markhojdmodell-nedladdning/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Švédský model terénu z laserového skenování — **mřížka 1 m pro celé Švédsko, zdarma ke stažení** pod otevřenou licencí. Součást otevření švédských geodat z roku 2022",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

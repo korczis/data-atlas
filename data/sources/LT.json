@@ -14,12 +14,12 @@
   {
     "id": "lt-registrucentras",
     "topic": "cadastre",
-    "name": "Registrų centras",
+    "name": "Registrų centras — Nekilnojamojo turto registras",
     "url": "https://www.registrucentras.lt/",
     "kind": "official",
     "access": "mixed",
     "data": "api",
-    "desc": "Litevské centrum registrů — provozuje **katastr nemovitostí, obchodní rejstřík (JAR), adresní registr a registr skutečných majitelů (JANGIS)**. Základní údaje a mapové vrstvy zdarma, **výpisy a účetní závěrky zpoplatněné za dokument**",
+    "desc": "Litevský nemovitostní registr a katastr vedený Registrų centras — parcely, budovy, vlastnická práva a věcná břemena, s mapovou prohlížečkou. Základní údaje a mapové vrstvy zdarma, **výpisy jsou zpoplatněné za dokument**. Obchodní rejstřík, adresy, insolvence a skuteční majitelé jsou u téže instituce, ale jako samostatné registry",
     "country": "LT",
     "verified": "2026-08-28"
   },
@@ -236,6 +236,18 @@
     "access": "mixed",
     "data": "search",
     "desc": "Účetní závěrky litevských firem ukládané do registru — roční výkazy a auditorské zprávy. Základní údaje o odevzdání jsou zdarma, **stažení dokumentu je zpoplatněné**",
+    "country": "LT",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-adr",
+    "topic": "addresses",
+    "name": "Adresų registras",
+    "url": "https://www.registrucentras.lt/adr/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Litevský adresní registr vedený Registrų centras — **obce, ulice, adresní body a budovy se souřadnicemi**, s otevřenými daty ke stažení. Referenční adresní vrstva Litvy",
     "country": "LT",
     "verified": "2026-08-28"
   }

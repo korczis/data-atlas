@@ -396,5 +396,17 @@
     "desc": "Účetní závěrky rakouských společností ukládané do Firmenbuchu. **Každý dokument je zpoplatněný**; bezplatná obdoba německého Bundesanzeigeru v Rakousku není. Na automat vrací 403, v prohlížeči funguje",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-adressregister",
+    "topic": "addresses",
+    "name": "Adressregister (BEV)",
+    "url": "https://www.bev.gv.at/Services/Produkte.html",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Rakouský adresní registr vedený BEV — **všechny adresy Rakouska se souřadnicemi, obcí, katastrálním územím a vazbou na budovu**, čtvrtletně a zdarma ke stažení. Podklad pro geokódování rakouských adres; část webu BEV odmítá automatické klienty",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

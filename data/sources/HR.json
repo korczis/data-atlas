@@ -322,5 +322,29 @@
     "desc": "Chorvatský ústavní soud — nálezy o ústavnosti zákonů a rozhodnutí o ústavních stížnostech, s fulltextem a odlišnými stanovisky",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-rpj",
+    "topic": "addresses",
+    "name": "Registar prostornih jedinica",
+    "url": "https://geoportal.dgu.hr/rpj",
+    "kind": "official",
+    "access": "open",
+    "data": "ogc",
+    "desc": "Chorvatský registr územních jednotek — **županije, obce, sídla, ulice a kućni brojevi (adresní body) se souřadnicemi**, jako mapové služby i ke stažení. Referenční územní a adresní vrstva Chorvatska",
+    "country": "HR",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-dof",
+    "topic": "terrain",
+    "name": "Digitalni ortofoto (DGU)",
+    "url": "https://geoportal.dgu.hr/dof",
+    "kind": "official",
+    "access": "open",
+    "data": "ogc",
+    "desc": "Chorvatská digitální ortofotomozaika — **celostátní letecké snímky ve více generacích s rozlišením 10 až 50 cm**, jako mapová služba i ke stažení. Podklad pro porovnání stavu území v čase",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

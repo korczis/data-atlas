@@ -274,5 +274,17 @@
     "desc": "**Roční účetní výkazy estonských firem zdarma** jako součást obchodního rejstříku — rozvaha, výsledovka a zpráva o činnosti, ve strukturované podobě. Estonsko patří k mála států, kde jsou firemní výkazy veřejné a strojově čitelné bez poplatku",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-inaadress",
+    "topic": "addresses",
+    "name": "ADS — aadressiandmete süsteem",
+    "url": "https://inaadress.maaamet.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Estonský adresní systém — **vyhledání jakékoli estonské adresy se souřadnicemi, katastrální parcelou a budovou**, zdarma a s otevřeným API. Referenční adresní zdroj, na kterém stojí estonské e-služby",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

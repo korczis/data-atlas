@@ -286,5 +286,29 @@
     "desc": "Lotyšská daňová správa — **účetní závěrky firem, seznamy daňových dlužníků, plátci DPH a údaje o zaměstnancích a mzdách po firmách jako otevřená data**. Nejbohatší veřejný zdroj o lotyšských firmách z finanční stránky",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-adresu-registrs",
+    "topic": "addresses",
+    "name": "Adrešu reģistrs",
+    "url": "https://www.vzd.gov.lv/lv/adresu-registrs",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Lotyšský adresní registr vedený Státní pozemkovou službou — **hierarchie od obce po adresní bod, se souřadnicemi a vazbou na katastrální objekt**, s otevřenými daty ke stažení",
+    "country": "LV",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-dam",
+    "topic": "terrain",
+    "name": "Digitālais augstuma modelis (LĢIA)",
+    "url": "https://www.lgia.gov.lv/lv/digitalais-augstuma-modelis",
+    "kind": "official",
+    "access": "mixed",
+    "data": "bulk",
+    "desc": "Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

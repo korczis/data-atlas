@@ -286,5 +286,29 @@
     "desc": "Slovinský národní bezpečnostní tým — varování ke zranitelnostem, upozornění na phishingové kampaně a **výroční zprávy o incidentech ve slovinské části internetu**. Doména si-cert.si automatickým klientům neodpovídá, cert.si ano",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-jgp",
+    "topic": "addresses",
+    "name": "Javni geodetski podatki (RPE)",
+    "url": "https://ipi.eprostor.gov.si/jgp/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Veřejné geodetické údaje GURS — **register prostorskih enot (občine, naselja, ulice) a hišne številke se souřadnicemi**, plus katastr a registr budov, zdarma ke stažení. Referenční územní a adresní vrstva Slovinska",
+    "country": "SI",
+    "verified": "2026-08-28"
+  },
+  {
+    "id": "si-lidar",
+    "topic": "terrain",
+    "name": "Lidar (JGP)",
+    "url": "https://ipi.eprostor.gov.si/jgp/lidar",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Slovinská data leteckého laserového skenování — **bodová mračna a model terénu 1 m pro celé Slovinsko, zdarma ke stažení po blocích**. Slovinsko naskenovalo celé území jako jeden z prvních států v EU",
+    "country": "SI",
+    "verified": "2026-08-28"
   }
 ]
