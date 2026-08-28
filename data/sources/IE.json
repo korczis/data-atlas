@@ -346,5 +346,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Irská HPRA reguluje léčiva, zdravotnické prostředky i kosmetiku a zveřejňuje seznam držitelů licencí",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-cag",
+    "topic": "spending",
+    "name": "Comptroller and Auditor General",
+    "url": "https://www.audit.gov.ie/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Irský C&AG publikuje výroční zprávu o veřejných účtech a zvláštní zprávy k jednotlivým programům",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

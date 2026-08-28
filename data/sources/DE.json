@@ -550,5 +550,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Německý BfArM zveřejňuje **AMIce** s registrem léčiv, databázi klinických hodnocení a od roku 2017 i registr konopí pro léčebné použití",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-brh",
+    "topic": "spending",
+    "name": "Bundesrechnungshof",
+    "url": "https://www.bundesrechnungshof.de/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Německý BRH publikuje výroční zprávy s tzv. Bemerkungen a zvláštní zprávy k jednotlivým programům; spolkové země mají vlastní účetní dvory",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

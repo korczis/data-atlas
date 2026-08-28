@@ -430,5 +430,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Bulharská agentura zveřejňuje registr léčiv a maximální ceny hrazených přípravků",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-bulnao",
+    "topic": "spending",
+    "name": "Сметна палата",
+    "url": "https://www.bulnao.government.bg/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Bulharská Сметна палата vede i **registr majetkových přiznání veřejných funkcionářů**",
+    "country": "BG",
+    "verified": "2026-08-28"
   }
 ]

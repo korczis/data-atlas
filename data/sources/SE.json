@@ -396,5 +396,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Švédská agentura vede registr léčiv a zveřejňuje statistiky spotřeby přes Socialstyrelsen jako otevřená data",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-riksrevisionen",
+    "topic": "spending",
+    "name": "Riksrevisionen",
+    "url": "https://www.riksrevisionen.se/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Švédská Riksrevisionen publikuje efektivnostní audity i výroční audit státních účtů a agentur",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

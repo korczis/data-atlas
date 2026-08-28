@@ -394,5 +394,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Chorvatská agentura zveřejňuje registr léčiv, klinických hodnocení a hlášení nežádoucích účinků",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-revizija",
+    "topic": "spending",
+    "name": "Državni ured za reviziju",
+    "url": "https://www.revizija.hr/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Chorvatský revizní úřad kontroluje i obce a státní podniky a zveřejňuje audity stranických financí",
+    "country": "HR",
+    "verified": "2026-08-28"
   }
 ]

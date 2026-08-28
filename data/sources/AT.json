@@ -504,5 +504,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Rakouský úřad zveřejňuje i inspekční nálezy a stahování šarží z trhu",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-rechnungshof",
+    "topic": "spending",
+    "name": "Rechnungshof Österreich",
+    "url": "https://www.rechnungshof.gv.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Rakouský Rechnungshof vede navíc **registr platů a příjmů vrcholných funkcionářů** a evidenci stranických financí",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

@@ -370,5 +370,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Lotyšská agentura zveřejňuje registr léčiv a databázi cen a úhrad",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-lrvk",
+    "topic": "spending",
+    "name": "Valsts kontrole",
+    "url": "https://www.lrvk.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Lotyšská Valsts kontrole publikuje audity i **otevřená data o zjištěních a jejich finančním dopadu**",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

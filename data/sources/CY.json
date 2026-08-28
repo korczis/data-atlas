@@ -298,5 +298,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Kyperskou lékovou agendu vedou farmaceutické služby ministerstva zdravotnictví; registr léčiv i ceny jsou veřejné",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-audit",
+    "topic": "spending",
+    "name": "Audit Office of the Republic of Cyprus",
+    "url": "https://www.gov.cy/audit/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Kyperský kontrolní úřad zveřejňuje výroční zprávy po ministerstvech a samostatné zvláštní zprávy",
+    "country": "CY",
+    "verified": "2026-08-28"
   }
 ]

@@ -322,5 +322,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Řecký EOF vede registr léčiv, cen a povolených distributorů",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-elsyn",
+    "topic": "spending",
+    "name": "Ελεγκτικό Συνέδριο",
+    "url": "https://www.elsyn.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Řecký účetní dvůr je zároveň soudem — kromě auditů rozhoduje o odpovědnosti úředníků za škodu a předběžně schvaluje velké zakázky",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

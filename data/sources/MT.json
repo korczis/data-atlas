@@ -310,5 +310,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Maltská agentura vede registr léčiv, lékáren a velkodistributorů",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-nao",
+    "topic": "spending",
+    "name": "National Audit Office",
+    "url": "https://nao.gov.mt/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Maltský NAO publikuje výroční zprávu i vyšetřovací zprávy k jednotlivým kauzám. Na automat vrací 403, v prohlížeči funguje",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

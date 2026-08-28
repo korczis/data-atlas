@@ -550,5 +550,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Francouzská ANSM zveřejňuje **databázi léčiv, nedostupností a bezpečnostních upozornění**; k tomu vede Transparence Santé s platbami farmaceutických firem lékařům",
     "country": "FR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "fr-ccomptes",
+    "topic": "spending",
+    "name": "Cour des comptes",
+    "url": "https://www.ccomptes.fr/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Francouzský účetní dvůr publikuje výroční zprávu i tematické zprávy a spolu s regionálními komorami kontroluje obce a nemocnice",
+    "country": "FR",
+    "verified": "2026-08-28"
   }
 ]

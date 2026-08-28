@@ -370,5 +370,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Lucembursko nemá samostatnou lékovou agenturu; registraci a dozor vede zdravotní ředitelství ministerstva zdravotnictví",
     "country": "LU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lu-courdescomptes",
+    "topic": "spending",
+    "name": "Cour des comptes",
+    "url": "https://cour-des-comptes.public.lu/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Lucemburský účetní dvůr publikuje zprávu o plnění rozpočtu a zvláštní zprávy k investičním projektům",
+    "country": "LU",
+    "verified": "2026-08-28"
   }
 ]

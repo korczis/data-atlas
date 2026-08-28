@@ -334,5 +334,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Rumunská agentura vede registr léčiv, zdravotnických prostředků a povolení k distribuci",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-curteadeconturi",
+    "topic": "spending",
+    "name": "Curtea de Conturi",
+    "url": "https://www.curteadeconturi.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Rumunský účetní dvůr kontroluje i obce a státní podniky. Na automat vrací 403, v prohlížeči funguje",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

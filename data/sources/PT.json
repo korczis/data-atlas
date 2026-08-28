@@ -430,5 +430,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Portugalský INFARMED provozuje Infomed s registrem léčiv a cen a publikuje statistiky spotřeby",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-tcontas",
+    "topic": "spending",
+    "name": "Tribunal de Contas",
+    "url": "https://www.tcontas.pt/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Portugalský účetní dvůr **předběžně schvaluje velké veřejné smlouvy** — bez jeho visto řada zakázek nenabude účinnosti, takže jeho rozhodnutí jsou dobrým indikátorem problémů",
+    "country": "PT",
+    "verified": "2026-08-28"
   }
 ]

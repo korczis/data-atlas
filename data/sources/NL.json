@@ -442,5 +442,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Nizozemské kolegium provozuje veřejnou databázi léčiv Geneesmiddeleninformatiebank s texty schválených informací",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-rekenkamer",
+    "topic": "spending",
+    "name": "Algemene Rekenkamer",
+    "url": "https://www.rekenkamer.nl/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Nizozemská Rekenkamer publikuje audity a **otevřená data o výdajích ministerstev** v nástroji, který ukazuje rozpočet po programech",
+    "country": "NL",
+    "verified": "2026-08-28"
   }
 ]

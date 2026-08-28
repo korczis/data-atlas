@@ -455,5 +455,17 @@
     "desc": "Národní léková agentura. Vede **registr registrovaných léčiv** a povolení k výrobě a distribuci, takže se z ní ověří, jestli firma smí s léky obchodovat a jaké přípravky má schválené. Španělská AEMPS provozuje CIMA — databázi léčiv s příbalovými letáky, cenami a stavem registrace, s veřejným API",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-tcu",
+    "topic": "spending",
+    "name": "Tribunal de Cuentas",
+    "url": "https://www.tcu.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Nejvyšší kontrolní instituce. Publikuje **kontrolní závěry o hospodaření** státních úřadů, podniků a dotačních programů — jmenují konkrétní projekty, částky a pochybení, takže jsou často jediným veřejným zdrojem o tom, jak zakázka nebo dotace dopadla. Španělský účetní dvůr vede navíc **registr účetnictví politických stran** a databázi veřejných podniků",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]
