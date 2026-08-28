@@ -418,5 +418,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Lotyšská rada publikuje rozhodnutí a dohlíží i na maloobchodní vyjednávací sílu vůči dodavatelům",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-fid",
+    "topic": "regulators",
+    "name": "Finanšu izlūkošanas dienests",
+    "url": "https://www.fid.gov.lv/",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Lotyšská FID smí sama nařídit zmrazení prostředků a publikuje podrobné statistiky hlášení a zmrazení",
+    "country": "LV",
+    "verified": "2026-08-28"
   }
 ]

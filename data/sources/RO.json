@@ -370,5 +370,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rumunská národní knihovna vede národní bibliografii a digitalizuje historický tisk",
     "country": "RO",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ro-onpcsb",
+    "topic": "regulators",
+    "name": "ONPCSB",
+    "url": "https://www.onpcsb.ro/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Rumunský úřad je samostatný a vede i evidenci AML povinných osob",
+    "country": "RO",
+    "verified": "2026-08-28"
   }
 ]

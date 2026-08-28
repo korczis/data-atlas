@@ -394,5 +394,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Irská CCPC spojuje soutěž s ochranou spotřebitele a vede **veřejný registr oznámených fúzí** s termíny a výsledky",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-gneb",
+    "topic": "regulators",
+    "name": "Garda National Economic Crime Bureau",
+    "url": "https://www.garda.ie/en/about-us/organised-serious-crime/garda-national-economic-crime-bureau/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Irská FIU je součástí policejního útvaru pro hospodářskou kriminalitu",
+    "country": "IE",
+    "verified": "2026-08-28"
   }
 ]

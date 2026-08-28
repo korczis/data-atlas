@@ -1198,5 +1198,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Česká NK provozuje **Kramerius s digitalizovanými novinami a časopisy** a katalog vydává jako otevřená data",
     "country": "CZ",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cz-fau",
+    "topic": "regulators",
+    "name": "Finanční analytický úřad",
+    "url": "https://fau.gov.cz/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Český FAÚ je zároveň dozorem nad **mezinárodními sankcemi** a vede seznam sankcionovaných osob podle českého zákona",
+    "country": "CZ",
+    "verified": "2026-08-28"
   }
 ]

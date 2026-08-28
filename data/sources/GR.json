@@ -370,5 +370,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Řecká komise publikuje rozhodnutí i odvětvová šetření",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-fiu",
+    "topic": "regulators",
+    "name": "Ελληνική Αρχή Καταπολέμησης της Νομιμοποίησης Εσόδων",
+    "url": "https://hellenic-fiu.gr/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Řecká jednotka smí sama nařídit zmrazení majetku. Server má vadný certifikát, obsah se načte",
+    "country": "GR",
+    "verified": "2026-08-28"
   }
 ]

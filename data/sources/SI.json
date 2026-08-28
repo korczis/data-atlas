@@ -466,5 +466,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Slovinská AVK publikuje rozhodnutí a přehled oznámených koncentrací",
     "country": "SI",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "si-uppd",
+    "topic": "regulators",
+    "name": "Urad za preprečevanje pranja denarja",
+    "url": "https://www.gov.si/drzavni-organi/organi-v-sestavi/urad-za-preprecevanje-pranja-denarja/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Slovinský úřad spadá pod ministerstvo financí a publikuje seznam indikátorů podezřelých transakcí po odvětvích",
+    "country": "SI",
+    "verified": "2026-08-29"
   }
 ]

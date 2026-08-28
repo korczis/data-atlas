@@ -394,5 +394,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Litevská rada publikuje rozhodnutí a dohlíží i na státní podporu obcí",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-fntt",
+    "topic": "regulators",
+    "name": "FNTT — Finansinių nusikaltimų tyrimo tarnyba",
+    "url": "https://www.fntt.lt/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Litevská FNTT je zároveň vyšetřovacím orgánem pro hospodářskou kriminalitu. Na automat vrací 403, v prohlížeči funguje",
+    "country": "LT",
+    "verified": "2026-08-28"
   }
 ]

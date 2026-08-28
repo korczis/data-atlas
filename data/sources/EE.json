@@ -418,5 +418,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Estonská národní knihovna provozuje DIGAR s digitalizovanými novinami a knihami a archivuje estonský web",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-fiu",
+    "topic": "regulators",
+    "name": "Rahapesu andmebüroo",
+    "url": "https://fiu.ee/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Estonská jednotka je od roku 2021 samostatná a **vede licencování poskytovatelů služeb s virtuálními aktivy** — po kryptoboomu klíčový registr",
+    "country": "EE",
+    "verified": "2026-08-28"
   }
 ]

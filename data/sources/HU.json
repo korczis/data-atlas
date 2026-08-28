@@ -490,5 +490,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Maďarská OSZK stojí za portálem Hungaricana a digitalizovanými novinami v Arcanum, které pokrývají celé Uhry",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-nav-fiu",
+    "topic": "regulators",
+    "name": "NAV — Pénzmosás elleni Iroda",
+    "url": "https://nav.gov.hu/penzmosas",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Maďarská jednotka je součástí daňové a celní správy",
+    "country": "HU",
+    "verified": "2026-08-28"
   }
 ]

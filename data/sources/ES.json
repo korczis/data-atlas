@@ -491,5 +491,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Španělská BNE provozuje Hemeroteca Digital s historickým tiskem a vydává katalog jako otevřená data. Na automat vrací 403, v prohlížeči funguje",
     "country": "ES",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "es-sepblac",
+    "topic": "regulators",
+    "name": "SEPBLAC",
+    "url": "https://www.sepblac.es/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Španělský SEPBLAC je zároveň dozorem nad plněním AML povinností a publikuje sektorové pokyny",
+    "country": "ES",
+    "verified": "2026-08-28"
   }
 ]

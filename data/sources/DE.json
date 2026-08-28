@@ -586,5 +586,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Německá DNB vydává celý katalog jako **propojená otevřená data** včetně normovaného rejstříku osob a organizací GND — užitečné při ověřování identit",
     "country": "DE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "de-fiu",
+    "topic": "regulators",
+    "name": "FIU Deutschland (Zoll)",
+    "url": "https://www.zoll.de/DE/FIU/fiu_node.html",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Německá FIU je od roku 2017 součástí celní správy, ne policie",
+    "country": "DE",
+    "verified": "2026-08-28"
   }
 ]

@@ -540,5 +540,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Rakouská ÖNB digitalizovala historické noviny v ANNO a mapovou sbírku; obojí je volně přístupné",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-bka-fiu",
+    "topic": "regulators",
+    "name": "Bundeskriminalamt — A-FIU",
+    "url": "https://www.bmi.gv.at/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Rakouská A-FIU sídlí ve spolkovém kriminálním úřadu",
+    "country": "AT",
+    "verified": "2026-08-28"
   }
 ]

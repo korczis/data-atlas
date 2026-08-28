@@ -432,5 +432,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Švédská KB archivuje švédský web, digitalizuje noviny a vydává katalog Libris jako propojená otevřená data",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-finanspolisen",
+    "topic": "regulators",
+    "name": "Finanspolisen",
+    "url": "https://polisen.se/om-polisen/polisens-arbete/finanspolisen/",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Švédská finanční policie publikuje výroční zprávy s typologiemi a statistikami hlášení",
+    "country": "SE",
+    "verified": "2026-08-28"
   }
 ]

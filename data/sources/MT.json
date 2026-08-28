@@ -358,5 +358,17 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Maltská MCCAA spojuje soutěž, ochranu spotřebitele, standardizaci a metrologii v jednom úřadu",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-fiau",
+    "topic": "regulators",
+    "name": "FIAU — Financial Intelligence Analysis Unit",
+    "url": "https://fiaumalta.org/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Maltská FIAU je zároveň AML dozorem a **zveřejňuje uložené sankce včetně jmen firem a částek** — po zařazení Malty na šedý seznam FATF v letech 2021–2022 jich přibylo",
+    "country": "MT",
+    "verified": "2026-08-28"
   }
 ]

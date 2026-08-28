@@ -766,5 +766,17 @@
     "desc": "Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Polská BN stojí za portálem Polona s miliony digitalizovaných objektů a vydává katalog jako otevřená data",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-giif",
+    "topic": "regulators",
+    "name": "GIIF — Generalny Inspektor Informacji Finansowej",
+    "url": "https://www.gov.pl/web/finanse/generalny-inspektor-informacji-finansowej",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Polský GIIF je součástí ministerstva financí a vede **rejstřík činností v oblasti virtuálních měn**",
+    "country": "PL",
+    "verified": "2026-08-28"
   }
 ]
