@@ -1,38 +1,50 @@
 # Geodata Atlas
 
-Katalog GIS a geodatových zdrojů — datasety, katastr, doprava, remote sensing,
-prostorové databáze a analytika. Prohledávatelný, filtrovatelný, na jedné stránce.
+Katalog geodat, otevřených dat, veřejných registrů a OSINT/DD zdrojů Evropské unie —
+katastr, doprava, statistika, obchodní rejstříky, skuteční majitelé, insolvence, zakázky,
+soudy, regulace a rizika. Prohledávatelný, filtrovatelný, na jedné stránce.
 
 **→ [korczis.github.io/geodata-atlas](https://korczis.github.io/geodata-atlas/)**
 
-Katalog vznikl z vlastních Chrome záložek a historie: co jsem za roky práce
-s geodaty reálně používal, doplněné o zdroje, které do obrázku patří, i když
-je zrovna nemám v historii.
+Jádro katalogu vzniklo z vlastních Chrome záložek a historie: co jsem za roky práce
+s geodaty reálně používal. Zbytek je rešerše — všech 27 členských států, zdroj po zdroji,
+s ověřenou adresou a popsaným způsobem přístupu.
 
 ## Co v tom je
 
-252 položek ve 20 kategoriích:
+Dvě nezávislé osy: **téma** říká, o jaký druh zdroje jde, **země** říká, kde platí.
+Rejstřík firem je `companies` bez ohledu na to, jestli je český nebo maltský; Malta
+je `MT` bez ohledu na to, jestli jde o katastr nebo o soudy.
 
-| | |
+| Skupina | Témata |
 |---|---|
-| Gazetteery a geokódování | Nominatim, GeoNames, Pelias, RÚIAN/VDP, OpenAddresses |
-| Globální geodata | Natural Earth, GADM, geoBoundaries, Overture, TIGER/Line, Geofabrik |
-| ČR — katastr a geodata | ČÚZK (KN, geoportál, ZABAGED, DMR), ArcČR, DIBAVOD, LPIS, ČGS |
-| ČR — doprava a mobilita | Golemio, ŘSD, NDIC/dopravniinfo, PID |
-| Polsko — katastr a geodata | Geoportal/GUGiK, ULDK, Krajowa Integracja, RCN, ISOK, BDL |
-| Polsko — doprava a mobilita | GDDKiA, PKP PLK (MILK2), Portal Pasażera, GTFS |
-| Open data a registry PL | dane.gov.pl, GUS (BDL, TERYT), KRS, KRZ, CRBR, CEIDG |
-| Crime, IZS, bezpečnost | SFPD dashboard, data.police.uk, portály HZS, ACLED, GDELT |
-| Remote sensing | Copernicus, EarthExplorer, NASA Earthdata, OpenTopography, STAC |
-| Statistika a demografie | ČSÚ, Eurostat GISCO, WorldPop, GHSL |
-| Historické mapy | David Rumsey, Old Maps Online, Mapire, archiv ČÚZK |
-| Mapové knihovny a basemapy | MapLibre, Leaflet, deck.gl, OpenLayers, Protomaps, PMTiles |
-| Spatial DB a analytika | PostGIS, GDAL, QGIS, GeoPandas, DuckDB spatial, Sedona, H3 |
-| Routing | OSRM, Valhalla, GraphHopper, pgRouting, OSMnx |
-| Formáty a standardy | GeoParquet, COG, FlatGeobuf, EPSG.io, OGC API, STAC |
+| Geodata | geoportály a NSDI, katastr a pozemkové knihy, adresy, ortofoto a výškopis, prostředí a geologie, doprava, remote sensing, globální referenční data |
+| Veřejná data a správa | otevřená data, statistika, legislativa a věstníky, veřejné zakázky, rozpočty a dotace |
+| Firmy a due diligence | obchodní rejstříky, skuteční majitelé, účetní závěrky, insolvence, soudy, regulace a licence, nemovitosti |
+| Rizika a OSINT | sankce, kriminalita a IZS, kyberbezpečnost, počasí, transparentnost a volby, OSINT, archivy |
+| Nástroje | gazetteery, mapové knihovny, spatial DB, routing, formáty |
+| Učení | komunita a kurzy |
 
-Plný výpis je v [`docs/CATALOG.md`](docs/CATALOG.md), strojově čitelný
-v [`data/catalog.csv`](data/catalog.csv).
+Celoevropské zdroje (TED, data.europa.eu, Eurostat, BRIS, VIES, EBA, ESMA…) stojí
+pod rozsahem `EU` a needitují se sedmadvacetkrát; celosvětové pod `GLOBAL`.
+
+Plný výpis je v [`docs/CATALOG.md`](docs/CATALOG.md), matice pokrytí
+v [`docs/COVERAGE.md`](docs/COVERAGE.md), strojově čitelně v [`data/catalog.csv`](data/catalog.csv).
+Jak přidat zemi nebo zdroj popisuje [`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md).
+
+## Co katalog říká o přístupu
+
+U každého zdroje stojí, **jestli se dovnitř dostaneš** a **co si odneseš** — jsou to dvě
+různé věci a u registrů, kvůli kterým katalog vzniká, se pravidelně pletou.
+
+- `open` · `registration` · `paid` · `mixed` · `restricted` — překážka v přístupu
+- `bulk` · `api` · `ogc` · `download` · `search` · `none` — strojová dostupnost
+
+**Veřejné vyhledávání není otevřená data.** Rejstřík, ve kterém si kdokoli najde firmu,
+ale nedá se stáhnout, je `open` + `search`. Rozdíl mezi „vidím to v prohlížeči"
+a „můžu s tím počítat" je přesně to, co u prověrky rozhoduje.
+
+**Licence se nehádá.** Když ji nešlo zjistit rychle, není v katalogu.
 
 ## Zdroj a jeho meze
 
@@ -40,7 +52,7 @@ Sloupec **Zdroj** říká, odkud položka pochází:
 
 - `bookmarks` / `history` / `bookmarks+history` — doloženo v exportu prohlížeče,
   včetně počtu návštěv a data poslední návštěvy
-- `reference` — doplněno ručně, protože do katalogu patří
+- `reference` — doplněno rešerší a ověřeno odkazem, ne návštěvou
 
 **Chrome drží historii jen zhruba 90 dní.** Cokoli staršího v datech není,
 takže nízký počet návštěv neznamená, že zdroj není používaný — jen že se do
@@ -54,11 +66,30 @@ a tvářil se jako nejnavštěvovanější položka katalogu.
 
 ```bash
 just install     # npm závislosti
-just build       # dist/index.html z data/*.csv
-just check       # build + lint + testy + responzivita
+just catalog     # data/catalog.csv z data/sources/*.json
+just build       # dist/index.html z data/catalog.csv
+just check       # validace dat + build + lint + testy + responzivita + a11y
+just links       # ověření odkazů (chodí po síti; --country AT, --topic companies, --changed)
 just serve       # náhled na localhost:8000
 just             # všechny recepty
 ```
+
+### Datový řetěz
+
+```
+data/sources/<KÓD>.json  ─┐
+data/topics.json          ├─→ tools/build_catalog.py ─→ data/catalog.csv ─→ stránka + docs
+data/countries.json       │
+data/provenance.csv      ─┘
+                            tools/build_provenance.py ←─ .cache/raw.json   (jen lokálně)
+```
+
+**Zdrojem pravdy jsou `data/sources/*.json`** — jeden soubor na zemi nebo rozsah.
+`data/catalog.csv`, `docs/CATALOG.md` i `docs/COVERAGE.md` se z nich generují.
+
+Doložení z prohlížeče se počítá odděleně a committuje jako `data/provenance.csv`.
+Veřejný build tedy projde i na čistém klonu bez cizího Chrome profilu — hlídá to
+`tools/validate_sources.py`.
 
 Build vyrábí dvě varianty téhož:
 
@@ -74,36 +105,38 @@ Z Flowbite se bundluje jen to, co markup opravdu používá: plný `flowbite.min
 má 133 kB a nese accordion, carousel či datepicker, které tu nejsou — výřez
 s jediným šuplíkem má 9 kB.
 
-Hlídá to 100 testů ve čtyřech sadách (`smoke` · `interact` · `meta` · `flowbite`),
-linter konvencí, měření responzivity a audit přístupnosti přes axe-core —
-vše v `just check`.
+Hlídají to čtyři testové sady (`smoke` · `interact` · `meta` · `flowbite`),
+validace kurátorovaných dat, linter konvencí, měření responzivity a audit
+přístupnosti přes axe-core — vše v `just check`.
 
 ### Rozvržení
 
 Aplikační shell adaptovaný z Flowbite Pro Admin Dashboardu — horní lišta,
-postranní panel se všemi 20 kategoriemi a jejich počty, hlavní obsah a lepivá
-souhrnná lišta. Podrobnosti k licenci jsou v [`NOTICE.md`](NOTICE.md).
+postranní panel, hlavní obsah a lepivá souhrnná lišta. Podrobnosti k licenci
+jsou v [`NOTICE.md`](NOTICE.md).
 
-Katalog má dvě úrovně: **skupina → kategorie**. Dvacet kategorií v plochém
-seznamu je na 252 položek moc, tak je panel řadí do šesti skupin (Data — svět,
-Data — Česko, Data — Polsko, Události a rizika, Nástroje, Učení) a výsledky se
-člení po kategoriích. Filtr se propisuje do URL, takže výřez katalogu jde poslat dál.
+Panel nese obě osy: **země** s vlastním filtrovacím polem (sedmadvacet států
+plus nadnárodní rozsahy se do plochého seznamu nevejde) a **témata** seskupená
+do šesti rodin. Počty se počítají křížem — při vybraném Rakousku ukazují témata
+počty v Rakousku, při vybraném tématu ukazují země počty v tom tématu.
+Filtr se propisuje do URL (`#country=DE&topic=companies`), takže výřez katalogu
+jde poslat dál; v URL stojí stabilní identifikátor tématu, ne popisek.
 
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
-s řaditelnými sloupci — tabulka o šesti sloupcích se na telefon nevejde.
-Postranní panel je pod `lg` šuplík, od `lg` výš stojí napevno; pohled se pod
-`sm` přepíná i spodní navigací. Obě větve čtou týž getter a testy ověřují,
-že vykreslí stejný počet položek.
+s řaditelnými sloupci. **Vykresluje se vždy jen ta větev, která je vidět** —
+držet v DOM obě stálo u tisícovky položek zhruba vteřinu navíc a dvojnásobek
+uzlů, z toho polovinu neviditelných.
 
 Konvence Flowbite a Alpine popisuje [`docs/UI-RULES.md`](docs/UI-RULES.md)
 a vynucuje `just lint`. `just responsive` měří vodorovné přetečení v headless
 Chrome na šířkách 320 – 1536 px, `just a11y` pouští axe-core ve čtyřech
 scénářích (mobil i desktop × světlý i tmavý motiv).
 
-### Přidání položky
+### Přidání zdroje
 
-Edituj `data/catalog.csv`, pak `just build docs`. Sloupce `Zdroj`, `Návštěvy`
-a `Poslední návštěva` nech u ručně přidaných prázdné — patří datovému řetězu.
+Edituj `data/sources/<KÓD>.json`, pak `just validate`, `just links --changed`
+a `just catalog docs build`. Schéma, číselníky a pravidla pro klasifikaci přístupu
+jsou v [`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md).
 
 ### Ikony a OG karta
 
@@ -117,10 +150,11 @@ Nikde se nepíšou ručně, takže nemůžou zestárnout.
 
 ### Přegenerování z prohlížeče
 
-Vyžaduje Chrome profil na disku, běží jen lokálně:
+Vyžaduje Chrome profil na disku, běží jen lokálně a týká se **výhradně doložení
+a long listu**, ne katalogu samotného:
 
 ```bash
-just refresh     # extract → scan → catalog → sanitize → docs → build
+just refresh     # extract → scan → longlist → sanitize → provenance → catalog → docs → build
 just extract "~/Library/Application Support/Google/Chrome/Profile 1"
 ```
 
@@ -155,13 +189,17 @@ Co audit našel a co by jinak zůstalo:
 - Šest služeb se přestěhovalo (`developer.mapy.cz` → `.com`, `eagri.cz` →
   `mze.gov.cz`, `geoportal.cuzk.cz` → `.gov.cz`, …). Historické návštěvy pod
   starým jménem jsou pořád důkaz, že zdroj znáš, takže je drží
-  `DOMAIN_ALIASES` v `tools/build_catalog.py`.
+  `DOMAIN_ALIASES` v `tools/build_provenance.py`.
 - Věcné chyby v popisech: `pgRouting` není součást PostGIS, `ESA WorldCover`
   existuje jen pro roky 2020 a 2021, `Planetary Computer` vypnul hostovaný
   JupyterHub, David Rumsey má 150 tisíc map a georeferencovaná je jen část.
 
-Patch aplikuje `tools/apply_patch.py` do `tools/build_catalog.py`, ne do CSV —
-zdrojem pravdy je generátor. Dá se projít, po položkách zamítnout a spustit znovu.
+Rozšíření na EU proběhlo stejnou logikou, jen bez agentů: **ověřit adresu →
+napsat popis**, nikdy naopak. Ověřování cestou odhalilo, že
+`www.ubo.nl` není nizozemský registr skutečných majitelů, ale strojírenská
+firma pro betonárny, že INSPIRE geoportál Komise skončil a přesměrovává
+na `data.europa.eu`, a že Amtsblatt zur Wiener Zeitung zanikl a nahradilo
+ho `evi.gv.at`.
 
 ## Odkazy stárnou
 
@@ -175,6 +213,7 @@ a rozliší:
 | `přesměrování` | web se přestěhoval — stojí za pohled, ale často jde jen o jazykovou mutaci nebo session ID |
 | `blokuje` | 403 na automat, v prohlížeči funguje (Cloudflare a spol.) |
 | `certifikát` | TLS selže, přes `-k` obsah naskočí — vada webu, ne katalogu |
+| `deklarováno` | zdroj má v datech `check: anti-bot`: server spojení po handshaku zahodí, přestože web žije. **Ověřuje se ručně** |
 | `chyba` | opravdu nikam nevede |
 
 Rozlišení není puntičkářství: první běh nahlásil osm chyb, ze kterých byly
@@ -182,8 +221,15 @@ Rozlišení není puntičkářství: první běh nahlásil osm chyb, ze kterých
 selhání lokálního DNS. Checker proto překládá jména sám přes DoH, jinak by
 výsledek závisel na tom, na jaké síti zrovna běží.
 
+Rozšíření na EU do něj přidalo další tři poznatky: německé spolkové portály
+odpovídají na HEAD kódem 400 a na tentýž GET vydají stránku; část portálů se
+mezi `https` a `http` točí ve smyčce, kterou pět skoků neutáhne; a některé weby
+spojení po TLS handshaku prostě zahodí, což od mrtvého odkazu automat nerozezná.
+
 Kontrola není součástí `just check`, protože chodí po síti. Běží měsíčně
 [vlastním workflow](.github/workflows/links.yml), který při nálezu založí issue.
+Při rozpracované práci se zužuje: `just links --country AT`, `--topic companies`,
+`--changed`.
 
 ## Soukromí
 
@@ -192,7 +238,7 @@ aby ji nešlo zveřejnit omylem:
 
 - `.cache/` je v `.gitignore` a **veškeré syrové výstupy končí tam** —
   `raw.json` i `longlist.raw.csv`
-- do `data/` se dostane jen to, co projde `tools/sanitize.py`
+- do `data/longlist.csv` se dostane jen to, co projde `tools/sanitize.py`
 - sanitizer je allowlist-first: vyhazuje interní hostnames, privátní a VPN
   adresy, tunely, zdravotnické a identitní služby, a všechno, co netrefí
   téma geo/data. Z 192 kandidátů projde 53.
@@ -207,6 +253,12 @@ aby ji nešlo zveřejnit omylem:
 
 Před každým zveřejněním stojí za to projet `python3 tools/sanitize.py` a
 podívat se, co vyhodilo.
+
+## Co katalog není
+
+Je to soupis **zdrojů a služeb**, ne databáze osob. Zdroj, který je za
+přihlášením, za platbou nebo za oprávněným zájmem, se zapíše s uvedením
+té překážky — neobchází se.
 
 ## Licence
 

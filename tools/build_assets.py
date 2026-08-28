@@ -41,12 +41,12 @@ def icon(size: int, out: Path) -> None:
                     "-gravity", "center", "-extent", f"{size}x{size}", out], check=True)
 
 
-def stats() -> tuple[int, int, int]:
+def stats() -> dict[str, int]:
     with (ROOT / "data" / "catalog.csv").open(encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh))
-    with (ROOT / "data" / "longlist.csv").open(encoding="utf-8-sig") as fh:
-        longlist = len(list(csv.DictReader(fh)))
-    return len(rows), len({r["Kategorie"] for r in rows}), longlist
+    return {"ITEMS": len(rows),
+            "TOPICS": len({r["Téma"] for r in rows}),
+            "COUNTRIES": len({r["Kód"] for r in rows})}
 
 
 def main() -> None:
@@ -72,11 +72,15 @@ def main() -> None:
     subprocess.run(["magick", TMP / "i16.png", TMP / "i32.png", TMP / "i48.png",
                     STATIC / "favicon.ico"], check=True)
 
-    items, cats, longlist = stats()
+    numbers = stats()
     og = (SRC / "og.html").read_text(encoding="utf-8")
-    og = og.replace("<b>142</b>", f"<b>{items}</b>") \
-           .replace("<b>17</b>", f"<b>{cats}</b>") \
-           .replace("<b>53</b>", f"<b>{longlist}</b>")
+    # Zástupné značky, ne náhrada literálů: dřív se v šabloně přepisovalo
+    # "<b>142</b>", takže úprava textu karty tiše rozbila dosazování počtů.
+    for key, value in numbers.items():
+        token = "{{" + key + "}}"
+        if token not in og:
+            raise SystemExit(f"src/assets/og.html neobsahuje značku {token}")
+        og = og.replace(token, str(value))
     page = TMP / "og.html"
     page.write_text(og, encoding="utf-8")
     shot(page, 1200, 630, STATIC / "og-image.png")
@@ -88,7 +92,8 @@ def main() -> None:
                     "-define", "png:compression-strategy=1",
                     STATIC / "og-image.png"], check=True)
 
-    print(f"static/: ikony + OG karta ({items} položek, {cats} kategorií, {longlist} v long listu)")
+    print("static/: ikony + OG karta ("
+          + ", ".join(f"{v} {k.lower()}" for k, v in numbers.items()) + ")")
     for f in sorted(STATIC.iterdir()):
         print(f"  {f.name:26s} {f.stat().st_size / 1024:7.1f} KB")
 

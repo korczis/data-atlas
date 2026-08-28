@@ -22,6 +22,13 @@ jobs:
 
       - run: npm ci
 
+      - name: Kurátorovaná data
+        run: |
+          python3 tools/validate_sources.py
+          python3 tools/build_catalog.py
+          git diff --exit-code data/catalog.csv \
+            || { echo "::error::data/catalog.csv neodpovídá data/sources/*.json — spusť 'just catalog'"; exit 1; }
+
       - name: Build a testy
         run: |
           python3 tools/build_page.py
@@ -36,5 +43,5 @@ jobs:
       - name: Dokumentace je aktuální
         run: |
           python3 tools/build_docs.py
-          git diff --exit-code docs/ \
-            || { echo "::error::docs/CATALOG.md neodpovídá data/catalog.csv — spusť 'just docs'"; exit 1; }
+          git diff --exit-code docs/CATALOG.md docs/COVERAGE.md \
+            || { echo "::error::docs/ neodpovídá data/catalog.csv — spusť 'just docs'"; exit 1; }

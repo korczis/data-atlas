@@ -35,6 +35,11 @@ jobs:
 
       - run: npm ci
 
+      - name: Kurátorovaná data
+        run: |
+          python3 tools/validate_sources.py
+          python3 tools/build_catalog.py
+
       - name: Build
         run: python3 tools/build_page.py
 
