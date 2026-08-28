@@ -274,8 +274,13 @@ horní lišta, postranní panel, hlavní obsah, lepivá souhrnná lišta.
 - **Čipy aktivních filtrů** v záhlaví stránky. Filtr je jinak vidět jen v panelu,
   který se scrolluje zvlášť; každý čip maže **jen svůj** filtr. Druh filtru nesou
   jako řetězec, nikdy jako callback — viz past s `x-show="crumb.action"` výš.
-- **Hlavička tabulky je lepivá** pod horní lištou (`sticky top-16`), aby se
-  u tisícovky řádků dalo poznat, který sloupec je který.
+- **Úvodní rozcestník** se ukazuje jen v nultém stavu (`isLanding`): katalog,
+  žádné hledání, žádná země, téma ani filtr zdroje. Jakýkoli filtr ho schová,
+  aby sdílený odkaz vedl rovnou do dat. Hlídá to pět testů.
+- **Tabulka má tři sloupce, ne šest.** Zdroj, Návštěv a Poslední braly 370 px
+  a jsou prázdné u 998 z 1050 položek; při 768 px se kvůli nim tabulka
+  scrollovala do strany. Doložení z prohlížeče je odznak u popisu, a jen tam,
+  kde vůbec je.
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný
   scroll uvnitř řádku je horší než karta.
 - `≥ md` — tabulka s řaditelnými sloupci.

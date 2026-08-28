@@ -260,4 +260,27 @@ check('čip maže jen svůj filtr',
 s.reset(); await tick();
 check('bez filtru nejsou čipy', s.filterChips.length === 0);
 
+// ── úvodní rozcestník ──────────────────────────────────────────────────────
+// Hero smí být jen v nultém stavu. Kdo přijde přes sdílený odkaz, musí
+// přistát rovnou v datech — jinak by rozcestník překážel právě těm, kdo už
+// vědí, co hledají.
+s.reset(); await tick();
+check('hero se ukazuje na prázdném katalogu', s.isLanding);
+for (const [label, set] of [['hledání', () => { s.q = 'kataster'; }],
+                            ['zemi', () => { s.country = 'DE'; }],
+                            ['tématu', () => { s.topic = 'companies'; }],
+                            ['filtru zdroje', () => { s.source = 'data'; }]]) {
+  s.reset(); set(); await tick();
+  check(`hero mizí při ${label}`, !s.isLanding);
+}
+s.reset(); s.view = 'longlist'; await tick();
+check('hero mizí na long listu', !s.isLanding);
+s.reset(); await tick();
+check('rychlé vstupy nesou počty z dat',
+      s.topCountries.length > 0 && s.topTopics.length > 0
+      && s.topCountries[0].count >= s.topCountries[s.topCountries.length - 1].count,
+      `${s.topCountries.length} zemí, ${s.topTopics.length} témat`);
+check('největší země v rozcestníku sedí na katalog',
+      s.topCountries[0].count === Math.max(...[...s.placeCounts.values()]));
+
 check.report(errors);

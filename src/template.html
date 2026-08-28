@@ -299,6 +299,109 @@ try {
   <div id="main-content" class="min-h-screen pt-16 lg:ms-64">
     <main class="pb-28 lg:pb-16">
 
+      <!-- ══════════ ÚVODNÍ ROZCESTNÍK ══════════
+           Ukazuje se jen v nultém stavu; jakýkoli filtr ho schová, takže
+           sdílené odkazy vedou rovnou do dat. -->
+      <section x-show="isLanding" aria-labelledby="hero-title"
+               class="border-b border-gray-200 bg-white px-4 py-10 dark:border-gray-700 dark:bg-gray-800 sm:px-6 lg:py-14">
+        <div class="mx-auto max-w-4xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400">
+            Geodata · Registry · OSINT · Due diligence
+          </p>
+          <h2 id="hero-title" class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+            Veřejná data Evropské unie na jednom místě
+          </h2>
+          <p class="mt-4 max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg">
+            Katastr a geodata, otevřená data a statistika, obchodní rejstříky, skuteční
+            majitelé, insolvence, zakázky, soudy a regulace — pro všech dvacet sedm
+            členských států. U každého zdroje stojí, <span class="font-semibold text-gray-900 dark:text-white">jestli
+            se dovnitř dostaneš</span> a <span class="font-semibold text-gray-900 dark:text-white">co si odneseš</span>.
+          </p>
+
+          <dl class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
+              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Zdrojů</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="catalog.length"></dd>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
+              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Členských států</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
+                  x-text="places.filter(p => p.eu).length + ' z 27'"></dd>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
+              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Témat</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
+                  x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0)"></dd>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
+              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">S API nebo bulk</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
+                  x-text="catalog.filter(r => ['api','bulk','ogc'].includes(r.data)).length"></dd>
+            </div>
+          </dl>
+
+          <div class="mt-8">
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Začni zemí</h3>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <template x-for="c in topCountries" :key="c.code">
+                <button type="button" @click="country = c.code" :aria-label="'Filtrovat: ' + c.name"
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
+                  <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                        x-text="c.scope ? c.code : c.code"></span>
+                  <span x-text="c.name"></span>
+                  <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="c.count"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Nebo tématem</h3>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <template x-for="t in topTopics" :key="t.id">
+                <button type="button" @click="topic = t.id" :aria-label="'Filtrovat: ' + t.label"
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
+                  <span x-text="t.label"></span>
+                  <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="t.count"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <div class="mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Ověřený odkaz, ne odhad</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Každá adresa se ověřuje po síti a rozlišuje se přesměrování, anti-bot
+                ochrana a vadný certifikát od skutečně mrtvého odkazu. Katalog, jehož
+                odkazy nikdo neověřil, je pasivní lež.
+              </p>
+            </div>
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Veřejné vyhledávání ≠ otevřená data</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Rejstřík, kde si kdokoli najde firmu, ale nedá se stáhnout, je označený
+                jinak než ten, který vydává hromadná data. U registrů, kvůli kterým
+                katalog vzniká, ten rozdíl rozhoduje.
+              </p>
+            </div>
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Země a téma zvlášť</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Obchodní rejstřík je <em>companies</em> bez ohledu na to, jestli je český
+                nebo maltský. Celoevropské zdroje stojí jednou pod EU, ne sedmadvacetkrát.
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-8 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            Kde zdroj veřejně neexistuje nebo je za přihlášením, je to napsané —
+            místo aby se díra zaplácla slabou náhražkou. Otevřené i zavřené registry
+            jsou v katalogu s uvedením překážky; nic se neobchází.
+          </p>
+        </div>
+      </section>
+
       <!-- záhlaví stránky -->
       <div class="block items-center justify-between border-b border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex">
         <div class="w-full">
@@ -706,6 +809,28 @@ document.addEventListener('alpine:init', () => {
     get themeLabel() {
       return { light: 'Motiv: světlý', dark: 'Motiv: tmavý',
                system: 'Motiv: podle systému' }[this.theme];
+    },
+
+    /** Hero se ukazuje jen v „nultém" stavu katalogu. Kdo přijde přes sdílený
+     *  odkaz (#country=DE&topic=companies), přistane rovnou v datech — jinak
+     *  by rozcestník překážel právě těm, kdo už vědí, co hledají. */
+    get isLanding() {
+      return this.view === 'catalog' && !this.q && !this.country
+             && !this.topic && !this.source;
+    },
+    /** Rychlé vstupy: největší země a témata, na kterých je vidět, co katalog
+     *  umí. Počty se berou z dat, ne z hlavy. */
+    get topCountries() {
+      return [...this.placeCounts].map(([code, count]) => ({
+        code, count, name: this.placeLabel(code),
+      })).sort((a, b) => b.count - a.count).slice(0, 10);
+    },
+    get topTopics() {
+      const counts = this.topicCounts;
+      return ['companies', 'cadastre', 'procurement', 'insolvency', 'ownership',
+              'courts', 'gazette', 'regulators', 'opendata', 'transport']
+        .map(id => ({ id, label: this.topicLabel(id), count: counts.get(id) || 0 }))
+        .filter(t => t.count);
     },
 
     /** Čipy nesou druh filtru jako řetězec, ne callback — Alpine u výrazu,

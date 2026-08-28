@@ -128,6 +128,11 @@ počty v Rakousku, při vybraném tématu ukazují země počty v tom tématu.
 Filtr se propisuje do URL (`#country=DE&topic=companies`), takže výřez katalogu
 jde poslat dál; v URL stojí stabilní identifikátor tématu, ne popisek.
 
+Na prázdném katalogu se nahoře ukáže **úvodní rozcestník**: o co jde, počty
+odvozené z dat a rychlé vstupy po zemích a tématech. Jakýkoli filtr ho schová,
+takže sdílený odkaz jako `#country=DE&topic=companies` vede rovnou do dat —
+rozcestník by překážel právě těm, kdo už vědí, co hledají.
+
 Mobile-first. Pod `md` se katalog vykresluje jako karty, výš jako tabulka
 s řaditelnými sloupci. **Vykresluje se vždy jen ta větev, která je vidět** —
 držet v DOM obě stálo u tisícovky položek zhruba vteřinu navíc a dvojnásobek
