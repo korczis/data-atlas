@@ -24,7 +24,9 @@
      Backdrop si Flowbite vyrábí sám s natvrdo zadrátovaným `z-30` a připojuje
      ho na konec <body>. Kdyby měl panel taky z-30, prohraje pořadím v DOM:
      menu se otevře pod ztmavením a každé ťuknutí do něj spadne na backdrop,
-     který šuplík zavře — na mobilu to vypadá, že menu nefunguje. */
+     který šuplík zavře — na mobilu to vypadá, že menu nefunguje.
+     Třídy backdropu drží safelist v src/tailwind.config.js; bez něj je
+     backdrop nulový a tahle čísla se nemají o co přetahovat. */
   @media (max-width: 1023px) {
     #sidebar[aria-hidden="true"] { visibility: hidden; }
     #sidebar { transition: transform .3s ease-in-out, visibility 0s linear 0s; }
@@ -132,7 +134,7 @@ try {
 
   <!-- ══════════ POSTRANNÍ PANEL ══════════ -->
   <aside id="sidebar" aria-label="Filtry a kategorie"
-         class="fixed start-0 top-0 z-30 h-screen w-64 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white pt-16 transition-transform dark:border-gray-700 dark:bg-gray-800 lg:translate-x-0">
+         class="fixed start-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto border-e border-gray-200 bg-white pt-16 transition-transform dark:border-gray-700 dark:bg-gray-800 lg:translate-x-0">
     <div class="flex flex-col gap-6 px-3 py-5">
 
       <nav aria-label="Pohled">

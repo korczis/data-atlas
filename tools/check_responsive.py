@@ -145,6 +145,22 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
       (typeof hit.className === 'string' && hit.className
         ? '.' + hit.className.trim().split(/\s+/).slice(0, 2).join('.') : '')) : null;
     drawer.klikatelny = !!(hit && side.contains(hit));
+
+    // Backdrop si Flowbite vyrábí za běhu, takže Tailwind jeho třídy nevidí
+    // a ořízne je. Bez `inset-0` má nulový rozměr: šuplík se otevře bez
+    // ztmavení a ťuknutí vedle něj ho nezavře. V DOM přitom je, takže
+    // pouhá kontrola přítomnosti by prošla — měří se plocha a chování.
+    const bd = d.querySelector('[drawer-backdrop]');
+    drawer.backdrop = !!bd;
+    if (bd) {
+      const br = bd.getBoundingClientRect();
+      drawer.backdropPlocha = Math.round(br.width) + 'x' + Math.round(br.height);
+      drawer.backdropKryje = br.width >= w - 1 && br.height >= vh - 1;
+      const mimo = d.elementFromPoint(w - 4, Math.round(Math.min(300, vh / 2)));
+      drawer.backdropNahore = mimo === bd;
+      bd.click();
+      drawer.zavreSe = Math.round(side.getBoundingClientRect().left) < 0;
+    }
   }
 
   const out = document.createElement('div');
@@ -255,11 +271,21 @@ def main() -> int:
             elif not dr.get("klikatelny"):
                 problems.append("otevřený panel překrývá " + str(dr.get("naPixelu"))
                                 + " — ťuknutí do menu na něj nedosáhne")
+            elif not dr.get("backdrop"):
+                problems.append("šuplík nemá backdrop")
+            elif not dr.get("backdropKryje"):
+                problems.append(f"backdrop má rozměr {dr.get('backdropPlocha')} místo "
+                                "celé plochy — Tailwind ořízl třídy, které Flowbite "
+                                "přidává za běhu (safelist v tailwind.config.js)")
+            elif not dr.get("backdropNahore"):
+                problems.append("backdrop neleží nad obsahem vedle šuplíku")
+            elif not dr.get("zavreSe"):
+                problems.append("ťuknutí vedle šuplíku ho nezavře")
         failed |= bool(problems)
         print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
               f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
               f"položek={r['visibleRows']}  tabulka+{r['innerOverflow']}px"
-              + ("  šuplík ok" if (r.get("drawer") or {}).get("klikatelny") else ""))
+              + ("  šuplík ok" if not problems and (r.get("drawer") or {}).get("zavreSe") else ""))
         for problem in problems:
             print(f"        {problem}")
         if r["overflow"] > 0:

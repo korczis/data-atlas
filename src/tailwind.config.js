@@ -3,6 +3,23 @@
 module.exports = {
   content: ['./.cache/page.src.html'],
 
+  // Flowbite si tyhle třídy **přidává za běhu**, takže v markupu nejsou
+  // a Tailwind je ořízne. Bez nich se šuplík otevře bez ztmavení a ťuknutí
+  // vedle něj ho nezavře, protože backdrop bez `inset-0` má nulový rozměr
+  // a žádné ťuknutí na něj nedosáhne.
+  //
+  // Držel je naživu `#sidebarBackdrop` — kus opsaného shellu, který sám nic
+  // nedělal (`display: none`) a fungoval jako nechtěný safelist. Když jsem ho
+  // jako mrtvý kód smazal, backdrop přestal existovat. Tady je to napsané
+  // schválně, ať to příště nespadne na to, že někdo uklidí nepoužitý div.
+  //
+  // Seznam odpovídá `backdropClasses` a `_getPlacementClasses('left')`
+  // v balíčku flowbite — při jeho aktualizaci ho zkontroluj.
+  safelist: [
+    'fixed', 'inset-0', 'z-30', 'bg-gray-900/50', 'dark:bg-gray-900/80',
+    'transform-none', '-translate-x-full', 'overflow-hidden',
+  ],
+
   // Artefakt se vykresluje ve třech stavech motivu, ne dvou: explicitní volba
   // razí data-theme na :root, výchozí "system" nerazí nic a rozhoduje média.
   darkMode: ['variant', [
