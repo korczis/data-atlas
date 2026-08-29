@@ -1560,17 +1560,23 @@ document.addEventListener('alpine:init', () => {
     showCoverage() {
       this.reset();
       this.view = 'catalog';
-      // Čeká se, až je cíl opravdu vysázený. Samotný $nextTick nestačí:
-      // zrušení filtru teprve odkrývá rozcestník přes x-show, a scrollIntoView
-      // na prvku s nulovou výškou je tichý no-op — odkaz pak vypadá mrtvě.
-      const go = (tries = 0) => {
-        const el = document.getElementById('coverage');
-        if (el && el.getBoundingClientRect().height > 50)
-          el.scrollIntoView({ block: 'start', behavior: 'auto' });
-        else if (tries < 10)
-          requestAnimationFrame(() => go(tries + 1));
-      };
-      this.$nextTick(() => go());
+      // Skok se pověsí na *událost*, ne na čas. Zrušení filtru teprve
+      // odkrývá rozcestník přes x-show a scrollIntoView na prvku s nulovou
+      // výškou je tichý no-op — odkaz pak vypadá mrtvě. Čekání na snímky
+      // ani na termín to nespraví spolehlivě: obojí je hádání, jak dlouho
+      // rozvržení potrvá, a při měření to selhalo dvakrát z pěti.
+      //
+      // ResizeObserver vystřelí přesně ve chvíli, kdy cíl dostane rozměr.
+      // Pak se odpojí, takže neběží dál a nepřekáží ručnímu scrollování.
+      const el = document.getElementById('coverage');
+      if (!el) return;
+      const jump = () => el.scrollIntoView({ block: 'start', behavior: 'auto' });
+      if (el.getBoundingClientRect().height > 50) { this.$nextTick(jump); return; }
+      if (!window.ResizeObserver) { this.$nextTick(jump); return; }
+      const ro = new ResizeObserver(() => {
+        if (el.getBoundingClientRect().height > 50) { ro.disconnect(); jump(); }
+      });
+      ro.observe(el);
     },
 
     /** Rešerše se nevede po ose katalogu, vede se po otázce. Každá cesta je
