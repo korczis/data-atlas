@@ -490,5 +490,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Portugalská UIF je součástí kriminální policie",
     "country": "PT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pt-dgt-lidar",
+    "topic": "terrain",
+    "name": "DGT — LiDAR a modely reliéfu",
+    "native": "Levantamento LiDAR de Portugal Continental",
+    "url": "https://www.dgterritorio.gov.pt/levantamento-lidar-de-portugal-continental-0",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Letecké laserové skenování pevninského Portugalska a z něj odvozené digitální modely terénu, vedle starších pobřežních modelů v rozlišení 1 a 2 m z roku 2011. Stahuje se z datového centra DGT; pro QGIS existuje oficiální zásuvný modul CDD Downloader",
+    "country": "PT",
+    "verified": "2026-08-29"
   }
 ]

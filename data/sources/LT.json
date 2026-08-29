@@ -406,5 +406,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Litevská FNTT je zároveň vyšetřovacím orgánem pro hospodářskou kriminalitu. Na automat vrací 403, v prohlížeči funguje",
     "country": "LT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lt-ort10lt",
+    "topic": "terrain",
+    "name": "ORT10LT — ortofotografická mapa",
+    "native": "ORT10LT skaitmeninis ortofotografinis žemėlapis",
+    "url": "https://data.gov.lt/datasets/2564/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Národní ortofotomapa Litvy v měřítku 1:10 000 na portálu otevřených dat — čtyři kanály R G B NIR, velikost pixelu 0,25 m a deklarovaná polohová chyba do 0,5 m. Ke stažení po listech v TIFF a MrSID; podkladem jejího zpracování je model terénu z laserového skenování",
+    "country": "LT",
+    "verified": "2026-08-29"
   }
 ]

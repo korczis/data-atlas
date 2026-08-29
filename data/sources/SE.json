@@ -444,5 +444,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Švédská finanční policie publikuje výroční zprávy s typologiemi a statistikami hlášení",
     "country": "SE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "se-lantmateriet-fastighetsprisregistret",
+    "topic": "property",
+    "name": "Fastighetsprisregistret (Lantmäteriet)",
+    "native": "Fastighetsprisregistret",
+    "url": "https://www.lantmateriet.se/sv/fastighet-och-mark/information-om-fastigheter/Fastighetsprisregistret/",
+    "kind": "official",
+    "access": "paid",
+    "data": "bulk",
+    "desc": "Registr převodů nemovitostí od roku 1965 s kupní cenou, datem, kupujícím i prodávajícím a identifikací pozemku. Pokrývá celou zemi a je podkladem oficiální cenové statistiky SCB, ale veřejně se v něm nehledá — data se objednávají jako placený výdej",
+    "country": "SE",
+    "verified": "2026-08-29"
   }
 ]

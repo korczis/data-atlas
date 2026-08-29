@@ -490,5 +490,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Nizozemská FIU publikuje výroční zprávy a statistiky hlášení po typech povinných osob",
     "country": "NL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "nl-cbs-koopwoningen-prijsindex",
+    "topic": "property",
+    "name": "CBS — ceny existujících bytů a domů",
+    "native": "Bestaande koopwoningen; verkoopprijzen",
+    "url": "https://www.cbs.nl/nl-nl/cijfers/detail/85773NED",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "desc": "Cenový index a průměrné prodejní ceny existujícího bydlení od roku 1995, počty transakcí i celková hodnota prodejů. Staví se na úplné evidenci převodů z Kadastru, ne na inzerci; dataset 85773NED jde odebírat i strojově přes StatLine OData",
+    "country": "NL",
+    "verified": "2026-08-29"
   }
 ]

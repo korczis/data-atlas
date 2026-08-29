@@ -406,5 +406,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Irská FIU je součástí policejního útvaru pro hospodářskou kriminalitu",
     "country": "IE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ie-open-topographic-lidar",
+    "topic": "terrain",
+    "name": "Open Topographic LiDAR Data",
+    "native": "Open Topographic Lidar Data",
+    "url": "https://data.gov.ie/dataset/open-topographic-lidar-data",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Volně dostupná výšková data z leteckého skenování Irska, sesbíraná sedmi státními organizacemi a shromážděná Geologickou službou. Pokrytí je částečné, ne celostátní — to je u irského výškopisu podstatné omezení, se kterým je potřeba počítat dopředu",
+    "country": "IE",
+    "verified": "2026-08-29"
   }
 ]

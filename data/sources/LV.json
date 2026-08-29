@@ -430,5 +430,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Lotyšská FID smí sama nařídit zmrazení prostředků a publikuje podrobné statistiky hlášení a zmrazení",
     "country": "LV",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "lv-vzd-nitis-atvertie-dati",
+    "topic": "property",
+    "name": "VZD — otevřená data trhu nemovitostí",
+    "native": "Nekustamā īpašuma tirgus datu bāzes atvērtie dati",
+    "url": "https://www.vzd.gov.lv/lv/pakalpojumi/NITISad2",
+    "kind": "official",
+    "access": "open",
+    "data": "bulk",
+    "desc": "Databáze převodů nemovitostí Státní pozemkové služby jako otevřená data v CSV a XLSX, měsíčně aktualizovaná a sahající do roku 2012. Údaje přicházejí z pozemkových knih, takže nejde o inzerci, ale o skutečně zapsané kupní transakce",
+    "country": "LV",
+    "verified": "2026-08-29"
   }
 ]
