@@ -122,8 +122,11 @@ def main() -> int:
         raise SystemExit(f"missing {page.relative_to(ROOT)} - run `just build` first")
     chrome = find_chrome()
     if chrome is None:
-        print("Chrome not found - typography was not measured")
-        return 0
+        raise SystemExit(
+            "headless Chrome not found. This gate measures a real browser, so with no\n"
+            "browser there is nothing to measure - and a gate that reports success\n"
+            "having looked at nothing is worse than one that is missing, because\n"
+            "someone will rely on it. Install Google Chrome, or point CHROME_PATH at it.")
 
     problems = 0
     for width in WIDTHS:

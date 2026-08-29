@@ -113,9 +113,11 @@ def main() -> int:
     global CHROME
     CHROME = find_chrome()
     if CHROME is None:
-        print("headless Chrome not found, audit skipped "
-              "(nastav CHROME_PATH)", file=sys.stderr)
-        return 0
+        raise SystemExit(
+            "headless Chrome not found. This gate measures a real browser, so with no\n"
+            "browser there is nothing to measure - and a gate that reports success\n"
+            "having looked at nothing is worse than one that is missing, because\n"
+            "someone will rely on it. Install Google Chrome, or point CHROME_PATH at it.")
 
     order = ["minor", "moderate", "serious", "critical"]
     threshold = order.index(args.impact)
