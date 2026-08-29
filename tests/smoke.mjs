@@ -12,7 +12,7 @@ const check = checker();
 
 check('Alpine se načetl', !!state);
 const flat = d.body.textContent.replace(/\s+/g, ' ');  // pozor na &nbsp; ve značce
-check('značka v horní liště', flat.includes('Geodata Atlas'));
+check('značka v horní liště', flat.includes('Data Atlas'));
 check('nadpis stránky', d.querySelector('h1')?.textContent.trim() === 'Kurátorovaný katalog');
 // Katalog se vykresluje po dávkách — celý najednou by na mobilu znamenal
 // 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky.

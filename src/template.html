@@ -1,4 +1,4 @@
-<title>Geodata Atlas</title>
+<title>Data Atlas</title>
 <style>
   :root { color-scheme: light dark; }
   body { background:#f9fafb; color:#111827; margin:0; }
@@ -74,7 +74,7 @@ try {
           <rect x="204" y="204" width="104" height="104" rx="18" fill="#fff"/>
           <circle cx="256" cy="256" r="26" fill="#1d4ed8"/>
         </svg>
-        <span class="hidden whitespace-nowrap text-lg font-semibold text-gray-900 dark:text-white sm:inline">Geodata&nbsp;Atlas</span>
+        <span class="hidden whitespace-nowrap text-lg font-semibold text-gray-900 dark:text-white sm:inline">Data&nbsp;Atlas</span>
       </span>
 
       <!-- Hledání patří do lišty, ne do záhlaví stránky: je to nejpoužívanější
@@ -308,9 +308,9 @@ try {
            sdílené odkazy vedou rovnou do dat. -->
       <section x-show="isLanding" aria-labelledby="hero-title"
                class="border-b border-gray-200 bg-white px-4 py-10 dark:border-gray-700 dark:bg-gray-800 sm:px-6 lg:py-14">
-        <div class="mx-auto max-w-4xl">
+        <div class="mx-auto max-w-5xl">
           <p class="text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400">
-            Geodata · Registry · OSINT · Due diligence
+            Geodata · Registry · Transparence · Due diligence
           </p>
           <h2 id="hero-title" class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
             Veřejná data Evropské unie na jednom místě
@@ -344,29 +344,87 @@ try {
             </div>
           </dl>
 
-          <div class="mt-8">
-            <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Začni zemí</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <template x-for="c in topCountries" :key="c.code">
-                <button type="button" @click="country = c.code" :aria-label="'Filtrovat: ' + c.name"
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
-                  <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-                        x-text="c.scope ? c.code : c.code"></span>
-                  <span x-text="c.name"></span>
-                  <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="c.count"></span>
-                </button>
+          <!-- ══ MATICE POKRYTÍ ══
+               Jeden <canvas> místo tisícovky <button>ů: mřížka má tolik buněk,
+               kolik má vykreslený katalog řádků, a jako DOM by stála stejně.
+               Klávesnicová cesta k témuž filtru vede panelem a čipy níž. -->
+          <figure class="mt-10">
+            <figcaption class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Tvar katalogu</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                řádek = země · sloupec = téma · sytost = počet zdrojů
+              </p>
+            </figcaption>
+
+            <div class="relative mt-3 rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-900/40">
+              <canvas x-ref="matrix" x-init="drawMatrix($el)" role="img"
+                      :aria-label="matrixLabel"
+                      class="block w-full cursor-pointer"></canvas>
+              <div x-show="mcell" x-cloak
+                   :style="'inset-inline-start:' + mcell?.tx + 'px; top:' + mcell?.ty + 'px'"
+                   class="pointer-events-none absolute z-10 -translate-y-full rounded-lg bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm dark:bg-gray-700">
+                <span x-text="mcell?.label"></span>
+              </div>
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <template x-for="g in matrixLegend" :key="g.label">
+                <span class="inline-flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
+                  <span class="h-2.5 w-2.5 rounded-sm" :style="'background:' + g.swatch"></span>
+                  <span x-text="g.label"></span>
+                </span>
+              </template>
+              <span class="ms-auto text-xs text-gray-500 dark:text-gray-400">
+                <span x-text="matrixFull"></span> ze <span x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0)"></span>
+                témat je kompletních ve všech 27 státech
+              </span>
+            </div>
+            <p class="mt-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+              Poslední dva bloky svítí jen v řádcích <span class="font-mono">EU</span> a
+              <span class="font-mono">GLOBAL</span>: knihovny, formáty a výuka nejsou národní
+              agenda, takže tam prázdno není díra v pokrytí. Díra je světlé místo uvnitř
+              barevného pruhu — tam zdroj chybí a stát ho mít má.
+            </p>
+          </figure>
+
+          <!-- ══ CESTY PODLE OTÁZKY ══
+               Katalog je dvouosý, ale rešerše se nevede po ose — vede se po
+               otázce. Každá cesta je pořadí témat, ve kterém se na ni dá
+               odpovědět, a každý krok nastaví filtr. -->
+          <div class="mt-10">
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Podle otázky</h3>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              <template x-for="p in paths" :key="p.q">
+                <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+                  <p class="text-sm font-medium text-gray-900 dark:text-white" x-text="p.q"></p>
+                  <ol class="mt-3 flex flex-wrap items-center gap-1.5">
+                    <template x-for="(s, i) in p.steps" :key="s.id">
+                      <li class="flex items-center gap-1.5">
+                        <span x-show="i > 0" aria-hidden="true" class="text-gray-300 dark:text-gray-600">→</span>
+                        <button type="button" @click="topic = s.id; country = ''; scrollToCatalog()"
+                          :aria-label="'Filtrovat téma ' + s.label"
+                          class="inline-flex items-center gap-1.5 rounded-full border border-gray-300 px-2.5 py-1 text-xs font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
+                          <span x-text="s.label"></span>
+                          <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="s.count"></span>
+                        </button>
+                      </li>
+                    </template>
+                  </ol>
+                </div>
               </template>
             </div>
           </div>
 
-          <div class="mt-6">
-            <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Nebo tématem</h3>
+          <div class="mt-8">
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Nebo rovnou zemí</h3>
             <div class="mt-3 flex flex-wrap gap-2">
-              <template x-for="t in topTopics" :key="t.id">
-                <button type="button" @click="topic = t.id" :aria-label="'Filtrovat: ' + t.label"
+              <template x-for="c in topCountries" :key="c.code">
+                <button type="button" @click="country = c.code; scrollToCatalog()" :aria-label="'Filtrovat: ' + c.name"
                   class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
-                  <span x-text="t.label"></span>
-                  <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="t.count"></span>
+                  <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                        x-text="c.code"></span>
+                  <span x-text="c.name"></span>
+                  <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="c.count"></span>
                 </button>
               </template>
             </div>
@@ -725,6 +783,7 @@ window.__DATA__ = /*__JSON__*/;
 document.addEventListener('alpine:init', () => {
   Alpine.data('atlas', () => ({
     view: 'catalog', q: '', topic: '', country: '', source: '', cq: '',
+    mcell: null,          // buňka matice pod kurzorem
     toast: '', _syncing: false,
     // 'system' nerazí na :root nic a nechá rozhodnout media query; ostatní
     // dvě hodnoty razí data-theme. Skutečná hodnota se čte z DOM, aby stav
@@ -832,6 +891,225 @@ document.addEventListener('alpine:init', () => {
       new IntersectionObserver(entries => {
         if (entries.some(e => e.isIntersecting) && this.hasMore) this.loadMore();
       }, { rootMargin: '600px' }).observe(el);
+    },
+
+    /** ══ MATICE POKRYTÍ ══
+     *
+     *  Mřížka má tolik buněk, kolik má katalog položek, takže jako DOM by
+     *  stála přesně to, co dávkování vykreslování ušetřilo: přes tisíc uzlů.
+     *  Kreslí se proto do jednoho <canvas>u — ostrého při libovolném DPR
+     *  a překresleného v jednotkách milisekund.
+     *
+     *  Cena je klávesnice: do canvasu se tabovat nedá. Proto se nepředstírá
+     *  `role="grid"` — nedodržený ARIA kontrakt je horší než žádný — a nese
+     *  `role="img"` se souhrnem. K témuž filtru vede panel, čipy „Nebo rovnou
+     *  zemí" a cesty podle otázky, všechno běžnými tlačítky.
+     *
+     *  Odstín nese rodinu tématu, sytost počet zdrojů. Díra je pak vidět jako
+     *  díra a silná stránka země jako souvislý pruh barvy. */
+    GROUP_HUE: [162, 217, 268, 22, 190, 322],
+
+    get matrixRows() {
+      return [...this.places.filter(p => p.eu), ...this.places.filter(p => p.scope)];
+    },
+    get matrixCols() {
+      const out = [];
+      this.taxonomy.forEach((g, gi) => g.topics.forEach(tp =>
+        out.push({ id: tp.id, label: tp.label, group: gi })));
+      return out;
+    },
+    /** Počty pro celou matici jedním průchodem katalogu, ne 31×34 filtry. */
+    get matrixCounts() {
+      const m = new Map();
+      for (const r of this.catalog) {
+        const k = r.code + ' ' + r.topic;
+        m.set(k, (m.get(k) || 0) + 1);
+      }
+      return m;
+    },
+    get matrixMax() {
+      let n = 0;
+      for (const v of this.matrixCounts.values()) if (v > n) n = v;
+      return n || 1;
+    },
+    /** Kolik témat má zdroj ve všech 27 členských státech. Číslo se počítá
+     *  z dat, ne z hlavy — natvrdo napsané v textu by zastaralo hned. */
+    get matrixFull() {
+      const eu = this.places.filter(p => p.eu).map(p => p.code);
+      const c = this.matrixCounts;
+      return this.matrixCols.filter(col =>
+        eu.every(code => c.get(code + ' ' + col.id))).length;
+    },
+    get matrixLabel() {
+      return 'Matice pokrytí: ' + this.matrixRows.length + ' zemí a rozsahů krát '
+           + this.matrixCols.length + ' témat, ' + this.catalog.length + ' zdrojů celkem. '
+           + this.matrixFull + ' témat má zdroj ve všech 27 členských státech.';
+    },
+    get matrixLegend() {
+      return this.taxonomy.map((g, i) => ({
+        label: g.label, swatch: 'hsl(' + this.GROUP_HUE[i] + ' 62% 48%)',
+      }));
+    },
+
+    drawMatrix(el) {
+      let ctx = null;
+      try { ctx = el.getContext('2d'); } catch (e) { ctx = null; }
+      if (!ctx) return;                 // jsdom canvas neumí; stránka jede dál
+
+      // Gutter musí unést nejdelší kód v číselníku (GLOBAL), jinak popisek
+      // podteče pod první sloupec matice.
+      const GAP = 3, GUTTER = 40, BAND = 5;
+      let geom = null;
+
+      // Buňka na telefonu vyjde na osm pixelů a desetibodový popisek řádku
+      // se do ní nevejde — kódy se slily do šedé kaše. Pod hranicí čitelnosti
+      // se proto popisky nekreslí vůbec a gutter připadne buňkám: matice je
+      // pak tvar, a identitu řádku řekne ťuknutí. Nečitelný popisek není
+      // informace navíc, jen šum přes data.
+      const fits = (gutter) => Math.min(16, Math.max(5, Math.min(24,
+        Math.floor((cssW0() - gutter - (this.taxonomy.length - 1) * GAP)
+                   / this.matrixCols.length))));
+      const cssW0 = () => el.clientWidth || 600;
+
+      const paint = (progress) => {
+        const cssW = cssW0();
+        const cols = this.matrixCols, rows = this.matrixRows;
+        const groups = this.taxonomy.length;
+        const labels = fits(GUTTER) >= 11;
+        const LABEL = labels ? GUTTER : 0;
+        const cw = Math.max(5, Math.min(24,
+          Math.floor((cssW - LABEL - (groups - 1) * GAP) / cols.length)));
+        const ch = Math.min(cw, 16);
+        const cssH = BAND + 4 + rows.length * ch;
+        const dpr = window.devicePixelRatio || 1;
+        el.width = Math.round(cssW * dpr);
+        el.height = Math.round(cssH * dpr);
+        el.style.height = cssH + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, cssW, cssH);
+
+        const root = document.documentElement;
+        const dark = root.getAttribute('data-theme') === 'dark'
+          || (!root.hasAttribute('data-theme') && window.matchMedia
+              && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const counts = this.matrixCounts, max = this.matrixMax;
+        const xs = [];
+        let x = LABEL, lastGroup = 0;
+        for (const col of cols) {
+          if (col.group !== lastGroup) { x += GAP; lastGroup = col.group; }
+          xs.push(x); x += cw;
+        }
+        geom = { cw, ch, xs, top: BAND + 4, rows, cols };
+
+        cols.forEach((col, j) => {
+          ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' 62% 48%)';
+          ctx.fillRect(xs[j], 0, cw - 1, BAND);
+        });
+
+        ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
+        ctx.textBaseline = 'middle';
+        rows.forEach((row, i) => {
+          const y = geom.top + i * ch;
+          const near = progress >= 1 ? 1
+            : Math.max(0, Math.min(1, progress * 2 - i / rows.length));
+          if (near <= 0) return;
+          ctx.globalAlpha = near;
+          if (labels) {
+            ctx.fillStyle = dark ? '#9ca3af' : '#6b7280';
+            ctx.textAlign = 'end';
+            ctx.fillText(row.code, LABEL - 6, y + ch / 2);
+            ctx.textAlign = 'start';
+          }
+          cols.forEach((col, j) => {
+            const n = counts.get(row.code + ' ' + col.id) || 0;
+            if (n === 0) {
+              ctx.fillStyle = dark ? 'rgba(255,255,255,.05)' : 'rgba(17,24,39,.05)';
+            } else {
+              const s = Math.min(1, Math.log(1 + n) / Math.log(1 + max));
+              const l = dark ? 26 + s * 34 : 82 - s * 40;
+              ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' '
+                + (40 + s * 30) + '% ' + l + '%)';
+            }
+            ctx.fillRect(xs[j], y, cw - 1, ch - 1);
+          });
+        });
+        ctx.globalAlpha = 1;
+
+        if (this.mcell && this.mcell.i >= 0) {
+          ctx.strokeStyle = dark ? 'rgba(255,255,255,.75)' : 'rgba(17,24,39,.75)';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(xs[this.mcell.j] - 0.5, geom.top + this.mcell.i * ch - 0.5, cw, ch);
+        }
+      };
+
+      const reduced = window.matchMedia
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        paint(1);
+      } else {
+        const t0 = performance.now();
+        const step = () => {
+          const p = Math.min(1, (performance.now() - t0) / 700);
+          paint(p);
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+
+      const hit = (ev) => {
+        if (!geom) return null;
+        const r = el.getBoundingClientRect();
+        const px = ev.clientX - r.left, py = ev.clientY - r.top;
+        const i = Math.floor((py - geom.top) / geom.ch);
+        if (i < 0 || i >= geom.rows.length) return null;
+        let j = -1;
+        for (let k = 0; k < geom.xs.length; k++)
+          if (px >= geom.xs[k] && px < geom.xs[k] + geom.cw) { j = k; break; }
+        if (j < 0) return null;
+        const row = geom.rows[i], col = geom.cols[j];
+        const n = this.matrixCounts.get(row.code + ' ' + col.id) || 0;
+        return { i: i, j: j, code: row.code, topic: col.id, n: n,
+                 tx: geom.xs[j] + geom.cw / 2, ty: geom.top + i * geom.ch - 4,
+                 label: row.name + ' · ' + col.label + ' — '
+                        + (n === 0 ? 'nic' : n + this.plural(n)) };
+      };
+
+      el.addEventListener('pointermove', ev => { this.mcell = hit(ev); paint(1); });
+      el.addEventListener('pointerleave', () => { this.mcell = null; paint(1); });
+      el.addEventListener('click', ev => {
+        const c = hit(ev);
+        if (!c || !c.n) return;
+        this.country = c.code; this.topic = c.topic; this.scrollToCatalog();
+      });
+      if (window.ResizeObserver) new ResizeObserver(() => paint(1)).observe(el);
+      if (window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mq.addEventListener) mq.addEventListener('change', () => paint(1));
+      }
+      this.$watch('theme', () => paint(1));
+    },
+
+    /** Rozcestník mizí, jakmile padne filtr, takže po kliknutí je uživatel
+     *  rovnou u výsledků — bez skoku by koukal na místo, kde hero byl. */
+    scrollToCatalog() {
+      const el = document.getElementById('main-content');
+      if (el && el.scrollTo) el.scrollTo({ top: 0, behavior: 'auto' });
+    },
+
+    /** Rešerše se nevede po ose katalogu, vede se po otázce. Každá cesta je
+     *  pořadí témat, ve kterém na ni jde odpovědět. */
+    get paths() {
+      const counts = new Map();
+      for (const r of this.catalog) counts.set(r.topic, (counts.get(r.topic) || 0) + 1);
+      const mk = (q, ids) => ({ q: q, steps: ids
+        .filter(id => counts.has(id))
+        .map(id => ({ id: id, label: this.topicLabel(id), count: counts.get(id) })) });
+      return [
+        mk('Kdo tu firmu vlastní?', ['companies', 'ownership', 'filings', 'gazette']),
+        mk('Je v problémech?', ['insolvency', 'courts', 'regulators', 'sanctions']),
+        mk('Čí je ten pozemek?', ['cadastre', 'property', 'addresses', 'environment']),
+        mk('Kolik bere z veřejných peněz?', ['procurement', 'spending', 'statistics', 'opendata']),
+      ];
     },
 
     /** Světlý → tmavý → podle systému. Tři stavy, protože „podle systému"

@@ -1,4 +1,4 @@
-# Geodata Atlas — katalog geodat, otevřených dat, registrů a OSINT/DD zdrojů EU
+# Data Atlas — katalog geodat, otevřených dat, registrů a OSINT/DD zdrojů EU
 #
 # `just` vypíše všechny recepty, `just help` shrne workflow.
 
@@ -10,7 +10,7 @@ _default:
 # Shrnutí hlavních workflow
 [group('info')]
 help:
-    @echo "Geodata Atlas"
+    @echo "Data Atlas"
     @echo
     @echo "  just install      instalace npm závislostí"
     @echo "  just catalog      složí data/catalog.csv z data/sources/*.json"

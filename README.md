@@ -1,10 +1,16 @@
-# Geodata Atlas
+# Data Atlas
 
 Katalog geodat, otevřených dat, veřejných registrů a OSINT/DD zdrojů Evropské unie —
 katastr, doprava, statistika, obchodní rejstříky, skuteční majitelé, insolvence, zakázky,
 soudy, regulace a rizika. Prohledávatelný, filtrovatelný, na jedné stránce.
 
 **→ [korczis.github.io/geodata-atlas](https://korczis.github.io/geodata-atlas/)**
+
+Projekt se jmenoval Geodata Atlas, dokud šlo o geodata. Dnes je většina katalogu
+jinde — registry, insolvence, dohled, transparence — a název tomu odpovídá.
+Adresa, repozitář i klíč v `localStorage` zůstávají na starém slugu záměrně:
+přejmenovat je znamená rozbít každý sdílený odkaz a zapomenout každému
+uživateli volbu motivu.
 
 Jádro katalogu vzniklo z vlastních Chrome záložek a historie: co jsem za roky práce
 s geodaty reálně používal. Zbytek je rešerše — všech 27 členských států, zdroj po zdroji,

@@ -320,6 +320,46 @@ Dvě věci, na kterých to stojí:
 Souhrnná lišta říká pravdu o obojím: dokud je co načítat, hlásí
 „Vykresleno 60 z 1050 odpovídajících", potom „Zobrazeno 1050 z 1050".
 
+### Matice pokrytí je `<canvas>`, ne mřížka tlačítek
+
+Rozcestník ukazuje celý katalog naráz: řádek země, sloupec téma, sytost počet
+zdrojů. Buněk je tolik, kolik má katalog položek — jako DOM by stály přesně to,
+co dávkování vykreslování ušetřilo, tedy přes tisíc uzlů na místě, kde uživatel
+zatím nic nefiltruje. Kreslí se proto do jednoho `<canvas>`u.
+
+Cena je klávesnice: do canvasu se tabovat nedá. Proto **nenese `role="grid"`** —
+ta role slibuje obsluhu šipkami, kterou neimplementujeme, a nedodržený ARIA
+kontrakt je horší než žádný. Nese `role="img"` s `aria-label`, který shrnuje
+rozměr matice a kolik témat je kompletních. K témuž filtru vedou tři cesty
+běžnými tlačítky: panel, čipy „Nebo rovnou zemí" a cesty podle otázky.
+
+Dvě věci, na které se přišlo až pohledem na obrázek:
+
+- **Popisek řádku se pod jedenáct pixelů výšky buňky nekreslí.** Na telefonu
+  vyjde buňka na osm pixelů a desetibodové kódy se slily do šedé kaše přes data.
+  Nečitelný popisek není informace navíc, jen šum — gutter tam připadne buňkám.
+- **Gutter musí unést nejdelší kód v číselníku.** `GLOBAL` na šest znaků
+  podtekl pod první sloupec, protože byl gutter dimenzovaný na dvoupísmenné
+  kódy zemí.
+
+Odstín nese rodinu tématu, ne jednotlivé téma — šest rodin je tolik odstínů,
+kolik jde od sebe rozeznat. Díky tomu je díra vidět jako světlé místo **uvnitř**
+barevného pruhu, kdežto prázdné bloky vpravo (nástroje, učení) dírou nejsou:
+ta témata nejsou národní agenda a svítí jen v řádcích `EU` a `GLOBAL`. Text pod
+maticí to říká, protože samotný obrázek to rozlišit neumí.
+
+### Rozcestník má i osu, kterou katalog nemá
+
+Katalog je dvouosý — téma a země. Rešerše se ale po ose nevede, vede se po
+otázce: *kdo tu firmu vlastní*, *je v problémech*, *čí je ten pozemek*,
+*kolik bere z veřejných peněz*. Každá cesta je pořadí témat, ve kterém na ni
+jde odpovědět, a každý krok nastaví filtr. Je to jediné místo, kde má stránka
+názor na to, v jakém pořadí se zdroje používají; do dat ten názor nepatří,
+protože pro každou otázku je jiný.
+
+Počty u kroků se počítají z katalogu, ne z hlavy. Krok, jehož téma v datech
+není, ze seznamu vypadne — cesta tak nikdy nenabídne prázdno.
+
 ### Vykresluje se jen ta větev, která je vidět
 
 Karty a tabulka čtou týž `rows` getter, ale v DOM je vždycky jen jedna z nich:

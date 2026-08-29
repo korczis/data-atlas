@@ -38,6 +38,10 @@ export async function loadPage() {
                  addEventListener() {}, removeEventListener() {},
                  addListener() {}, removeListener() {} };
       };
+      // jsdom canvas neumí a `getContext` v něm vyhazuje. Prohlížeč bez
+      // podpory vrací null, a přesně to stránka očekává — stub tedy vrací
+      // null místo výjimky, aby log testů nesl jen skutečné chyby.
+      w.HTMLCanvasElement.prototype.getContext = () => null;
       Object.defineProperty(w.navigator, 'clipboard', {
         value: { writeText: t => { w.__clip = t; return Promise.resolve(); } },
       });

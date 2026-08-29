@@ -21,7 +21,7 @@ PKG = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
 BASE = PKG["homepage"].rstrip("/") + "/"
 AUTHOR = PKG["author"]
 
-TITLE = "Geodata Atlas"
+TITLE = "Data Atlas"
 
 # Počty se nikdy nepíšou ručně — zestárnou při první změně katalogu.
 def describe(items: int, topics: int, countries: int) -> str:
@@ -32,7 +32,7 @@ def describe(items: int, topics: int, countries: int) -> str:
 
 
 def og_alt(items: int, topics: int, countries: int) -> str:
-    return (f"Geodata Atlas — katalog veřejných datových zdrojů, {items} položek "
+    return (f"Data Atlas — katalog veřejných datových zdrojů, {items} položek "
             f"v {topics} tématech a {countries} zemích")
 
 

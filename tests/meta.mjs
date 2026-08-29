@@ -17,7 +17,7 @@ const has = re => re.test(head);
 check('lang na <html>', /<html lang="cs">/.test(html));
 check('charset je první', head.indexOf('<meta charset="utf-8">') < 60);
 check('viewport', has(/name="viewport"[^>]*width=device-width/));
-check('title', /<title>Geodata Atlas<\/title>/.test(head));
+check('title', /<title>Data Atlas<\/title>/.test(head));
 check('description', has(/name="description" content="[^"]{80,}"/));
 check('canonical', has(/rel="canonical" href="https:\/\/korczis\.github\.io\/geodata-atlas\/"/));
 check('robots', has(/name="robots"[^>]*max-image-preview:large/));

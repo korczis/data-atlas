@@ -289,6 +289,35 @@ check('bez filtru nejsou čipy', s.filterChips.length === 0);
 // vědí, co hledají.
 s.reset(); await tick();
 check('hero se ukazuje na prázdném katalogu', s.isLanding);
+
+// Rozcestník: matice a cesty podle otázky. Canvas se v jsdomu nevykreslí,
+// takže se testuje to, co se vykreslit dá — čísla, ze kterých kreslí.
+check('matice má řádek pro každý stát a rozsah',
+      s.matrixRows.length === s.places.filter(p => p.eu || p.scope).length,
+      `${s.matrixRows.length} řádků`);
+check('matice má sloupec pro každé téma',
+      s.matrixCols.length === s.taxonomy.reduce((a, g) => a + g.topics.length, 0),
+      `${s.matrixCols.length} sloupců`);
+check('součet buněk matice je celý katalog',
+      [...s.matrixCounts.values()].reduce((a, b) => a + b, 0) === s.catalog.length);
+check('každá rodina témat má vlastní odstín',
+      new Set(s.matrixLegend.map(g => g.swatch)).size === s.taxonomy.length);
+check('popis matice pro odečítač nese rozměr i souhrn',
+      /\d+ zemí a rozsahů krát \d+ témat/.test(s.matrixLabel) &&
+      s.matrixLabel.includes(String(s.matrixFull)));
+// Číslo v textu pod maticí musí sedět na data, ne na to, co bylo pravda
+// v den, kdy se věta psala.
+{
+  const eu = s.places.filter(p => p.eu).map(p => p.code);
+  const full = s.matrixCols.filter(c => eu.every(k => s.matrixCounts.get(k + ' ' + c.id))).length;
+  check('počet kompletních témat se počítá z dat', s.matrixFull === full, `${full}`);
+}
+check('cesty podle otázky nenabízejí prázdný krok',
+      s.paths.every(p => p.steps.length > 0 && p.steps.every(st => st.count > 0)));
+check('krok cesty nastaví existující téma',
+      s.paths.every(p => p.steps.every(st =>
+        s.catalog.some(r => r.topic === st.id))));
+
 for (const [label, set] of [['hledání', () => { s.q = 'kataster'; }],
                             ['zemi', () => { s.country = 'DE'; }],
                             ['tématu', () => { s.topic = 'companies'; }],
