@@ -1089,3 +1089,52 @@ Stav povinných rodin napříč členskými státy:
 | **26/27** | účetní závěrky (chybí CY — dokumenty u DRCOR jsou zpoplatněné a bez samostatné služby) |
 | **24/27** | geoportál (GR, MT, RO) · kyberbezpečnost (CY, GR, MT) — weby neodpovídají nebo neexistují |
 | **23/27** | insolvence (GR, IT, MT, RO) — samostatný rejstřík neexistuje |
+
+---
+
+## Stránky zemí
+
+Dvouosý model vyřešil postranní panel, ale ne adresovatelnost. Filtr hlavní
+stránky žije v hashi (`#country=AT`), a hash je pro vyhledávače neviditelný:
+odkaz „Rakousko" nemá vlastní titulek, vlastní popis ani vlastní záznam
+v sitemapě. Katalog o sedmadvaceti státech, který je navenek jedna adresa,
+se nedá najít po zemích — a přitom „veřejné datové zdroje Rakouska" je přesně
+ten dotaz, kterým k němu člověk přijde.
+
+Proto má každá země, která něco nese, vlastní stránku:
+
+```
+data/catalog.csv  ─┐
+data/topics.json   ├─→ tools/build_places.py ─→ dist/<kód>/  (stránka země)
+data/countries.json┘                            dist/zeme/   (rozcestník)
+                                                dist/assets/ (sdílený runtime)
+                                                sitemap.xml  (přepsaná)
+```
+
+Vzniká to **ze stejných dat jako všechno ostatní** — titulek, popis, JSON-LD,
+počty i seznam témat se odvozují z CSV a číselníků. Kdo přidá zemi nebo zdroj,
+nemusí na stránky zemí sáhnout: příští `just build` je přegeneruje.
+
+Jediné, co se pro zemi píše ručně, je **skloňování** (`CASES` v
+`build_places.py`). Číselník nese jen nominativ, a „Co Rakousko pokrývá" vedle
+„Otevřít Rakousko v katalogu" je rozdíl, který čtenář uslyší. Nová země bez
+záznamu v `CASES` dostane nominativ v obou pádech — vypadá to neobratně, ale
+nic to nerozbije.
+
+### Co na tom bylo netriviální
+
+| Věc | Jak to dopadlo |
+|---|---|
+| **Sitemapa** | Píše ji až `build_places.py`, protože až tam je známý seznam stránek. `build_page.py` ji zakládá s jedinou adresou. |
+| **Runtime** | Sdílený soubor v `dist/assets/`, ne inline — jednatřicet kopií by bylo ~4 MB duplikátu. Hlavní stránka i `artifact.html` zůstávají soběstačné. |
+| **Sdílené CSS** | Základ se musel přestěhovat z inline `<style>` do `src/input.css`, jinak stránky zemí neměly `x-cloak` ani pozadí v tmavém motivu. |
+| **Tailwind** | Stránky zemí se generují až po buildu CSS, takže se `src/country.html` a `src/js/place.js` skenují přímo. Jinak by z nich Tailwind ořízl každou třídu, kterou hlavní stránka nemá. |
+| **Audit a11y** | Sonda se zapisuje vedle originálu; z temp adresáře se relativní runtime nenačte, Alpine nenaběhne a axe hlásí falešné nálezy. |
+| **Brány** | `lint_ui`, `check_responsive --page place`, `check_a11y --page place` a `tests/places.mjs` — druhá šablona má procházet stejnými branami jako první, jinak by o polovině webu žádná nevěděla. |
+
+### Co stránka země neukazuje
+
+Odznak „blokuje automat" (`check: "anti-bot"`) tam **není**, přestože to pole
+ve zdrojích existuje a čte ho `tools/check_links.py`. Do `data/catalog.csv` se
+nepropisuje, takže by to byla větev, která se nikdy nevykreslí. Až tam sloupec
+bude, přibude odznak na obou stránkách naráz.

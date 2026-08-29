@@ -1,7 +1,8 @@
 # Pokyny pro AI agenty
 
-Než sáhneš na `src/template.html`, přečti si **[`docs/UI-RULES.md`](docs/UI-RULES.md)**.
-Je to závazná část, ne doporučení: vynucuje ji `tools/lint_ui.py` a CI.
+Než sáhneš na `src/template.html` nebo `src/country.html`, přečti si
+**[`docs/UI-RULES.md`](docs/UI-RULES.md)**. Je to závazná část, ne doporučení:
+vynucuje ji `tools/lint_ui.py` a CI, a to nad oběma šablonami.
 
 Než přidáš zemi nebo zdroj do katalogu, přečti si
 **[`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md)** — je tam schéma,
@@ -24,10 +25,12 @@ protože ta selhává tiše.
 | `data/topics.json`, `data/countries.json` | Číselníky témat a zemí; pořadí klíčů je pořadí v UI. |
 | `data/provenance.csv` | Doložení z prohlížeče, klíčované `id`. Generuje `tools/build_provenance.py`. |
 | `data/catalog.csv`, `data/longlist.csv` | **Generované.** Stránka a dokumentace se staví z nich. |
-| `src/template.html` | Markup + Alpine komponenta. Platí pro něj `docs/UI-RULES.md`. |
+| `src/template.html` | Markup + Alpine komponenta hlavní stránky. Platí pro něj `docs/UI-RULES.md`. |
+| `src/country.html`, `src/js/place.js` | Druhá šablona: stránka jedné země. Platí pro ni **týž** `docs/UI-RULES.md`. |
+| `src/input.css` | Základ sdílený oběma šablonami — pozadí, `x-cloak`, fokus, redukovaný pohyb. |
 | `src/assets/` | Zdroje ikon a OG karty (`just assets` je přerenderuje) |
 | `tools/` | Datový řetěz a build |
-| `tests/` | `smoke` · `interact` · `meta` · `flowbite` |
+| `tests/` | `smoke` · `interact` · `meta` · `flowbite` · `places` |
 | `static/` | Vygenerované ikony a OG karta (committnuté) |
 | `.cache/`, `dist/` | Gitignorované. **Nikdy necommituj.** |
 
@@ -47,6 +50,11 @@ protože ta selhává tiše.
   do `config/private-hosts.txt`, který je mimo repozitář.
 - **Flowbite `data-*` nepatří do `x-for`.** Důvod je v `docs/UI-RULES.md`;
   selhává to tiše, bez chyby v konzoli.
+- **Stránka není jen `index.html`.** Vedle ní stojí `dist/<kód>/` pro každou
+  zemi a rozcestník `dist/zeme/`, které staví `tools/build_places.py` ze stejných
+  dat. Sitemapu píše až on — `build_page.py` ji zakládá s jedinou adresou.
+  Kdo přidá zemi, nemusí dělat nic navíc; kdo sáhne na runtime, musí myslet
+  na to, že ho stránky zemí načítají jako sdílený soubor z `dist/assets/`.
 - **URL v katalogu ověřuj, nevymýšlej.** `just links --changed` projde jen to,
   co jsi přidal; `just links` projde všechno.
 - **Veřejné vyhledávání není otevřená data.** Klasifikace `access` a `data` má

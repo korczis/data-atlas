@@ -1,7 +1,19 @@
 # Pravidla pro UI
 
-Konvence pro `src/template.html`. Vynucuje je `tools/lint_ui.py` (`just lint`),
+Konvence pro šablony v `src/`. Vynucuje je `tools/lint_ui.py` (`just lint`),
 takže co je tady napsané, to CI kontroluje — pravidlo bez vynucení nikoho nezastaví.
+
+Šablony jsou **dvě** a platí pro obě totéž:
+
+| Šablona | Co staví | Kde má JS |
+|---|---|---|
+| `src/template.html` | `dist/index.html` — katalog jako jedna aplikace | uvnitř, v `<script>` |
+| `src/country.html` | `dist/<kód>/` — stránka jedné země | `src/js/place.js`, build ho připojí |
+
+Linter to ví: `TEMPLATES` v `lint_ui.py` u každé šablony nese i soubory s JS,
+protože jinak by pravidla `alpine/data` a `flowbite/init` hlásila chybu na kódu,
+který existuje — jen leží vedle. Nová šablona patří do toho seznamu, jinak na ni
+žádné pravidlo nedosáhne.
 
 Zdroje: [Flowbite `llms.txt`](https://raw.githubusercontent.com/themesberg/flowbite/refs/heads/main/llms.txt),
 [Flowbite JavaScript](https://flowbite.com/docs/getting-started/javascript/),
@@ -250,7 +262,7 @@ Z toho plyne zbytek:
 | Pravidlo | Proč |
 |---|---|
 | `responsive/mobile-first` — žádné `max-*:` varianty | Breakpointy se skládají odspodu nahoru |
-| `responsive/min-width` — `min-w-[…]` jen uvnitř `overflow-x-auto` | Jinak roztáhne celou stránku do strany |
+| `responsive/min-width` — `min-w-[…]` jen pod předkem s `overflow-x-auto` nebo `flex-wrap` | Pevnou šířku musí mít co pohltit: buď se odscrolluje, nebo prvek spadne na další řádek. Jinak tlačí do šířky dokumentu. Ptá se na **předky**, ne na okno v textu — sourozenec s `overflow-x-auto` nic neřeší |
 | `html/structure` — blokové značky se musí zavírat, a ve správném pořadí | Prohlížeč nevyvážený markup tiše dorovná; jednou chybějící `</aside>` zanořilo celý obsah do panelu |
 
 ### Prázdná stránka se nepozná měřením přetečení
@@ -450,3 +462,41 @@ stejný počet položek — jinak by se dala jedna tiše rozbít a druhá by to 
 Stub `matchMedia` v `tests/helpers.mjs` vyhodnocuje `min-width` proti šířce
 1024 px; konstantní `matches: false` by znamenalo „nejužší telefon" a testy
 by tabulku nikdy neviděly.
+
+## Stránka země
+
+`src/country.html` je druhá šablona, ne kopie první. Liší se ve třech věcech,
+a všechny tři jsou vědomé:
+
+**Runtime je sdílený soubor, ne inline.** Hlavní stránka zůstává soběstačná
+(`dist/index.html` nestahuje nic zvenčí a `dist/artifact.html` je jeden soubor).
+Stránek zemí je ale jednatřicet a stotřicetikilobajtový runtime v každé z nich
+by byly čtyři megabajty duplikátu, takže načítají `../assets/atlas.css`
+a `../assets/atlas.js`.
+
+Z toho plyne past, na kterou doplatil audit přístupnosti: **sonda se musí
+zapisovat vedle originálu**, ne do temp adresáře. Odjinud se relativní cesta
+k runtime nenajde, Alpine nenaběhne a axe nahlásí prázdná tlačítka — nález,
+který vypadá jako vada stránky, ale je to vada měření. Na soběstačné hlavní
+stránce ten rozdíl nikdy nebyl vidět.
+
+Druhý důsledek je Tailwind: stránky zemí se generují **až po** buildu CSS,
+takže se jejich zdroje musí skenovat přímo (`content` v `src/tailwind.config.js`
+nese i `src/country.html` a `src/js/place.js`). Bez toho by se oříznula každá
+třída, kterou hlavní stránka nepoužívá — stránkování, dropdowny filtrů, mřížka
+témat — a stránka by vypadala rozsypaně, aniž by cokoli spadlo.
+
+**Nedávkuje se, stránkuje se.** Dávkování na hlavní stránce řeší tisícovku
+položek. Největší země má stovku, takže stránkování po padesáti je levnější
+i srozumitelnější — a hlavně adresovatelné, protože stav stojí v URL.
+
+**Obě větve seznamu jsou v DOM zároveň.** Na hlavní stránce se `x-if`
+řízeným `matchMedia` vykresluje jen ta viditelná, protože měření ukázalo
+vteřinu rozdílu. Při padesáti řádcích na stránku je ten rozdíl pod
+rozlišovací schopností, takže složitost navíc by se nezaplatila.
+
+Sdílený základ (pozadí, `[x-cloak]`, fokusový prstenec, redukovaný pohyb)
+proto **nesmí zůstat v inline `<style>` hlavní šablony** — je v `src/input.css`.
+Dokud tam nebyl, stránky zemí ho neměly: `x-cloak` nic neskrýval, takže při
+načtení probliklo nevykreslené `x-text`, a tělo nemělo pozadí, takže v tmavém
+motivu svítilo bíle pod obsahem.

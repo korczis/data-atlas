@@ -115,12 +115,14 @@ Doložení z prohlížeče se počítá odděleně a committuje jako `data/prove
 Veřejný build tedy projde i na čistém klonu bez cizího Chrome profilu — hlídá to
 `tools/validate_sources.py`.
 
-Build vyrábí dvě varianty téhož:
+Build vyrábí tři věci:
 
 - `dist/index.html` — stránka pro web. Veškeré CSS a JS je inline; zvenčí
   nestahuje nic, jen vedle sebe má ikony a manifest.
 - `dist/artifact.html` — **jediný soběstačný soubor**, bez jakéhokoli odkazu
   na doprovodné soubory. Pro Claude Artifacts a pro poslání e-mailem.
+- `dist/<kód>/` a `dist/zeme/` — stránka pro každou zemi a rozcestník mezi nimi
+  (`tools/build_places.py`). Viz [Stránky zemí](#stránky-zemí).
 
 Tailwind, Flowbite i Alpine.js jsou vloženy inline, takže obojí funguje z disku,
 offline i pod přísným CSP.
@@ -129,9 +131,10 @@ Z Flowbite se bundluje jen to, co markup opravdu používá: plný `flowbite.min
 má 133 kB a nese accordion, carousel či datepicker, které tu nejsou — výřez
 s jediným šuplíkem má 9 kB.
 
-Hlídají to čtyři testové sady (`smoke` · `interact` · `meta` · `flowbite`),
-validace kurátorovaných dat, linter konvencí, měření responzivity a audit
-přístupnosti přes axe-core — vše v `just check`.
+Hlídá to pět testových sad (`smoke` · `interact` · `meta` · `flowbite` ·
+`places`), validace kurátorovaných dat, linter konvencí, měření responzivity
+a audit přístupnosti přes axe-core — vše v `just check`. Responzivita i axe
+běží nad oběma šablonami, ne jen nad hlavní stránkou.
 
 ### Rozvržení
 
@@ -168,9 +171,35 @@ držet v DOM obě stálo u tisícovky položek zhruba vteřinu navíc a dvojnás
 uzlů, z toho polovinu neviditelných.
 
 Konvence Flowbite a Alpine popisuje [`docs/UI-RULES.md`](docs/UI-RULES.md)
-a vynucuje `just lint`. `just responsive` měří vodorovné přetečení v headless
+a vynucuje `just lint` — nad **oběma** šablonami, `src/template.html`
+i `src/country.html`. `just responsive` měří vodorovné přetečení v headless
 Chrome na šířkách 320 – 1536 px, `just a11y` pouští axe-core ve čtyřech
-scénářích (mobil i desktop × světlý i tmavý motiv).
+scénářích (mobil i desktop × světlý i tmavý motiv); obojí se pouští zvlášť
+i na stránce země (`--page place`).
+
+### Stránky zemí
+
+Vedle jedné aplikace stojí **stránka pro každou zemi** — `/at/`, `/de/`, `/cz/`
+— a rozcestník `/zeme/`. Důvod je adresovatelnost: filtr hlavní stránky žije
+v hashi, takže je pro vyhledávače neviditelný a odkaz „Rakousko" nemá vlastní
+titulek ani popis. `/at/` má obojí, dá se sdílet a indexovat a nese jen data té
+země — místo celého katalogu načte pár desítek položek.
+
+Nejsou to kopie hlavní stránky. Ta zůstává soběstačná, se vším vloženým
+dovnitř; stránky zemí naopak sdílejí `dist/assets/atlas.css` a
+`dist/assets/atlas.js`, protože jednatřicet kopií stotřicetikilobajtového
+runtime by byly čtyři megabajty duplikátu za nic. Cena je jeden požadavek
+navíc, který se hned kešuje.
+
+Šablona je `src/country.html` + `src/js/place.js`, generuje je
+`tools/build_places.py`, hlídá `tests/places.mjs`. Vše — titulek, popis,
+JSON-LD, počty i seznam témat — se odvozuje z `data/catalog.csv`
+a číselníků; ručně se nepíše ani jedno číslo.
+
+Tabulka má vlastní hledání, filtr tématu a přístupu a stránkování po padesáti
+(vzory Table search / filter / pagination z Flowbite). Stav se propisuje do
+URL (`#topic=companies&page=2`). Dávkování jako na hlavní stránce tu není:
+u stovky položek je stránkování levnější i srozumitelnější.
 
 ### Přidání zdroje
 
@@ -207,6 +236,11 @@ Hlavička je kompletní: canonical, `robots`, Open Graph, Twitter card
 `summary_large_image`, `theme-color` pro světlý i tmavý motiv, sada ikon,
 web app manifest a strukturovaná data schema.org (`DataCatalog` + `WebSite`).
 Build k tomu generuje `robots.txt`, `sitemap.xml`, `404.html` a `.nojekyll`.
+
+Stránky zemí nesou vlastní canonical, Open Graph a `CollectionPage` s drobečky
+a `ItemList`. Sitemapu proto **dopisuje až `tools/build_places.py`** — v tu
+chvíli je teprve známý seznam stránek; kdyby zůstala ta z `build_page.py`,
+měla by jedinou adresu a celý důvod, proč stránky zemí vznikly, by padl.
 
 Sada `tests/meta.mjs` ověřuje každý tag i doprovodný soubor — chybějící
 `og:image` se totiž jinak pozná až ve chvíli, kdy někdo odkaz nasdílí
