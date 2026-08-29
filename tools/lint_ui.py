@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vynucuje konvence Flowbite + Alpine.js nad src/template.html.
+"""Vynucuje konvence Flowbite + Alpine.js nad šablonami v src/.
 
 Pravidla vycházejí z oficiální dokumentace Flowbite (llms.txt) a z Alpine.js
 docs; jejich slovní verze je v docs/UI-RULES.md. Tenhle skript je ta vynucovací
@@ -13,7 +13,26 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TEMPLATE = ROOT / "src" / "template.html"
+
+# Šablony, na které pravidla platí. Stránka země je druhá šablona se stejnými
+# riziky — Flowbite dropdowny, x-for nad tabulkou, tmavý režim — takže prochází
+# týmiž pravidly. Kdyby se hlídala jen hlavní stránka, brána by o půlce webu
+# nevěděla.
+#
+# `scripts` je JS, který šablona nemá uvnitř sebe. Hlavní stránka nese Alpine
+# komponentu v <script>, stránka země ji má v src/js/place.js a build ji
+# připojuje až při generování. Bez toho by pravidla alpine/data a flowbite/init
+# hlásila chybu na kódu, který existuje — jen leží ve vedlejším souboru.
+#
+# `closes` je markup, který za šablonu dopisuje build. src/country.html končí
+# uvnitř <body>, protože </body></html> připojuje tools/build_places.py až za
+# vloženými <script> tagy. Kontrola vyváženosti značek by jinak hlásila <body>,
+# který se nikdy nezavírá — nález o skládání buildu, ne o šabloně.
+TEMPLATES = (
+    {"path": ROOT / "src" / "template.html", "scripts": (), "closes": ""},
+    {"path": ROOT / "src" / "country.html",
+     "scripts": (ROOT / "src" / "js" / "place.js",), "closes": "</body>"},
+)
 
 problems: list[tuple[str, str]] = []
 
@@ -86,10 +105,55 @@ class Structure(HTMLParser):
         self.problems.append(f"řádek {self.getpos()[0]}: </{tag}> bez otevírací značky")
 
 
-def check(html: str) -> None:
+class MinWidth(HTMLParser):
+    """Hlídá pevnou minimální šířku, kterou nemá co pohltit.
+
+    Pohltit ji umí dvě věci: vodorovný scroll (obsah se odscrolluje) nebo
+    zalomení (`flex-wrap` — prvek spadne na další řádek). Cokoli jiného tlačí
+    do šířky dokumentu, a to na 320px znamená vodorovný scroll celé stránky.
+
+    Ptá se na **předky**, ne na okno v textu. Původní verze koukala 600 znaků
+    zpět a mýlila se oběma směry: u dlouhých Tailwind class stringů na rodiče
+    nedosáhla a hlásila falešný nález, a naopak `overflow-x-auto` na pouhém
+    *sourozenci* ji uspokojil.
+    """
+
+    ESCAPES = ("overflow-x-auto", "overflow-auto", "flex-wrap")
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack: list[str] = []
+        self.problems: list[str] = []
+
+    def _look(self, tag, attrs) -> str:
+        cls = dict(attrs).get("class") or ""
+        m = re.search(r"min-w-\[[^\]]+\]", cls)
+        if m and not any(e in a for a in self.stack for e in self.ESCAPES):
+            self.problems.append(
+                f"řádek {self.getpos()[0]}: '{m.group(0)}' bez předka "
+                "s overflow-x-auto ani flex-wrap")
+        return cls
+
+    def handle_starttag(self, tag, attrs):
+        cls = self._look(tag, attrs)
+        if tag not in VOID:
+            self.stack.append(cls)
+
+    def handle_startendtag(self, tag, attrs):
+        self._look(tag, attrs)
+
+    def handle_endtag(self, tag):
+        if tag not in VOID and self.stack:
+            self.stack.pop()
+
+
+def check(html: str, extra_script: str = "") -> None:
     # Tělo bez <script> — pravidla o markupu nemají koukat do JS.
     markup = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
     script = "\n".join(re.findall(r"<script\b.*?>(.*?)</script>", html, flags=re.S))
+    # Komponenta stránky země žije mimo šablonu; pro pravidla o JS je to
+    # ale tentýž kód, protože build ho vkládá do téže stránky.
+    script += "\n" + extra_script
 
     # ── Struktura: vyvážené značky ────────────────────────────────────────────
     structure = Structure()
@@ -154,11 +218,17 @@ def check(html: str) -> None:
 
     # ── Alpine: x-cloak ───────────────────────────────────────────────────────
     # Bez něj problikne nevykreslená šablona, než Alpine nastartuje.
-    root = re.search(tag("div"), markup)
-    while root and "x-data=" not in root.group(0):
-        root = re.search(tag("div"), markup[root.end():])
+    # Kořen se hledá mezi **všemi** otevíracími značkami, ne jen mezi <div>:
+    # stránka země má x-data na <body>. Dřív se tu navíc krájel `markup`
+    # indexem z už uříznutého úseku, takže hledání skákalo mezi dvěma pozicemi
+    # a u šablony bez <div x-data> se zacyklilo — linter se pověsil místo aby
+    # něco nahlásil.
+    any_tag = rf"""<([a-zA-Z][a-zA-Z0-9-]*)\b(?:[^>"']|"[^"]*"|'[^']*')*>"""
+    root = next((m for m in re.finditer(any_tag, markup) if "x-data=" in m.group(0)), None)
+    if "x-data=" in markup and root is None:
+        fail("alpine/cloak", "x-data je v šabloně, ale nesedí na otevírací značce")
     if root and "x-cloak" not in root.group(0):
-        fail("alpine/cloak", "kořenový x-data nemá x-cloak")
+        fail("alpine/cloak", f"kořenový x-data (<{root.group(1)}>) nemá x-cloak")
     # Pravidlo smí být i ve sdíleném input.css — tam se přesunulo, když ho
     # začaly potřebovat i stránky zemí. Hlídá se, že existuje, ne kde leží.
     shared = (ROOT / "src" / "input.css")
@@ -214,12 +284,10 @@ def check(html: str) -> None:
                      f"řádek {line_of(markup, m.start())}: přepínač bez aria-pressed/aria-current")
 
     # ── Mobile-first ──────────────────────────────────────────────────────────
-    # Pevná minimální šířka mimo vodorovný scroll roztáhne celou stránku.
-    for m in re.finditer(r"min-w-\[[^\]]+\]", markup):
-        window = markup[max(0, m.start() - 600):m.start()]
-        if "overflow-x-auto" not in window:
-            fail("responsive/min-width",
-                 f"řádek {line_of(markup, m.start())}: '{m.group(0)}' bez overflow-x-auto předka")
+    widths = MinWidth()
+    widths.feed(markup)
+    for problem in widths.problems:
+        fail("responsive/min-width", problem)
 
     # Breakpointy se skládají odspodu nahoru; max-* je opačný směr.
     for m in re.finditer(r"\bmax-(sm|md|lg|xl):", markup):
@@ -227,26 +295,39 @@ def check(html: str) -> None:
              f"řádek {line_of(markup, m.start())}: '{m.group(0)}' — piš mobile-first (min-width)")
 
 
-def main() -> int:
-    if not TEMPLATE.exists():
-        raise SystemExit(f"chybí {TEMPLATE}")
-    check(TEMPLATE.read_text(encoding="utf-8"))
-
-    if not problems:
-        print(f"lint_ui: {TEMPLATE.relative_to(ROOT)} — bez nálezů")
-        return 0
-
+def report(path: Path) -> None:
     by_rule: dict[str, list[str]] = {}
     for rule, detail in problems:
         by_rule.setdefault(rule, []).append(detail)
+    print(f"\n{path.relative_to(ROOT)}")
     for rule, details in sorted(by_rule.items()):
-        print(f"\n{rule} ({len(details)})")
+        print(f"  {rule} ({len(details)})")
         for d in details[:12]:
-            print(f"  {d}")
+            print(f"    {d}")
         if len(details) > 12:
-            print(f"  … a dalších {len(details) - 12}")
-    print(f"\nlint_ui: {len(problems)} nálezů", file=sys.stderr)
-    return 1
+            print(f"    … a dalších {len(details) - 12}")
+
+
+def main() -> int:
+    global problems
+    found = 0
+    for tpl in TEMPLATES:
+        path: Path = tpl["path"]
+        if not path.exists():
+            raise SystemExit(f"chybí {path}")
+        problems = []
+        extra = "\n".join(js.read_text(encoding="utf-8") for js in tpl["scripts"])
+        check(path.read_text(encoding="utf-8") + tpl["closes"], extra)
+        if problems:
+            report(path)
+            found += len(problems)
+        else:
+            print(f"lint_ui: {path.relative_to(ROOT)} — bez nálezů")
+
+    if found:
+        print(f"\nlint_ui: {found} nálezů", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
