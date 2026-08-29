@@ -59,6 +59,23 @@ check('nadpis stránky', d.querySelector('h1')?.textContent.trim() === 'Kurátor
         && state.matrixHoles < state.nationalTopics.length * 27,
         `${state.matrixHoles} děr, ${state.gapSet.size} doložených absencí`);
 
+  // Cíle posunu musí existovat a být jednoznačné. `#catalog` byl původně
+  // uvnitř x-if="mobile" a x-for přes sekce, takže na desktopu neexistoval
+  // a v seskupeném režimu se opakoval — scrollIntoView pak mířil na null.
+  check('kotva výpisu existuje právě jednou',
+        d.querySelectorAll('#catalog').length === 1,
+        `${d.querySelectorAll('#catalog').length}×`);
+  check('kotva matice existuje právě jednou',
+        d.querySelectorAll('#coverage').length === 1);
+
+  // Odkazy na stránky zemí byly schované za group-hover s opacity-0, takže
+  // na dotykovém zařízení nešly vůbec vidět ani použít.
+  const arrows = [...d.querySelectorAll('aside a[href$="/"]')]
+    .filter(a => (a.getAttribute('class') || '').includes('shrink-0'));
+  check('šipky na stránky zemí nejsou schované za hoverem',
+        arrows.length > 0 && arrows.every(a => !(a.getAttribute('class') || '').includes('opacity-0')),
+        `${arrows.length} šipek`);
+
   const foot = d.querySelector('footer nav[aria-label="Patička"]');
   check('patička nese navigaci', !!foot && foot.querySelectorAll('a').length >= 10,
         `${foot?.querySelectorAll('a').length} odkazů`);

@@ -237,7 +237,7 @@ try {
                    v seznamu. Pravidlo je „jména filtrují, šipka naviguje". -->
               <a x-show="hasPlacePages" :href="p.code.toLowerCase() + '/'"
                  :aria-label="'Otevřít stránku — ' + p.name"
-                 class="shrink-0 rounded p-1 text-gray-400 opacity-0 transition-opacity hover:bg-gray-100 hover:text-primary-700 focus-visible:opacity-100 group-hover:opacity-100 dark:hover:bg-gray-700 dark:hover:text-primary-400">
+                 class="shrink-0 rounded p-1 text-gray-300 hover:bg-gray-100 hover:text-primary-700 dark:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-primary-400">
                 <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
@@ -368,7 +368,7 @@ try {
               Procházet katalog
               <span class="tabular-nums font-normal text-gray-500 dark:text-gray-400" x-text="catalog.length"></span>
             </button>
-            <a href="#coverage"
+            <a href="#coverage" @click.prevent="showCoverage()"
                class="text-sm font-medium text-primary-700 hover:underline dark:text-primary-400">Matice pokrytí</a>
             <a href="https://github.com/korczis/data-atlas" target="_blank" rel="noopener noreferrer"
                class="text-sm font-medium text-gray-600 hover:underline dark:text-gray-400">Repozitář</a>
@@ -690,8 +690,11 @@ try {
         </div>
       </section>
 
-      <!-- záhlaví stránky -->
-      <div class="block items-center justify-between border-b border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex">
+      <!-- záhlaví stránky; zároveň cíl posunu „Procházet katalog".
+           Úchyt musí sedět tady, mimo x-if a x-for: uvnitř by existoval jen
+           na jedné větvi rozvržení a v seskupeném režimu by se id opakovalo
+           u každé sekce. -->
+      <div id="catalog" class="block scroll-mt-16 items-center justify-between border-b border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex">
         <div class="w-full">
           <nav class="mb-2" aria-label="Kde jsem">
             <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
@@ -955,7 +958,7 @@ try {
             <ul class="mt-2 space-y-1">
               <li><a href="#" class="hover:text-gray-900 hover:underline dark:hover:text-white">Katalog</a></li>
               <li x-show="hasPlacePages"><a href="zeme/" class="hover:text-gray-900 hover:underline dark:hover:text-white">Země</a></li>
-              <li><a href="#coverage" class="hover:text-gray-900 hover:underline dark:hover:text-white">Matice pokrytí</a></li>
+              <li><a href="#coverage" @click.prevent="showCoverage()" class="hover:text-gray-900 hover:underline dark:hover:text-white">Matice pokrytí</a></li>
               <li><a href="#" @click.prevent="view = 'longlist'; reset(); view = 'longlist'"
                      class="hover:text-gray-900 hover:underline dark:hover:text-white">Long list</a></li>
             </ul>
@@ -1540,9 +1543,34 @@ document.addEventListener('alpine:init', () => {
 
     /** Rozcestník mizí, jakmile padne filtr, takže po kliknutí je uživatel
      *  rovnou u výsledků — bez skoku by koukal na místo, kde hero byl. */
+    /** Posun k výpisu. Dřív to bylo `#main-content`.scrollTo({top:0}), jenže
+     *  ten prvek se nescrolluje — scrolluje okno — takže volání nikdy nic
+     *  neudělalo. Nebylo to vidět, protože každý volající zároveň nastavil
+     *  filtr, ten schoval rozcestník a výpis se pod prst dostal sám. První
+     *  volající bez filtru (tlačítko „Procházet katalog") to odhalil. */
     scrollToCatalog() {
-      const el = document.getElementById('main-content');
-      if (el && el.scrollTo) el.scrollTo({ top: 0, behavior: 'auto' });
+      const el = document.getElementById('catalog');
+      if (el && el.scrollIntoView) el.scrollIntoView({ block: 'start', behavior: 'auto' });
+    },
+
+    /** Matice žije v rozcestníku, a ten je vidět jen bez filtru. Samotná
+     *  kotva `#coverage` proto nestačí: při aktivním filtru je cíl skrytý,
+     *  a navíc ji posluchač `hashchange` přečte jako stav a hash přepíše.
+     *  Filtr se tu zruší vědomě a na matici se skočí ručně. */
+    showCoverage() {
+      this.reset();
+      this.view = 'catalog';
+      // Čeká se, až je cíl opravdu vysázený. Samotný $nextTick nestačí:
+      // zrušení filtru teprve odkrývá rozcestník přes x-show, a scrollIntoView
+      // na prvku s nulovou výškou je tichý no-op — odkaz pak vypadá mrtvě.
+      const go = (tries = 0) => {
+        const el = document.getElementById('coverage');
+        if (el && el.getBoundingClientRect().height > 50)
+          el.scrollIntoView({ block: 'start', behavior: 'auto' });
+        else if (tries < 10)
+          requestAnimationFrame(() => go(tries + 1));
+      };
+      this.$nextTick(() => go());
     },
 
     /** Rešerše se nevede po ose katalogu, vede se po otázce. Každá cesta je
