@@ -1,0 +1,20 @@
+{
+  "_comment": "Doložené absence: buňky matice (země × téma), kde zdroj chybí a je ověřeno, že chybět má. Bez tohohle číselníku vypadá 'ověřili jsme, neexistuje' úplně stejně jako 'nikdo se nedíval' — obojí je světlá buňka — a nedá se říct, kolik práce ještě zbývá. Zapisuje se sem jen to, co je doložené; nedoložená prázdná buňka je díra a patří do ní zdroj, ne záznam sem. Kontroluje to tools/validate_sources.py: téma i země musí být v číselnících, téma musí být 'national' (u nadnárodních je prázdno normální stav, ne absence) a buňka nesmí zároveň mít zdroj v katalogu.",
+  "_checked": "2026-08-28",
+  "gaps": [
+    { "country": "GR", "topic": "geoportal",  "reason": "geodata.gov.gr neodpovídá; národní geoportál pod tou adresou fakticky neběží" },
+    { "country": "MT", "topic": "geoportal",  "reason": "geoportal.mt neodpovídá" },
+    { "country": "RO", "topic": "geoportal",  "reason": "geoportal.ancpi.ro neexistuje ani v DNS (NXDOMAIN), přestože ho odborné články dál uvádějí" },
+
+    { "country": "CY", "topic": "cyber",      "reason": "digitalsecurityauthority.cy neodpovídá" },
+    { "country": "GR", "topic": "cyber",      "reason": "ncsa.gov.gr neodpovídá" },
+    { "country": "MT", "topic": "cyber",      "reason": "csirt.gov.mt neodpovídá" },
+
+    { "country": "GR", "topic": "insolvency", "reason": "samostatný veřejný insolvenční rejstřík neexistuje; úpadky vycházejí ve věstníku ΦΕΚ" },
+    { "country": "IT", "topic": "insolvency", "reason": "samostatný veřejný insolvenční rejstřík neexistuje; úpadky vycházejí v Gazzetta Ufficiale" },
+    { "country": "MT", "topic": "insolvency", "reason": "samostatný veřejný insolvenční rejstřík neexistuje; úpadky vycházejí v Government Gazette" },
+    { "country": "RO", "topic": "insolvency", "reason": "samostatný veřejný rejstřík neexistuje; BPI vede ONRC a je zpoplatněný" },
+
+    { "country": "CY", "topic": "filings",    "reason": "dokumenty u DRCOR jsou zpoplatněné a bez samostatné služby" }
+  ]
+}

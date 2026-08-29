@@ -48,7 +48,11 @@ def load_taxonomy():
     topic_meta, topic_order = {}, {}
     for gi, g in enumerate(topics["groups"]):
         for ti, t in enumerate(g["topics"]):
-            topic_meta[t["id"]] = {"label": t["label"], "group": g["label"]}
+            # 'scope' jde dál, ne jen label: na něm stojí rozdíl mezi dírou
+            # a prázdnem, které tam patří. Kdyby se tu zahodilo, musel by ho
+            # každý konzument uhodnout znovu.
+            topic_meta[t["id"]] = {"label": t["label"], "group": g["label"],
+                                   "scope": t.get("scope", "national")}
             topic_order[t["id"]] = (gi, ti)
     places, place_order = {}, {}
     for i, c in enumerate(countries["scopes"] + countries["countries"]):

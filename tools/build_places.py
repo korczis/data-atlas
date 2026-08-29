@@ -12,7 +12,7 @@ třiatřicet kopií stotřicetikilobajtového runtime by byly čtyři megabajty
 duplikátu za nic. Cena je jeden požadavek navíc, který se hned kešuje.
 
 Vše se generuje z `data/catalog.csv`, `data/topics.json` a
-`data/countries.json` — počty ani seznamy se nikde nepíšou rukou.
+`data/countries.json` — počty, seznamy ani skloňování se nikde nepíšou rukou.
 """
 from __future__ import annotations
 
@@ -34,24 +34,6 @@ ACCESS = {"open": "otevřené", "registration": "registrace", "paid": "placené"
           "mixed": "smíšené", "restricted": "omezené", "unknown": "neuvedeno"}
 DATA = {"bulk": "hromadně", "api": "API", "ogc": "OGC služby", "download": "ke stažení",
         "search": "vyhledávání", "sw": "software", "none": "bez dat", "unknown": "neuvedeno"}
-
-# Skloňování pro nadpisy. Číselník nese jen nominativ, a „Co Rakousko pokrývá"
-# vedle „Otevřít Rakousko v katalogu" je rozdíl, který čtenář uslyší.
-CASES = {
-    "AT": ("Rakousko", "Rakousko"), "BE": ("Belgie", "Belgii"), "BG": ("Bulharsko", "Bulharsko"),
-    "HR": ("Chorvatsko", "Chorvatsko"), "CY": ("Kypr", "Kypr"), "CZ": ("Česko", "Česko"),
-    "DK": ("Dánsko", "Dánsko"), "EE": ("Estonsko", "Estonsko"), "FI": ("Finsko", "Finsko"),
-    "FR": ("Francie", "Francii"), "DE": ("Německo", "Německo"), "GR": ("Řecko", "Řecko"),
-    "HU": ("Maďarsko", "Maďarsko"), "IE": ("Irsko", "Irsko"), "IT": ("Itálie", "Itálii"),
-    "LV": ("Lotyšsko", "Lotyšsko"), "LT": ("Litva", "Litvu"), "LU": ("Lucembursko", "Lucembursko"),
-    "MT": ("Malta", "Maltu"), "NL": ("Nizozemsko", "Nizozemsko"), "PL": ("Polsko", "Polsko"),
-    "PT": ("Portugalsko", "Portugalsko"), "RO": ("Rumunsko", "Rumunsko"),
-    "SK": ("Slovensko", "Slovensko"), "SI": ("Slovinsko", "Slovinsko"),
-    "ES": ("Španělsko", "Španělsko"), "SE": ("Švédsko", "Švédsko"),
-    "GB": ("Spojené království", "Spojené království"), "US": ("Spojené státy", "Spojené státy"),
-    "CH": ("Švýcarsko", "Švýcarsko"), "NO": ("Norsko", "Norsko"), "UA": ("Ukrajina", "Ukrajinu"),
-    "EU": ("Evropská unie", "Evropskou unii"), "GLOBAL": ("Celosvětové", "celosvětové zdroje"),
-}
 
 
 def slug(code: str) -> str:
@@ -130,7 +112,9 @@ def build(catalog, groups, places, offsets) -> int:
         rows = rows_for(catalog, code)
         if not rows:
             continue
-        nom, acc = CASES.get(code, (place["name"], place["name"]))
+        # Skloňování přichází z data/countries.json, ne z tabulky v tomhle
+        # souboru: název země patří do číselníku jednou, ne dvakrát.
+        nom, acc = place["name"], place.get("acc") or place["name"]
         n_topics = len({r["topic"] for r in rows})
         desc = (f"{len(rows)} ověřených veřejných datových zdrojů pro {acc} "
                 f"v {n_topics} tématech — katastr, registry, otevřená data, "
@@ -189,7 +173,7 @@ def build_index(places, catalog, offsets) -> None:
                            "name": TITLE, "url": BASE}}
     cards = []
     for p in sorted(listed, key=lambda p: (not p["scope"], p["name"])):
-        nom = CASES.get(p["code"], (p["name"], p["name"]))[0]
+        nom = p["name"]
         cards.append(
             f'<li><a href="../{slug(p["code"])}/" class="flex items-center gap-3 rounded-lg '
             'border border-gray-200 p-4 hover:border-primary-500 hover:bg-gray-50 '
@@ -256,7 +240,7 @@ def write_sitemap(written) -> None:
 def main() -> int:
     import build_page
 
-    catalog, longlist, groups, places = build_page.load_data()
+    catalog, longlist, groups, places, _gaps = build_page.load_data()
     offsets = json.loads((SRC / "assets" / "flags.json").read_text(encoding="utf-8"))
 
     # Sdílený runtime. Stránky zemí ho načtou jako soubor; index.html si ho

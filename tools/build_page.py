@@ -83,15 +83,28 @@ def load_data():
     # o pokrytí. Pořadí přebírá číselník, ne data.
     used = {r["code"] for r in catalog}
     place_list = [dict(code=c["code"], name=c["name"], scope=bool(c.get("scope")),
-                       eu=bool(c.get("eu")))
+                       eu=bool(c.get("eu")), acc=c.get("acc") or c["name"])
                   for c in places["scopes"] + places["countries"] if c["code"] in used]
     used_topics = {r["topic"] for r in catalog}
+    # 'scope' jde do payloadu, protože na něm stojí rozdíl mezi dírou v pokrytí
+    # a prázdnem, které tam patří. Do téhle chvíle ten rozdíl znala jen věta
+    # v šabloně — poziční („poslední dva bloky“) a ručně psaná.
     groups = [dict(label=g["label"],
-                   topics=[dict(id=t["id"], label=t["label"]) for t in g["topics"]
-                           if t["id"] in used_topics])
+                   topics=[dict(id=t["id"], label=t["label"],
+                                scope=t.get("scope", "national"))
+                           for t in g["topics"] if t["id"] in used_topics])
               for g in taxonomy["groups"]]
     groups = [g for g in groups if g["topics"]]
-    return catalog, longlist, groups, place_list
+
+    # Doložené absence: buňky, kde je ověřeno, že zdroj neexistuje. Bez nich
+    # vypadá „ověřili jsme“ stejně jako „nikdo se nedíval“.
+    gaps_file = ROOT / "data" / "gaps.json"
+    gaps = []
+    if gaps_file.exists():
+        raw = json.loads(gaps_file.read_text(encoding="utf-8"))
+        gaps = [dict(code=g["country"], topic=g["topic"], reason=g["reason"])
+                for g in raw["gaps"]]
+    return catalog, longlist, groups, place_list, gaps
 
 
 def build_flowbite() -> str:
@@ -283,7 +296,7 @@ def write_site_files(description: str) -> None:
 
 
 def main():
-    catalog, longlist, groups, places = load_data()
+    catalog, longlist, groups, places, gaps = load_data()
     # Posun ve spritu jde do dat, ne do CSS tříd: pořadí zemí v číselníku
     # se může změnit a generovaná třída by se s ním tiše rozešla.
     flags = json.loads((SRC_ASSETS / "flags.json").read_text(encoding="utf-8"))["offsets"]
@@ -291,7 +304,7 @@ def main():
         if not p["scope"] and p["code"] in flags:
             p["fx"] = flags[p["code"]]
     data = json.dumps({"catalog": catalog, "longlist": longlist,
-                       "groups": groups, "places": places},
+                       "groups": groups, "places": places, "gaps": gaps},
                       ensure_ascii=False, separators=(",", ":"))
 
     n_items = len(catalog)
@@ -317,13 +330,21 @@ def main():
     #   3. Alpine — až on odpálí alpine:init a spustí komponentu
     script = f"\n<script>{flowbite}</script>\n<script>{alpine}</script>\n"
 
+    # Stránky zemí stojí vedle index.html, takže odkaz `at/` platí jen tam.
+    # artifact.html je týž markup vložený do cizí stránky a otevíraný z disku —
+    # relativní cesta by mířila mimo dokument. Odkazy na ně se proto v artefaktu
+    # nevykreslí vůbec; mrtvý odkaz je horší než chybějící.
+    def pages_flag(on: bool) -> str:
+        return f"\n<script>window.__PAGES__={'true' if on else 'false'};</script>\n"
+
     DIST.mkdir(exist_ok=True)
-    (DIST / "artifact.html").write_text(title + "\n" + style + rest + script, encoding="utf-8")
+    (DIST / "artifact.html").write_text(
+        title + "\n" + style + rest + pages_flag(False) + script, encoding="utf-8")
     (DIST / "index.html").write_text(
         '<!doctype html>\n<html lang="cs">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         + title + "\n" + head_meta(description, og_alt(n_items, n_topics, n_places)) + style + "</head>\n<body>\n"
-        + rest + script + "</body>\n</html>\n",
+        + rest + pages_flag(True) + script + "</body>\n</html>\n",
         encoding="utf-8")
 
     write_site_files(description)

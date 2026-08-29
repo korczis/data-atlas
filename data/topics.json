@@ -1,5 +1,5 @@
 {
-  "_comment": "Taxonomie katalogu. Téma je nezávislé na zemi: 'companies' platí pro CZ i pro DE. Generováno se z toho postranní panel, členění výsledků i docs/CATALOG.md. Pořadí klíčů je pořadí v UI.",
+  "_comment": "Taxonomie katalogu. Téma je nezávislé na zemi: 'companies' platí pro CZ i pro DE. Generováno se z toho postranní panel, členění výsledků i docs/CATALOG.md. Pořadí klíčů je pořadí v UI. 'scope' říká, na jaké úrovni téma vůbec existuje: 'national' je agenda, kterou má mít každý členský stát — prázdná buňka v matici je díra. 'supra' je agenda, která národní obdobu nemá (formáty, mapové knihovny, sankční seznamy, výuka); tam je prázdno správně a za díru se nepočítá. Bez tohohle příznaku by se ten rozdíl dal jen napsat do věty a ta by při první změně taxonomie tiše lhala.",
   "groups": [
     {
       "id": "geo",
@@ -7,35 +7,43 @@
       "topics": [
         {
           "id": "geoportal",
-          "label": "Geoportály a NSDI"
+          "label": "Geoportály a NSDI",
+          "scope": "national"
         },
         {
           "id": "cadastre",
-          "label": "Katastr a pozemkové knihy"
+          "label": "Katastr a pozemkové knihy",
+          "scope": "national"
         },
         {
           "id": "addresses",
-          "label": "Adresy a územní členění"
+          "label": "Adresy a územní členění",
+          "scope": "national"
         },
         {
           "id": "terrain",
-          "label": "Ortofoto, výškopis, topografie"
+          "label": "Ortofoto, výškopis, topografie",
+          "scope": "national"
         },
         {
           "id": "environment",
-          "label": "Životní prostředí, geologie, rizika"
+          "label": "Životní prostředí, geologie, rizika",
+          "scope": "national"
         },
         {
           "id": "transport",
-          "label": "Doprava a infrastruktura"
+          "label": "Doprava a infrastruktura",
+          "scope": "national"
         },
         {
           "id": "remote-sensing",
-          "label": "Remote sensing / rastr"
+          "label": "Remote sensing / rastr",
+          "scope": "supra"
         },
         {
           "id": "basemaps",
-          "label": "Globální referenční geodata"
+          "label": "Globální referenční geodata",
+          "scope": "supra"
         }
       ]
     },
@@ -45,23 +53,28 @@
       "topics": [
         {
           "id": "opendata",
-          "label": "Otevřená data"
+          "label": "Otevřená data",
+          "scope": "national"
         },
         {
           "id": "statistics",
-          "label": "Statistika a demografie"
+          "label": "Statistika a demografie",
+          "scope": "national"
         },
         {
           "id": "gazette",
-          "label": "Legislativa a věstníky"
+          "label": "Legislativa a věstníky",
+          "scope": "national"
         },
         {
           "id": "procurement",
-          "label": "Veřejné zakázky"
+          "label": "Veřejné zakázky",
+          "scope": "national"
         },
         {
           "id": "spending",
-          "label": "Rozpočty, dotace, výdaje"
+          "label": "Rozpočty, dotace, výdaje",
+          "scope": "national"
         }
       ]
     },
@@ -71,35 +84,43 @@
       "topics": [
         {
           "id": "companies",
-          "label": "Obchodní rejstříky"
+          "label": "Obchodní rejstříky",
+          "scope": "national"
         },
         {
           "id": "ownership",
-          "label": "Skuteční majitelé"
+          "label": "Skuteční majitelé",
+          "scope": "national"
         },
         {
           "id": "filings",
-          "label": "Účetní závěrky a listiny"
+          "label": "Účetní závěrky a listiny",
+          "scope": "national"
         },
         {
           "id": "insolvency",
-          "label": "Insolvence a exekuce"
+          "label": "Insolvence a exekuce",
+          "scope": "national"
         },
         {
           "id": "courts",
-          "label": "Soudy a judikatura"
+          "label": "Soudy a judikatura",
+          "scope": "national"
         },
         {
           "id": "ip",
-          "label": "Průmyslové vlastnictví"
+          "label": "Průmyslové vlastnictví",
+          "scope": "national"
         },
         {
           "id": "regulators",
-          "label": "Regulace a licencované subjekty"
+          "label": "Regulace a licencované subjekty",
+          "scope": "national"
         },
         {
           "id": "property",
-          "label": "Nemovitosti a trh"
+          "label": "Nemovitosti a trh",
+          "scope": "national"
         }
       ]
     },
@@ -109,31 +130,38 @@
       "topics": [
         {
           "id": "sanctions",
-          "label": "Sankce a compliance"
+          "label": "Sankce a compliance",
+          "scope": "supra"
         },
         {
           "id": "security",
-          "label": "Kriminalita, IZS, bezpečnost"
+          "label": "Kriminalita, IZS, bezpečnost",
+          "scope": "national"
         },
         {
           "id": "cyber",
-          "label": "Kyberbezpečnost a CERT"
+          "label": "Kyberbezpečnost a CERT",
+          "scope": "national"
         },
         {
           "id": "weather",
-          "label": "Počasí a klima"
+          "label": "Počasí a klima",
+          "scope": "national"
         },
         {
           "id": "transparency",
-          "label": "Transparentnost, volby, lobbing"
+          "label": "Transparentnost, volby, lobbing",
+          "scope": "national"
         },
         {
           "id": "osint",
-          "label": "OSINT a investigace"
+          "label": "OSINT a investigace",
+          "scope": "supra"
         },
         {
           "id": "archives",
-          "label": "Archivy a historické zdroje"
+          "label": "Archivy a historické zdroje",
+          "scope": "national"
         }
       ]
     },
@@ -143,23 +171,28 @@
       "topics": [
         {
           "id": "geocoding",
-          "label": "Gazetteery a geokódování"
+          "label": "Gazetteery a geokódování",
+          "scope": "supra"
         },
         {
           "id": "maplibs",
-          "label": "Mapové knihovny a basemapy"
+          "label": "Mapové knihovny a basemapy",
+          "scope": "supra"
         },
         {
           "id": "spatialdb",
-          "label": "Spatial DB a analytika"
+          "label": "Spatial DB a analytika",
+          "scope": "supra"
         },
         {
           "id": "routing",
-          "label": "Routing a síťová analýza"
+          "label": "Routing a síťová analýza",
+          "scope": "supra"
         },
         {
           "id": "formats",
-          "label": "Formáty, projekce, standardy"
+          "label": "Formáty, projekce, standardy",
+          "scope": "supra"
         }
       ]
     },
@@ -169,7 +202,8 @@
       "topics": [
         {
           "id": "learning",
-          "label": "Učení a komunita"
+          "label": "Učení a komunita",
+          "scope": "supra"
         }
       ]
     }

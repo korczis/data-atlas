@@ -97,11 +97,40 @@ def main() -> int:
                     errors.append(
                         f"tools/{name}: sahá na {token} — veřejný build musí projít bez .cache/")
 
+    # ── Doložené absence ──────────────────────────────────────────────────────
+    # Číselník děr je tvrzení o tom, co jsme ověřili, že neexistuje. Bez téhle
+    # brány by v něm mohla zůstat buňka, do které někdo mezitím zdroj přidal —
+    # a matice by pak šrafovala místo, kde zdroj je.
+    gaps_file = ROOT / "data" / "gaps.json"
+    if gaps_file.exists():
+        gaps = json.loads(gaps_file.read_text(encoding="utf-8"))
+        national = {tid for tid, m in topic_meta.items() if m.get("scope") != "supra"}
+        codes = set(places)          # places je {kód: název}
+        filled = {(s["country"], s["topic"]) for s in sources}
+        seen_cell = set()
+        for g in gaps["gaps"]:
+            cell = (g.get("country"), g.get("topic"))
+            where = f"gaps {cell[0]}:{cell[1]}"
+            if cell[1] not in topic_meta:
+                errors.append(f"{where}: téma není v data/topics.json")
+            elif cell[1] not in national:
+                errors.append(f"{where}: téma je nadnárodní — prázdno tam není absence")
+            if cell[0] not in codes:
+                errors.append(f"{where}: země není v data/countries.json")
+            if cell in filled:
+                errors.append(f"{where}: buňka má v katalogu zdroj — záznam o absenci je lživý")
+            if cell in seen_cell:
+                errors.append(f"{where}: buňka je v číselníku dvakrát")
+            seen_cell.add(cell)
+            if len((g.get("reason") or "").strip()) < 20:
+                errors.append(f"{where}: 'reason' neříká, proč zdroj neexistuje")
+
     for e in errors:
         print(f"  ✗ {e}")
     for w in warnings:
         print(f"  ⚠ {w}")
-    print(f"validate_sources: {len(sources)} zdrojů · {len(errors)} chyb · {len(warnings)} varování")
+    print(f"validate_sources: {len(sources)} zdrojů · {len(seen_cell) if gaps_file.exists() else 0}"
+          f" doložených absencí · {len(errors)} chyb · {len(warnings)} varování")
     return 1 if errors else 0
 
 

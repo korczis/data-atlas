@@ -1,41 +1,180 @@
 {
-  "_comment": "Země a rozsahy platnosti. 'eu' označuje členské státy EU; 'scope' odlišuje nadnárodní rozsahy od států. Filtr země je přesná shoda — celoevropský zdroj se needituje 27×, je jednou pod EU. Pořadí klíčů je pořadí v UI.",
+  "_comment": "Země a rozsahy platnosti. 'eu' označuje členské státy EU; 'scope' odlišuje nadnárodní rozsahy od států. Filtr země je přesná shoda — celoevropský zdroj se needituje 27×, je jednou pod EU. Pořadí klíčů je pořadí v UI. 'acc' je 4. pád názvu pro nadpisy stránek zemí: „Otevřít Rakousko\" vedle „Otevřít Belgii\" je rozdíl, který čtenář uslyší. Chybí-li, použije se nominativ — neobratné, ale nic to nerozbije. Dokud tahle tabulka žila v tools/build_places.py, byl název země na dvou místech a číselník nebyl zdrojem pravdy.",
   "scopes": [
-    { "code": "EU",     "name": "Evropská unie", "scope": true },
-    { "code": "GLOBAL", "name": "Celosvětové",   "scope": true }
+    {
+      "code": "EU",
+      "name": "Evropská unie",
+      "scope": true,
+      "acc": "Evropskou unii"
+    },
+    {
+      "code": "GLOBAL",
+      "name": "Celosvětové",
+      "scope": true,
+      "acc": "celosvětové zdroje"
+    }
   ],
   "countries": [
-    { "code": "AT", "name": "Rakousko",    "eu": true },
-    { "code": "BE", "name": "Belgie",      "eu": true },
-    { "code": "BG", "name": "Bulharsko",   "eu": true },
-    { "code": "HR", "name": "Chorvatsko",  "eu": true },
-    { "code": "CY", "name": "Kypr",        "eu": true },
-    { "code": "CZ", "name": "Česko",       "eu": true },
-    { "code": "DK", "name": "Dánsko",      "eu": true },
-    { "code": "EE", "name": "Estonsko",    "eu": true },
-    { "code": "FI", "name": "Finsko",      "eu": true },
-    { "code": "FR", "name": "Francie",     "eu": true },
-    { "code": "DE", "name": "Německo",     "eu": true },
-    { "code": "GR", "name": "Řecko",       "eu": true },
-    { "code": "HU", "name": "Maďarsko",    "eu": true },
-    { "code": "IE", "name": "Irsko",       "eu": true },
-    { "code": "IT", "name": "Itálie",      "eu": true },
-    { "code": "LV", "name": "Lotyšsko",    "eu": true },
-    { "code": "LT", "name": "Litva",       "eu": true },
-    { "code": "LU", "name": "Lucembursko", "eu": true },
-    { "code": "MT", "name": "Malta",       "eu": true },
-    { "code": "NL", "name": "Nizozemsko",  "eu": true },
-    { "code": "PL", "name": "Polsko",      "eu": true },
-    { "code": "PT", "name": "Portugalsko", "eu": true },
-    { "code": "RO", "name": "Rumunsko",    "eu": true },
-    { "code": "SK", "name": "Slovensko",   "eu": true },
-    { "code": "SI", "name": "Slovinsko",   "eu": true },
-    { "code": "ES", "name": "Španělsko",   "eu": true },
-    { "code": "SE", "name": "Švédsko",     "eu": true },
-    { "code": "GB", "name": "Spojené království" },
-    { "code": "US", "name": "Spojené státy" },
-    { "code": "CH", "name": "Švýcarsko" },
-    { "code": "NO", "name": "Norsko" },
-    { "code": "UA", "name": "Ukrajina" }
+    {
+      "code": "AT",
+      "name": "Rakousko",
+      "eu": true
+    },
+    {
+      "code": "BE",
+      "name": "Belgie",
+      "eu": true,
+      "acc": "Belgii"
+    },
+    {
+      "code": "BG",
+      "name": "Bulharsko",
+      "eu": true
+    },
+    {
+      "code": "HR",
+      "name": "Chorvatsko",
+      "eu": true
+    },
+    {
+      "code": "CY",
+      "name": "Kypr",
+      "eu": true
+    },
+    {
+      "code": "CZ",
+      "name": "Česko",
+      "eu": true
+    },
+    {
+      "code": "DK",
+      "name": "Dánsko",
+      "eu": true
+    },
+    {
+      "code": "EE",
+      "name": "Estonsko",
+      "eu": true
+    },
+    {
+      "code": "FI",
+      "name": "Finsko",
+      "eu": true
+    },
+    {
+      "code": "FR",
+      "name": "Francie",
+      "eu": true,
+      "acc": "Francii"
+    },
+    {
+      "code": "DE",
+      "name": "Německo",
+      "eu": true
+    },
+    {
+      "code": "GR",
+      "name": "Řecko",
+      "eu": true
+    },
+    {
+      "code": "HU",
+      "name": "Maďarsko",
+      "eu": true
+    },
+    {
+      "code": "IE",
+      "name": "Irsko",
+      "eu": true
+    },
+    {
+      "code": "IT",
+      "name": "Itálie",
+      "eu": true,
+      "acc": "Itálii"
+    },
+    {
+      "code": "LV",
+      "name": "Lotyšsko",
+      "eu": true
+    },
+    {
+      "code": "LT",
+      "name": "Litva",
+      "eu": true,
+      "acc": "Litvu"
+    },
+    {
+      "code": "LU",
+      "name": "Lucembursko",
+      "eu": true
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "eu": true,
+      "acc": "Maltu"
+    },
+    {
+      "code": "NL",
+      "name": "Nizozemsko",
+      "eu": true
+    },
+    {
+      "code": "PL",
+      "name": "Polsko",
+      "eu": true
+    },
+    {
+      "code": "PT",
+      "name": "Portugalsko",
+      "eu": true
+    },
+    {
+      "code": "RO",
+      "name": "Rumunsko",
+      "eu": true
+    },
+    {
+      "code": "SK",
+      "name": "Slovensko",
+      "eu": true
+    },
+    {
+      "code": "SI",
+      "name": "Slovinsko",
+      "eu": true
+    },
+    {
+      "code": "ES",
+      "name": "Španělsko",
+      "eu": true
+    },
+    {
+      "code": "SE",
+      "name": "Švédsko",
+      "eu": true
+    },
+    {
+      "code": "GB",
+      "name": "Spojené království"
+    },
+    {
+      "code": "US",
+      "name": "Spojené státy"
+    },
+    {
+      "code": "CH",
+      "name": "Švýcarsko"
+    },
+    {
+      "code": "NO",
+      "name": "Norsko"
+    },
+    {
+      "code": "UA",
+      "name": "Ukrajina",
+      "acc": "Ukrajinu"
+    }
   ]
 }
