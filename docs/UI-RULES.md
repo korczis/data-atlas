@@ -201,6 +201,22 @@ tématem `companies` ukáže „Všechny země" šedesát, ne tisíc.
 Hlídají to testy *„výběr tématu nezkrátí seznam zemí"*, *„výběr země nezkrátí
 seznam témat"* a *„odznak … počítá v rámci …"*.
 
+**Filtr zdroje platí jen pro katalog.** Long list jsou syrové výsledky keyword
+filtru nad prohlížečem, takže položku s provenienci „reference" neobsahuje
+a obsahovat nemůže — volba „Reference" v něm umí jediné: vyprázdnit stránku.
+Odkaz `#view=longlist&src=reference` tak vracel prázdný výpis bez vysvětlení.
+Blok se proto v tom pohledu skrývá, filtr se neuplatní a `writeHash` ho do URL
+nezapíše; sdílený odkaz se sám normalizuje na `#view=longlist`.
+
+Z toho plyne i druhé pravidlo: **chybějící `view` v URL znamená katalog, ne
+„nech, co bylo".** `writeHash` ho u katalogu vynechává, takže `#src=reference`
+je úplný popis stavu — otevřít ten odkaz z long listu musí vést do katalogu.
+Dokud `readHash` view nepřepisoval, zůstal uživatel v long listu s filtrem,
+který tam nic neznamená.
+
+**Prázdný výběr nekreslí tabulku.** Hlavička sloupců nad prázdnou plochou
+vypadá jako rozbitá tabulka, ne jako prázdný výběr; vysvětlení nese karta pod ní.
+
 **Seznam zemí má vlastní filtrovací pole.** Sedmadvacet států plus nadnárodní
 rozsahy se do plochého seznamu v panelu nevejde; skládací strom je na telefonu
 horší než hledání.

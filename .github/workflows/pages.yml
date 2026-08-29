@@ -44,7 +44,9 @@ jobs:
         run: python3 tools/build_page.py
 
       - name: Konvence UI
-        run: python3 tools/lint_ui.py
+        run: |
+          python3 tools/lint_ui.py
+          python3 tools/check_runtime_classes.py
 
       - name: Responzivita a přístupnost
         run: |

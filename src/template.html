@@ -155,7 +155,11 @@ try {
         </ul>
       </nav>
 
-      <div>
+      <!-- Filtr zdroje je provenience z prohlížeče a dává smysl jen
+           u katalogu. Long list jsou syrové výsledky keyword filtru, všechny
+           z prohlížeče — „Reference" v něm nemůže vrátit nic než prázdno.
+           Volba, která umí jen vyprázdnit stránku, do panelu nepatří. -->
+      <div x-show="view === 'catalog'">
         <h2 class="mb-2 px-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Zdroj</h2>
         <ul class="space-y-1">
           <template x-for="s in sourceFilters" :key="s.k">
@@ -592,9 +596,12 @@ try {
       </div>
       </template>
 
-      <!-- tabulka (od md:) -->
+      <!-- tabulka (od md:)
+           Při nulovém výsledku se nekreslí vůbec: hlavička sloupců nad
+           prázdnou plochou vypadá jako rozbitá tabulka, ne jako prázdný výběr.
+           Vysvětlení nese karta níž. -->
       <template x-if="!mobile">
-      <div class="hidden p-4 md:block">
+      <div class="hidden p-4 md:block" x-show="filtered.length > 0">
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-sm dark:border-gray-700">
           <div class="scroll-x overflow-x-auto">
             <table class="w-full text-start text-sm text-gray-500 dark:text-gray-400">
@@ -854,12 +861,18 @@ document.addEventListener('alpine:init', () => {
     // by po takové úpravě tiše přestal filtrovat.
     readHash(raw) {
       const p = new URLSearchParams(String(raw ?? location.hash ?? '').replace(/^#/, ''));
-      const view = p.get('view');
-      if (view === 'catalog' || view === 'longlist') this.view = view;
+      // Chybějící `view` znamená katalog, ne „nech, co bylo". writeHash ho
+      // u katalogu vynechává, takže #src=reference je celý popis stavu —
+      // a otevřít ten odkaz z long listu musí vést do katalogu, ne nechat
+      // filtr, který v long listu nic neznamená.
+      this.view = p.get('view') === 'longlist' ? 'longlist' : 'catalog';
       this.q = p.get('q') || '';
       this.topic = this.catalog.some(r => r.topic === p.get('topic')) ? p.get('topic') : '';
       this.country = this.catalog.some(r => r.code === p.get('country')) ? p.get('country') : '';
-      this.source = ['data', 'reference'].includes(p.get('src')) ? p.get('src') : '';
+      // `src` se čte až po `view`, protože v long listu nic neznamená
+      // a odkaz s ním se má normalizovat, ne tiše zobrazit prázdno.
+      this.source = this.view === 'catalog'
+        && ['data', 'reference'].includes(p.get('src')) ? p.get('src') : '';
     },
 
     writeHash() {
@@ -868,7 +881,7 @@ document.addEventListener('alpine:init', () => {
       if (this.q) p.set('q', this.q);
       if (this.country) p.set('country', this.country);
       if (this.topic) p.set('topic', this.topic);
-      if (this.source) p.set('src', this.source);
+      if (this.source && this.view === 'catalog') p.set('src', this.source);
       const hash = p.toString();
       this._syncing = true;
       setTimeout(() => { this._syncing = false; }, 0);
@@ -1381,8 +1394,11 @@ document.addEventListener('alpine:init', () => {
       const source = this.source, topic = this.topic, country = this.country;
       const isCatalog = this.view === 'catalog';
       const out = (isCatalog ? this.catalog : this.longlist).filter(r => {
-        if (source === 'data' && r.src === 'reference') return false;
-        if (source === 'reference' && r.src !== 'reference') return false;
+        // Bez `isCatalog` vrátí odkaz #view=longlist&src=reference prázdnou
+        // stránku bez vysvětlení: long list položky s provenienci „reference"
+        // neobsahuje a obsahovat nemůže.
+        if (isCatalog && source === 'data' && r.src === 'reference') return false;
+        if (isCatalog && source === 'reference' && r.src !== 'reference') return false;
         if (isCatalog && topic && r.topic !== topic) return false;
         if (isCatalog && country && r.code !== country) return false;
         return !q || r.s.includes(q);

@@ -288,6 +288,23 @@ check('bez filtru nejsou čipy', s.filterChips.length === 0);
 // přistát rovnou v datech — jinak by rozcestník překážel právě těm, kdo už
 // vědí, co hledají.
 s.reset(); await tick();
+// Filtr zdroje je provenience z prohlížeče a v long listu nemá co filtrovat.
+// Odkaz #view=longlist&src=reference vracel prázdnou stránku bez vysvětlení.
+{
+  s.view = 'longlist'; s.source = 'reference';
+  check('long list se filtrem zdroje nevyprázdní',
+        s.filtered.length === s.longlist.length, `${s.filtered.length} z ${s.longlist.length}`);
+  s.readHash('view=longlist&src=reference');
+  check('odkaz s src v long listu se normalizuje', s.source === '');
+  s.view = 'longlist'; s.source = 'reference';
+  check('src se do URL long listu nezapíše', !s.writeHash().includes('src='));
+  s.view = 'catalog'; s.source = 'reference';
+  check('v katalogu filtr zdroje pořád platí',
+        s.filtered.length > 0 && s.filtered.every(r => r.src === 'reference'),
+        `${s.filtered.length} referencí`);
+  s.source = '';
+}
+
 check('hero se ukazuje na prázdném katalogu', s.isLanding);
 
 // Rozcestník: matice a cesty podle otázky. Canvas se v jsdomu nevykreslí,
