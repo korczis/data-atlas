@@ -968,7 +968,7 @@ document.addEventListener('alpine:init', () => {
       // se proto popisky nekreslí vůbec a gutter připadne buňkám: matice je
       // pak tvar, a identitu řádku řekne ťuknutí. Nečitelný popisek není
       // informace navíc, jen šum přes data.
-      const fits = (gutter) => Math.min(16, Math.max(5, Math.min(24,
+      const fits = (gutter) => Math.min(18, Math.max(5, Math.min(28,
         Math.floor((cssW0() - gutter - (this.taxonomy.length - 1) * GAP)
                    / this.matrixCols.length))));
       const cssW0 = () => el.clientWidth || 600;
@@ -979,9 +979,12 @@ document.addEventListener('alpine:init', () => {
         const groups = this.taxonomy.length;
         const labels = fits(GUTTER) >= 11;
         const LABEL = labels ? GUTTER : 0;
-        const cw = Math.max(5, Math.min(24,
+        // Strop buňky drží matici v rozumné výšce, ale musí být dost velký,
+        // aby se do ní vešlo dvojciferné číslo — jinak zůstane vpravo pruh
+        // prázdna a čísla se tísní.
+        const cw = Math.max(5, Math.min(28,
           Math.floor((cssW - LABEL - (groups - 1) * GAP) / cols.length)));
-        const ch = Math.min(cw, 16);
+        const ch = Math.min(cw, 18);
         const cssH = BAND + 4 + rows.length * ch;
         const dpr = window.devicePixelRatio || 1;
         el.width = Math.round(cssW * dpr);
@@ -1008,6 +1011,10 @@ document.addEventListener('alpine:init', () => {
           ctx.fillRect(xs[j], 0, cw - 1, BAND);
         });
 
+        // Číslo se kreslí, jen když se do buňky vejde. Pod tou hranicí by
+        // z něj byla šmouha přes barvu, která nese totéž — sytost už počet
+        // kóduje, číslo ho jen zpřesňuje.
+        const cisla = cw >= 16 && ch >= 12;
         ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
         ctx.textBaseline = 'middle';
         rows.forEach((row, i) => {
@@ -1026,13 +1033,24 @@ document.addEventListener('alpine:init', () => {
             const n = counts.get(row.code + ' ' + col.id) || 0;
             if (n === 0) {
               ctx.fillStyle = dark ? 'rgba(255,255,255,.05)' : 'rgba(17,24,39,.05)';
-            } else {
-              const s = Math.min(1, Math.log(1 + n) / Math.log(1 + max));
-              const l = dark ? 26 + s * 34 : 82 - s * 40;
-              ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' '
-                + (40 + s * 30) + '% ' + l + '%)';
+              ctx.fillRect(xs[j], y, cw - 1, ch - 1);
+              return;                       // do prázdné buňky se nepíše nula
             }
+            const s = Math.min(1, Math.log(1 + n) / Math.log(1 + max));
+            const l = dark ? 26 + s * 34 : 82 - s * 40;
+            ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' '
+              + (40 + s * 30) + '% ' + l + '%)';
             ctx.fillRect(xs[j], y, cw - 1, ch - 1);
+            if (!cisla) return;
+            // Pastelové číslo v témže odstínu jako buňka: drží klíč barvy
+            // a přitom má kontrast. Práh 55 % světlosti přepíná mezi tmavým
+            // a světlým textem, takže platí v obou motivech i po celé délce
+            // rampy — bez něj číslo na sytém konci zmizí.
+            ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' '
+              + (l > 55 ? '65% 26%' : '70% 92%') + ')';
+            ctx.textAlign = 'center';
+            ctx.fillText(String(n), xs[j] + (cw - 1) / 2, y + (ch - 1) / 2 + 0.5);
+            ctx.textAlign = 'start';
           });
         });
         ctx.globalAlpha = 1;
