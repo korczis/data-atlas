@@ -177,6 +177,10 @@ try {
         <div class="sticky top-0 z-10 -mx-3 mb-2 bg-white px-3 pt-1 dark:bg-gray-800">
           <div class="flex items-center justify-between">
             <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Země</h2>
+            <!-- Rozcestník zemí byl dosud jen v dolní navigaci, takže o něm
+                 nikdo nevěděl. Patří sem, k ose, které se týká. -->
+            <a x-show="hasPlacePages && !country" href="zeme/"
+               class="text-xs font-medium text-gray-500 hover:text-primary-700 hover:underline dark:text-gray-400 dark:hover:text-primary-400">všechny&nbsp;→</a>
             <button type="button" @click="country = ''" x-show="country"
               class="text-xs font-medium text-primary-700 hover:underline dark:text-primary-400">zrušit</button>
           </div>
@@ -205,7 +209,7 @@ try {
             </button>
           </li>
           <template x-for="p in countryList" :key="p.code">
-            <li>
+            <li class="group flex items-center gap-0.5">
               <button type="button" data-filter="country" @click="country = (country === p.code ? '' : p.code)"
                 :aria-pressed="country === p.code ? 'true' : 'false'"
                 :class="[country === p.code ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
@@ -226,6 +230,18 @@ try {
                 </span>
                 <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="p.count"></span>
               </button>
+              <!-- Navigaci nese vlastní prvek, ne název. Panel je filtr:
+                   `Long list`, `Zdroj` i témata tam dělají jednu věc — zužují
+                   výběr. Kdyby název jako jediná položka místo zúžení odnavigoval
+                   pryč, rozbije se předvídatelnost největšího klikacího cíle
+                   v seznamu. Pravidlo je „jména filtrují, šipka naviguje". -->
+              <a x-show="hasPlacePages" :href="p.code.toLowerCase() + '/'"
+                 :aria-label="'Otevřít stránku — ' + p.name"
+                 class="shrink-0 rounded p-1 text-gray-400 opacity-0 transition-opacity hover:bg-gray-100 hover:text-primary-700 focus-visible:opacity-100 group-hover:opacity-100 dark:hover:bg-gray-700 dark:hover:text-primary-400">
+                <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+              </a>
             </li>
           </template>
           <li x-show="countryList.length === 0" class="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">
@@ -385,15 +401,31 @@ try {
                 </span>
               </template>
               <span class="ms-auto text-xs text-gray-500 dark:text-gray-400">
-                <span x-text="matrixFull"></span> ze <span x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0)"></span>
-                témat je kompletních ve všech 27 státech
+                <span x-text="matrixFull"></span> z <span x-text="nationalTopics.length"></span>
+                národních témat je kompletních ve všech
+                <span x-text="places.filter(p => p.eu).length"></span> státech
               </span>
             </div>
+            <!-- Věta se odvozuje z `scope` v data/topics.json, ne z pořadí bloků.
+                 Dokud tu stálo „poslední dva bloky", stačilo přeskládat taxonomii
+                 a text začal tiše lhát — a jmenovatel počítal i témata, která
+                 kompletní být nemůžou. -->
             <p class="mt-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
-              Poslední dva bloky svítí jen v řádcích <span class="font-mono">EU</span> a
-              <span class="font-mono">GLOBAL</span>: knihovny, formáty a výuka nejsou národní
-              agenda, takže tam prázdno není díra v pokrytí. Díra je světlé místo uvnitř
-              barevného pruhu — tam zdroj chybí a stát ho mít má.
+              <span x-text="supraTopics.length"></span> témat
+              (<span x-text="supraTopics.slice(0, 3).map(t => t.label.toLowerCase()).join(', ')"></span>
+              a další) není národní agenda — svítí jen v řádcích
+              <span class="font-mono">EU</span> a <span class="font-mono">GLOBAL</span>
+              a prázdno tam díra není.
+              <span class="inline-flex items-center gap-1">
+                <span aria-hidden="true"
+                      class="inline-block h-2.5 w-2.5 rounded-sm border border-gray-400 bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(107,114,128,.7)_2px,rgba(107,114,128,.7)_3px)]"></span>
+                Šrafovaná buňka
+              </span>
+              znamená doloženo, že zdroj neexistuje
+              (<span x-text="gapSet.size"></span> buněk).
+              Zbývá <span class="font-semibold" x-text="matrixHoles"></span>
+              skutečných děr — světlé místo uvnitř barevného pruhu, kde stát agendu má
+              a zdroj chybí.
             </p>
           </figure>
 
@@ -494,7 +526,24 @@ try {
               </template>
             </ol>
           </nav>
-          <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" x-text="heading"></h1>
+          <!-- Nadpis je při vybrané zemi jejím názvem — a tehdy je odkazem
+               na její stránku. Tady se pro zemi uživatel už rozhodl, takže
+               „jsi tady, tohle je její domov" je přesně ten okamžik, kdy
+               navigace nekoliduje s filtrováním. -->
+          <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+            <template x-if="country && hasPlacePages">
+              <a :href="country.toLowerCase() + '/'"
+                 class="inline-flex items-baseline gap-1.5 hover:underline">
+                <span x-text="heading"></span>
+                <svg class="h-3.5 w-3.5 self-center text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+              </a>
+            </template>
+            <template x-if="!(country && hasPlacePages)">
+              <span x-text="heading"></span>
+            </template>
+          </h1>
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" x-text="subheading"></p>
 
           <!-- Čipy aktivních filtrů. Filtr je jinak vidět jen v panelu, který
@@ -503,7 +552,7 @@ try {
           <div x-show="activeFilters" class="mt-3 flex flex-wrap items-center gap-2">
             <!-- Ke stránce země se jinak dá dostat jen přes rozcestník `zeme/`.
                  Tady stojí v okamžiku, kdy je zřejmé, o kterou zemi jde. -->
-            <a x-show="country" :href="country.toLowerCase() + '/'"
+            <a x-show="country && hasPlacePages" :href="country.toLowerCase() + '/'"
                class="inline-flex items-center gap-1.5 rounded-lg border border-primary-300 bg-primary-50 px-2.5 py-1 text-sm font-medium text-primary-800 hover:bg-primary-100 dark:border-primary-800 dark:bg-primary-900/30 dark:text-primary-300 dark:hover:bg-primary-900/50">
               <span>Stránka <span x-text="placeLabel(country)"></span></span>
               <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -947,7 +996,7 @@ document.addEventListener('alpine:init', () => {
     get matrixCols() {
       const out = [];
       this.taxonomy.forEach((g, gi) => g.topics.forEach(tp =>
-        out.push({ id: tp.id, label: tp.label, group: gi })));
+        out.push({ id: tp.id, label: tp.label, group: gi, scope: tp.scope })));
       return out;
     },
     /** Počty pro celou matici jedním průchodem katalogu, ne 31×34 filtry. */
@@ -966,11 +1015,51 @@ document.addEventListener('alpine:init', () => {
     },
     /** Kolik témat má zdroj ve všech 27 členských státech. Číslo se počítá
      *  z dat, ne z hlavy — natvrdo napsané v textu by zastaralo hned. */
+    /** Doložené absence jako množina „KÓD téma“. Prázdná buňka sama o sobě
+     *  neříká, jestli se zdroj nenašel, nebo neexistuje — a to je rozdíl mezi
+     *  prací, která zbývá, a prací, která je hotová. */
+    get gapSet() {
+      return new Set((window.__DATA__.gaps || []).map(g => g.code + ' ' + g.topic));
+    },
+    gapReason(code, topic) {
+      const g = (window.__DATA__.gaps || []).find(x => x.code === code && x.topic === topic);
+      return g ? g.reason : '';
+    },
+
+    /** Národní témata: ta, která má mít každý členský stát. U nadnárodních
+     *  (formáty, mapové knihovny, sankční seznamy, výuka) je prázdno správný
+     *  stav, ne díra, takže do jmenovatele „kompletních témat" nepatří. */
+    get nationalTopics() {
+      return this.taxonomy.flatMap(g => g.topics).filter(t => t.scope !== 'supra');
+    },
+    get supraTopics() {
+      return this.taxonomy.flatMap(g => g.topics).filter(t => t.scope === 'supra');
+    },
+
+    /** Stránky zemí existují jen vedle index.html — v artefaktu ne. */
+    get hasPlacePages() { return window.__PAGES__ !== false; },
+
+    /** Kolik národních témat má zdroj ve všech členských státech. Nadnárodní
+     *  se nepočítají: kompletní být nemůžou a jen by kazila jmenovatel. */
     get matrixFull() {
       const eu = this.places.filter(p => p.eu).map(p => p.code);
       const c = this.matrixCounts;
-      return this.matrixCols.filter(col =>
-        eu.every(code => c.get(code + ' ' + col.id))).length;
+      return this.matrixCols.filter(col => col.scope !== 'supra'
+        && eu.every(code => c.get(code + ' ' + col.id))).length;
+    },
+
+    /** Buňky, kde zdroj chybí, stát agendu má a absence není doložená.
+     *  Tohle číslo je jediný poctivý údaj o tom, kolik práce zbývá. */
+    get matrixHoles() {
+      const eu = this.places.filter(p => p.eu).map(p => p.code);
+      const c = this.matrixCounts, g = this.gapSet;
+      let n = 0;
+      for (const col of this.matrixCols) {
+        if (col.scope === 'supra') continue;
+        for (const code of eu)
+          if (!c.get(code + ' ' + col.id) && !g.has(code + ' ' + col.id)) n++;
+      }
+      return n;
     },
     get matrixLabel() {
       return 'Matice pokrytí: ' + this.matrixRows.length + ' zemí a rozsahů krát '
@@ -1027,14 +1116,14 @@ document.addEventListener('alpine:init', () => {
         const dark = root.getAttribute('data-theme') === 'dark'
           || (!root.hasAttribute('data-theme') && window.matchMedia
               && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        const counts = this.matrixCounts, max = this.matrixMax;
+        const counts = this.matrixCounts, max = this.matrixMax, gaps = this.gapSet;
         const xs = [];
         let x = LABEL, lastGroup = 0;
         for (const col of cols) {
           if (col.group !== lastGroup) { x += GAP; lastGroup = col.group; }
           xs.push(x); x += cw;
         }
-        geom = { cw, ch, xs, top: BAND + 4, rows, cols };
+        geom = { cw, ch, xs, top: BAND + 4, rows, cols, label: LABEL };
 
         cols.forEach((col, j) => {
           ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' 62% 48%)';
@@ -1064,6 +1153,24 @@ document.addEventListener('alpine:init', () => {
             if (n === 0) {
               ctx.fillStyle = dark ? 'rgba(255,255,255,.05)' : 'rgba(17,24,39,.05)';
               ctx.fillRect(xs[j], y, cw - 1, ch - 1);
+              // Šrafa = ověřili jsme, že zdroj neexistuje. Bez ní vypadá
+              // doložená absence stejně jako místo, kam se nikdo nepodíval,
+              // a z matice se nedá přečíst, kolik práce vlastně zbývá.
+              if (gaps.has(row.code + ' ' + col.id)) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.rect(xs[j], y, cw - 1, ch - 1);
+                ctx.clip();
+                ctx.strokeStyle = dark ? 'rgba(255,255,255,.28)' : 'rgba(17,24,39,.24)';
+                ctx.lineWidth = 1;
+                for (let d = -ch; d < cw; d += 4) {
+                  ctx.beginPath();
+                  ctx.moveTo(xs[j] + d, y + ch - 1);
+                  ctx.lineTo(xs[j] + d + ch, y);
+                  ctx.stroke();
+                }
+                ctx.restore();
+              }
               return;                       // do prázdné buňky se nepíše nula
             }
             const s = Math.min(1, Math.log(1 + n) / Math.log(1 + max));
@@ -1112,23 +1219,44 @@ document.addEventListener('alpine:init', () => {
         const px = ev.clientX - r.left, py = ev.clientY - r.top;
         const i = Math.floor((py - geom.top) / geom.ch);
         if (i < 0 || i >= geom.rows.length) return null;
+        // Gutter s popiskem řádku není buňka — je to identita země. Proto
+        // odtud nevede filtr, ale odkaz na její stránku. Popisky se pod
+        // hranicí čitelnosti nekreslí, a tehdy je geom.label nula, takže
+        // se tahle větev sama vypne.
+        if (geom.label && px >= 0 && px < geom.label) {
+          const r0 = geom.rows[i];
+          return { i, j: -1, kind: 'row', code: r0.code, topic: '', n: 0,
+                   tx: geom.label / 2, ty: geom.top + i * geom.ch - 4,
+                   label: this.hasPlacePages ? 'Otevřít stránku — ' + r0.name : r0.name };
+        }
         let j = -1;
         for (let k = 0; k < geom.xs.length; k++)
           if (px >= geom.xs[k] && px < geom.xs[k] + geom.cw) { j = k; break; }
         if (j < 0) return null;
         const row = geom.rows[i], col = geom.cols[j];
         const n = this.matrixCounts.get(row.code + ' ' + col.id) || 0;
-        return { i: i, j: j, code: row.code, topic: col.id, n: n,
+        // Prázdná buňka má tři různé významy a tooltip je jediné místo,
+        // kde se dá říct který: doloženo, mimo agendu, nebo díra.
+        const reason = n === 0 ? this.gapReason(row.code, col.id) : '';
+        const empty = reason ? 'doloženo, že neexistuje — ' + reason
+                    : col.scope === 'supra' ? 'není národní agenda'
+                    : 'chybí';
+        return { i: i, j: j, kind: 'cell', code: row.code, topic: col.id, n: n,
                  tx: geom.xs[j] + geom.cw / 2, ty: geom.top + i * geom.ch - 4,
                  label: row.name + ' · ' + col.label + ' — '
-                        + (n === 0 ? 'nic' : n + this.plural(n)) };
+                        + (n === 0 ? empty : n + this.plural(n)) };
       };
 
       el.addEventListener('pointermove', ev => { this.mcell = hit(ev); paint(1); });
       el.addEventListener('pointerleave', () => { this.mcell = null; paint(1); });
       el.addEventListener('click', ev => {
         const c = hit(ev);
-        if (!c || !c.n) return;
+        if (!c) return;
+        if (c.kind === 'row') {
+          if (this.hasPlacePages) location.href = c.code.toLowerCase() + '/';
+          return;
+        }
+        if (!c.n) return;
         this.country = c.code; this.topic = c.topic; this.scrollToCatalog();
       });
       if (window.ResizeObserver) new ResizeObserver(() => paint(1)).observe(el);
