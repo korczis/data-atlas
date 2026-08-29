@@ -47,6 +47,14 @@ jobs:
           node tests/flowbite.mjs
           node tests/places.mjs
 
+      # Proklik v opravdovém prohlížeči. Bere se Chrome z runneru
+      # (`--only-shell` nestačí, config jede na channel: 'chrome'),
+      # takže se nestahuje celý Chromium.
+      - name: Proklik v prohlížeči
+        run: |
+          npx playwright install --with-deps chrome
+          npx playwright test
+
       - name: Dokumentace je aktuální
         run: |
           python3 tools/build_docs.py

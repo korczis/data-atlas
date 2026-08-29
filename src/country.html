@@ -177,7 +177,7 @@
          složitost bez měřitelného zisku. -->
     <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700 md:hidden">
       <template x-for="r in shown" :key="'c' + r.id">
-        <li class="p-4">
+        <li data-card class="p-4">
           <a :href="r.url" target="_blank" rel="noopener noreferrer"
              class="font-medium text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
              x-text="r.name"></a>

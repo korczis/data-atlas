@@ -67,6 +67,14 @@ jobs:
           node tests/flowbite.mjs
           node tests/places.mjs
 
+      # Proklik v opravdovém prohlížeči. Bere se Chrome z runneru
+      # (`--only-shell` nestačí, config jede na channel: 'chrome'),
+      # takže se nestahuje celý Chromium.
+      - name: Proklik v prohlížeči
+        run: |
+          npx playwright install --with-deps chrome
+          npx playwright test
+
       - uses: actions/configure-pages@v6
       # include-hidden-files, protože v5 nově vylučuje všechny tečkové soubory
       # (v3 vylučovala jen .git a .github). Bez toho by z artefaktu tiše

@@ -69,7 +69,7 @@ flags:
 
 # Build + testy — stejné, co běží v CI
 [group('build')]
-check: validate catalog build lint test responsive typography a11y
+check: validate catalog build lint test responsive typography a11y e2e
 
 # ── testy ─────────────────────────────────────────────────────────────────────
 
@@ -103,6 +103,11 @@ responsive:
 [group('test')]
 shots *ARGS:
     python3 tools/shoot.py {{ ARGS }}
+
+# Proklik hotových stránek v opravdovém prohlížeči (Playwright, systémový Chrome)
+[group('test')]
+e2e *ARGS:
+    npx playwright test {{ ARGS }}
 
 # Sazba: délka řádku, velikost písma v polích, hierarchie nadpisů
 [group('test')]

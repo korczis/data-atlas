@@ -25,6 +25,15 @@ document.addEventListener('alpine:init', () => {
       this.readHash();
       for (const k of ['q', 'topic', 'access', 'page'])
         this.$watch(k, () => this.writeHash());
+      // Hash se musí číst i po startu, ne jen při načtení. Bez tohohle
+      // posluchače tlačítko Zpět v prohlížeči adresu vrátí, ale výběr
+      // zůstane stát — a odkaz na `/cz/#topic=companies` poslaný někomu,
+      // kdo tu stránku už má otevřenou, nezafiltruje vůbec. Hlavní stránka
+      // to má odjakživa, stránky zemí na to zapomněly.
+      //
+      // `replaceState` ve writeHash() událost nevyvolá, takže se vlastní
+      // zápis nečte zpátky a smyčka nehrozí.
+      window.addEventListener('hashchange', () => this.readHash());
     },
 
     /** Filtr žije v URL, aby šel výřez poslat dál. V hashi stojí identifikátor

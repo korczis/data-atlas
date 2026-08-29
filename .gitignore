@@ -16,3 +16,7 @@ config/private-hosts.txt
 # Python bytecode z tools/
 __pycache__/
 *.pyc
+
+# Výstupy Playwrightu (stopy, snímky selhání). Generované, do repozitáře nepatří.
+test-results/
+playwright-report/
