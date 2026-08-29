@@ -339,7 +339,8 @@ try {
             Geodata · Registry · Transparence · Due diligence
           </p>
           <h2 id="hero-title" class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
-            Veřejná data Evropské unie na jednom místě
+            Ověřené veřejné datové zdroje<br class="hidden sm:block">
+            napříč jurisdikcemi
           </h2>
           <p class="mt-4 max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg">
             Katastr a geodata, otevřená data a statistika, obchodní rejstříky, skuteční
@@ -347,26 +348,62 @@ try {
             členských států. U každého zdroje stojí, <span class="font-semibold text-gray-900 dark:text-white">jestli
             se dovnitř dostaneš</span> a <span class="font-semibold text-gray-900 dark:text-white">co si odneseš</span>.
           </p>
+          <p class="mt-3 max-w-3xl text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+            Pro rešerši, OSINT, due diligence a strojový sběr dat. Každá adresa je
+            ověřená po síti, ne odhadnutá z názvu domény.
+          </p>
 
-          <dl class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
-              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Zdrojů</dt>
+          <!-- Akce jsou konkrétní, ne „začít". Primární je procházení po zemích,
+               protože jurisdikce je osa, kterou uživatel zná dřív než taxonomii. -->
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a x-show="hasPlacePages" href="zeme/"
+               class="inline-flex items-center gap-2 rounded-lg bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700">
+              Procházet země
+              <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+            </a>
+            <button type="button" @click="scrollToCatalog()"
+              class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">
+              Procházet katalog
+              <span class="tabular-nums font-normal text-gray-500 dark:text-gray-400" x-text="catalog.length"></span>
+            </button>
+            <a href="#coverage"
+               class="text-sm font-medium text-primary-700 hover:underline dark:text-primary-400">Matice pokrytí</a>
+            <a href="https://github.com/korczis/data-atlas" target="_blank" rel="noopener noreferrer"
+               class="text-sm font-medium text-gray-600 hover:underline dark:text-gray-400">Repozitář</a>
+          </div>
+
+          <dl class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-gray-200 bg-gray-200 sm:grid-cols-3 lg:grid-cols-6 dark:border-gray-700 dark:bg-gray-700">
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Zdrojů</dt>
               <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="catalog.length"></dd>
             </div>
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
-              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Členských států</dt>
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Členských států</dt>
               <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
                   x-text="places.filter(p => p.eu).length + ' z 27'"></dd>
             </div>
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
-              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Témat</dt>
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Témat</dt>
               <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
                   x-text="taxonomy.reduce((a, g) => a + g.topics.length, 0)"></dd>
             </div>
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900/40">
-              <dt class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">S API nebo bulk</dt>
-              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white"
-                  x-text="catalog.filter(r => ['api','bulk','ogc'].includes(r.data)).length"></dd>
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">S API nebo bulk</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="machineCount"></dd>
+            </div>
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Úředních</dt>
+              <dd class="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-white" x-text="officialCount"></dd>
+            </div>
+            <div class="bg-white p-4 dark:bg-gray-800">
+              <dt class="text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Ověřeno</dt>
+              <!-- Datum není veličina, takže se nesází jako ostatní čísla:
+                   v šířce dlaždice se `2026-08-28` na 2xl zalomilo uprostřed
+                   tokenu. Menší stupeň a zákaz zalomení to drží na řádku
+                   a zároveň říká, že se to s počty neporovnává. -->
+              <dd class="mt-1.5 whitespace-nowrap text-lg font-semibold tabular-nums text-gray-900 dark:text-white" x-text="verifiedOn"></dd>
             </div>
           </dl>
 
@@ -374,7 +411,7 @@ try {
                Jeden <canvas> místo tisícovky <button>ů: mřížka má tolik buněk,
                kolik má vykreslený katalog řádků, a jako DOM by stála stejně.
                Klávesnicová cesta k témuž filtru vede panelem a čipy níž. -->
-          <figure class="mt-10">
+          <figure id="coverage" class="mt-10 scroll-mt-20">
             <figcaption class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Tvar katalogu</h3>
               <p class="text-xs text-gray-500 dark:text-gray-400">
@@ -493,6 +530,15 @@ try {
               </p>
             </div>
             <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Neznámé není totéž co neexistuje</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Když stát agendu nemá, je to zapsané jako doložená absence s důvodem
+                (<span x-text="gapSet.size"></span> buněk), ne jako prázdno. Zbývá tak
+                <span class="font-semibold" x-text="matrixHoles"></span> míst, kde zdroj
+                opravdu chybí — a to číslo se dá spočítat, ne odhadnout.
+              </p>
+            </div>
+            <div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
               <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Země a téma zvlášť</h3>
               <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                 Obchodní rejstřík je <em>companies</em> bez ohledu na to, jestli je český
@@ -506,6 +552,141 @@ try {
             místo aby se díra zaplácla slabou náhražkou. Otevřené i zavřené registry
             jsou v katalogu s uvedením překážky; nic se neobchází.
           </p>
+
+          <!-- ══ UKÁZKOVÉ ZÁZNAMY ══
+               Pět skutečných řádků katalogu, ne vymyšlené vzorky. Ukazují, co
+               všechno je u zdroje vedené: jurisdikce, téma, přístup, forma dat.
+               Vybírá je `sampleRecords` z dat — ručně psaná ukázka by lhala
+               o vlastním katalogu v den, kdy se zdroj přesune. -->
+          <div class="mt-12">
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Jak vypadá záznam</h3>
+            <p class="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Pět skutečných položek napříč jurisdikcemi a tématy. U každé je vidět,
+              kdo ji vydává, jak se k ní dostaneš a v jaké formě data vydá.
+            </p>
+            <div class="scroll-x mt-4 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <table class="w-full text-start text-sm">
+                <caption class="sr-only">Ukázkové záznamy z katalogu</caption>
+                <thead class="bg-gray-50 text-xs uppercase text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                  <tr>
+                    <th scope="col" class="px-3 py-2.5 text-start font-semibold">Jurisdikce</th>
+                    <th scope="col" class="px-3 py-2.5 text-start font-semibold">Téma</th>
+                    <th scope="col" class="px-3 py-2.5 text-start font-semibold">Zdroj</th>
+                    <th scope="col" class="px-3 py-2.5 text-start font-semibold">Přístup</th>
+                    <th scope="col" class="px-3 py-2.5 text-start font-semibold">Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="r in sampleRecords" :key="'s' + r.id">
+                    <tr class="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <td class="whitespace-nowrap px-3 py-3 align-top">
+                        <span class="font-mono text-xs font-semibold text-gray-900 dark:text-white" x-text="r.code"></span>
+                        <span class="ms-1.5 text-gray-600 dark:text-gray-400" x-text="placeLabel(r.code)"></span>
+                      </td>
+                      <td class="px-3 py-3 align-top text-gray-600 dark:text-gray-400" x-text="topicLabel(r.topic)"></td>
+                      <td class="px-3 py-3 align-top">
+                        <a :href="r.url" target="_blank" rel="noopener noreferrer"
+                           class="font-medium text-gray-900 hover:text-primary-700 hover:underline dark:text-white dark:hover:text-primary-400"
+                           x-text="r.name"></a>
+                        <span class="block font-mono text-xs text-gray-500 dark:text-gray-400" x-text="r.dom"></span>
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-3 align-top text-gray-600 dark:text-gray-400" x-text="accessLabel(r.access)"></td>
+                      <td class="whitespace-nowrap px-3 py-3 align-top">
+                        <span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[11px] font-medium text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300"
+                              x-text="dataLabel(r.data)"></span>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ══ PRO LIDI I PRO STROJE ══ -->
+          <div class="mt-12 grid gap-8 lg:grid-cols-2">
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Pro lidi i pro stroje</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Katalog je jeden CSV soubor a sada JSON číselníků v repozitáři. Dá se
+                z něj vybírat programově — podle jurisdikce, tématu, způsobu přístupu
+                nebo formy dat — a stavět na tom výběr zdrojů pro rešerši, konektory
+                nebo analýzu pokrytí. <span class="font-medium text-gray-700 dark:text-gray-300">Vlastní
+                API projekt nemá</span>; data se berou přímo ze souborů.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-sm">
+                <li><a href="https://github.com/korczis/data-atlas/blob/main/data/catalog.csv"
+                       target="_blank" rel="noopener noreferrer"
+                       class="font-medium text-primary-700 hover:underline dark:text-primary-400">data/catalog.csv</a>
+                    <span class="text-gray-500 dark:text-gray-400">— celý katalog, jeden řádek na zdroj</span></li>
+                <li><a href="https://github.com/korczis/data-atlas/tree/main/data/sources"
+                       target="_blank" rel="noopener noreferrer"
+                       class="font-medium text-primary-700 hover:underline dark:text-primary-400">data/sources/</a>
+                    <span class="text-gray-500 dark:text-gray-400">— zdroj pravdy, jeden JSON na jurisdikci</span></li>
+                <li><a href="https://github.com/korczis/data-atlas/blob/main/data/gaps.json"
+                       target="_blank" rel="noopener noreferrer"
+                       class="font-medium text-primary-700 hover:underline dark:text-primary-400">data/gaps.json</a>
+                    <span class="text-gray-500 dark:text-gray-400">— doložené absence i s důvodem</span></li>
+                <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/COVERAGE.md"
+                       target="_blank" rel="noopener noreferrer"
+                       class="font-medium text-primary-700 hover:underline dark:text-primary-400">docs/COVERAGE.md</a>
+                    <span class="text-gray-500 dark:text-gray-400">— matice pokrytí jako text</span></li>
+              </ul>
+            </div>
+
+            <!-- ══ METODIKA ══ -->
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Jak zdroj vzniká</h3>
+              <dl class="mt-3 space-y-3 text-sm leading-relaxed">
+                <div>
+                  <dt class="font-medium text-gray-900 dark:text-white">Přednost má úřad</dt>
+                  <dd class="text-gray-600 dark:text-gray-400">
+                    <span x-text="officialCount"></span> z <span x-text="catalog.length"></span>
+                    položek vydává úřad nebo instituce. Komerční a výzkumné zdroje jsou
+                    v katalogu taky, ale označené.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-medium text-gray-900 dark:text-white">Adresa se ověřuje po síti</dt>
+                  <dd class="text-gray-600 dark:text-gray-400">
+                    Kontrola rozlišuje přesměrování, anti-bot ochranu a vadný certifikát
+                    od mrtvého odkazu. Poslední průchod: <span x-text="verifiedOn"></span>.
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-medium text-gray-900 dark:text-white">Překážka se zapisuje</dt>
+                  <dd class="text-gray-600 dark:text-gray-400">
+                    Registrace, poplatek i blokování automatů jsou vlastní hodnoty, ne
+                    poznámka pod čarou. <span x-text="catalog.filter(r => r.access === 'open').length"></span>
+                    zdrojů je bez překážky.
+                  </dd>
+                </div>
+              </dl>
+              <p class="mt-4 text-sm">
+                <a href="https://github.com/korczis/data-atlas/blob/main/docs/EU-EXPANSION-PLAN.md"
+                   target="_blank" rel="noopener noreferrer"
+                   class="font-medium text-primary-700 hover:underline dark:text-primary-400">Schéma, číselníky a pravidla klasifikace →</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- ══ PŘÍSPĚVKY ══ -->
+          <div class="mt-12 rounded-lg border border-gray-200 p-5 dark:border-gray-700">
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Katalog je otevřený</h3>
+            <p class="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Zdrojová data i metodika jsou v repozitáři. Mrtvý odkaz, chybějící zdroj
+              nebo špatně určený přístup se hlásí issue; zdroje se přidávají do
+              <span class="font-mono text-xs">data/sources/&lt;KÓD&gt;.json</span> a katalog se
+              z nich přegeneruje.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              <a href="https://github.com/korczis/data-atlas/issues/new" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 font-medium text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">Nahlásit zdroj</a>
+              <a href="https://github.com/korczis/data-atlas/tree/main/data/sources" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 font-medium text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">Zdrojová data</a>
+              <a href="https://github.com/korczis/data-atlas" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 font-medium text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">Repozitář</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -669,7 +850,10 @@ try {
       <div class="hidden p-4 md:block" x-show="filtered.length > 0">
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-sm dark:border-gray-700">
           <div class="scroll-x overflow-x-auto">
-            <table class="w-full text-start text-sm text-gray-500 dark:text-gray-400">
+            <!-- data-catalog: stabilní úchyt pro testy. Rozcestník má vlastní
+                 tabulku s ukázkovými záznamy, takže „ta tabulka na stránce"
+                 přestala být jednoznačná. -->
+            <table data-catalog class="w-full text-start text-sm text-gray-500 dark:text-gray-400">
               <caption class="sr-only">Katalog veřejných datových zdrojů</caption>
               <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-300">
                 <tr>
@@ -761,8 +945,56 @@ try {
         </div>
       </div>
 
-      <footer class="border-t border-gray-200 px-4 py-6 text-xs leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
-        <p class="max-w-3xl">
+      <footer class="border-t border-gray-200 px-4 py-8 text-xs leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
+        <!-- Patička nese navigaci, ne jen prózu: je to poslední místo, kde se
+             dá odejít jinam než zpátky nahoru. Drží se os katalogu — země,
+             téma, pokrytí — plus data a metodika. -->
+        <nav aria-label="Patička" class="mb-6 grid gap-6 sm:grid-cols-3 lg:grid-cols-4">
+          <div>
+            <h2 class="text-[11px] font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300">Procházet</h2>
+            <ul class="mt-2 space-y-1">
+              <li><a href="#" class="hover:text-gray-900 hover:underline dark:hover:text-white">Katalog</a></li>
+              <li x-show="hasPlacePages"><a href="zeme/" class="hover:text-gray-900 hover:underline dark:hover:text-white">Země</a></li>
+              <li><a href="#coverage" class="hover:text-gray-900 hover:underline dark:hover:text-white">Matice pokrytí</a></li>
+              <li><a href="#" @click.prevent="view = 'longlist'; reset(); view = 'longlist'"
+                     class="hover:text-gray-900 hover:underline dark:hover:text-white">Long list</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-[11px] font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300">Data</h2>
+            <ul class="mt-2 space-y-1">
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/data/catalog.csv"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">catalog.csv</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/tree/main/data/sources"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Zdrojová data</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/data/gaps.json"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Doložené absence</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-[11px] font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300">Dokumentace</h2>
+            <ul class="mt-2 space-y-1">
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/CATALOG.md"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Plný výpis</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/COVERAGE.md"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Pokrytí</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/EU-EXPANSION-PLAN.md"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Metodika</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-[11px] font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300">Projekt</h2>
+            <ul class="mt-2 space-y-1">
+              <li><a href="https://github.com/korczis/data-atlas"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Repozitář</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/issues/new"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Nahlásit zdroj</a></li>
+              <li><a href="https://github.com/korczis/data-atlas/blob/main/NOTICE.md"
+                     target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 hover:underline dark:hover:text-white">Licence a atribuce</a></li>
+            </ul>
+          </div>
+        </nav>
+        <p class="max-w-3xl border-t border-gray-200 pt-5 dark:border-gray-700">
           <span class="font-semibold text-gray-700 dark:text-gray-300">Co to je.</span>
           Kurátorovaný soupis veřejných datových zdrojů Evropské unie — geodata a katastr, otevřená data
           a statistika, obchodní rejstříky, insolvence, zakázky, soudy a regulace, a k tomu rizikové
@@ -1015,6 +1247,45 @@ document.addEventListener('alpine:init', () => {
     },
     /** Kolik témat má zdroj ve všech 27 členských státech. Číslo se počítá
      *  z dat, ne z hlavy — natvrdo napsané v textu by zastaralo hned. */
+    /** Ukázkové záznamy pro rozcestník. Vybírají se z katalogu, nepíšou se
+     *  rukou: vymyšlená ukázka by v den, kdy se zdroj přesune, začala lhát
+     *  o vlastních datech. Témata jsou zvolená tak, aby ukázala šíři —
+     *  rejstřík, katastr, zakázky, insolvence, dohled — a z každého se bere
+     *  úřední zdroj se strojovým přístupem, protože právě ten rozdíl má
+     *  katalog ukazovat. Pořadí katalogu je stabilní, takže je i výběr. */
+    get sampleRecords() {
+      const want = ['companies', 'cadastre', 'procurement', 'insolvency', 'regulators'];
+      const machine = new Set(['api', 'bulk', 'ogc']);
+      const used = new Set();
+      const out = [];
+      for (const t of want) {
+        const rows = this.catalog.filter(r => r.topic === t);
+        const pick = rows.find(r => r.kind === 'official' && machine.has(r.data) && !used.has(r.code))
+                  || rows.find(r => r.kind === 'official' && !used.has(r.code))
+                  || rows.find(r => !used.has(r.code))
+                  || rows[0];
+        if (!pick) continue;
+        used.add(pick.code);
+        out.push(pick);
+      }
+      return out;
+    },
+
+    /** Kolik zdrojů vydá data stroji. `download` se počítá zvlášť: soubor ke
+     *  stažení je strojově použitelný jinak než API, a slít to dohromady by
+     *  bylo přesně to zjednodušení, které katalog odmítá dělat. */
+    get machineCount() {
+      return this.catalog.filter(r => ['api', 'bulk', 'ogc'].includes(r.data)).length;
+    },
+    get officialCount() { return this.catalog.filter(r => r.kind === 'official').length; },
+    /** Den poslední kontroly. Když se katalog ověřoval na několikrát, je to
+     *  ten nejstarší — tvrdit novější datum, než platí pro celý katalog,
+     *  by bylo přesně to, co si tenhle projekt zakazuje. */
+    get verifiedOn() {
+      const d = this.catalog.map(r => r.ver).filter(Boolean).sort();
+      return d.length ? d[0] : '';
+    },
+
     /** Doložené absence jako množina „KÓD téma“. Prázdná buňka sama o sobě
      *  neříká, jestli se zdroj nenašel, nebo neexistuje — a to je rozdíl mezi
      *  prací, která zbývá, a prací, která je hotová. */
@@ -1577,6 +1848,10 @@ document.addEventListener('alpine:init', () => {
     reset() { this.q = ''; this.topic = ''; this.country = ''; this.source = ''; this.cq = ''; },
     topicLabel(id) { return window.__DATA__.topicLabel.get(id) || id; },
     placeLabel(code) { return window.__DATA__.placeLabel.get(code) || code; },
+    // Popisky hodnot přicházejí z payloadu, ne z literálu v šabloně: kdyby se
+    // opsaly sem, byl by číselník potřetí na třetím místě.
+    accessLabel(k) { return (window.__DATA__.labels?.access || {})[k] || k; },
+    dataLabel(k) { return (window.__DATA__.labels?.data || {})[k] || k; },
     plural(n) { return n === 1 ? ' položka' : (n < 5 ? ' položky' : ' položek'); },
 
     srcLabel(s) {

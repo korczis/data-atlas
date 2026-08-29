@@ -26,6 +26,44 @@ check('značka v horní liště', flat.includes('Data Atlas'));
         !!brand?.getAttribute('aria-label'));
 }
 check('nadpis stránky', d.querySelector('h1')?.textContent.trim() === 'Kurátorovaný katalog');
+
+// ── rozcestník ─────────────────────────────────────────────────────────────
+// Rozcestník tvrdí čísla o katalogu. Každé z nich musí být odvozené, protože
+// ručně opsané číslo zestárne při první změně dat a stránka pak lže o sobě.
+{
+  const flatText = d.body.textContent.replace(/\s+/g, ' ');
+  check('statistika hlásí skutečný počet zdrojů', flatText.includes(String(catalog.length)),
+        `${catalog.length}`);
+  const machine = catalog.filter(r => ['api', 'bulk', 'ogc'].includes(r['Data'])).length;
+  check('strojově dostupné sedí na katalog', state.machineCount === machine,
+        `${state.machineCount} / ${machine}`);
+  const official = catalog.filter(r => r['Typ'] === 'official').length;
+  check('úřední sedí na katalog', state.officialCount === official,
+        `${state.officialCount} / ${official}`);
+  check('datum ověření pochází z dat',
+        /^\d{4}-\d{2}-\d{2}$/.test(state.verifiedOn), state.verifiedOn);
+
+  // Ukázkové záznamy musí být skutečné položky katalogu, ne vymyšlené vzorky.
+  const ids = new Set(catalog.map(r => r['ID']));
+  check('ukázkové záznamy jsou z katalogu',
+        state.sampleRecords.length > 0 && state.sampleRecords.every(r => ids.has(r.id)),
+        `${state.sampleRecords.length} záznamů`);
+  check('ukázky pokrývají různé jurisdikce',
+        new Set(state.sampleRecords.map(r => r.code)).size === state.sampleRecords.length);
+
+  // Národní/nadnárodní příznak a doložené absence nesou tvrzení o pokrytí.
+  check('nadnárodní témata jsou označená v datech', state.supraTopics.length > 0
+        && state.nationalTopics.length > state.supraTopics.length,
+        `${state.nationalTopics.length} národních / ${state.supraTopics.length} nadnárodních`);
+  check('díry se počítají, ne odhadují', Number.isInteger(state.matrixHoles)
+        && state.matrixHoles < state.nationalTopics.length * 27,
+        `${state.matrixHoles} děr, ${state.gapSet.size} doložených absencí`);
+
+  const foot = d.querySelector('footer nav[aria-label="Patička"]');
+  check('patička nese navigaci', !!foot && foot.querySelectorAll('a').length >= 10,
+        `${foot?.querySelectorAll('a').length} odkazů`);
+  check('rozcestník má kotvu pro matici', !!d.querySelector('#coverage'));
+}
 // Katalog se vykresluje po dávkách — celý najednou by na mobilu znamenal
 // 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky.
 check('první dávka je vykreslená', tableRows() === state.STEP, `${tableRows()} z ${state.STEP}`);

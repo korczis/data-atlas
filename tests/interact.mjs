@@ -257,8 +257,10 @@ check('řazení podle návštěv členění vypne', s.sections.length === 1,
 for (const [label, setup] of [['seskupeně', () => { s.reset(); s.sort = { key: 'ord', dir: 1 }; }],
                               ['plochý seznam', () => { s.sortBy('visits'); }]]) {
   setup(); await tick();
-  const headers = d.querySelectorAll('table thead th').length;
-  const row = d.querySelector('table tbody tr[data-row]');
+  // Úchyt, ne „první tabulka": rozcestník má vlastní tabulku s ukázkovými
+  // záznamy a bez zacílení by se počítaly její hlavičky.
+  const headers = d.querySelectorAll('table[data-catalog] thead th').length;
+  const row = d.querySelector('table[data-catalog] tbody tr[data-row]');
   const visible = [...row.querySelectorAll('td')].filter(td => td.style.display !== 'none').length;
   check(`sloupce sedí (${label})`, headers === visible, `${headers} hlaviček / ${visible} buněk`);
 }
