@@ -46,6 +46,63 @@ markupu (šuplík, spodní navigace, toast). Seznam položek si řídí Alpine s
 
 ## Flowbite
 
+### Tailwind ořízne to, co Flowbite přidává za běhu
+
+Flowbite si část tříd nevkládá do markupu, ale **přidává je z JavaScriptu**:
+backdrop šuplíku vzniká za běhu s `bg-gray-900/50 dark:bg-gray-900/80 fixed
+inset-0 z-30`, přepnutí polohy razí `transform-none` a `-translate-x-full`.
+Tailwind skenuje zdroj, tyhle třídy v něm nevidí a ořízne je.
+
+Výsledek je zákeřný, protože **v DOM všechno vypadá správně**: backdrop se
+vytvoří, má správný `class`, jen bez `inset-0` má nulový rozměr. Šuplík se pak
+otevře bez ztmavení a ťuknutí vedle něj ho nezavře — posluchač na něm visí, ale
+nulová plocha žádné ťuknutí nezachytí. Kontrola „backdrop existuje" projde.
+
+Drží je proto `safelist` v [`src/tailwind.config.js`](../src/tailwind.config.js)
+a hlídá `tools/check_runtime_classes.py` (`just lint`). Ten si třídy **vytáhne
+přímo z balíčku** — z voleb `*Classes`, z literálů v `classList.add/remove`
+a z tabulky poloh šuplíku — a porovná je se třemi seznamy:
+
+| Seznam | Význam |
+|---|---|
+| `NEEDED` | musí mít v CSS pravidlo, jinak komponenta tiše nefunguje |
+| `UNSTYLED_BY_DESIGN` | pravidlo mít **nesmí**, s uvedeným důvodem |
+| zbytek | polohy šuplíku, které markup nepoužívá — safelist by je tahal zbytečně |
+
+Ta prostřední kategorie je tam schválně. Flowbite přidává šuplíku fyzické
+`left-0`; panel si polohu řeší logickým `start-0` (pravidlo `flowbite/rtl`),
+takže v LTR by `left-0` jen zdvojilo totéž a v RTL by táhlo panel na špatnou
+stranu. Bez té kategorie by brána nutila safelistovat všechno, co knihovna
+razí, a tichá mezera by se změnila v tiché pravidlo navíc.
+
+Když upgrade Flowbite některou třídu přejmenuje nebo přidá novou, seznam se
+rozejde s balíčkem a brána si vyžádá rozhodnutí. Bez toho by se safelist
+s knihovnou tiše rozešel.
+
+Jak se to našlo: v šabloně byl `#sidebarBackdrop`, kus opsaného aplikačního
+shellu, který sám nic nedělal (`display: none`) a Flowbite ho nepoužíval.
+Jenže **fungoval jako nechtěný safelist** — držel `inset-0` a `bg-gray-900/50`
+naživu. Když jsem ho uklidil jako mrtvý kód, backdrop přestal existovat.
+Odsud pravidlo: třídu, kterou razí knihovna za běhu, drží safelist, ne náhodný
+kus markupu.
+
+### Vrstvení šuplíku
+
+`hlavička z-50 > panel z-40 > backdrop Flowbite z-30 > obsah`.
+
+Backdrop má `z-30` natvrdo v knihovně a připojuje se na konec `<body>`. Kdyby
+měl panel taky `z-30`, prohraje pořadím v DOM: menu se otevře **pod** ztmavením
+a každé ťuknutí do něj spadne na backdrop, jehož obsluha šuplík zavře. Na
+telefonu to vypadá přesně tak, že boční menu nefunguje. `z-40` na panelu je
+i vzor z [Flowbite drawer navigation](https://flowbite.com/docs/components/drawer/).
+
+Obě vady spolu souvisí a jedna maskovala druhou: dokud byl backdrop nulový,
+neměl se s panelem o co přetahovat, takže kolize `z-30` nebyla vidět. Proto
+`check_responsive.py` pod 1024 px měří obojí — že je panel po otevření
+klikatelný, že backdrop **kryje celou plochu**, leží nad obsahem vedle šuplíku,
+a že ťuknutí do něj šuplík zavře. Ověřeno vrácením každé vady zvlášť.
+
+
 | Pravidlo | Proč |
 |---|---|
 | `flowbite/rtl` — logické vlastnosti: `ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`/`text-start`/`text-end` | Flowbite 2.x je postavené na RTL režimu; `ml-`/`left-` ho rozbíjí |

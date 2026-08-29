@@ -79,6 +79,7 @@ test:
 [group('test')]
 lint:
     python3 tools/lint_ui.py
+    python3 tools/check_runtime_classes.py
 
 # Ověří kurátorovaná data: schéma, duplicity, kvalita popisů
 [group('test')]
