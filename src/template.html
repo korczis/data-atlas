@@ -20,6 +20,11 @@
   :root[data-theme="dark"] input:focus-visible { outline-color: #60a5fa; }
   /* Postranní panel je pod lg: šuplík. Posun mimo plátno sám o sobě nestačí —
      obsah zůstane fokusovatelný a odečítač do něj vleze. */
+  /* Vrstvení: hlavička z-50 > panel z-40 > backdrop Flowbite z-30 > obsah.
+     Backdrop si Flowbite vyrábí sám s natvrdo zadrátovaným `z-30` a připojuje
+     ho na konec <body>. Kdyby měl panel taky z-30, prohraje pořadím v DOM:
+     menu se otevře pod ztmavením a každé ťuknutí do něj spadne na backdrop,
+     který šuplík zavře — na mobilu to vypadá, že menu nefunguje. */
   @media (max-width: 1023px) {
     #sidebar[aria-hidden="true"] { visibility: hidden; }
     #sidebar { transition: transform .3s ease-in-out, visibility 0s linear 0s; }
@@ -46,7 +51,7 @@ try {
      class="font-sans antialiased text-gray-900 dark:text-gray-100">
 
   <!-- ══════════ HORNÍ LIŠTA ══════════ -->
-  <header class="fixed top-0 z-40 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+  <header class="fixed top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
     <div class="flex items-center gap-3 px-3 py-2.5 lg:px-5">
       <button type="button" data-drawer-target="sidebar" data-drawer-toggle="sidebar"
               aria-controls="sidebar"
@@ -293,7 +298,6 @@ try {
       </div>
     </div>
   </aside>
-  <div id="sidebarBackdrop" class="fixed inset-0 z-20 hidden bg-gray-900/50 dark:bg-gray-900/80 lg:hidden"></div>
 
   <!-- ══════════ OBSAH ══════════ -->
   <div id="main-content" class="min-h-screen pt-16 lg:ms-64">

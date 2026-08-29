@@ -13,6 +13,9 @@ takže stránka byla prázdná — a přitom v DOM byly všechny řádky (jsdom 
 prošly), nic neteklo do strany (tahle sonda prošla) a axe nehlásil nic.
 Měřit rozvržení znamená měřit i to, že obsah má nenulovou plochu.
 
+Pod 1024px navíc otevře postranní panel a ověří, že se do něj dá ťuknout —
+panel může být vidět a přitom být celý pod backdropem, který ho zavře.
+
 Vrací nenulový kód, když se stránka roztáhne do strany nebo není vidět obsah.
 """
 from __future__ import annotations
@@ -117,9 +120,37 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
       }
     }
   }
+  // Šuplík se testuje až nakonec: otevření přidá <body class="overflow-hidden">
+  // a backdrop, což by zkreslilo měření nad tímhle řádkem.
+  //
+  // Nestačí se ptát, jestli je panel po kliknutí vidět — byl vidět i tehdy,
+  // když nešel používat. Flowbite si k šuplíku vyrábí vlastní backdrop
+  // s natvrdo zadrátovaným `z-30` a připojuje ho na konec <body>. Když měl
+  // panel taky `z-30`, prohrál pořadím v DOM: menu se otevřelo pod ztmavením
+  // a každé ťuknutí do něj spadlo na backdrop, který šuplík zavřel.
+  // Proto se ptáme na to jediné, na čem záleží: co je doopravdy na pixelu
+  // uprostřed otevřeného panelu.
+  const drawer = { testovan: false };
+  const toggle = d.querySelector('[data-drawer-toggle="sidebar"]');
+  if (side && toggle && w < 1024) {
+    drawer.testovan = true;
+    drawer.spoustecVidet = toggle.getBoundingClientRect().width > 0;
+    toggle.click();
+    const sr = side.getBoundingClientRect();
+    drawer.left = Math.round(sr.left);
+    drawer.viditelnost = d.defaultView.getComputedStyle(side).visibility;
+    const hit = d.elementFromPoint(Math.round(sr.left + sr.width / 2),
+                                   Math.round(Math.min(300, vh / 2)));
+    drawer.naPixelu = hit ? (hit.id || hit.tagName.toLowerCase() +
+      (typeof hit.className === 'string' && hit.className
+        ? '.' + hit.className.trim().split(/\s+/).slice(0, 2).join('.') : '')) : null;
+    drawer.klikatelny = !!(hit && side.contains(hit));
+  }
+
   const out = document.createElement('div');
   out.id = 'probe-result';
   out.textContent = JSON.stringify({
+    drawer,
     viewport: w,
     scrollWidth: d.documentElement.scrollWidth,
     overflow: d.documentElement.scrollWidth - w,
@@ -166,7 +197,10 @@ def measure(width: int) -> dict:
             HARNESS.replace("PAGE_URL", PAGE.as_uri()).replace("WIDTH", str(width)),
             encoding="utf-8")
         res = subprocess.run(
+            # Bez vypnutých přechodů se měří mezistav: šuplík se v okamžiku
+            # kliknutí teprve rozjíždí a `left` je pořád -256px.
             [CHROME, "--headless", "--disable-gpu", "--hide-scrollbars",
+             "--force-prefers-reduced-motion",
              "--allow-file-access-from-files", "--virtual-time-budget=6000",
              f"--window-size={max(width, 900) + 40},1000",
              "--dump-dom", harness.as_uri()],
@@ -211,10 +245,21 @@ def main() -> int:
                             "— sloupce zmizí za okrajem")
         for o in r.get("overlaps", []):
             problems.append(o)
+        dr = r.get("drawer") or {}
+        if dr.get("testovan"):
+            if not dr.get("spoustecVidet"):
+                problems.append("hamburger není vidět, panel se nedá otevřít")
+            elif dr.get("left", -1) != 0 or dr.get("viditelnost") != "visible":
+                problems.append(f"panel se po kliknutí neotevřel "
+                                f"(left={dr.get('left')}px, {dr.get('viditelnost')})")
+            elif not dr.get("klikatelny"):
+                problems.append("otevřený panel překrývá " + str(dr.get("naPixelu"))
+                                + " — ťuknutí do menu na něj nedosáhne")
         failed |= bool(problems)
         print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
               f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
-              f"položek={r['visibleRows']}  tabulka+{r['innerOverflow']}px")
+              f"položek={r['visibleRows']}  tabulka+{r['innerOverflow']}px"
+              + ("  šuplík ok" if (r.get("drawer") or {}).get("klikatelny") else ""))
         for problem in problems:
             print(f"        {problem}")
         if r["overflow"] > 0:
