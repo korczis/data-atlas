@@ -813,9 +813,10 @@ document.addEventListener('alpine:init', () => {
     // zůstává úplné, takže počty i export do CSV pracují s celým výběrem.
     limit: 60,
     STEP: 60,
-    // Výchozí řazení je pořadí informační architektury z CSV, ne abeceda —
-    // textově by „Účetní závěrky" předběhly „Adresy".
-    sort: { key: 'ord', dir: 1 },
+    // Výchozí řazení je podle názvu, ne podle pořadí v katalogu. Pořadí
+    // z CSV je pořadí, ve kterém položky vznikaly — pro čtenáře je to náhoda.
+    // Abeceda je jediné pořadí, které se dá odhadnout dopředu.
+    sort: { key: 'name', dir: 1 },
     catalog: window.__DATA__.catalog,
     longlist: window.__DATA__.longlist,
     taxonomy: window.__DATA__.groups,
@@ -1334,12 +1335,18 @@ document.addEventListener('alpine:init', () => {
       return n;
     },
 
-    /** Výsledky rozdělené po tématech. Členění dává smysl jen v pořadí IA
-     *  a jen když není vybrané jedno téma. Řadit podle návštěv a pak
-     *  seskupovat si odporuje: uživatel chce globální pořadí, ne
-     *  nejnavštěvovanější v každé sekci. */
+    /** Výsledky rozdělené po tématech.
+     *
+     *  Členění po tématech přežije řazení podle názvu i podle pořadí katalogu:
+     *  obojí je *uspořádání*, ne *žebříček*, a sekce mu neodporují.
+     *
+     *  U měřitelných sloupců (návštěvy, unikátní URL, poslední návštěva) se
+     *  členění vypíná — seřadit podle návštěv a pak to rozsekat po tématech
+     *  si odporuje, protože čtenář chce globální pořadí, ne nejnavštěvovanější
+     *  v každé sekci. */
     get grouped() {
-      return this.view === 'catalog' && this.sort.key === 'ord' && !this.topic;
+      return this.view === 'catalog' && !this.topic
+             && ['ord', 'name'].includes(this.sort.key);
     },
 
     /** Kolik se právě vykresluje a kolik odpovídá filtru. */

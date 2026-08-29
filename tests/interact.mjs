@@ -13,6 +13,25 @@ const inDataCount = catalog.filter(r => r['Zdroj'] !== 'reference').length;
 const blob = r => [r['Web'], r['Doména'], r['Popis'], r['Téma'], r['Země'], r['Kód']]
   .join(' ').toLowerCase();
 
+// ── výchozí stav ───────────────────────────────────────────────────────────
+// Testuje se jako první, protože zbytek souboru stav přenastavuje. Výchozí
+// řazení je abecední, ne pořadí vzniku položek v CSV — to je pro čtenáře
+// náhoda. Členění po tématech to musí přežít: abeceda je *uspořádání*,
+// ne *žebříček*, a sekcím neodporuje.
+check('výchozí řazení je podle názvu', s.sort.key === 'name' && s.sort.dir === 1,
+      JSON.stringify(s.sort));
+check('členění po tématech přežije abecední řazení', s.grouped);
+check('řádky jsou uvnitř sekce abecedně',
+      s.sections.every(sec => sec.rows.every((r, i) =>
+        i === 0 || sec.rows[i - 1].name.localeCompare(r.name, 'cs') <= 0)),
+      `${s.sections.length} sekcí`);
+{
+  const before = { ...s.sort };
+  s.sort = { key: 'visits', dir: -1 };
+  check('u žebříčku se členění vypne', !s.grouped);
+  s.sort = before;
+}
+
 // ── dávkování ──────────────────────────────────────────────────────────────
 // Testuje se dřív, než ho zbytek souboru vypne: katalog se vykresluje po
 // dávkách, protože všech 1050 položek naráz znamenalo na mobilu 16 453 uzlů
