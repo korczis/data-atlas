@@ -1,12 +1,12 @@
 {
-  "name": "geodata-atlas",
+  "name": "data-atlas",
   "version": "1.0.0",
   "private": true,
   "description": "Katalog GIS a geodatových zdrojů sestavený z Chrome záložek a historie",
-  "homepage": "https://korczis.github.io/geodata-atlas/",
+  "homepage": "https://korczis.github.io/data-atlas/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/korczis/geodata-atlas.git"
+    "url": "https://github.com/korczis/data-atlas.git"
   },
   "author": "Tomáš Korčák",
   "license": "MIT",

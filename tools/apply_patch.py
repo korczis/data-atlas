@@ -5,7 +5,7 @@ Zdrojem pravdy pro katalog je seznam `C` v build_catalog.py, ne vygenerované
 CSV. Ruční editace stovky řádků je práce pro stroj — a hlavně reprodukovatelná:
 patch se dá projít, zamítnout po položkách a znovu spustit.
 
-Vstup je JSON ve tvaru, který vrací workflow `geodata-atlas-audit`:
+Vstup je JSON ve tvaru, který vrací workflow `data-atlas-audit`:
 
   {"additions":  [{"category","web","dom","url","popis"}, ...],
    "corrections":[{"dom","field","proposed"}, ...],

@@ -4,13 +4,31 @@ Katalog geodat, otevřených dat, veřejných registrů a OSINT/DD zdrojů Evrop
 katastr, doprava, statistika, obchodní rejstříky, skuteční majitelé, insolvence, zakázky,
 soudy, regulace a rizika. Prohledávatelný, filtrovatelný, na jedné stránce.
 
-**→ [korczis.github.io/geodata-atlas](https://korczis.github.io/geodata-atlas/)**
+**→ [korczis.github.io/data-atlas](https://korczis.github.io/data-atlas/)**
 
 Projekt se jmenoval Geodata Atlas, dokud šlo o geodata. Dnes je většina katalogu
-jinde — registry, insolvence, dohled, transparence — a název tomu odpovídá.
-Adresa, repozitář i klíč v `localStorage` zůstávají na starém slugu záměrně:
-přejmenovat je znamená rozbít každý sdílený odkaz a zapomenout každému
-uživateli volbu motivu.
+jinde — registry, insolvence, dohled, transparence — a název i adresa tomu
+odpovídají. **Starý odkaz `korczis.github.io/geodata-atlas/` po přejmenování
+vrací 404**; GitHub Pages přesměrování na novou cestu nedělá.
+
+Klíč v `localStorage` zůstává `geodata-atlas-theme` schválně. Origin je
+`korczis.github.io`, sdílený se všemi projekty na tom účtu, takže klíč je jen
+jmenný prostor — a jeho přejmenování by každému návštěvníkovi tiše smazalo
+uloženou volbu motivu.
+
+### Náhledové obrázky
+
+`just assets` generuje ikony i oba náhledy z **dat**, ne z ručně psaných čísel,
+takže po přírůstku katalogu nelžou:
+
+| Soubor | Rozměr | K čemu |
+|---|---|---|
+| `static/og-image.png` | 1200×630 | `og:image` a `twitter:image` — odkaz sdílený na sítích |
+| `static/social-preview.png` | 1280×640 | **Social preview repozitáře** — nahrává se ručně v Settings → General → Social preview |
+
+Náhled repozitáře nese matici pokrytí ve stejném barevném klíči jako stránka
+(odstín = rodina tématu, sytost = počet zdrojů). Čísla v buňkách na něm
+schválně nejsou: náhled se v odkazech zmenšuje a byla by z nich šmouha.
 
 Jádro katalogu vzniklo z vlastních Chrome záložek a historie: co jsem za roky práce
 s geodaty reálně používal. Zbytek je rešerše — všech 27 členských států, zdroj po zdroji,

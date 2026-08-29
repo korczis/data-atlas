@@ -19,7 +19,7 @@ check('charset je první', head.indexOf('<meta charset="utf-8">') < 60);
 check('viewport', has(/name="viewport"[^>]*width=device-width/));
 check('title', /<title>Data Atlas<\/title>/.test(head));
 check('description', has(/name="description" content="[^"]{80,}"/));
-check('canonical', has(/rel="canonical" href="https:\/\/korczis\.github\.io\/geodata-atlas\/"/));
+check('canonical', has(/rel="canonical" href="https:\/\/korczis\.github\.io\/data-atlas\/"/));
 check('robots', has(/name="robots"[^>]*max-image-preview:large/));
 check('author', has(/name="author"/));
 check('color-scheme', has(/name="color-scheme" content="light dark"/));
@@ -59,7 +59,7 @@ for (const f of ['robots.txt', 'sitemap.xml', 'site.webmanifest', '404.html', '.
   check(`dist/${f}`, fs.existsSync(path.join(DIST, f)));
 
 check('sitemap odkazuje na kanonickou URL',
-      fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8').includes('https://korczis.github.io/geodata-atlas/'));
+      fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8').includes('https://korczis.github.io/data-atlas/'));
 check('robots.txt odkazuje na sitemapu',
       fs.readFileSync(path.join(DIST, 'robots.txt'), 'utf8').includes('sitemap.xml'));
 check('manifest je platný JSON s maskable ikonou', (() => {
