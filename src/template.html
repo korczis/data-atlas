@@ -47,7 +47,19 @@ try {
         <span class="sr-only">Otevřít postranní panel</span>
       </button>
 
-      <span class="flex shrink-0 items-center gap-2">
+      <!-- Značka vede zpátky na nefiltrovaný katalog — stejně jako na
+           stránkách zemí, kde vede sem. Cíl je `#`, ne `./`: týž markup jede
+           i v dist/artifact.html, který se vkládá do cizí <head> a otevírá
+           z disku, takže relativní cesta by mířila mimo dokument. Prázdný
+           hash přečte `readHash()` přes posluchač `hashchange` a filtry spadnou
+           bez znovunačtení stránky.
+
+           <a>, ne <button> s reset(): je to navigace na adresu, kterou má jít
+           otevřít v novém panelu i zkopírovat. aria-label proto, že pod sm:
+           je název skrytý a zbyla by dekorativní značka bez přístupného
+           názvu. -->
+      <a href="#" aria-label="Data Atlas — nefiltrovaný katalog"
+         class="flex shrink-0 items-center gap-2 hover:opacity-80">
         <svg class="h-7 w-7" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
           <rect width="512" height="512" rx="112" fill="#1d4ed8"/>
           <g fill="#93c5fd" fill-opacity=".45">
@@ -60,7 +72,7 @@ try {
           <circle cx="256" cy="256" r="26" fill="#1d4ed8"/>
         </svg>
         <span class="hidden whitespace-nowrap text-lg font-semibold text-gray-900 dark:text-white sm:inline">Data&nbsp;Atlas</span>
-      </span>
+      </a>
 
       <!-- Hledání patří do lišty, ne do záhlaví stránky: je to nejpoužívanější
            ovládací prvek a takhle zůstává na očích i po odscrollování obsahu. -->

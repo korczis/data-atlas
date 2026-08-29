@@ -13,6 +13,18 @@ const check = checker();
 check('Alpine se načetl', !!state);
 const flat = d.body.textContent.replace(/\s+/g, ' ');  // pozor na &nbsp; ve značce
 check('značka v horní liště', flat.includes('Data Atlas'));
+// Značka je odkaz na nefiltrovaný katalog, ne dekorace. Cíl musí být `#`:
+// týž markup jede i v artifact.html, který se otevírá z disku a vkládá do
+// cizí <head>, takže `./` by mířilo mimo dokument. A protože pod sm: je
+// název skrytý, bez aria-label by zbyla značka bez přístupného názvu.
+{
+  const brand = d.querySelector('header a[aria-label^="Data Atlas"]');
+  check('značka je odkaz', !!brand, brand?.tagName);
+  check('značka vede na nefiltrovaný katalog', brand?.getAttribute('href') === '#',
+        brand?.getAttribute('href'));
+  check('značka má přístupný název i bez viditelného textu',
+        !!brand?.getAttribute('aria-label'));
+}
 check('nadpis stránky', d.querySelector('h1')?.textContent.trim() === 'Kurátorovaný katalog');
 // Katalog se vykresluje po dávkách — celý najednou by na mobilu znamenal
 // 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky.
