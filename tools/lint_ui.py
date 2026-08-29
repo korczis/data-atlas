@@ -208,6 +208,19 @@ def check(html: str, extra_script: str = "") -> None:
                  f"řádek {line}: x-flowbite:{comp} míří na #{literal.group(1)}, "
                  "který v šabloně není")
 
+    # ── Odkazy do repozitáře musí vést na existující soubor ───────────────────
+    # Šablona odkazuje na dokumentaci absolutní adresou na GitHub. Když se
+    # soubor v repozitáři přejmenuje nebo rozdělí, odkaz v UI dál vede na
+    # starý název a nikdo si toho nevšimne — kontrola Markdownu do HTML
+    # nevidí. Zrovna se to stalo: „Schéma, číselníky a pravidla klasifikace"
+    # mířilo na plán, ze kterého se schéma mezitím odstěhovalo.
+    for m in re.finditer(r"blob/[^/]+/([A-Za-z0-9._/-]+\.(?:md|csv|json))", markup):
+        target = ROOT / m.group(1)
+        if not target.exists():
+            fail("ui/repo-link",
+                 f"řádek {line_of(markup, m.start())}: odkaz míří na {m.group(1)}, "
+                 "který v repozitáři není")
+
     # ── Škála zaoblení je uzavřená ────────────────────────────────────────────
     # Tailwind nabízí šest stupňů, projekt používá čtyři: `rounded-sm` na
     # drobné čtverečky legendy, `rounded` na odznaky, `rounded-lg` na ovládací

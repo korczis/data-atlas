@@ -20,6 +20,37 @@ Zdroje: [Flowbite `llms.txt`](https://raw.githubusercontent.com/themesberg/flowb
 [Flowbite RTL](https://flowbite.com/docs/customize/rtl/),
 [Alpine.js docs](https://alpinejs.dev/).
 
+## Kánon
+
+Jedna odpověď na každou otázku o UI, a u každé to, co ji vynucuje. Odpověď,
+která existuje jen v hlavě, znamená nehotový systém; odpověď, která existuje
+jen v próze, je nedodělaná, pokud jde vynutit strojem.
+
+| Otázka | Odpověď | Vynucuje |
+|---|---|---|
+| Systém komponent | Flowbite 2.5 + Tailwind 3.4, utility-first přímo v markupu. Žádný paralelní designový systém. | — |
+| Jak se Flowbite inicializuje | Direktivou `x-flowbite` po životním cyklu Alpine. Žádné `data-*`, žádné `initFlowbite()`. | `tools/lint_ui.py` → `flowbite/binding` |
+| Jak se uklízí | `cleanup()` direktivy volá `destroy()`; šuplíky se počítají odkazy. | `tests/e2e/index.spec.mjs` |
+| Typografická škála | Role, ne dekorace. Próza `max-w-prose`, pole 16 px na mobilu. | `tools/check_typography.py` |
+| Zaoblení | Uzavřená škála: `rounded-sm`, `rounded`, `rounded-lg`, `rounded-full`. | `tools/lint_ui.py` → `ui/radius` |
+| Sémantické barvy | `emerald` = data jdou ven strojově · `amber` = překážka v přístupu · `gray` = povaha zdroje · `primary` = značka a výběr. Nikdy barva sama — vždy i text. | `src/js/badges.js`, `tests/e2e/badges.spec.mjs` |
+| Barvy rodin témat | Šest odstínů v `GROUP_HUE`, stejné v matici i v legendě. | — |
+| Jak se staví tabulky | Sémantické `table`/`thead`/`th scope`. Pod `md` karty, výš tabulka; `data-row` a `data-card`. | `tests/interact.mjs` |
+| Responzivita | Měří se, neodhaduje: 320–1536 px bez vodorovného přetečení. | `tools/check_responsive.py` |
+| Tmavý motiv | Tři stavy (světlý → tmavý → podle systému), razí se před vykreslením. | `tests/interact.mjs` |
+| Cíl přístupnosti | WCAG AA, axe bez blokujících nálezů ve čtyřech scénářích. | `tools/check_a11y.py` |
+| Pohyb | Jen když nese význam; `prefers-reduced-motion` vypíná přechody. | `src/input.css` |
+| Jak se brání driftu | Každé mechanické pravidlo má bránu a každá brána má negativní test. | `just check` |
+| Kanonická dokumentace | Tenhle soubor. | — |
+
+**Co vynucené není** a drží to jen kázeň: rozměry tlačítek (49 tlačítek, 15 rozměrových variant — část je oprávněná různou rolí, část drift), odsazovací škála a hustota informací. Vynucovat je regulárním výrazem by znamenalo policejní dohled nad subjektivním rozhodnutím; ten obvykle produkuje falešné nálezy a naučí lidi výstup ignorovat.
+
+**Externí vizualizační knihovny** zatím žádné nejsou a `package.json` je nemá.
+Matice pokrytí je vlastní `<canvas>` bez závislosti. Než nějaká přibude, musí
+mít doloženou odpověď na to, jakou otázku čtenáře zodpoví, proč na ni nestačí
+HTML, co je její textová obdoba, jak se chová na telefonu a při
+`prefers-reduced-motion`, a jak se uklidí — jinak nepřibude.
+
 ## Flowbite × Alpine: jak jsou spojené
 
 Tohle bylo nejkřehčí místo celé stránky. Dnes je to jedna vrstva
@@ -280,7 +311,8 @@ Z toho plyne zbytek:
 Jedna chybějící `</aside>` zanořila `#main-content` do postranního panelu.
 Ten je pod `lg` mimo plátno, takže **stránka byla prázdná** — a přitom:
 
-- **jsdom testy prošly**: v DOM bylo všech 1050 řádků, jen je nebylo vidět;
+- **jsdom testy prošly**: v DOM byly tehdy všechny řádky (katalog měl 1050),
+  jen je nebylo vidět;
 - **měření přetečení prošlo**: nic neteklo do strany, všechno se vešlo do `w-64`;
 - **axe neohlásil nic**: obsah formálně existoval.
 
@@ -373,7 +405,8 @@ horní lišta, postranní panel, hlavní obsah, lepivá souhrnná lišta.
   žádné hledání, žádná země, téma ani filtr zdroje. Jakýkoli filtr ho schová,
   aby sdílený odkaz vedl rovnou do dat. Hlídá to pět testů.
 - **Tabulka má tři sloupce, ne šest.** Zdroj, Návštěv a Poslední braly 370 px
-  a jsou prázdné u 998 z 1050 položek; při 768 px se kvůli nim tabulka
+  a jsou prázdné u všech položek bez doložení z prohlížeče, což je naprostá
+  většina katalogu (`Zdroj: reference`); při 768 px se kvůli nim tabulka
   scrollovala do strany. Doložení z prohlížeče je odznak u popisu, a jen tam,
   kde vůbec je.
 - `< md` — karty. Tabulka se šesti sloupci se na telefon nevejde a vodorovný
@@ -391,7 +424,8 @@ by ho pak přeskočil, přestože se do něj dá tabovat. Srovnává to
 
 ### Katalog se vykresluje po dávkách
 
-Vykreslit všech 1050 položek naráz znamenalo na mobilní šířce **16 453 uzlů DOM**
+Vykreslit celý katalog naráz znamenalo při tehdejších 1050 položkách na
+mobilní šířce **16 453 uzlů DOM**
 a ~200 ms jen na renderu — na desktopovém CPU. Na telefonu je to násobek a po
 tu dobu je stránka **prázdná a nereagující**, protože `x-cloak` drží obsah
 schovaný, dokud Alpine nedokreslí.
@@ -413,7 +447,8 @@ Dvě věci, na kterých to stojí:
   vykreslený zbytek předchozího, širšího výsledku.
 
 Souhrnná lišta říká pravdu o obojím: dokud je co načítat, hlásí
-„Vykresleno 60 z 1050 odpovídajících", potom „Zobrazeno 1050 z 1050".
+„Vykresleno 60 z N odpovídajících", potom „Zobrazeno N z N" — obojí
+z dat, ne z ruky.
 
 ### Matice pokrytí je `<canvas>`, ne mřížka tlačítek
 
