@@ -760,6 +760,21 @@ try {
             </button>
           </div>
 
+          <!-- Vazby mezi tématy: nabídnou další krok rešerše, ne příbuznost
+               obecně. Ukazují se jen témata, která ve vybraném výřezu opravdu
+               něco nesou — prázdná nabídka je slib, který se po kliknutí
+               nenaplní. -->
+          <div x-show="relatedTopics.length" class="mt-2 flex flex-wrap items-center gap-2">
+            <span class="text-xs text-gray-500 dark:text-gray-400">Odsud se pokračuje na</span>
+            <template x-for="rt in relatedTopics" :key="rt.id">
+              <button type="button" @click="topic = rt.id" :aria-label="'Filtrovat téma ' + rt.label"
+                class="inline-flex items-center gap-1.5 rounded-full border border-gray-300 px-2.5 py-1 text-xs font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
+                <span x-text="rt.label"></span>
+                <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="rt.count"></span>
+              </button>
+            </template>
+          </div>
+
           <div class="mt-4 flex flex-wrap items-center gap-2">
             <button type="button" data-dropdown-toggle="sort-dropdown"
               class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
@@ -1250,6 +1265,28 @@ document.addEventListener('alpine:init', () => {
     },
     /** Kolik témat má zdroj ve všech 27 členských státech. Číslo se počítá
      *  z dat, ne z hlavy — natvrdo napsané v textu by zastaralo hned. */
+    /** Témata, na která se z vybraného tématu obvykle pokračuje — „když čteš
+     *  obchodní rejstřík, dalším krokem bývají skuteční majitelé". Graf je
+     *  kurátorovaný v data/topics.json nad 34 tématy; ruční vazby mezi
+     *  tisícovkou zdrojů by nešly udržet.
+     *
+     *  Počty respektují vybranou zemi, takže nabídnutá vazba je slib, který
+     *  se po kliknutí naplní — a téma, které v té zemi nic nemá, se
+     *  nenabídne vůbec. */
+    get relatedTopics() {
+      if (!this.topic) return [];
+      const t = this.taxonomy.flatMap(g => g.topics).find(x => x.id === this.topic);
+      if (!t || !t.related) return [];
+      const rows = this.country
+        ? this.catalog.filter(r => r.code === this.country)
+        : this.catalog;
+      const n = new Map();
+      for (const r of rows) n.set(r.topic, (n.get(r.topic) || 0) + 1);
+      return t.related
+        .map(id => ({ id, label: this.topicLabel(id), count: n.get(id) || 0 }))
+        .filter(x => x.count > 0);
+    },
+
     /** Ukázkové záznamy pro rozcestník. Vybírají se z katalogu, nepíšou se
      *  rukou: vymyšlená ukázka by v den, kdy se zdroj přesune, začala lhát
      *  o vlastních datech. Témata jsou zvolená tak, aby ukázala šíři —

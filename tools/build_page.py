@@ -95,7 +95,12 @@ def load_data():
     # v šabloně — poziční („poslední dva bloky“) a ručně psaná.
     groups = [dict(label=g["label"],
                    topics=[dict(id=t["id"], label=t["label"],
-                                scope=t.get("scope", "national"))
+                                scope=t.get("scope", "national"),
+                                # Vazby se ořezávají na témata, která katalog
+                                # opravdu nese — odkaz na prázdné téma by byl
+                                # slib, který se po kliknutí nenaplní.
+                                related=[r for r in t.get("related", ())
+                                         if r in used_topics])
                            for t in g["topics"] if t["id"] in used_topics])
               for g in taxonomy["groups"]]
     groups = [g for g in groups if g["topics"]]

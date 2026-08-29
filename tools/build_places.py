@@ -103,6 +103,17 @@ def build(catalog, groups, places, offsets) -> int:
     tpl = (SRC / "country.html").read_text(encoding="utf-8")
     labels = {"topics": {t["id"]: t["label"] for g in groups for t in g["topics"]},
               "access": ACCESS, "data": DATA}
+    # Kolik k tématu nese EU a GLOBAL. Posílá se jen počet, ne řádky: stránka
+    # země je o té zemi, ale zamlčet, že k témuž tématu existuje celoevropský
+    # zdroj, by z ní udělalo slepou uličku. Kliknutí vede do hlavního katalogu,
+    # takže se nic neduplikuje — 188 nadnárodních řádků krát 31 stránek by byl
+    # megabajt navíc za informaci, která se vejde do čísla.
+    supra = {}
+    for r in catalog:
+        if r["code"] in ("EU", "GLOBAL"):
+            key = r["topic"]
+            supra.setdefault(key, {"eu": 0, "global": 0})
+            supra[key]["eu" if r["code"] == "EU" else "global"] += 1
 
     written = []
     for place in places:
@@ -139,7 +150,8 @@ def build(catalog, groups, places, offsets) -> int:
                    .replace("{{CODE}}", code).replace("{{REPO}}", REPO)
                    .replace("{{FLAG}}", flag_span(place, offsets))
                    .replace("{{INTRO}}", desc))
-        payload = json.dumps({"rows": rows, "groups": groups, "labels": labels},
+        payload = json.dumps({"rows": rows, "groups": groups, "labels": labels,
+                              "supra": supra},
                              ensure_ascii=False, separators=(",", ":"))
         out = DIST / slug(code)
         out.mkdir(parents=True, exist_ok=True)

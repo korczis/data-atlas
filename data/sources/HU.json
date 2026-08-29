@@ -502,5 +502,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Maďarská jednotka je součástí daňové a celní správy",
     "country": "HU",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hu-lechner-domborzatmodell",
+    "topic": "terrain",
+    "name": "Lechner — DDM5 model terénu a ortofota",
+    "native": "Domborzatmodell (DDM5)",
+    "url": "https://lechnerkozpont.hu/oldal/domborzatmodell",
+    "kind": "official",
+    "access": "paid",
+    "data": "download",
+    "desc": "Maďarský státní výškový model DDM5 a k němu ortofota z leteckého snímkování — z roku 2025 pokrytí zhruba 40 000 km² středního Maďarska v rozlišení 40 cm/px. Aktuální data se kupují přes geoshop.hu; archivní snímky starší deseti let jdou pro výuku a výzkum vyžádat zdarma",
+    "country": "HU",
+    "verified": "2026-08-29"
   }
 ]

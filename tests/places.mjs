@@ -136,5 +136,20 @@ if (s) {
   check('neznámé téma z URL se zahodí', s.topic === '');
 }
 
+// ── vazby mezi tématy ──────────────────────────────────────────────────────
+// Graf je kurátorovaný nad tématy, ne nad zdroji. Nabídnout téma, které
+// v téhle zemi nic nenese, by byl slib, který se po kliknutí nenaplní.
+s.topic = 'companies';
+check('vazby se nabízejí jen k vybranému tématu', s.relatedTopics.length > 0,
+      s.relatedTopics.map(r => r.id).join(' '));
+check('každá nabídnutá vazba má v téhle zemi zdroje',
+      s.relatedTopics.every(r => r.count > 0 && s.rows.some(row => row.topic === r.id)));
+check('vazba nevede sama na sebe', !s.relatedTopics.some(r => r.id === 'companies'));
+check('nadnárodní zdroje k tématu se hlásí počtem',
+      Array.isArray(s.supraForTopic) && s.supraForTopic.every(x => x.count > 0),
+      JSON.stringify(s.supraForTopic));
+s.topic = '';
+check('bez tématu se nenabízí nic', s.relatedTopics.length === 0 && !s.supraForTopic);
+
 console.log(`\n${pass}/${pass + fail} prošlo`);
 process.exit(fail ? 1 : 0);

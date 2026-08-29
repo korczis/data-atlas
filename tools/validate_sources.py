@@ -97,6 +97,22 @@ def main() -> int:
                     errors.append(
                         f"tools/{name}: sahá na {token} — veřejný build musí projít bez .cache/")
 
+    # ── Graf vazeb mezi tématy ────────────────────────────────────────────────
+    # Vazba je vztah, ne odkaz. Jednosměrná by se při čtení z druhé strany
+    # tiše ztratila — čtenář na téma A uvidí B, ale na B už ne A, a nepozná,
+    # že tam vazba měla být. Symetrie se proto vynucuje, ne doporučuje.
+    topics_raw = json.loads((ROOT / "data" / "topics.json").read_text(encoding="utf-8"))
+    rel = {t["id"]: set(t.get("related", ()))
+           for g in topics_raw["groups"] for t in g["topics"]}
+    for tid, targets in rel.items():
+        if tid in targets:
+            errors.append(f"topics {tid}: téma je příbuzné samo se sebou")
+        for other in targets:
+            if other not in rel:
+                errors.append(f"topics {tid}: vazba na neznámé téma {other!r}")
+            elif tid not in rel[other]:
+                errors.append(f"topics {tid} ↔ {other}: vazba je jen jednosměrná")
+
     # ── Doložené absence ──────────────────────────────────────────────────────
     # Číselník děr je tvrzení o tom, co jsme ověřili, že neexistuje. Bez téhle
     # brány by v něm mohla zůstat buňka, do které někdo mezitím zdroj přidal —

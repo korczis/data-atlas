@@ -388,4 +388,25 @@ check('rychlé vstupy nesou počty z dat',
 check('největší země v rozcestníku sedí na katalog',
       s.topCountries[0].count === Math.max(...[...s.placeCounts.values()]));
 
+// ── vazby mezi tématy ──────────────────────────────────────────────────────
+// Počty musí respektovat vybranou zemi: nabídnout „skuteční majitelé 27",
+// když je vybrané Německo a má jednoho, by poslalo čtenáře do prázdna.
+s.reset(); s.topic = 'companies';
+const relAll = s.relatedTopics;
+check('vazby existují k obchodním rejstříkům', relAll.length > 0,
+      relAll.map(r => r.id).join(' '));
+check('vazby jsou symetrické podle číselníku',
+      relAll.every(r => {
+        const t = s.taxonomy.flatMap(g => g.topics).find(x => x.id === r.id);
+        return t && t.related.includes('companies');
+      }));
+s.country = 'DE';
+const relDE = s.relatedTopics;
+check('počty vazeb respektují vybranou zemi',
+      relDE.every(r => r.count === s.catalog.filter(x => x.code === 'DE' && x.topic === r.id).length),
+      relDE.map(r => r.id + ':' + r.count).join(' '));
+check('vazba s nulou se v zemi nenabídne', relDE.every(r => r.count > 0));
+s.reset();
+check('bez tématu žádné vazby', s.relatedTopics.length === 0);
+
 check.report(errors);

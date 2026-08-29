@@ -59,7 +59,8 @@ def load_taxonomy():
             # a prázdnem, které tam patří. Kdyby se tu zahodilo, musel by ho
             # každý konzument uhodnout znovu.
             topic_meta[t["id"]] = {"label": t["label"], "group": g["label"],
-                                   "scope": t.get("scope", "national")}
+                                   "scope": t.get("scope", "national"),
+                                   "related": list(t.get("related", ()))}
             topic_order[t["id"]] = (gi, ti)
     places, place_order = {}, {}
     for i, c in enumerate(countries["scopes"] + countries["countries"]):

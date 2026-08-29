@@ -60,6 +60,33 @@ document.addEventListener('alpine:init', () => {
     accessLabel(k) { return this.labels.access[k] || k; },
     dataLabel(k) { return this.labels.data[k] || k; },
 
+    /** Kam se z vybraného tématu obvykle pokračuje. Graf je v topics.json;
+     *  tady se ořezává na to, co tahle země opravdu nese, aby nabídnutá
+     *  vazba nevedla do prázdna. */
+    get relatedTopics() {
+      if (!this.topic) return [];
+      const t = this.taxonomy.flatMap(g => g.topics).find(x => x.id === this.topic);
+      if (!t || !t.related) return [];
+      const n = new Map();
+      for (const r of this.rows) n.set(r.topic, (n.get(r.topic) || 0) + 1);
+      return t.related
+        .map(id => ({ id, label: this.topicLabel(id), count: n.get(id) || 0 }))
+        .filter(x => x.count > 0);
+    },
+
+    /** Nadnárodní zdroje k témuž tématu. Stránka země je o té zemi, ale
+     *  zamlčet celoevropský zdroj by z ní udělalo slepou uličku — u rejstříků
+     *  je BRIS často ten druhý krok. Nesou se jen počty; odkaz vede do
+     *  hlavního katalogu, takže se řádky neduplikují. */
+    get supraForTopic() {
+      const s = (window.__PLACE__.supra || {})[this.topic];
+      if (!this.topic || !s) return null;
+      const out = [];
+      if (s.eu) out.push({ code: 'EU', label: 'celoevropské', count: s.eu });
+      if (s.global) out.push({ code: 'GLOBAL', label: 'celosvětové', count: s.global });
+      return out.length ? out : null;
+    },
+
     /** Témata, která země opravdu má, v pořadí číselníku. */
     get topics() {
       const n = new Map();

@@ -22,7 +22,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `FR` Francie | 4 | 2 | 1 | 1 | 4 | 3 | 1 | 2 | 2 | 3 | 3 | 1 | 2 | 1 | 3 | 10 | 1 | 3 | 1 | **51** |
 | `DE` Německo | 4 | 1 | 1 | 2 | 5 | 4 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 3 | 3 | **50** |
 | `GR` Řecko |  | 1 | 1 | 1 | 2 | 1 | 2 | 2 | 1 | 2 | 2 | 1 | 1 |  | 1 | 8 |  | 1 | 2 | **32** |
-| `HU` Maďarsko | 1 | 2 | 1 | 2 | 4 | 1 | 1 | 1 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 8 | 1 | 3 | 1 | **42** |
+| `HU` Maďarsko | 2 | 2 | 1 | 2 | 4 | 1 | 1 | 1 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 8 | 1 | 3 | 1 | **43** |
 | `IE` Irsko | 2 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 8 | 1 | 2 | 1 | **35** |
 | `IT` Itálie | 4 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 2 | 4 | 1 | 1 | 1 |  | 3 | 9 | 1 | 2 | 3 | **46** |
 | `LV` Lotyšsko | 2 | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 6 | 1 | 2 | 1 | **37** |
@@ -49,7 +49,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Geoportály a NSDI | 43 | 24 | 42 | 37 |
 | Katastr a pozemkové knihy | 42 | 27 | 42 | 26 |
 | Adresy a územní členění | 30 | 28 | 26 | 22 |
-| Ortofoto, výškopis, topografie | 22 | 22 | 21 | 12 |
+| Ortofoto, výškopis, topografie | 23 | 23 | 22 | 12 |
 | Životní prostředí, geologie, rizika | 64 | 29 | 61 | 35 |
 | Doprava a infrastruktura | 57 | 29 | 52 | 36 |
 | Remote sensing / rastr | 15 | 3 | 7 | 14 |
@@ -89,7 +89,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `mixed` | 63 |
 | `registration` | 39 |
 | `restricted` | 25 |
-| `paid` | 21 |
+| `paid` | 22 |
 
 | Data | Zdrojů |
 |---|--:|
@@ -97,13 +97,13 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `api` | 275 |
 | `bulk` | 217 |
 | `none` | 163 |
-| `download` | 154 |
+| `download` | 155 |
 | `ogc` | 81 |
 | `sw` | 46 |
 
 | Vydavatel | Zdrojů |
 |---|--:|
-| `official` | 1105 |
+| `official` | 1106 |
 | `ngo` | 105 |
 | `intl` | 64 |
 | `commercial` | 46 |

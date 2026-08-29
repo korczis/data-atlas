@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1360** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1308** doplněných rešerší.
+**1361** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1309** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -23,8 +23,8 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `AT` Rakousko — 47
 - `IT` Itálie — 46
 - `BE` Belgie — 44
+- `HU` Maďarsko — 43
 - `SK` Slovensko — 43
-- `HU` Maďarsko — 42
 - `NL` Nizozemsko — 42
 - `PT` Portugalsko — 42
 - `ES` Španělsko — 42
@@ -49,12 +49,12 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Témata
 
 
-**Geodata** — 290
+**Geodata** — 291
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
 - [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 42
 - [Adresy a územní členění](#adresy-a-územní-členění) — 30
-- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 22
+- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 23
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
 - [Doprava a infrastruktura](#doprava-a-infrastruktura) — 57
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
@@ -249,6 +249,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `FI` | [Laserkeilausaineisto (MML)](https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/laser-scanning-data-05-p) | `maanmittauslaitos.fi` | Finská data leteckého laserového skenování — **bodová mračna 5 bodů/m² z národního programu, zdarma a pod otevřenou licencí**. Finsko skenuje celé území v šestiletém cyklu | open | bulk | reference |
 | `FR` | [RGE ALTI (IGN)](https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_RGE-ALTI) | `cartes.gouv.fr` | Francouzský referenční model terénu — **mřížka 1 m a 5 m pro celou Francii včetně zámoří, zdarma pod otevřenou licencí** od otevření dat IGN v roce 2021. Doplňuje ho program LiDAR HD s bodovými mračny | open | bulk | reference |
 | `DE` | [Digitale Geländemodelle (BKG)](https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle.html) | `gdz.bkg.bund.de` | Celoněmecké digitální modely terénu od spolkového kartografického úřadu — DGM v rozlišení od 5 do 200 m, pod otevřenou licencí dl-de/by-2-0. Podrobnější lidar drží jednotlivé spolkové země samostatně | open | download | reference |
+| `HU` | [Lechner — DDM5 model terénu a ortofota](https://lechnerkozpont.hu/oldal/domborzatmodell) | `lechnerkozpont.hu` | Maďarský státní výškový model DDM5 a k němu ortofota z leteckého snímkování — z roku 2025 pokrytí zhruba 40 000 km² středního Maďarska v rozlišení 40 cm/px. Aktuální data se kupují přes geoshop.hu; archivní snímky starší deseti let jdou pro výuku a výzkum vyžádat zdarma | paid | download | reference |
 | `IE` | [Open Topographic LiDAR Data](https://data.gov.ie/dataset/open-topographic-lidar-data) | `data.gov.ie` | Volně dostupná výšková data z leteckého skenování Irska, sesbíraná sedmi státními organizacemi a shromážděná Geologickou službou. Pokrytí je částečné, ne celostátní — to je u irského výškopisu podstatné omezení, se kterým je potřeba počítat dopředu | open | download | reference |
 | `IT` | [TINITALY (INGV)](https://tinitaly.pi.ingv.it/) | `tinitaly.pi.ingv.it` | Digitální model terénu celé Itálie v rozlišení 10 m, sestavený INGV — **jediný volně dostupný celostátní italský výškopis**, protože podrobnější LiDAR data vedou regiony a ministerstvo životního prostředí odděleně | open | bulk | reference |
 | `LV` | [Digitālais augstuma modelis (LĢIA)](https://www.lgia.gov.lv/lv/digitalais-augstuma-modelis) | `lgia.gov.lv` | Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné | mixed | bulk | reference |
