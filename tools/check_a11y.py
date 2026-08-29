@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Spustí axe-core nad postavenou stránkou v reálném prohlížeči.
+"""Run axe-core against the built page in a real browser.
 
-Proč ne v jsdom: jsdom nepočítá layout ani barvy, takže pravidlo
-`color-contrast` v něm skončí jako "incomplete" a projde i stránka, na které
-není nic vidět. Headless Chrome je jediný způsob, jak dostat skutečný výsledek.
+Not jsdom: it computes neither layout nor colour, so `color-contrast` ends up
+"incomplete" there and a page with nothing visible on it still passes. Headless
+Chrome is the only way to get a real answer.
 
-Testuje se v obou motivech a na mobilní i desktopové šířce — kontrast se mezi
-světlým a tmavým režimem liší a jiné rozvržení odhalí jiné prvky.
+Both themes and both a mobile and a desktop width: contrast differs between
+light and dark, and a different layout exposes different elements.
 """
 from __future__ import annotations
 
@@ -15,26 +15,27 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE = ROOT / "dist" / "index.html"
-# Stránka země má vlastní markup — tabulku s filtry a stránkováním —
-# takže má i vlastní rizika kontrastu a názvů ovládacích prvků.
+# The country page has its own markup - a table with filters and pagination -
+# and therefore its own contrast and control-naming risks.
 PLACE = ROOT / "dist" / "cz" / "index.html"
 AXE = ROOT / "node_modules" / "axe-core" / "axe.min.js"
-CHROME: str | None = None  # zjistí se v runtime přes find_chrome()
+CHROME: str | None = None  # resolved at runtime by find_chrome()
 
-# (popisek, šířka, hodnota data-theme)
+# (label, width, data-theme value)
 SCENARIOS = [
-    ("mobil / světlý", 390, "light"),
-    ("mobil / tmavý", 390, "dark"),
-    ("desktop / světlý", 1280, "light"),
-    ("desktop / tmavý", 1280, "dark"),
+    ("mobile / light", 390, "light"),
+    ("mobile / dark", 390, "dark"),
+    ("desktop / light", 1280, "light"),
+    ("desktop / dark", 1280, "dark"),
 ]
 
 
 def find_chrome() -> str | None:
-    """Najde Chrome napříč systémy.
+    """Locate Chrome across platforms.
 
-    Cesta natvrdo znamená, že kontrola v CI tiše neběží a člověk si myslí,
-    že něco hlídá. Pořadí: proměnná CHROME_PATH, pak obvyklá místa.
+    A hard-coded path means the check silently does not run in CI while
+    someone believes it guards something. Order: CHROME_PATH, then the usual
+    locations.
     """
     import os, shutil
     if (env := os.environ.get("CHROME_PATH")) and Path(env).exists():
@@ -54,7 +55,7 @@ def find_chrome() -> str | None:
 
 def run_axe(width: int, theme: str) -> dict:
     html = PAGE.read_text(encoding="utf-8")
-    # Motiv se razí na :root stejně, jako to dělá prohlížeč artefaktů.
+    # The theme is stamped on :root the same way the artifact viewer does it.
     html = html.replace('<html lang="cs">', f'<html lang="cs" data-theme="{theme}">')
     probe = f"""
 <script>{AXE.read_text(encoding="utf-8")}</script>
@@ -73,11 +74,11 @@ window.addEventListener('load', () => setTimeout(() => {{
 }}, 700));
 </script>
 """
-    # Sonda se zapisuje **vedle originálu**, ne do temp adresáře. Stránka země
-    # načítá runtime relativně (`../assets/atlas.js`); z temp adresáře by se
-    # nenačetl, Alpine by nenaběhl a axe by hlásil prázdná tlačítka — falešný
-    # nález, který vypadá jako vada stránky. Hlavní stránka je soběstačná,
-    # takže na ní ten rozdíl nikdy nebyl vidět.
+    # The probe is written **next to the original**, not into a temp directory.
+    # A country page loads its runtime relatively (`../assets/atlas.js`); from a
+    # temp directory it would not load, Alpine would not start, and axe would
+    # report empty buttons - a false finding that looks like a page defect. The
+    # main page is self-contained, so the difference never showed there.
     page = PAGE.with_name(f".a11y-{width}-{theme}.html")
     try:
         page.write_text(html.replace("</body>", probe + "</body>"), encoding="utf-8")
@@ -90,7 +91,7 @@ window.addEventListener('load', () => setTimeout(() => {{
         page.unlink(missing_ok=True)
     m = re.search(r'<div id="axe-result">(.*?)</div>', res.stdout, re.S)
     if not m:
-        raise SystemExit(f"axe nevrátil výsledek ({width}px, {theme})")
+        raise SystemExit(f"axe returned no result ({width}px, {theme})")
     raw = m.group(1).replace("&quot;", '"').replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
     return json.loads(raw)
 
@@ -98,21 +99,21 @@ window.addEventListener('load', () => setTimeout(() => {{
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--page", choices=("index", "place"), default="index",
-                    help="která stránka se audituje (výchozí: index)")
+                    help="which page to audit (default: index)")
     ap.add_argument("--impact", default="serious",
                     choices=["minor", "moderate", "serious", "critical"],
-                    help="od jaké závažnosti selhat (výchozí: serious)")
+                    help="minimum impact that fails the run (default: serious)")
     args = ap.parse_args()
     global PAGE
     if args.page == "place":
         PAGE = PLACE
 
     if not PAGE.exists():
-        raise SystemExit(f"chybí {PAGE.relative_to(ROOT)} — spusť nejdřív `just build`")
+        raise SystemExit(f"missing {PAGE.relative_to(ROOT)} - run `just build` first")
     global CHROME
     CHROME = find_chrome()
     if CHROME is None:
-        print("headless Chrome nenalezen, audit přeskočen "
+        print("headless Chrome not found, audit skipped "
               "(nastav CHROME_PATH)", file=sys.stderr)
         return 0
 
@@ -126,14 +127,14 @@ def main() -> int:
                     if order.index(v.get("impact") or "minor") >= threshold]
         failing += len(blocking)
         mark = "✓" if not blocking else "✗"
-        print(f"  {mark} {label:<20} {len(violations)} nálezů"
-              + (f", z toho {len(blocking)} blokujících" if blocking else ""))
+        print(f"  {mark} {label:<20} {len(violations)} findings"
+              + (f", {len(blocking)} of them blocking" if blocking else ""))
         for v in violations:
             print(f"      [{v.get('impact')}] {v['id']} — {v['help']} ({v['nodes']}×)")
             for t in v["target"]:
                 print(f"         {t}")
 
-    print(f"\n{'bez blokujících nálezů' if not failing else f'{failing} blokujících nálezů'}")
+    print(f"\n{'no blocking findings' if not failing else f'{failing} blocking findings'}")
     return 1 if failing else 0
 
 

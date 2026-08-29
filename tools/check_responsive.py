@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""Změří v reálném prohlížeči, jestli je stránka vidět a neteče do strany.
+"""Measure in a real browser whether the page is visible and does not overflow.
 
-jsdom umí DOM, ale ne layout — přetečení do strany v něm nezjistíš. Tenhle
-skript proto pouští headless Chrome na několika šířkách a ptá se přímo
-stránky, jestli `documentElement.scrollWidth` přerostl viewport, a který
-konkrétní prvek za to může.
+jsdom knows the DOM but not layout - sideways overflow cannot be detected in it.
+This script therefore runs headless Chrome at several widths and asks the page
+directly whether `documentElement.scrollWidth` outgrew the viewport, and which
+element is responsible.
 
-Vedle přetečení kontroluje i to, že hlavní obsah **skutečně něco zabírá**.
-Vzniklo z chyby, kterou neodhalila žádná jiná brána: chybějící `</aside>`
-zanořilo `#main-content` do postranního panelu, ten je pod `lg` mimo plátno,
-takže stránka byla prázdná — a přitom v DOM byly všechny řádky (jsdom testy
-prošly), nic neteklo do strany (tahle sonda prošla) a axe nehlásil nic.
-Měřit rozvržení znamená měřit i to, že obsah má nenulovou plochu.
+Besides overflow it checks that the main content **actually occupies space**.
+That came from a defect no other gate caught: a missing `</aside>` nested
+`#main-content` inside the sidebar, which is off-canvas below `lg`, so the page
+was blank - while every row was in the DOM (the jsdom tests passed), nothing
+overflowed sideways (this probe passed) and axe reported nothing. Measuring
+layout means also measuring that the content has non-zero area.
 
-Pod 1024px navíc otevře postranní panel a ověří, že se do něj dá ťuknout —
-panel může být vidět a přitom být celý pod backdropem, který ho zavře.
+Below 1024px it additionally opens the sidebar and verifies it can be tapped -
+a panel can be visible and still sit entirely under a backdrop that closes it.
 
-Vrací nenulový kód, když se stránka roztáhne do strany nebo není vidět obsah.
+Exits non-zero when the page spreads sideways or the content is not visible.
 """
 from __future__ import annotations
 
@@ -25,18 +25,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE = ROOT / "dist" / "index.html"
-# Stránka země je vlastní šablona s vlastní tabulkou, filtry a stránkováním —
-# měřit jen hlavní stránku by znamenalo, že o polovině webu brána neví.
-# Bere se Česko: má nejvíc položek, nejdelší popisy a nejširší tabulku.
+# The country page is its own template with its own table, filters and
+# pagination - measuring only the main page would leave the gate blind to half
+# the site. Czechia is used: most entries, longest descriptions, widest table.
 PLACE = ROOT / "dist" / "cz" / "index.html"
-CHROME: str | None = None  # zjistí se v runtime přes find_chrome()
+CHROME: str | None = None  # resolved at runtime by find_chrome()
 
-# šířky, na kterých se to musí chovat: malý telefon → mobil → tablet → desktop
+# widths it has to behave at: small phone -> phone -> tablet -> desktop
 WIDTHS = [320, 360, 390, 414, 768, 1024, 1280, 1536]
 
-# Chrome na macOS neumí okno užší než ~500 px — `--window-size=320` se tiše
-# klampne a test by měřil něco jiného, než tvrdí. Stránku proto vkládáme do
-# iframu přesné šířky uvnitř širokého okna a měříme uvnitř něj.
+# Chrome on macOS cannot open a window narrower than ~500px - `--window-size=320`
+# is silently clamped and the test would measure something other than it claims.
+# So the page is embedded in an iframe of the exact width inside a wide window
+# and measured in there.
 HARNESS = r"""<!doctype html><meta charset="utf-8">
 <style>html,body{margin:0}iframe{border:0;display:block}</style>
 <iframe id="f" src="PAGE_URL" width="WIDTH" height="900"></iframe>
@@ -47,7 +48,7 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
   const guilty = [];
   for (const el of d.querySelectorAll('body *')) {
     const cs = d.defaultView.getComputedStyle(el);
-    // Off-canvas prvky (fixed + posun mimo plátno) jsou záměr, ne chyba.
+    // Off-canvas elements (fixed + translated away) are intent, not a defect.
     if (cs.position === 'fixed') continue;
     const r = el.getBoundingClientRect();
     if (r.width === 0 && r.height === 0) continue;
@@ -65,37 +66,37 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
         ' @' + Math.round(r.right) + 'px');
     }
   }
-  // Obsah musí mít nenulovou plochu a nesmí být zanořený v panelu —
-  // jinak je stránka „vykreslená" a přitom prázdná.
+  // The content must have non-zero area and must not be nested in the sidebar -
+  // otherwise the page is "rendered" and blank at the same time.
   const main = d.getElementById('main-content');
   const side = d.getElementById('sidebar');
   const mainBox = main ? main.getBoundingClientRect() : { width: 0, height: 0 };
   const rows = [...d.querySelectorAll('table tbody tr[data-row], ul[role="list"] > li')]
     .filter(el => el.getBoundingClientRect().height > 0).length;
-  // Vnitřní scroll je legitimní únik pro širokou tabulku, ale znamená, že
-  // část sloupců není vidět. U katalogu to bylo 1004px tabulky v 768px okně,
-  // takže dva sloupce zmizely za okrajem — proto se to měří.
+  // Inner scroll is a legitimate escape for a wide table, but it means some
+  // columns are out of sight. For the catalogue that was a 1004px table in a
+  // 768px window, so two columns vanished past the edge - hence the measurement.
   const box = d.querySelector('.scroll-x');
   const innerOverflow = box ? box.scrollWidth - box.clientWidth : 0;
-  const EDGE = 8;   // tolerance pro „ukotvené k okraji"
+  const EDGE = 8;   // tolerance for "anchored to the edge"
 
-  // Překryv se nepozná, dokud se nescrolluje: `position: sticky` do té doby
-  // nic nedělá. Lepivá hlavička tabulky proto překryla první řádek a všechny
-  // brány prošly. Kontroluje se po odscrollování a jen u prvků, které
-  // *neplavou* u horního ani dolního okraje — pod horní lištou a nad souhrnnou
-  // lištou obsah projíždět má, uprostřed viewportu ne.
-  // Měří se **při scrollu 0**, a to je celý trik. Lepivý prvek do prvního
-  // scrollu drží svou přirozenou pozici, takže tam nemá co překrývat.
-  // Když překrývá, znamená to, že se jeho lepivý kontext počítá od něčeho
-  // jiného, než člověk čeká — přesně to udělala `sticky top-16` na hlavičce
-  // tabulky uvnitř `overflow-x-auto`: obal se stal scroll kontejnerem
-  // a hlavička skončila 4rem pod jeho horní hranou, přes záhlaví sekce
-  // a první řádek.
+  // An overlap cannot be seen until the page is scrolled: `position: sticky`
+  // does nothing before that. That is how a sticky table header covered the
+  // first row while every gate passed. It is checked after scrolling and only
+  // for elements that do *not* float at the top or bottom edge - content is
+  // meant to pass under the top bar and over the summary bar, not mid-viewport.
+  // Measured **at scroll 0**, and that is the whole trick. Until the first
+  // scroll a sticky element holds its natural position, so there is nothing for
+  // it to cover. If it covers something, its sticky context is being computed
+  // from something other than one expects - which is exactly what `sticky top-16`
+  // on the table header inside `overflow-x-auto` did: the wrapper became the
+  // scroll container and the header ended up 4rem below its top edge, over the
+  // section heading and the first row.
   //
-  // Po odscrollování se naopak překrývat *má* — lepivé nadpisy sekcí v kartách
-  // fungují právě tak. Proto se scrolluje jen kvůli tomu, aby se vyloučily
-  // prvky ukotvené k okraji (horní lišta, souhrnná lišta, spodní navigace),
-  // pod kterými obsah projíždět má.
+  // After scrolling it *should* overlap - the sticky section headings in the
+  // card view work exactly that way. Scrolling happens only to rule out
+  // edge-anchored elements (top bar, summary bar, bottom nav) that content is
+  // meant to pass under.
   const occluders = [...d.querySelectorAll('body *')].filter(el => {
     const cs = d.defaultView.getComputedStyle(el);
     if (cs.position !== 'fixed' && cs.position !== 'sticky') return false;
@@ -118,22 +119,22 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
         if (dx > 1 && dy > 1) {
           overlaps.push((el.tagName + (el.className && typeof el.className === 'string'
             ? '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.') : ''))
-            + ` překrývá řádek o ${Math.round(dy)}px při scrollu ${y}`);
+            + ` covers a row by ${Math.round(dy)}px at scroll ${y}`);
           break;
         }
       }
     }
   }
-  // Šuplík se testuje až nakonec: otevření přidá <body class="overflow-hidden">
-  // a backdrop, což by zkreslilo měření nad tímhle řádkem.
+  // The drawer is tested last: opening it adds <body class="overflow-hidden">
+  // and a backdrop, which would distort every measurement above this line.
   //
-  // Nestačí se ptát, jestli je panel po kliknutí vidět — byl vidět i tehdy,
-  // když nešel používat. Flowbite si k šuplíku vyrábí vlastní backdrop
-  // s natvrdo zadrátovaným `z-30` a připojuje ho na konec <body>. Když měl
-  // panel taky `z-30`, prohrál pořadím v DOM: menu se otevřelo pod ztmavením
-  // a každé ťuknutí do něj spadlo na backdrop, který šuplík zavřel.
-  // Proto se ptáme na to jediné, na čem záleží: co je doopravdy na pixelu
-  // uprostřed otevřeného panelu.
+  // Asking whether the panel is visible after the click is not enough - it was
+  // visible even when it could not be used. Flowbite builds its own backdrop
+  // with a hard-wired `z-30` and appends it to the end of <body>. When the
+  // panel also had `z-30` it lost on DOM order: the menu opened beneath the
+  // dimming and every tap on it landed on the backdrop, which closed the drawer.
+  // So we ask the only thing that matters: what is really at the pixel in the
+  // middle of the open panel.
   const drawer = { testovan: false };
   const toggle = d.querySelector('[data-drawer-toggle="sidebar"]');
   if (side && toggle && w < 1024) {
@@ -145,25 +146,26 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
     drawer.viditelnost = d.defaultView.getComputedStyle(side).visibility;
     const hit = d.elementFromPoint(Math.round(sr.left + sr.width / 2),
                                    Math.round(Math.min(300, vh / 2)));
-    drawer.naPixelu = hit ? (hit.id || hit.tagName.toLowerCase() +
+    drawer.atPixel = hit ? (hit.id || hit.tagName.toLowerCase() +
       (typeof hit.className === 'string' && hit.className
         ? '.' + hit.className.trim().split(/\s+/).slice(0, 2).join('.') : '')) : null;
     drawer.klikatelny = !!(hit && side.contains(hit));
 
-    // Backdrop si Flowbite vyrábí za běhu, takže Tailwind jeho třídy nevidí
-    // a ořízne je. Bez `inset-0` má nulový rozměr: šuplík se otevře bez
-    // ztmavení a ťuknutí vedle něj ho nezavře. V DOM přitom je, takže
-    // pouhá kontrola přítomnosti by prošla — měří se plocha a chování.
+    // Flowbite builds the backdrop at runtime, so Tailwind never sees its
+    // classes and purges them. Without `inset-0` it has zero size: the drawer
+    // opens without dimming and tapping beside it does not close it. It is in
+    // the DOM all the same, so a presence check would pass - area and behaviour
+    // are what get measured.
     const bd = d.querySelector('[drawer-backdrop]');
     drawer.backdrop = !!bd;
     if (bd) {
       const br = bd.getBoundingClientRect();
-      drawer.backdropPlocha = Math.round(br.width) + 'x' + Math.round(br.height);
+      drawer.backdropArea = Math.round(br.width) + 'x' + Math.round(br.height);
       drawer.backdropKryje = br.width >= w - 1 && br.height >= vh - 1;
       const mimo = d.elementFromPoint(w - 4, Math.round(Math.min(300, vh / 2)));
       drawer.backdropNahore = mimo === bd;
       bd.click();
-      drawer.zavreSe = Math.round(side.getBoundingClientRect().left) < 0;
+      drawer.closes = Math.round(side.getBoundingClientRect().left) < 0;
     }
   }
 
@@ -189,10 +191,10 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
 
 
 def find_chrome() -> str | None:
-    """Najde Chrome napříč systémy.
+    """Locate Chrome across platforms.
 
-    Cesta natvrdo znamená, že kontrola v CI tiše neběží a člověk si myslí,
-    že něco hlídá. Pořadí: proměnná CHROME_PATH, pak obvyklá místa.
+    A hard-coded path means the check silently does not run in CI while someone
+    believes it guards something. Order: CHROME_PATH, then the usual locations.
     """
     import os, shutil
     if (env := os.environ.get("CHROME_PATH")) and Path(env).exists():
@@ -217,8 +219,9 @@ def measure(width: int) -> dict:
             HARNESS.replace("PAGE_URL", PAGE.as_uri()).replace("WIDTH", str(width)),
             encoding="utf-8")
         res = subprocess.run(
-            # Bez vypnutých přechodů se měří mezistav: šuplík se v okamžiku
-            # kliknutí teprve rozjíždí a `left` je pořád -256px.
+            # Without transitions disabled we would measure an intermediate
+            # state: at the moment of the click the drawer is still moving and
+            # `left` is still -256px.
             [CHROME, "--headless", "--disable-gpu", "--hide-scrollbars",
              "--force-prefers-reduced-motion",
              "--allow-file-access-from-files", "--virtual-time-budget=6000",
@@ -227,7 +230,7 @@ def measure(width: int) -> dict:
             capture_output=True, text=True, timeout=90)
     m = re.search(r'<div id="probe-result">(.*?)</div>', res.stdout, re.S)
     if not m:
-        raise SystemExit(f"sonda nevrátila výsledek pro {width}px")
+        raise SystemExit(f"probe returned no result for {width}px")
     return json.loads(m.group(1).replace("&quot;", '"').replace("&amp;", "&"))
 
 
@@ -235,18 +238,18 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--widths", type=int, nargs="*", default=WIDTHS)
     ap.add_argument("--page", choices=("index", "place"), default="index",
-                    help="která stránka se měří (výchozí: index)")
+                    help="which page to measure (default: index)")
     args = ap.parse_args()
     global PAGE
     if args.page == "place":
         PAGE = PLACE
 
     if not PAGE.exists():
-        raise SystemExit("chybí dist/index.html — spusť nejdřív `just build`")
+        raise SystemExit("missing dist/index.html - run `just build` first")
     global CHROME
     CHROME = find_chrome()
     if CHROME is None:
-        print("headless Chrome nenalezen, kontrola přeskočena "
+        print("headless Chrome not found, check skipped "
               "(nastav CHROME_PATH)", file=sys.stderr)
         return 0
 
@@ -255,52 +258,53 @@ def main() -> int:
         r = measure(w)
         problems = []
         if r["overflow"] > 0:
-            problems.append(f"teče do strany o {r['overflow']}px")
-        # Prázdná stránka se pozná jinak než přetečením: obsah je v DOM,
-        # ale nic nezabírá — typicky když se zanoří do off-canvas panelu.
+            problems.append(f"overflows sideways by {r['overflow']}px")
+        # A blank page shows up differently from overflow: the content is in
+        # the DOM but occupies nothing - typically when it ends up nested inside
+        # the off-canvas panel.
         if r["mainInSidebar"]:
-            problems.append("#main-content je zanořený v #sidebar")
+            problems.append("#main-content is nested inside #sidebar")
         if r["mainWidth"] <= 0 or r["mainHeight"] <= 0:
-            problems.append(f"hlavní obsah nic nezabírá ({r['mainWidth']}×{r['mainHeight']}px)")
+            problems.append(f"main content occupies nothing ({r['mainWidth']}×{r['mainHeight']}px)")
         if r["visibleRows"] == 0:
-            problems.append("není vidět ani jedna položka katalogu")
-        # Karty (< md) tabulku nevykreslují, tam se vnitřní scroll neměří.
+            problems.append("not a single catalogue row is visible")
+        # Cards (< md) render no table, so inner scroll is not measured there.
         if w >= 768 and r["innerOverflow"] > 0:
-            problems.append(f"tabulka je o {r['innerOverflow']}px širší než okno "
-                            "— sloupce zmizí za okrajem")
+            problems.append(f"table is {r['innerOverflow']}px wider than the window "
+                            "- columns disappear past the edge")
         for o in r.get("overlaps", []):
             problems.append(o)
         dr = r.get("drawer") or {}
         if dr.get("testovan"):
             if not dr.get("spoustecVidet"):
-                problems.append("hamburger není vidět, panel se nedá otevřít")
+                problems.append("the hamburger is not visible, the panel cannot be opened")
             elif dr.get("left", -1) != 0 or dr.get("viditelnost") != "visible":
-                problems.append(f"panel se po kliknutí neotevřel "
+                problems.append(f"the panel did not open after the click "
                                 f"(left={dr.get('left')}px, {dr.get('viditelnost')})")
             elif not dr.get("klikatelny"):
-                problems.append("otevřený panel překrývá " + str(dr.get("naPixelu"))
-                                + " — ťuknutí do menu na něj nedosáhne")
+                problems.append("the open panel is covered by " + str(dr.get("atPixel"))
+                                + " - a tap on the menu cannot reach it")
             elif not dr.get("backdrop"):
-                problems.append("šuplík nemá backdrop")
+                problems.append("the drawer has no backdrop")
             elif not dr.get("backdropKryje"):
-                problems.append(f"backdrop má rozměr {dr.get('backdropPlocha')} místo "
-                                "celé plochy — Tailwind ořízl třídy, které Flowbite "
-                                "přidává za běhu (safelist v tailwind.config.js)")
+                problems.append(f"the backdrop measures {dr.get('backdropArea')} instead of "
+                                "the full area - Tailwind purged the classes Flowbite "
+                                "adds at runtime (safelist in tailwind.config.js)")
             elif not dr.get("backdropNahore"):
-                problems.append("backdrop neleží nad obsahem vedle šuplíku")
-            elif not dr.get("zavreSe"):
-                problems.append("ťuknutí vedle šuplíku ho nezavře")
+                problems.append("the backdrop does not sit above the content beside the drawer")
+            elif not dr.get("closes"):
+                problems.append("tapping beside the drawer does not close it")
         failed |= bool(problems)
         print(f"  {'✓' if not problems else '✗'} {w:>5}px  scrollWidth={r['scrollWidth']:<6} "
-              f"přetečení={r['overflow']:>4}px  obsah={r['mainWidth']}×{r['mainHeight']}px  "
-              f"položek={r['visibleRows']}  tabulka+{r['innerOverflow']}px"
-              + ("  šuplík ok" if not problems and (r.get("drawer") or {}).get("zavreSe") else ""))
+              f"overflow={r['overflow']:>4}px  content={r['mainWidth']}×{r['mainHeight']}px  "
+              f"rows={r['visibleRows']}  table+{r['innerOverflow']}px"
+              + ("  drawer ok" if not problems and (r.get("drawer") or {}).get("closes") else ""))
         for problem in problems:
             print(f"        {problem}")
         if r["overflow"] > 0:
             for g in r["guilty"]:
-                print(f"        viník: {g}")
-    print("\nrozvržení v pořádku" if not failed else "\nrozvržení je rozbité")
+                print(f"        culprit: {g}")
+    print("\nlayout ok" if not failed else "\nlayout is broken")
     return 1 if failed else 0
 
 

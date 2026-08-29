@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
-"""Změří sazbu v headless Chrome: délku řádku, velikost písma v polích, nadpisy.
+"""Measure typography in headless Chrome: measure, field font size, headings.
 
-Existuje ze stejného důvodu jako check_responsive.py — tyhle vady se nedají
-poznat z markupu. `max-w-3xl` vypadá jako rozumný strop, ale je to 768 px:
-při textu 14 px to vyjde na 89 znaků a při 12 px na 129. Čitelné je 45–75.
-Strop se proto musí měřit ve znacích, ne v pixelech, a to jde až po vysázení.
+Exists for the same reason as check_responsive.py - none of this is visible in
+the markup. `max-w-3xl` looks like a sensible cap but it is 768px: at 14px text
+that is 89 characters and at 12px it is 129. Readable is 45 to 75. The cap has
+to be measured in characters rather than pixels, which is only possible once
+the page is laid out.
 
-Tři pravidla, každé z konkrétní vady:
+Three rules, each from a concrete defect:
 
-1. **Pole nesmí mít pod 16 px na mobilu.** iOS Safari při fokusu do menšího
-   pole zoomuje celou stránku — uživatel ťukne do hledání a rozvržení se mu
-   rozjede. Na desktopu je 14 px v pořádku, proto se měří po šířkách.
-2. **Souvislý text nesmí přes 85 znaků na řádek.** Oko na dlouhém řádku
-   ztrácí návaznost a skáče o řádek zpět.
-3. **Úrovně nadpisů se nesmí přeskakovat.** Odečítač je používá jako obsah.
+1. **No field under 16px on mobile.** iOS Safari zooms the whole page when
+   focus enters a smaller field - the reader taps search and the layout jumps.
+   14px is fine on desktop, which is why this is measured per width.
+2. **No running text over 85 characters per line.** On a long line the eye
+   loses the return sweep and re-reads the line it just finished.
+3. **No skipped heading levels.** Screen readers use them as a table of
+   contents.
 
-Krátké odstavce v úzkých kartách (pod 40 znaků) se nehlásí: tam je to
-záměr rozvržení, ne vada sazby.
+Short paragraphs in narrow cards (under 40 characters) are not reported: there
+it is the layout's intent, not a typography defect.
 """
 from __future__ import annotations
 
@@ -30,9 +32,9 @@ from check_responsive import find_chrome  # noqa: E402
 PAGES = {"index": ROOT / "dist" / "index.html",
          "place": ROOT / "dist" / "cz" / "index.html"}
 WIDTHS = (390, 1280)
-MAX_MEASURE = 85          # znaků na řádek
-MIN_INPUT_PX = 16         # pod tím iOS zoomuje
-MOBILE_MAX = 640          # do téhle šířky platí pravidlo o polích
+MAX_MEASURE = 85          # characters per line
+MIN_INPUT_PX = 16         # below this iOS zooms
+MOBILE_MAX = 640          # the field rule applies up to this width
 
 PROBE = r"""
 <script>
@@ -54,10 +56,10 @@ window.addEventListener('load', () => setTimeout(() => {
     if (text.length < 90) continue;
     const box = el.getBoundingClientRect();
     if (box.width <= 0 || box.height <= 0) continue;
-    // Délka řádku dává smysl jen v normálním toku textu. U flex/grid
-    // kontejneru je šířka prvku vzdálenost mezi dvěma krajními dětmi,
-    // ne délka řádku — u titulku matice to vycházelo na 100 znaků,
-    // přestože jsou to dva krátké popisky na opačných koncích.
+    // Line length only means anything in normal text flow. For a flex or
+    // grid container the element's width is the distance between its outer
+    // children, not a line - the matrix caption measured 100 characters while
+    // actually being two short labels at opposite ends.
     const disp = getComputedStyle(el).display;
     if (disp === 'flex' || disp === 'grid' || disp === 'inline-flex') continue;
     const ch = Math.round(box.width / chWidth(el));
@@ -88,9 +90,9 @@ window.addEventListener('load', () => setTimeout(() => {
 
 def measure(chrome: str, page: Path, width: int) -> dict:
     probe = PROBE.replace("__MAX__", str(MAX_MEASURE)).replace("__MINPX__", str(MIN_INPUT_PX))
-    # Sonda se zapisuje vedle originálu, ne do temp adresáře: stránka země
-    # načítá runtime relativně a odjinud by nenaběhla — stejný důvod jako
-    # v check_a11y.py.
+    # The probe is written next to the original rather than into a temp
+    # directory: a country page loads its runtime relatively and would not
+    # start from elsewhere - same reason as in check_a11y.py.
     tmp = page.with_name(f".typo-{width}.html")
     tmp.write_text(page.read_text(encoding="utf-8").replace("</body>", probe + "</body>"),
                    encoding="utf-8")
@@ -104,7 +106,7 @@ def measure(chrome: str, page: Path, width: int) -> dict:
         tmp.unlink(missing_ok=True)
     m = re.search(r'<div id="typo">(.*?)</div>', res.stdout, re.S)
     if not m:
-        raise SystemExit(f"sonda nevrátila výsledek ({page.name}, {width}px)")
+        raise SystemExit(f"probe returned no result ({page.name}, {width}px)")
     import html as H
     return json.loads(H.unescape(m.group(1)))
 
@@ -117,10 +119,10 @@ def main() -> int:
 
     page = PAGES[args.page]
     if not page.exists():
-        raise SystemExit(f"chybí {page.relative_to(ROOT)} — spusť nejdřív `just build`")
+        raise SystemExit(f"missing {page.relative_to(ROOT)} - run `just build` first")
     chrome = find_chrome()
     if chrome is None:
-        print("Chrome nenalezen — sazba se nezměřila")
+        print("Chrome not found - typography was not measured")
         return 0
 
     problems = 0
@@ -128,22 +130,22 @@ def main() -> int:
         r = measure(chrome, page, width)
         bad = []
         for x in r["long"]:
-            bad.append(f"řádek {x['ch']} znaků (max {MAX_MEASURE}) — {x['text']}…")
-        # Pravidlo o velikosti písma v polích je o mobilním prohlížeči.
+            bad.append(f"line of {x['ch']} characters (max {MAX_MEASURE}) - {x['text']}…")
+        # The field font-size rule is about the mobile browser.
         if width <= MOBILE_MAX:
             for x in r["small"]:
-                bad.append(f"pole #{x['id']} má {x['px']}px — pod {MIN_INPUT_PX}px "
-                           "iOS Safari při fokusu zoomuje stránku")
+                bad.append(f"field #{x['id']} is {x['px']}px - under {MIN_INPUT_PX}px "
+                           "iOS Safari zooms the page on focus")
         for x in r["skips"]:
-            bad.append(f"přeskočená úroveň nadpisu {x}")
+            bad.append(f"skipped heading level {x}")
         mark = "✓" if not bad else "✗"
-        print(f"  {mark} {width:>5}px  {len(r['long'])} dlouhých řádků · "
-              f"{len(r['small'])} malých polí · {len(r['skips'])} skoků v nadpisech")
+        print(f"  {mark} {width:>5}px  {len(r['long'])} long lines · "
+              f"{len(r['small'])} small fields · {len(r['skips'])} heading skips")
         for b in bad:
             print(f"      {b}")
         problems += len(bad)
 
-    print("\nsazba v pořádku" if not problems else f"\n{problems} nálezů v sazbě", file=sys.stderr if problems else sys.stdout)
+    print("\ntypography ok" if not problems else f"\n{problems} typography findings", file=sys.stderr if problems else sys.stdout)
     return 1 if problems else 0
 
 

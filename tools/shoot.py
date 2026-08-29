@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Vyrobí screenshoty stránky v několika šířkách do .cache/shots/.
+"""Render screenshots of the page at several widths into .cache/shots/.
 
-Existuje proto, že měření samo nestačí. Chybějící `</aside>` zanořila obsah
-do panelu a všechny brány prošly: v DOM byly řádky, nic neteklo do strany,
-axe nic nenašel — a stránka byla prázdná. Lepivá hlavička tabulky zas
-překryla první řádek a žádné číslo to nezachytilo.
+Exists because measurement alone is not enough. A missing `</aside>` nested the
+content inside the sidebar and every gate passed: the rows were in the DOM,
+nothing overflowed sideways, axe found nothing - and the page was blank. A
+sticky table header once covered the first row and no number caught it.
 
-Sonda `check_responsive.py` obojí dnes chytí, ale nová vada tohohle druhu se
-pozná nejrychleji tak, že se na stránku někdo podívá. Tenhle skript to udělá
-levným způsobem: obrázky jdou do .cache/, která je v .gitignore.
+check_responsive.py catches both of those today, but a new defect of that kind
+is found fastest by someone looking at the page. This script makes that cheap:
+the images go to .cache/, which is gitignored.
 
-Chrome na macOS neumí okno užší než ~500 px, takže se stránka vkládá do iframu
-přesné šířky a výsledek se ořízne — stejný trik jako v check_responsive.py.
+Chrome on macOS cannot open a window narrower than ~500px, so the page is
+embedded in an iframe of the exact width and the result is cropped - the same
+trick as in check_responsive.py.
 """
 from __future__ import annotations
 
@@ -35,11 +36,11 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--widths", type=int, nargs="*",
-                    help="jen tyto šířky (výchozí: 390 768 1280 1536)")
+                    help="only these widths (default: 390 768 1280 1536)")
     args = ap.parse_args()
 
     if not PAGE.exists():
-        raise SystemExit("chybí dist/index.html — spusť nejdřív `just build`")
+        raise SystemExit("missing dist/index.html - run `just build` first")
     chrome = find_chrome()
     if chrome is None:
         print("headless Chrome nenalezen (nastav CHROME_PATH)", file=sys.stderr)
@@ -69,7 +70,7 @@ def main() -> int:
                                 "+repage", str(png)], check=True)
             print(f"  {width:>5}px  {png.relative_to(ROOT)}  {png.stat().st_size // 1024} kB")
     if not crop:
-        print("  (bez ImageMagicku se neořezává — obrázky nesou celé okno)")
+        print("  (without ImageMagick nothing is cropped - images hold the whole window)")
     return 0
 
 
