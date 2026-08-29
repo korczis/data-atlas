@@ -163,24 +163,50 @@ def check(html: str, extra_script: str = "") -> None:
     for name, line in structure.stack:
         fail("html/structure", f"řádek {line}: <{name}> se nikdy nezavírá")
 
-    # ── Flowbite: inicializace ────────────────────────────────────────────────
-    # Flowbite váže chování na data atributy jediným skenem DOM. Cokoli
-    # vykreslí Alpine až potom, zůstane mrtvé, pokud se nezavolá znovu.
-    if "data-drawer-target" in markup or "data-dropdown-toggle" in markup \
-            or "data-modal-target" in markup or "data-tooltip-target" in markup:
-        if "initFlowbite" not in script:
-            fail("flowbite/init",
-                 "markup používá Flowbite data atributy, ale nikde se nevolá initFlowbite()")
+    # ── Flowbite: jak se váže na Alpine ───────────────────────────────────────
+    # Flowbite umí dvojí: `data-*` atributy, které projde **jediný sken DOM**
+    # při startu, a běžné třídy (Dropdown, Drawer) s destroy(). S Alpine sedí
+    # jen to druhé — Alpine vykresluje až po startu a při přefiltrování uzly
+    # zahodí a vyrobí nové, takže cokoli navěšeného skenem je pak mrtvé: je to
+    # vidět, vypadá to správně a nedělá to nic, bez chyby v konzoli.
+    #
+    # Projekt proto váže Flowbite direktivou `x-flowbite` (src/js/flowbite-entry.js),
+    # která instanci vyrobí v okamžiku, kdy Alpine uzel vytvoří, a zruší ji, když
+    # ho zahodí. `data-*` atributy jsou tím pádem zakázané úplně — nic je neskenuje,
+    # takže by tiše nedělaly nic.
+    FLOWBITE_ATTRS = r"data-(drawer|dropdown|modal|tooltip|popover|accordion|tabs|collapse|dial|carousel)-[a-z-]+"
+    for m in re.finditer(FLOWBITE_ATTRS, markup):
+        fail("flowbite/binding",
+             f"řádek {line_of(markup, m.start())}: '{m.group(0)}' — Flowbite se váže "
+             "direktivou x-flowbite, tenhle atribut nikdo neskenuje a zůstane mrtvý")
 
-    # Flowbite komponenta uvnitř x-for přežije jen do prvního přefiltrování:
-    # Alpine uzel zahodí a nový už žádný Flowbite listener nemá.
-    for m in re.finditer(tag("template") + r"(.*?)</template>", markup, re.S):
-        if "x-for" not in m.group(0):
-            continue
-        if re.search(r"data-(drawer|dropdown|modal|tooltip|popover|accordion|tabs|collapse)-", m.group(1)):
-            fail("flowbite/dynamic",
-                 f"řádek {line_of(markup, m.start())}: Flowbite data atribut uvnitř x-for — "
-                 "po přerenderování přestane fungovat")
+    # Komentáře se odstraní: zmínka v poznámce („žádné initFlowbite()") není
+    # volání a pravidlo, které pokárá vysvětlení sebe sama, naučí lidi výstup
+    # ignorovat.
+    code = re.sub(r"/\*.*?\*/", "", script, flags=re.S)
+    code = re.sub(r"^\s*//.*$", "", code, flags=re.M)
+    if re.search(r"\binitFlowbite\b", code):
+        fail("flowbite/binding",
+             "volá se initFlowbite() — projekt Flowbite váže přes x-flowbite, "
+             "jednorázový sken DOM by dvojitě navěsil to, co direktiva už vyrobila")
+
+    # Direktiva musí mít podporovanou komponentu a existující cíl. Obojí je
+    # staticky zjistitelné, dokud je cíl literál — a psát ho výrazem jen proto,
+    # aby to linter neviděl, by bylo obcházení brány, ne řešení.
+    SUPPORTED = {"dropdown", "drawer"}
+    ids = set(re.findall(r'\bid="([^"]+)"', markup))
+    for m in re.finditer(r'x-flowbite:([a-z-]*)="([^"]*)"', markup):
+        comp, expr = m.group(1), m.group(2).strip()
+        line = line_of(markup, m.start())
+        if comp not in SUPPORTED:
+            fail("flowbite/binding",
+                 f"řádek {line}: x-flowbite:{comp or '(chybí)'} — podporované je "
+                 + ", ".join(sorted(SUPPORTED)))
+        literal = re.fullmatch(r"'([^']+)'", expr) or re.fullmatch(r'&#39;([^&]+)&#39;', expr)
+        if literal and literal.group(1) not in ids:
+            fail("flowbite/binding",
+                 f"řádek {line}: x-flowbite:{comp} míří na #{literal.group(1)}, "
+                 "který v šabloně není")
 
     # ── Flowbite: RTL a logické vlastnosti ────────────────────────────────────
     # Flowbite 2.x jede na logických vlastnostech kvůli RTL režimu.

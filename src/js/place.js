@@ -23,9 +23,6 @@ document.addEventListener('alpine:init', () => {
     init() {
       this.theme = document.documentElement.getAttribute('data-theme') || 'system';
       this.readHash();
-      // Jednou a hned, ne v $nextTick — dropdowny jsou ve statickém markupu
-      // a čekat na Alpine by je nechalo na vteřinu mrtvé.
-      if (window.initFlowbite) window.initFlowbite();
       for (const k of ['q', 'topic', 'access', 'page'])
         this.$watch(k, () => this.writeHash());
     },

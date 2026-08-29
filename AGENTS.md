@@ -48,8 +48,11 @@ protože ta selhává tiše.
 - **Do `data/longlist.csv` jen přes `tools/sanitize.py`.** Syrový výstup obsahuje
   osobní historii prohlížení a interní hostnames. Hostnames vlastní sítě patří
   do `config/private-hosts.txt`, který je mimo repozitář.
-- **Flowbite `data-*` nepatří do `x-for`.** Důvod je v `docs/UI-RULES.md`;
-  selhává to tiše, bez chyby v konzoli.
+- **Flowbite se váže direktivou `x-flowbite`, ne `data-*` atributy.** Instanci
+  vyrábí `src/js/flowbite-entry.js` v okamžiku, kdy Alpine uzel vytvoří, a ruší
+  ji, když ho zahodí. `data-*` atributy ani `initFlowbite()` do projektu
+  nepatří — nic je neskenuje, takže by tiše nedělaly nic. Vynucuje to pravidlo
+  `flowbite/binding`, důvod je v `docs/UI-RULES.md`.
 - **Stránka není jen `index.html`.** Vedle ní stojí `dist/<kód>/` pro každou
   zemi a rozcestník `dist/zeme/`, které staví `tools/build_places.py` ze stejných
   dat. Sitemapu píše až on — `build_page.py` ji zakládá s jedinou adresou.

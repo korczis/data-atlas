@@ -66,7 +66,7 @@
 
     <div class="flex flex-col gap-3 border-b border-gray-200 p-4 dark:border-gray-700 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex flex-wrap items-center gap-2">
-        <button id="topicFilterButton" data-dropdown-toggle="topicFilter" type="button"
+        <button id="topicFilterButton" x-flowbite:dropdown="'topicFilter'" type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
           <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M2 3a1 1 0 0 1 1-1h14a1 1 0 0 1 .78 1.63L12 10.28V17a1 1 0 0 1-1.45.9l-2-1A1 1 0 0 1 8 16v-5.72L2.22 3.63A1 1 0 0 1 2 3Z"/>
@@ -96,7 +96,7 @@
           </ul>
         </div>
 
-        <button id="accessFilterButton" data-dropdown-toggle="accessFilter" type="button"
+        <button id="accessFilterButton" x-flowbite:dropdown="'accessFilter'" type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
           <span x-text="access ? accessLabel(access) : 'Jakýkoli přístup'"></span>
           <svg class="h-2.5 w-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">

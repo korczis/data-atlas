@@ -20,41 +20,51 @@ Zdroje: [Flowbite `llms.txt`](https://raw.githubusercontent.com/themesberg/flowb
 [Flowbite RTL](https://flowbite.com/docs/customize/rtl/),
 [Alpine.js docs](https://alpinejs.dev/).
 
-## Flowbite × Alpine: kde to praská
+## Flowbite × Alpine: jak jsou spojené
 
-Tohle je nejkřehčí místo celé stránky a stojí za to mu rozumět, než se v šabloně
-začne škrtat.
+Tohle bylo nejkřehčí místo celé stránky. Dnes je to jedna vrstva
+v [`src/js/flowbite-entry.js`](../src/js/flowbite-entry.js) a stojí za to jí
+rozumět dřív, než se v šablonách začne škrtat.
 
-Flowbite váže chování na `data-*` atributy **jediným skenem DOM**. Alpine
-vykresluje obsah až po svém startu. Když se to pořadí rozejde, komponenta je
-v DOM, vypadá správně a **nedělá nic** — bez chyby v konzoli.
+**Co nesedělo.** Flowbite se běžně zapíná `initFlowbite()`, což **jednou**
+projde DOM a navěsí chování na `data-*` atributy. Alpine ale vykresluje až po
+startu a při každém přefiltrování uzly zahodí a vyrobí nové. Cokoli vzniklo po
+tom skenu je v DOM, vypadá správně a **nedělá nic** — bez chyby v konzoli.
+Dřívější řešení bylo tomu se vyhnout: Flowbite komponenty směly být jen ve
+statickém markupu a `data-*` uvnitř `x-for` zakazoval linter.
 
-Z toho plynou dvě pravidla:
+**Co platí teď.** Flowbite má vedle scannerů i normální třídy (`Dropdown`,
+`Drawer`) s `destroy()`. Instance se proto vyrábí v Alpine direktivě: vznikne
+přesně tehdy, kdy Alpine uzel vytvoří, a `cleanup()` ji zruší přesně tehdy, kdy
+ho zahodí.
+
+```html
+<button x-flowbite:dropdown="'sort-dropdown'">Řadit</button>
+<button x-flowbite:drawer="'sidebar'" aria-controls="sidebar">Menu</button>
+```
+
+Cíl se bere z výrazu, a když chybí, z `aria-controls` — ten u spouštěče stejně
+patří kvůli přístupnosti a dvě místa pro tutéž informaci by se rozešla.
 
 | Pravidlo | Proč |
 |---|---|
-| `flowbite/init` — kdo použije Flowbite `data-*`, musí volat `initFlowbite()` | Bez toho se sken nespustí nad tím, co vykreslil Alpine |
-| `flowbite/dynamic` — žádné Flowbite `data-*` uvnitř `<template x-for>` | Alpine uzly při přefiltrování zahodí; nové už žádný listener nemají a znovu-init na každý překreslení je drahý |
+| `flowbite/binding` — žádné Flowbite `data-*` atributy | Nic je neskenuje, zůstaly by mrtvé |
+| `flowbite/binding` — žádné volání `initFlowbite()` | Sken vedle direktivy navěsí podruhé; dvě instance si vzájemně vyruší `toggle()` a šuplík pak nejde zavřít |
+| `flowbite/binding` — jen podporované komponenty a existující cíl | Překlep v `id` by jinak selhal tiše |
 
-Pořadí skriptů v buildu je závazné: **tělo → Flowbite → Alpine**. Hlídá to
-`tests/flowbite.mjs`, a to kliknutím, ne kontrolou přítomnosti atributu.
+Všechny čtyři varianty selhání jsou ověřené tím, že se schválně rozbily.
 
-### `initFlowbite()` se volá jednou, a hned
+**Co z toho plyne.** Zákaz Flowbite uvnitř `x-for` padl — direktiva to zvládá,
+protože se řídí životním cyklem, ne jedním skenem. Vazba na pořadí skriptů
+(tělo → Flowbite → Alpine) zůstává: direktiva se registruje na `alpine:init`,
+takže Flowbite musí být načtený dřív než Alpine. Hlídá to `tests/flowbite.mjs`,
+a to kliknutím, ne kontrolou přítomnosti atributu — včetně případu, který dřív
+nešel: dropdown se po přerenderování seznamu pořád otevírá i zavírá.
 
-Volalo se to původně v `$nextTick`, tedy až Alpine dokreslí seznam. Při dvou stech
-položkách to bylo neviditelné; při tisícovce je to **vteřina, po kterou je šuplík
-s filtry mrtvý** — na telefonu na něj klikneš a nic se nestane.
-
-Čekat na Alpine přitom není proč: pravidlo `flowbite/dynamic` zakazuje Flowbite
-`data-*` uvnitř `x-for`, takže **všechny interaktivní Flowbite komponenty jsou
-ve statickém markupu** a v DOM jsou od parsování.
-
-A zavolat to „pro jistotu" dvakrát je horší než pozdě: Flowbite navěsí posluchač
-znovu, dvě instance si `toggle()` vzájemně vyruší a šuplík pak nejde zavřít
-vůbec. Narazili jsme na to při pokusu nechat obě volání vedle sebe.
-
-Praktický důsledek: interaktivní Flowbite komponenty patří do **statického**
-markupu (šuplík, spodní navigace, toast). Seznam položek si řídí Alpine sám.
+**Sbalitelné skupiny nejsou Flowbite.** Hlavičky skupin témat v panelu vznikají
+v `x-for` nad taxonomií a nesou disclosure (`aria-expanded`, `aria-controls`).
+Řídí je Alpine, protože stav sbalení je stav komponenty — ne chování widgetu —
+a patří k tomu, co si stránka pamatuje v `localStorage`.
 
 ## Flowbite
 
