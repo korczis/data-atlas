@@ -158,22 +158,6 @@ document.addEventListener('alpine:init', () => {
       if (el && el.scrollIntoView) el.scrollIntoView({ block: 'center', behavior: 'auto' });
     },
 
-    /** Odznaky u popisu: strojová dostupnost a překážka v přístupu. Stejný
-     *  klíč jako na hlavní stránce, aby se čtenář nemusel přeučovat.
-     *
-     *  Odznak pro `check: "anti-bot"` tu **není**: to pole žije jen ve
-     *  `data/sources/*.json` a čte ho `tools/check_links.py`, do
-     *  `data/catalog.csv` se nepropisuje. Dokud tam není sloupec, byla by
-     *  to větev, která se nikdy nevykreslí. */
-    marks(r) {
-      const out = [];
-      const bulk = { bulk: 'hromadně', api: 'API', ogc: 'OGC', download: 'ke stažení' }[r.data];
-      if (bulk) out.push({ text: bulk, cls: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300' });
-      const block = { paid: 'placené', registration: 'registrace', restricted: 'omezené' }[r.access];
-      if (block) out.push({ text: block, cls: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' });
-      return out;
-    },
-
     /** Světlý → tmavý → podle systému. Tři stavy, protože „podle systému" je
      *  volba, ne absence volby; návrat na systém atribut odstraní, jinak by
      *  přestala platit media query. */

@@ -95,9 +95,9 @@ try {
 
       <div class="ms-auto flex shrink-0 items-center gap-1">
         <span class="hidden items-center gap-2 pe-2 text-xs text-gray-500 dark:text-gray-400 xl:flex">
-          <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+          <span class="rounded bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                 x-text="catalog.length + ' zdrojů'"></span>
-          <span class="rounded-md bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+          <span class="rounded bg-gray-100 px-2 py-1 font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                 x-text="places.length + ' zemí'"></span>
         </span>
 
@@ -866,7 +866,7 @@ try {
                   <div x-show="r.code" class="mt-2.5 flex flex-wrap items-center gap-1.5">
                     <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                           x-text="r.code + ' · ' + topicLabel(r.topic)"></span>
-                    <template x-for="mk in marks(r)" :key="mk.text">
+                    <template x-for="mk in $marks(r, labels)" :key="mk.text">
                       <span :class="mk.cls" class="rounded px-1.5 py-0.5 text-[10px] font-medium" x-text="mk.text"></span>
                     </template>
                   </div>
@@ -936,7 +936,7 @@ try {
                       <td class="px-4 py-4 align-top">
                         <span x-text="r.desc || r.title"></span>
                         <span class="mt-1.5 flex flex-wrap items-center gap-1.5">
-                          <template x-for="mk in marks(r)" :key="mk.text">
+                          <template x-for="mk in $marks(r, labels)" :key="mk.text">
                             <span :class="mk.cls" class="rounded px-1.5 py-0.5 text-[10px] font-medium" x-text="mk.text"></span>
                           </template>
                           <!-- Doložení jen tam, kde je: 998 z 1050 položek je
@@ -962,7 +962,7 @@ try {
       <div x-show="hasMore" class="px-4 pb-8 text-center">
         <div x-init="observeSentinel($el)" aria-hidden="true" class="h-px"></div>
         <button type="button" @click="loadMore()"
-          class="rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+          class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
           Zobrazit dalších <span x-text="Math.min(STEP, filtered.length - limit)"></span>
           <span class="text-gray-500 dark:text-gray-400" x-text="'z ' + (filtered.length - limit) + ' zbývajících'"></span>
         </button>
@@ -1154,6 +1154,9 @@ document.addEventListener('alpine:init', () => {
     longlist: window.__DATA__.longlist,
     taxonomy: window.__DATA__.groups,
     places: window.__DATA__.places,
+    // Číselník popisků z payloadu — vzniká z ACCESS/DATA_MODES v build_catalog.py,
+    // kde se zároveň validují povolené hodnoty.
+    labels: window.__DATA__.labels,
 
     sourceFilters: [
       { k: '', label: 'Vše' },
@@ -1989,21 +1992,6 @@ document.addEventListener('alpine:init', () => {
       if (s === 'bookmarks') return 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300';
       if (s === 'bookmarks+history') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300';
       return 'bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300';
-    },
-
-    /** Odznaky u položky. Ukazuje se jen to, co mění způsob použití zdroje:
-     *  strojová dostupnost a překážka v přístupu. „Otevřený web bez API"
-     *  je většina katalogu a psát to na každý řádek je šum. */
-    marks(r) {
-      const out = [];
-      const data = { bulk: 'bulk', api: 'API', ogc: 'OGC', download: 'ke stažení' }[r.data];
-      if (data) out.push({ text: data, cls: 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300' });
-      const acc = { search: 'jen vyhledávání', registration: 'registrace', paid: 'placené',
-                    mixed: 'zdarma i placeně', restricted: 'omezený přístup' }[r.access];
-      if (acc) out.push({ text: acc, cls: 'bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300' });
-      const kind = { commercial: 'komerční', regional: 'regionální' }[r.kind];
-      if (kind) out.push({ text: kind, cls: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300' });
-      return out;
     },
 
     copyCsv() {

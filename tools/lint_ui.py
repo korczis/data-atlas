@@ -208,6 +208,20 @@ def check(html: str, extra_script: str = "") -> None:
                  f"řádek {line}: x-flowbite:{comp} míří na #{literal.group(1)}, "
                  "který v šabloně není")
 
+    # ── Škála zaoblení je uzavřená ────────────────────────────────────────────
+    # Tailwind nabízí šest stupňů, projekt používá čtyři: `rounded-sm` na
+    # drobné čtverečky legendy, `rounded` na odznaky, `rounded-lg` na ovládací
+    # prvky a karty, `rounded-full` na pilulky. Mezistupně nepřidávají význam,
+    # jen rozdíl — týž odznak s počtem měl v hlavičce `rounded-md` a jinde
+    # `rounded`, což je přesně ta tichá nekonzistence, kterou nikdo nenahlásí
+    # a každý vidí.
+    RADII_OK = {"rounded-sm", "rounded", "rounded-lg", "rounded-full"}
+    for m in re.finditer(r"\brounded(?:-(?:sm|md|lg|xl|2xl|3xl|full|none))?\b", markup):
+        if m.group(0) not in RADII_OK:
+            fail("ui/radius",
+                 f"řádek {line_of(markup, m.start())}: '{m.group(0)}' není ve škále — "
+                 + ", ".join(sorted(RADII_OK)))
+
     # ── Flowbite: RTL a logické vlastnosti ────────────────────────────────────
     # Flowbite 2.x jede na logických vlastnostech kvůli RTL režimu.
     directional = {

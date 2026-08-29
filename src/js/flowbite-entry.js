@@ -21,6 +21,7 @@
  *
  * Žádné `initFlowbite()` se nevolá; není co skenovat.
  */
+import { marks } from './badges.js'
 import Drawer from 'flowbite/lib/esm/components/drawer'
 import Dropdown from 'flowbite/lib/esm/components/dropdown'
 
@@ -66,6 +67,12 @@ const BINDINGS = {
 }
 
 document.addEventListener('alpine:init', () => {
+  // Odznaky u položky katalogu. Magic, ne kopie v každé komponentě: obě
+  // stránky sázejí tentýž odznak a dvě implementace se prokazatelně rozešly
+  // v barvě, v odstínu i ve slovníku. Bundle je společný, takže jedna
+  // definice stačí pro hlavní stránku, artefakt i stránky zemí.
+  window.Alpine.magic('marks', () => marks)
+
   window.Alpine.directive('flowbite', (el, { value, expression }, { evaluate, cleanup }) => {
     const bind = BINDINGS[value]
     if (!bind) {
