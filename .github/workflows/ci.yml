@@ -37,6 +37,8 @@ jobs:
           python3 tools/check_runtime_classes.py
           python3 tools/check_responsive.py
           python3 tools/check_responsive.py --page place
+          python3 tools/check_typography.py
+          python3 tools/check_typography.py --page place
           python3 tools/check_a11y.py
           python3 tools/check_a11y.py --page place
           node tests/smoke.mjs

@@ -510,3 +510,26 @@ proto **nesmí zůstat v inline `<style>` hlavní šablony** — je v `src/input
 Dokud tam nebyl, stránky zemí ho neměly: `x-cloak` nic neskrýval, takže při
 načtení probliklo nevykreslené `x-text`, a tělo nemělo pozadí, takže v tmavém
 motivu svítilo bíle pod obsahem.
+
+## Sazba
+
+Měří `tools/check_typography.py` (`just typography`) v headless Chrome, protože
+z markupu se tyhle vady poznat nedají.
+
+**Strop šířky textu se měří ve znacích, ne v pixelech.** `max-w-3xl` vypadá jako
+rozumné omezení, ale je to 768 px: při textu 14 px z toho vyjde 89 znaků na
+řádek a při 12 px 129. Čitelné je 45–75, brána pouští do 85. Používá se proto
+`max-w-prose` (65 znaků), které se drží velikosti písma.
+
+**Formulářová pole mají na mobilu aspoň 16 px.** iOS Safari při fokusu do
+menšího pole zoomuje celou stránku — člověk ťukne do hledání a rozvržení se mu
+rozjede. Píše se `text-base sm:text-sm`: 16 px tam, kde na tom záleží, a od `sm:`
+zpátky drobnější vzhled lišty.
+
+**Délka řádku se neměří u flex a grid kontejnerů.** Šířka takového prvku je
+vzdálenost mezi krajními dětmi, ne délka řádku; titulek matice kvůli tomu
+vycházel na 100 znaků, přestože jsou to dva krátké popisky na opačných koncích.
+
+`text-wrap: pretty` na souvislém textu a `balance` na nadpisech řeší sirotky
+a nadpisy zalomené 1:5. Obojí je v `src/input.css`, takže platí pro hlavní
+stránku i stránky zemí; prohlížeč bez podpory to ignoruje.

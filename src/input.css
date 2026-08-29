@@ -33,3 +33,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ── Sazba ──────────────────────────────────────────────────────────────────
+   `text-wrap` řeší dvě věci, na které se v CSS dřív muselo rukou: osamocené
+   slovo na posledním řádku odstavce a nadpis zalomený 1:5. `pretty` hlídá
+   sirotky v souvislém textu, `balance` vyrovnává krátké bloky — u nadpisů
+   proto, že jich je na stránce hodně a rozházené zalomení je vidět dřív než
+   text sám. Prohlížeč bez podpory obojí ignoruje, takže to nic nerozbije. */
+p, li, dd, figcaption { text-wrap: pretty; }
+h1, h2, h3, h4, blockquote { text-wrap: balance; }
+
+/* Čísla v tabulkách a počtech musí být na stejné šířce, jinak sloupec
+   „skáče" při každém přefiltrování. Tailwind to řeší třídou `tabular-nums`
+   tam, kde na tom záleží; tady je to jistota pro čísla uvnitř prózy. */
+.tabular-nums { font-variant-numeric: tabular-nums; }

@@ -31,6 +31,7 @@ protože ta selhává tiše.
 | `src/assets/` | Zdroje ikon a OG karty (`just assets` je přerenderuje) |
 | `tools/` | Datový řetěz a build |
 | `tests/` | `smoke` · `interact` · `meta` · `flowbite` · `places` |
+| `tools/check_typography.py` | Sazba: délka řádku ve znacích, velikost písma v polích, hierarchie nadpisů. |
 | `static/` | Vygenerované ikony a OG karta (committnuté) |
 | `.cache/`, `dist/` | Gitignorované. **Nikdy necommituj.** |
 

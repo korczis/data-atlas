@@ -86,7 +86,7 @@ try {
           </div>
           <input id="search" type="search" x-ref="search" x-model.debounce.200ms="q"
             placeholder="Hledat web, doménu, popis, zemi…"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 pe-10 text-base sm:text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
           <div class="pointer-events-none absolute inset-y-0 end-0 hidden items-center pe-3 lg:flex">
             <kbd class="rounded border border-gray-200 bg-gray-100 px-1.5 py-0.5 text-xs font-semibold text-gray-800 dark:border-gray-500 dark:bg-gray-600 dark:text-gray-100">/</kbd>
           </div>
@@ -200,7 +200,7 @@ try {
         <div class="px-3 pb-2">
           <label for="country-search" class="sr-only">Filtrovat seznam zemí</label>
           <input id="country-search" type="text" x-model="cq" placeholder="Filtrovat země…"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-base text-gray-900 focus:border-primary-500 sm:text-sm focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
         </div>
         <!-- Žádné `max-h` + `overflow-y-auto`: scrollovat uvnitř sloupce,
              který sám scrolluje, znamená dva posuvníky nad sebou a obsah,
@@ -370,7 +370,7 @@ try {
             členských států. U každého zdroje stojí, <span class="font-semibold text-gray-900 dark:text-white">jestli
             se dovnitř dostaneš</span> a <span class="font-semibold text-gray-900 dark:text-white">co si odneseš</span>.
           </p>
-          <p class="mt-3 max-w-3xl text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="mt-3 max-w-prose text-sm leading-relaxed text-gray-500 dark:text-gray-400">
             Pro rešerši, OSINT, due diligence a strojový sběr dat. Každá adresa je
             ověřená po síti, ne odhadnutá z názvu domény.
           </p>
@@ -469,7 +469,7 @@ try {
                  Dokud tu stálo „poslední dva bloky", stačilo přeskládat taxonomii
                  a text začal tiše lhát — a jmenovatel počítal i témata, která
                  kompletní být nemůžou. -->
-            <p class="mt-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            <p class="mt-2 max-w-prose text-xs leading-relaxed text-gray-500 dark:text-gray-400">
               <span x-text="supraTopics.length"></span> témat
               (<span x-text="supraTopics.slice(0, 3).map(t => t.label.toLowerCase()).join(', ')"></span>
               a další) není národní agenda — svítí jen v řádcích
@@ -569,7 +569,7 @@ try {
             </div>
           </div>
 
-          <p class="mt-8 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="mt-8 max-w-prose text-xs leading-relaxed text-gray-500 dark:text-gray-400">
             Kde zdroj veřejně neexistuje nebo je za přihlášením, je to napsané —
             místo aby se díra zaplácla slabou náhražkou. Otevřené i zavřené registry
             jsou v katalogu s uvedením překážky; nic se neobchází.
@@ -582,7 +582,7 @@ try {
                o vlastním katalogu v den, kdy se zdroj přesune. -->
           <div class="mt-12">
             <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Jak vypadá záznam</h3>
-            <p class="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            <p class="mt-1.5 max-w-prose text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               Pět skutečných položek napříč jurisdikcemi a tématy. U každé je vidět,
               kdo ji vydává, jak se k ní dostaneš a v jaké formě data vydá.
             </p>
@@ -694,7 +694,7 @@ try {
           <!-- ══ PŘÍSPĚVKY ══ -->
           <div class="mt-12 rounded-lg border border-gray-200 p-5 dark:border-gray-700">
             <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Katalog je otevřený</h3>
-            <p class="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            <p class="mt-1.5 max-w-prose text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               Zdrojová data i metodika jsou v repozitáři. Mrtvý odkaz, chybějící zdroj
               nebo špatně určený přístup se hlásí issue; zdroje se přidávají do
               <span class="font-mono text-xs">data/sources/&lt;KÓD&gt;.json</span> a katalog se
@@ -1034,7 +1034,7 @@ try {
             </ul>
           </div>
         </nav>
-        <p class="max-w-3xl border-t border-gray-200 pt-5 dark:border-gray-700">
+        <p class="max-w-prose border-t border-gray-200 pt-5 dark:border-gray-700">
           <span class="font-semibold text-gray-700 dark:text-gray-300">Co to je.</span>
           Kurátorovaný soupis veřejných datových zdrojů Evropské unie — geodata a katastr, otevřená data
           a statistika, obchodní rejstříky, insolvence, zakázky, soudy a regulace, a k tomu rizikové

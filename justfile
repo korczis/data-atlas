@@ -69,7 +69,7 @@ flags:
 
 # Build + testy — stejné, co běží v CI
 [group('build')]
-check: validate catalog build lint test responsive a11y
+check: validate catalog build lint test responsive typography a11y
 
 # ── testy ─────────────────────────────────────────────────────────────────────
 
@@ -103,6 +103,12 @@ responsive:
 [group('test')]
 shots *ARGS:
     python3 tools/shoot.py {{ ARGS }}
+
+# Sazba: délka řádku, velikost písma v polích, hierarchie nadpisů
+[group('test')]
+typography:
+    python3 tools/check_typography.py
+    python3 tools/check_typography.py --page place
 
 # Audit přístupnosti (axe-core) v obou motivech a na dvou šířkách
 [group('test')]

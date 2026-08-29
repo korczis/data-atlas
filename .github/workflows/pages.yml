@@ -54,6 +54,8 @@ jobs:
         run: |
           python3 tools/check_responsive.py
           python3 tools/check_responsive.py --page place
+          python3 tools/check_typography.py
+          python3 tools/check_typography.py --page place
           python3 tools/check_a11y.py
           python3 tools/check_a11y.py --page place
 
