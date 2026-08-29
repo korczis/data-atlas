@@ -10,14 +10,14 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `EU` Evropská unie | 5 |  |  | 2 | 10 | 5 | 2 | 2 | 4 | 5 | 4 |  |  |  | 1 | 6 |  | 6 | 3 | **58** |
 | `GLOBAL` Celosvětové | 16 |  | 1 | 2 | 5 | 7 |  |  |  |  | 2 |  |  |  |  |  |  | 5 |  | **130** |
-| `AT` Rakousko | 2 | 2 | 1 | 2 | 4 | 2 | 1 | 2 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 2 | **46** |
+| `AT` Rakousko | 3 | 2 | 1 | 2 | 4 | 2 | 1 | 2 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 2 | **47** |
 | `BE` Belgie | 6 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 4 | 8 | 1 | 2 | 2 | **44** |
 | `BG` Bulharsko | 1 | 3 | 1 | 1 | 3 | 1 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 9 |  | 2 | 1 | **41** |
-| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 |  | 2 | 1 | **37** |
-| `CY` Kypr | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 3 | 1 | 1 |  | 1 | 2 | 9 |  | 1 | 1 | **29** |
+| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 |  | 2 | 1 | **38** |
+| `CY` Kypr | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 |  | 1 | 2 | 9 |  | 1 | 1 | **31** |
 | `CZ` Česko | 7 | 5 | 2 | 12 | 10 | 3 | 1 | 3 | 3 | 6 | 4 | 1 | 1 | 2 | 4 | 10 | 8 | 7 | 3 | **101** |
 | `DK` Dánsko | 3 | 1 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 9 | 2 | 2 | 1 | **41** |
-| `EE` Estonsko | 1 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 1 | **36** |
+| `EE` Estonsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 1 | **37** |
 | `FI` Finsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | **37** |
 | `FR` Francie | 4 | 2 | 1 | 1 | 4 | 3 | 1 | 2 | 2 | 3 | 3 | 1 | 2 | 1 | 3 | 10 | 1 | 3 | 1 | **51** |
 | `DE` Německo | 4 | 1 | 1 | 2 | 5 | 4 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 3 | 3 | **50** |
@@ -30,10 +30,10 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `LU` Lucembursko | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | **35** |
 | `MT` Malta |  | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 |  | 1 | 8 | 1 | 1 | 1 | **31** |
 | `NL` Nizozemsko | 3 | 1 | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 4 | 1 | 1 | 1 | 1 | 2 | 7 |  | 2 | 2 | **41** |
-| `PL` Polsko | 6 | 3 | 2 | 5 | 5 | 3 | 1 | 3 | 2 | 3 | 5 | 1 | 3 | 1 | 4 | 8 | 1 | 4 | 2 | **65** |
+| `PL` Polsko | 7 | 3 | 2 | 5 | 5 | 3 | 1 | 3 | 2 | 3 | 5 | 1 | 3 | 1 | 4 | 8 | 1 | 4 | 2 | **66** |
 | `PT` Portugalsko | 2 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 9 | 1 | 2 | 2 | **41** |
 | `RO` Rumunsko |  | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 |  | 3 | 7 |  | 3 | 1 | **32** |
-| `SK` Slovensko | 1 | 2 | 1 | 1 | 4 | 2 | 1 | 1 | 2 | 3 | 3 | 1 | 2 | 1 | 2 | 8 | 1 | 2 | 1 | **42** |
+| `SK` Slovensko | 2 | 2 | 1 | 1 | 4 | 2 | 1 | 1 | 2 | 3 | 3 | 1 | 2 | 1 | 2 | 8 | 1 | 2 | 1 | **43** |
 | `SI` Slovinsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 2 | 1 | **40** |
 | `ES` Španělsko | 4 | 1 | 1 | 2 | 4 | 1 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 3 | 7 | 1 | 3 | 1 | **42** |
 | `SE` Švédsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 1 | 9 |  | 2 | 1 | **37** |
@@ -49,7 +49,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Geoportály a NSDI | 43 | 24 | 42 | 37 |
 | Katastr a pozemkové knihy | 42 | 27 | 42 | 26 |
 | Adresy a územní členění | 30 | 28 | 26 | 22 |
-| Ortofoto, výškopis, topografie | 15 | 15 | 14 | 12 |
+| Ortofoto, výškopis, topografie | 19 | 19 | 18 | 12 |
 | Životní prostředí, geologie, rizika | 64 | 29 | 61 | 35 |
 | Doprava a infrastruktura | 57 | 29 | 52 | 36 |
 | Remote sensing / rastr | 15 | 3 | 7 | 14 |
@@ -64,16 +64,16 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Účetní závěrky a listiny | 30 | 26 | 29 | 9 |
 | Insolvence a exekuce | 24 | 23 | 24 | 2 |
 | Soudy a judikatura | 66 | 28 | 63 | 4 |
-| Průmyslové vlastnictví | 32 | 28 | 32 | 4 |
+| Průmyslové vlastnictví | 33 | 29 | 33 | 4 |
 | Regulace a licencované subjekty | 226 | 28 | 226 | 45 |
 | Nemovitosti a trh | 27 | 19 | 22 | 14 |
 | Sankce a compliance | 3 | 2 | 2 | 2 |
 | Kriminalita, IZS, bezpečnost | 41 | 31 | 37 | 11 |
 | Kyberbezpečnost a CERT | 32 | 25 | 30 | 10 |
-| Počasí a klima | 36 | 29 | 31 | 26 |
+| Počasí a klima | 37 | 30 | 32 | 26 |
 | Transparentnost, volby, lobbing | 42 | 28 | 41 | 31 |
 | OSINT a investigace | 10 | 2 | 0 | 5 |
-| Archivy a historické zdroje | 60 | 29 | 53 | 15 |
+| Archivy a historické zdroje | 61 | 30 | 54 | 15 |
 | Gazetteery a geokódování | 10 | 3 | 1 | 9 |
 | Mapové knihovny a basemapy | 15 | 1 | 0 | 5 |
 | Spatial DB a analytika | 23 | 1 | 0 | 0 |
@@ -85,7 +85,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 
 | Přístup | Zdrojů |
 |---|--:|
-| `open` | 1200 |
+| `open` | 1207 |
 | `mixed` | 63 |
 | `registration` | 39 |
 | `restricted` | 25 |
@@ -93,17 +93,17 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 
 | Data | Zdrojů |
 |---|--:|
-| `search` | 421 |
+| `search` | 424 |
 | `api` | 274 |
 | `bulk` | 215 |
 | `none` | 163 |
-| `download` | 147 |
+| `download` | 151 |
 | `ogc` | 81 |
 | `sw` | 46 |
 
 | Vydavatel | Zdrojů |
 |---|--:|
-| `official` | 1092 |
+| `official` | 1099 |
 | `ngo` | 105 |
 | `intl` | 64 |
 | `commercial` | 46 |

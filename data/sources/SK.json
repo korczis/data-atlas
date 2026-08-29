@@ -502,5 +502,18 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Slovenský PMÚ publikuje rozhodnutí i přehled koncentrací a rozhoduje o kartelech ve veřejných zakázkách",
     "country": "SK",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "sk-gku-na-stiahnutie",
+    "topic": "terrain",
+    "name": "GKÚ — výškové modely a ortofotomozaika",
+    "native": "ZBGIS — na stiahnutie",
+    "url": "https://www.skgeodesy.sk/gku/produkty-sluzby/na-stiahnutie/zbgis.html",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Výškové modely a ortofotomozaika celého Slovenska zdarma pod CC BY 4.0 — DMR 5.0 a DMP 1.0 v rozlišení 1 m z prvního cyklu leteckého skenování, DMR 6.0 a DMP 2.0 v 0,5 m z druhého, a tři cykly ortofotomozaiky od roku 2017. Klasifikovaná mračna bodů jen na požádání",
+    "country": "SK",
+    "verified": "2026-08-29"
   }
 ]

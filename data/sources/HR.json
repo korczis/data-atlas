@@ -442,5 +442,18 @@
     "desc": "Národní soutěžní úřad. Zveřejňuje **rozhodnutí o kartelech, zneužití dominance a povolených fúzích** — u prověřování protistrany je to doklad o sankcích a zároveň mapa toho, kdo koho v odvětví koupil. Chorvatská AZTN dohlíží vedle soutěže i na trh elektronických médií",
     "country": "HR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "hr-dziv-pretrazivanje",
+    "topic": "ip",
+    "name": "DZIV — vyhledávání v rejstřících",
+    "native": "Državni zavod za intelektualno vlasništvo",
+    "url": "https://www.dziv.hr/hr/e-usluge/e-registri/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Chorvatské ochranné známky, patenty a průmyslové vzory — vyhledávání v národních rejstřících úřadu průmyslového vlastnictví a rozcestník na mezinárodní báze TMview a Designview. Majitel známky často odhalí propojení firem, které v soudním rejstříku vidět není",
+    "country": "HR",
+    "verified": "2026-08-29"
   }
 ]

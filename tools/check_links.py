@@ -176,7 +176,19 @@ def select(args) -> dict[str, str]:
 
     if args.changed:
         urls = changed_urls()
-        return {r["URL"]: r["Web"] for r in rows if r["URL"] in urls}
+        picked = {r["URL"]: r["Web"] for r in rows if r["URL"] in urls}
+        # Výběr se protíná s data/catalog.csv, ne se zdroji. Kdo přidá zdroj
+        # a pustí kontrolu dřív, než přegeneruje katalog, dostal dosud „nic
+        # k ověření" — tedy zelenou od brány, která se nepodívala na nic.
+        # Postup v AGENTS.md přitom vede přesně tudy: links --changed stojí
+        # před `just catalog`.
+        missing = urls - set(picked)
+        if missing:
+            print(f"  ⚠ {len(missing)} změněných URL není v data/catalog.csv — "
+                  f"spusť nejdřív `just catalog`, jinak se neověří:")
+            for u in sorted(missing)[:8]:
+                print(f"      {u}")
+        return picked
 
     if args.country:
         codes = {c.upper() for c in args.country}

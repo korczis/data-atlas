@@ -552,5 +552,19 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Rakouská A-FIU sídlí ve spolkovém kriminálním úřadu",
     "country": "AT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "at-bev-als-dgm",
+    "topic": "terrain",
+    "name": "BEV — ALS digitální model terénu",
+    "native": "Digitales Geländehöhenmodell (ALS-DGM)",
+    "url": "https://www.bev.gv.at/Services/Produkte/Digitales-Gelaendehoehenmodell/ALS-Hoehenraster.html",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Výškový model celého Rakouska z leteckého laserového skenování — mřížka 1 m v GeoTIFF po dlaždicích 50×50 km, plošně a zdarma bez poplatku za km². Deklarovaná přesnost výšky kolem ±0,5 m, v horách horší; stahuje se z datového katalogu data.bev.gv.at. Server odmítá automatické klienty, v prohlížeči odpovídá",
+    "country": "AT",
+    "verified": "2026-08-29",
+    "check": "anti-bot"
   }
 ]

@@ -346,5 +346,31 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Kyperská MOKAS spadá pod generálního prokurátora. Server má vadný certifikát, obsah se načte",
     "country": "CY",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "cy-dom-klimatologie",
+    "topic": "weather",
+    "name": "Department of Meteorology — klimatologie",
+    "native": "Τμήμα Μετεωρολογίας",
+    "url": "https://www.dom.org.cy/CLIMATOLOGY/English/",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Klimatologická sekce kyperské meteorologické služby — denní teploty a srážky, index SPI pro sucho, měsíční meteorologický bulletin a sezonní výhledy. Čte se na webu; hromadný export ani API služba nenabízí, na strojový odběr je potřeba sáhnout jinam",
+    "country": "CY",
+    "verified": "2026-08-29"
+  },
+  {
+    "id": "cy-state-archives-opendata",
+    "topic": "archives",
+    "name": "Státní archiv — datové sady",
+    "native": "Κρατικό Αρχείο",
+    "url": "https://www.data.gov.cy/en/group/26",
+    "kind": "official",
+    "access": "open",
+    "data": "search",
+    "desc": "Datové sady kyperského Státního archivu na národním portálu otevřených dat. Archiv drží fondy z britského koloniálního období 1878–1960 včetně archivů guvernérů a sekretariátu; vlastní web archivu pod mjpo.gov.cy dnes neodpovídá, tohle je dostupná cesta",
+    "country": "CY",
+    "verified": "2026-08-29"
   }
 ]

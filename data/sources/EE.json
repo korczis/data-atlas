@@ -430,5 +430,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Estonská jednotka je od roku 2021 samostatná a **vede licencování poskytovatelů služeb s virtuálními aktivy** — po kryptoboomu klíčový registr",
     "country": "EE",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "ee-maaamet-korgusandmed",
+    "topic": "terrain",
+    "name": "Maa-amet — výšková data (LiDAR)",
+    "native": "Kõrgusandmed",
+    "url": "https://geoportaal.maaamet.ee/eng/spatial-data/elevation-data-p308.html",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Výšková data z leteckého skenování pro celé Estonsko — surové mračno bodů v LAZ 1.4 po čtverečních kilometrech a odvozené modely terénu i povrchu v rozlišení 1, 5, 10 a 25 m jako GeoTIFF. Zdarma pod estonskou otevřenou licencí a bez registrace",
+    "country": "EE",
+    "verified": "2026-08-29"
   }
 ]

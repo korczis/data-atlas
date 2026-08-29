@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1347** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1295** doplněných rešerší.
+**1354** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1302** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -16,45 +16,45 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 
 - `GLOBAL` Celosvětové — 130
 - `CZ` Česko — 101
-- `PL` Polsko — 65
+- `PL` Polsko — 66
 - `EU` Evropská unie — 58
 - `FR` Francie — 51
 - `DE` Německo — 50
+- `AT` Rakousko — 47
 - `IT` Itálie — 46
-- `AT` Rakousko — 46
 - `BE` Belgie — 44
+- `SK` Slovensko — 43
 - `HU` Maďarsko — 42
-- `SK` Slovensko — 42
 - `ES` Španělsko — 42
 - `BG` Bulharsko — 41
 - `DK` Dánsko — 41
 - `NL` Nizozemsko — 41
 - `PT` Portugalsko — 41
 - `SI` Slovinsko — 40
-- `HR` Chorvatsko — 37
+- `HR` Chorvatsko — 38
+- `EE` Estonsko — 37
 - `FI` Finsko — 37
 - `SE` Švédsko — 37
-- `EE` Estonsko — 36
 - `LV` Lotyšsko — 36
 - `LU` Lucembursko — 35
 - `IE` Irsko — 34
 - `LT` Litva — 34
 - `RO` Rumunsko — 32
 - `GR` Řecko — 32
+- `CY` Kypr — 31
 - `MT` Malta — 31
-- `CY` Kypr — 29
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
 
 ## Témata
 
 
-**Geodata** — 283
+**Geodata** — 287
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
 - [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 42
 - [Adresy a územní členění](#adresy-a-územní-členění) — 30
-- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 15
+- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 19
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
 - [Doprava a infrastruktura](#doprava-a-infrastruktura) — 57
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
@@ -68,26 +68,26 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 90
 
-**Firmy a due diligence** — 487
+**Firmy a due diligence** — 488
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
 - [Účetní závěrky a listiny](#účetní-závěrky-a-listiny) — 30
 - [Insolvence a exekuce](#insolvence-a-exekuce) — 24
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
-- [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 32
+- [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 33
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 226
 - [Nemovitosti a trh](#nemovitosti-a-trh) — 27
 
-**Rizika a OSINT** — 224
+**Rizika a OSINT** — 226
 
 - [Sankce a compliance](#sankce-a-compliance) — 3
 - [Kriminalita, IZS, bezpečnost](#kriminalita-izs-bezpečnost) — 41
 - [Kyberbezpečnost a CERT](#kyberbezpečnost-a-cert) — 32
-- [Počasí a klima](#počasí-a-klima) — 36
+- [Počasí a klima](#počasí-a-klima) — 37
 - [Transparentnost, volby, lobbing](#transparentnost-volby-lobbing) — 42
 - [OSINT a investigace](#osint-a-investigace) — 10
-- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 60
+- [Archivy a historické zdroje](#archivy-a-historické-zdroje) — 61
 
 **Nástroje** — 72
 
@@ -240,10 +240,12 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | Země | Web | Doména | Popis | Přístup | Data | Zdroj |
 |---|---|---|---|---|---|---|
 | `EU` | [EGMS — pohyby zemského povrchu](https://egms.land.copernicus.eu/) | `egms.land.copernicus.eu` | Milimetrová měření pohybu terénu z interferometrie Sentinel-1 pro celou Evropu — poklesy nad doly a čerpanými kolektory, sesuvy, sedání staveb, s časovou řadou pro každý bod. Ke stažení po dlaždicích; u nemovitostí a liniových staveb je to jediný plošně dostupný důkaz o stabilitě podloží | open | bulk | reference |
+| `AT` | [BEV — ALS digitální model terénu](https://www.bev.gv.at/Services/Produkte/Digitales-Gelaendehoehenmodell/ALS-Hoehenraster.html) | `bev.gv.at` | Výškový model celého Rakouska z leteckého laserového skenování — mřížka 1 m v GeoTIFF po dlaždicích 50×50 km, plošně a zdarma bez poplatku za km². Deklarovaná přesnost výšky kolem ±0,5 m, v horách horší; stahuje se z datového katalogu data.bev.gv.at. Server odmítá automatické klienty, v prohlížeči odpovídá | open | download | reference |
 | `BE` | [DHMV II — Digitaal Hoogtemodel Vlaanderen](https://download.vlaanderen.be/product/939-digitaal-hoogtemodel-vlaanderen-ii) | `download.vlaanderen.be` | Flanderský lidarový výškopis — digitální model terénu i povrchu v rozlišení 1 m, volně ke stažení po mapových listech. Valonsko a Brusel mají vlastní modely, federální výškopis pro celou Belgii neexistuje | open | download | reference |
 | `HR` | [Digitalni ortofoto (DGU)](https://geoportal.dgu.hr/dof) | `geoportal.dgu.hr` | Chorvatská digitální ortofotomozaika — **celostátní letecké snímky ve více generacích s rozlišením 10 až 50 cm**, jako mapová služba i ke stažení. Podklad pro porovnání stavu území v čase | open | ogc | reference |
 | `CZ` | [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | open | ogc | reference |
 | `DK` | [Danmarks Højdemodel (DHM)](https://dataforsyningen.dk/data/930) | `dataforsyningen.dk` | Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy | registration | bulk | reference |
+| `EE` | [Maa-amet — výšková data (LiDAR)](https://geoportaal.maaamet.ee/eng/spatial-data/elevation-data-p308.html) | `geoportaal.maaamet.ee` | Výšková data z leteckého skenování pro celé Estonsko — surové mračno bodů v LAZ 1.4 po čtverečních kilometrech a odvozené modely terénu i povrchu v rozlišení 1, 5, 10 a 25 m jako GeoTIFF. Zdarma pod estonskou otevřenou licencí a bez registrace | open | download | reference |
 | `FI` | [Laserkeilausaineisto (MML)](https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/laser-scanning-data-05-p) | `maanmittauslaitos.fi` | Finská data leteckého laserového skenování — **bodová mračna 5 bodů/m² z národního programu, zdarma a pod otevřenou licencí**. Finsko skenuje celé území v šestiletém cyklu | open | bulk | reference |
 | `FR` | [RGE ALTI (IGN)](https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_RGE-ALTI) | `cartes.gouv.fr` | Francouzský referenční model terénu — **mřížka 1 m a 5 m pro celou Francii včetně zámoří, zdarma pod otevřenou licencí** od otevření dat IGN v roce 2021. Doplňuje ho program LiDAR HD s bodovými mračny | open | bulk | reference |
 | `DE` | [Digitale Geländemodelle (BKG)](https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle.html) | `gdz.bkg.bund.de` | Celoněmecké digitální modely terénu od spolkového kartografického úřadu — DGM v rozlišení od 5 do 200 m, pod otevřenou licencí dl-de/by-2-0. Podrobnější lidar drží jednotlivé spolkové země samostatně | open | download | reference |
@@ -251,6 +253,8 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `LV` | [Digitālais augstuma modelis (LĢIA)](https://www.lgia.gov.lv/lv/digitalais-augstuma-modelis) | `lgia.gov.lv` | Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné | mixed | bulk | reference |
 | `LU` | [LiDAR 2019 — Modèle numérique de terrain](https://data.public.lu/en/datasets/lidar-2019-modele-numerique-de-terrain-mnt/) | `data.public.lu` | Lucemburský lidarový model terénu z náletu 2019 v rozlišení 0,5 m, celé území ke stažení jako otevřená data. Ke stejnému náletu existuje i model povrchu a klasifikované mračno bodů | open | download | reference |
 | `NL` | [AHN — Actueel Hoogtebestand Nederland](https://www.ahn.nl/) | `ahn.nl` | Výškopis Nizozemska z leteckého laserového skenování — **bodová mračna a modely terénu i povrchu v rozlišení 0,5 m pro celou zemi, zdarma**, s několika generacemi pro porovnání v čase. Jeden z nejhustších národních výškopisů na světě | open | bulk | reference |
+| `PL` | [Numeryczny model terenu (GUGiK)](https://www.geoportal.gov.pl/en/data/digital-elevation-model-dem/) | `geoportal.gov.pl` | Numerický model terénu pro celé Polsko ze státního geodetického fondu — od roku 2020 volně ke stažení, vedle něj model pokrytí terénu (NMPT) a ortofotomapa. Kromě dlaždic jde odebírat i službou WCS, takže se dá zpracovat bez ručního stahování | open | download | reference |
+| `SK` | [GKÚ — výškové modely a ortofotomozaika](https://www.skgeodesy.sk/gku/produkty-sluzby/na-stiahnutie/zbgis.html) | `skgeodesy.sk` | Výškové modely a ortofotomozaika celého Slovenska zdarma pod CC BY 4.0 — DMR 5.0 a DMP 1.0 v rozlišení 1 m z prvního cyklu leteckého skenování, DMR 6.0 a DMP 2.0 v 0,5 m z druhého, a tři cykly ortofotomozaiky od roku 2017. Klasifikovaná mračna bodů jen na požádání | open | download | reference |
 | `SI` | [Lidar (JGP)](https://ipi.eprostor.gov.si/jgp/lidar) | `ipi.eprostor.gov.si` | Slovinská data leteckého laserového skenování — **bodová mračna a model terénu 1 m pro celé Slovinsko, zdarma ke stažení po blocích**. Slovinsko naskenovalo celé území jako jeden z prvních států v EU | open | bulk | reference |
 | `ES` | [PNOA-LiDAR (CNIG)](https://centrodedescargas.cnig.es/CentroDescargas/lidar) | `centrodedescargas.cnig.es` | Španělská data leteckého laserového skenování — **bodová mračna a modely terénu pro celé Španělsko ve dvou až třech generacích**, zdarma ke stažení po listech. Ortofota PNOA jsou v témže centru | open | bulk | reference |
 | `SE` | [Markhöjdmodell (Lantmäteriet)](https://www.lantmateriet.se/sv/geodata/vara-produkter/produktlista/markhojdmodell-nedladdning/) | `lantmateriet.se` | Švédský model terénu z laserového skenování — **mřížka 1 m pro celé Švédsko, zdarma ke stažení** pod otevřenou licencí. Součást otevření švédských geodat z roku 2022 | open | bulk | reference |
@@ -969,6 +973,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `AT` | [see·IP — rešeršní databáze](https://seeip.patentamt.at/) | `seeip.patentamt.at` | Vyhledávač rakouského patentového úřadu nad patenty, známkami a vzory. Hledá se podle majitele, takže z něj jde postavit přehled nehmotného majetku jedné firmy | open | api | reference |
 | `BE` | [Belgian Intellectual Property Office](https://economie.fgov.be/en/themes/intellectual-property) | `economie.fgov.be` | Belgický úřad průmyslového vlastnictví spadá pod ministerstvo hospodářství. Známky se pro Belgii, Nizozemsko a Lucembursko zapisují společně u Benelux Office, patenty národně tady | open | none | reference |
 | `BG` | [Патентно ведомство](https://www.bpo.bg/) | `bpo.bg` | Bulharský patentový úřad s rejstříky patentů, známek, vzorů a zeměpisných označení. Databáze jsou veřejné a hledá se v nich i podle přihlašovatele | open | search | reference |
+| `HR` | [DZIV — vyhledávání v rejstřících](https://www.dziv.hr/hr/e-usluge/e-registri/) | `dziv.hr` | Chorvatské ochranné známky, patenty a průmyslové vzory — vyhledávání v národních rejstřících úřadu průmyslového vlastnictví a rozcestník na mezinárodní báze TMview a Designview. Majitel známky často odhalí propojení firem, které v soudním rejstříku vidět není | open | search | reference |
 | `CY` | [Intellectual Property Section](https://www.intellectualproperty.gov.cy/) | `intellectualproperty.gov.cy` | Kyperská sekce průmyslového vlastnictví při ministerstvu hospodářství. Vede rejstřík ochranných známek a patentů; kyperské holdingy si sem často registrují značky skupiny | open | search | reference |
 | `CZ` | [ISDV — rejstříky Úřadu průmyslového vlastnictví](https://isdv.upv.gov.cz/) | `isdv.upv.gov.cz` | České ochranné známky, patenty, užitné a průmyslové vzory — vyhledání podle majitele, názvu i třídy, se stavem řízení, převody a zástavními právy. Majitel známky často odhalí propojení firem, které v obchodním rejstříku není vidět | open | search | reference |
 | `DK` | [Patent- og Varemærkestyrelsen](https://www.dkpto.dk/) | `dkpto.dk` | Dánský patentový a známkový úřad. Rejstříky jsou veřejné a napojené na obchodní rejstřík CVR, takže majitele známky lze rovnou dohledat jako firmu | open | search | reference |
@@ -1364,6 +1369,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `BE` | [Open Data KMI/IRM](https://opendata.meteo.be/) | `opendata.meteo.be` | Otevřená data belgického meteorologického ústavu — měření stanic, radarové srážky a klimatické řady, přes OGC služby i stahování. Doplněk k webu meteo.be, který nese jen předpovědi | open | api | reference |
 | `BG` | [НИМХ — meteo.bg](https://www.meteo.bg/) | `meteo.bg` | Bulharský hydrometeorologický institut — předpovědi, výstrahy, měření stanic a hydrologické stavy. Otevřený strojový výdej institut nemá | open | none | reference |
 | `HR` | [DHMZ — meteo.hr](https://meteo.hr/) | `meteo.hr` | Chorvatský hydrometeorologický ústav — předpovědi, výstrahy, měření stanic, radar a hydrologické stavy, s XML výdejem. Doména dhmz.hr neodpovídá, funkční je meteo.hr | open | api | reference |
+| `CY` | [Department of Meteorology — klimatologie](https://www.dom.org.cy/CLIMATOLOGY/English/) | `dom.org.cy` | Klimatologická sekce kyperské meteorologické služby — denní teploty a srážky, index SPI pro sucho, měsíční meteorologický bulletin a sezonní výhledy. Čte se na webu; hromadný export ani API služba nenabízí, na strojový odběr je potřeba sáhnout jinam | open | search | reference |
 | `CZ` | [ČHMÚ](https://www.chmi.cz/) | `chmi.cz` | Předpovědi, radar, srážky, hydrologie; otevřená data na opendata.chmi.cz | open | api | reference |
 | `CZ` | [Meteoradar.cz](https://www.meteoradar.cz/) | `meteoradar.cz` | Srážkový radar ČR a střední Evropy v krátkém kroku s animací a předpovědí pohybu bouří — rychlejší pohled na aktuální situaci než výstupy ČHMÚ, ale bez dat ke stažení | open | none | history |
 | `CZ` | [In-počasí](https://www.in-pocasi.cz/) | `in-pocasi.cz` | Předpovědi, radar a síť vlastních i partnerských stanic s historií měření po lokalitách — hustší staniční pokrytí než oficiální síť, data jen v prohlížeči | open | none | history |
@@ -1470,6 +1476,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `BG` | [Национална библиотека „Св. св. Кирил и Методий“](https://www.nationallibrary.bg/) | `nationallibrary.bg` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Bulharská národní knihovna digitalizuje periodika a rukopisy a vede národní bibliografii | open | search | reference |
 | `HR` | [Hrvatski državni arhiv](https://www.arhiv.hr/) | `arhiv.hr` | Chorvatský státní archiv. Vede ústřední fondy a koordinuje síť župních archivů; digitalizované matriky a katastrální mapy jsou přístupné přes portál ARHiNET | open | search | reference |
 | `HR` | [Nacionalna i sveučilišna knjižnica](https://www.nsk.hr/) | `nsk.hr` | Národní knihovna s **povinným výtiskem** — dostane výtisk každé publikace vydané v zemi, takže její katalog je nejúplnějším seznamem toho, co kdy kde vyšlo. Chorvatská NSK archivuje chorvatský web a provozuje digitalizovanou sbírku novin a starých tisků | open | search | reference |
+| `CY` | [Státní archiv — datové sady](https://www.data.gov.cy/en/group/26) | `data.gov.cy` | Datové sady kyperského Státního archivu na národním portálu otevřených dat. Archiv drží fondy z britského koloniálního období 1878–1960 včetně archivů guvernérů a sekretariátu; vlastní web archivu pod mjpo.gov.cy dnes neodpovídá, tohle je dostupná cesta | open | search | reference |
 | `CZ` | [Archivní mapy ČÚZK](https://ags.cuzk.gov.cz/archiv/) | `ags.cuzk.gov.cz` | Archivní mapy ČÚZK — císařské otisky a indikační skici stabilního katastru, stará státní mapová díla a archiv leteckých měřických snímků od roku 1936 | open | download | reference |
 | `CZ` | [Chartae Antiquae](https://www.chartae-antiquae.cz/cs/) | `chartae-antiquae.cz` | Virtuální mapová sbírka historických map ČR | open | search | reference |
 | `CZ` | [Národní archiv](https://www.nacr.cz/) | `nacr.cz` | Ústřední archiv České republiky. Odsud vede cesta k digitálním archivům jednotlivých oblastí — matriky, pozemkové knihy a spisy podniků jsou volně prohlížitelné a u starších nemovitostních sporů bývají rozhodující | open | search | reference |

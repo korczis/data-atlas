@@ -778,5 +778,18 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Polský GIIF je součástí ministerstva financí a vede **rejstřík činností v oblasti virtuálních měn**",
     "country": "PL",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "pl-gugik-nmt",
+    "topic": "terrain",
+    "name": "Numeryczny model terenu (GUGiK)",
+    "native": "Numeryczny model terenu",
+    "url": "https://www.geoportal.gov.pl/en/data/digital-elevation-model-dem/",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "desc": "Numerický model terénu pro celé Polsko ze státního geodetického fondu — od roku 2020 volně ke stažení, vedle něj model pokrytí terénu (NMPT) a ortofotomapa. Kromě dlaždic jde odebírat i službou WCS, takže se dá zpracovat bez ručního stahování",
+    "country": "PL",
+    "verified": "2026-08-29"
   }
 ]
