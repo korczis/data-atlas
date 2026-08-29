@@ -218,8 +218,15 @@ try {
                          p.count ? '' : 'opacity-50']"
                 class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
                 <span class="flex min-w-0 items-center gap-2">
-                  <span class="shrink-0 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-600 dark:text-gray-200"
-                        x-text="p.scope ? (p.code === 'EU' ? 'EU' : '★') : p.code"></span>
+                  <!-- Země nese vlajku, rozsah textový odznak. Ten rozdíl je
+                       záměr: EU ani Celosvětové nejsou země a vizuálně to má
+                       být poznat, protože filtr země je přesná shoda. Kód se
+                       tady neztrácí — název stojí hned vedle. -->
+                  <span x-show="!p.scope" class="flag" aria-hidden="true"
+                        :style="'background-position-x:' + p.fx + 'px'"></span>
+                  <span x-show="p.scope"
+                        class="shrink-0 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-600 dark:text-gray-200"
+                        x-text="p.code === 'EU' ? 'EU' : '★'"></span>
                   <span class="truncate" x-text="p.name"></span>
                 </span>
                 <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="p.count"></span>
@@ -427,7 +434,10 @@ try {
               <template x-for="c in topCountries" :key="c.code">
                 <button type="button" @click="country = c.code; scrollToCatalog()" :aria-label="'Filtrovat: ' + c.name"
                   class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-primary-500 hover:text-primary-700 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400">
-                  <span class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                  <span x-show="c.fx !== undefined" class="flag" aria-hidden="true"
+                        :style="'background-position-x:' + c.fx + 'px'"></span>
+                  <span x-show="c.fx === undefined"
+                        class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                         x-text="c.code"></span>
                   <span x-text="c.name"></span>
                   <span class="tabular-nums text-gray-500 dark:text-gray-400" x-text="c.count"></span>
@@ -1173,8 +1183,9 @@ document.addEventListener('alpine:init', () => {
     /** Rychlé vstupy: největší země a témata, na kterých je vidět, co katalog
      *  umí. Počty se berou z dat, ne z hlavy. */
     get topCountries() {
+      const fx = new Map(this.places.map(p => [p.code, p.fx]));
       return [...this.placeCounts].map(([code, count]) => ({
-        code, count, name: this.placeLabel(code),
+        code, count, name: this.placeLabel(code), fx: fx.get(code),
       })).sort((a, b) => b.count - a.count).slice(0, 10);
     },
     get topTopics() {

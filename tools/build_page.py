@@ -9,13 +9,14 @@ Výstupem jsou dva soubory se shodným obsahem, lišící se jen obalem:
 Vše je vloženo inline. Stránka nedělá jediný síťový požadavek, takže funguje
 i offline a projde přísným CSP, které blokuje externí hosty.
 """
-import csv, datetime, json, re, shutil, subprocess, sys
+import base64, csv, datetime, json, re, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / ".cache"
 DIST = ROOT / "dist"
 STATIC = ROOT / "static"
+SRC_ASSETS = ROOT / "src" / "assets"
 
 PKG = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
 BASE = PKG["homepage"].rstrip("/") + "/"
@@ -109,6 +110,23 @@ def build_flowbite() -> str:
         sys.stderr.write(r.stdout + r.stderr)
         raise SystemExit("esbuild selhal")
     return out.read_text(encoding="utf-8")
+
+
+def flag_css() -> str:
+    """Sprite s vlajkami jako jedno CSS pravidlo s data URI.
+
+    Vlajky jsou v jednom PNG pruhu (viz tools/build_flags.py), takže stránka
+    zůstává soběstačná — jeden obrázek, jedno dekódování, žádný požadavek po
+    síti. Rozsahy EU a GLOBAL vlajku nemají a nesou dál textový odznak.
+    """
+    sprite = SRC_ASSETS / "flags.png"
+    meta = json.loads((SRC_ASSETS / "flags.json").read_text(encoding="utf-8"))
+    b64 = base64.b64encode(sprite.read_bytes()).decode("ascii")
+    w, h = meta["tile"]
+    return (f".flag{{display:inline-block;width:{w}px;height:{h}px;flex:none;"
+            f"background-image:url(data:image/png;base64,{b64});"
+            f"background-size:{meta['width']}px {h}px;background-repeat:no-repeat;"
+            "border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12) inset}")
 
 
 def build_css():
@@ -266,6 +284,12 @@ def write_site_files(description: str) -> None:
 
 def main():
     catalog, longlist, groups, places = load_data()
+    # Posun ve spritu jde do dat, ne do CSS tříd: pořadí zemí v číselníku
+    # se může změnit a generovaná třída by se s ním tiše rozešla.
+    flags = json.loads((SRC_ASSETS / "flags.json").read_text(encoding="utf-8"))["offsets"]
+    for p in places:
+        if not p["scope"] and p["code"] in flags:
+            p["fx"] = flags[p["code"]]
     data = json.dumps({"catalog": catalog, "longlist": longlist,
                        "groups": groups, "places": places},
                       ensure_ascii=False, separators=(",", ":"))
@@ -280,7 +304,7 @@ def main():
     CACHE.mkdir(exist_ok=True)
     (CACHE / "page.src.html").write_text(body, encoding="utf-8")
 
-    css = build_css()
+    css = build_css() + flag_css()
     alpine = (ROOT / "node_modules" / "alpinejs" / "dist" / "cdn.min.js").read_text(encoding="utf-8")
     flowbite = build_flowbite()
 

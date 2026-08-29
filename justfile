@@ -61,6 +61,11 @@ docs:
 assets:
     python3 tools/build_assets.py
 
+# Přegeneruje sprite s vlajkami ze zdrojového repozitáře (síť + ImageMagick)
+[group('build')]
+flags:
+    python3 tools/build_flags.py
+
 # Build + testy — stejné, co běží v CI
 [group('build')]
 check: validate catalog build lint test responsive a11y

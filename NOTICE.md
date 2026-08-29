@@ -10,6 +10,18 @@ přepínače motivu) je markup **adaptovaný**, ne opsaný: přepínač má tři
 místo dvou a razí `data-theme` místo třídy `.dark`, protože artefakt se
 vykresluje i ve stavu „podle systému".
 
+## Vlajky zemí
+
+Sprite `src/assets/flags.png` je poskládaný z [korczis/flags](https://github.com/korczis/flags),
+kde jsou vlajky převzaté z [Wikimedia Commons](https://commons.wikimedia.org/)
+a označené jako **public domain** — národní vlajky ve většině jurisdikcí
+autorskoprávní ochraně nepodléhají.
+
+Rozsahy `EU` a `GLOBAL` vlajku **nemají** a nesou textový odznak. Není to
+jen estetika: nejsou to země a filtr země je přesná shoda, takže ten rozdíl
+má být vidět. U emblému Evropské unie navíc platí pravidla užití, která se
+sem netahají.
+
 ## Flowbite Pro
 
 Rozvržení aplikace (horní lišta + postranní panel + hlavní obsah), záhlaví

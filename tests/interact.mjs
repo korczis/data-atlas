@@ -305,6 +305,21 @@ s.reset(); await tick();
   s.source = '';
 }
 
+// Vlajky: každá země musí mít posun ve spritu a žádný rozsah ho mít nesmí.
+// Chybějící posun by dal `background-position-x: undefined` a vykreslil
+// první vlajku ze spritu u špatné země — tiše a pro všechny stejně.
+{
+  const countries = s.places.filter(p => !p.scope);
+  const scopes = s.places.filter(p => p.scope);
+  check('každá země má posun ve spritu',
+        countries.length > 0 && countries.every(p => typeof p.fx === 'number'),
+        `${countries.length} zemí`);
+  check('posuny jsou různé', new Set(countries.map(p => p.fx)).size === countries.length);
+  check('rozsahy vlajku nemají', scopes.every(p => p.fx === undefined));
+  check('rychlé vstupy nesou posun i pro rozsahy',
+        s.topCountries.every(c => c.fx === undefined || typeof c.fx === 'number'));
+}
+
 check('hero se ukazuje na prázdném katalogu', s.isLanding);
 
 // Rozcestník: matice a cesty podle otázky. Canvas se v jsdomu nevykreslí,
