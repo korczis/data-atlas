@@ -41,9 +41,24 @@ jen v próze, je nedodělaná, pokud jde vynutit strojem.
 | Cíl přístupnosti | WCAG AA, axe bez blokujících nálezů ve čtyřech scénářích. | `tools/check_a11y.py` |
 | Pohyb | Jen když nese význam; `prefers-reduced-motion` vypíná přechody. | `src/input.css` |
 | Jak se brání driftu | Každé mechanické pravidlo má bránu a každá brána má negativní test. | `just check` |
+| Próza | Utility s `max-w-prose`, žádný `prose` wrapper. Zdůvodnění níž. | `tools/check_typography.py` |
 | Kanonická dokumentace | Tenhle soubor. | — |
 
 **Co vynucené není** a drží to jen kázeň: rozměry tlačítek (49 tlačítek, 15 rozměrových variant — část je oprávněná různou rolí, část drift), odsazovací škála a hustota informací. Vynucovat je regulárním výrazem by znamenalo policejní dohled nad subjektivním rozhodnutím; ten obvykle produkuje falešné nálezy a naučí lidi výstup ignorovat.
+
+**Próza nemá vlastní vrstvu, a je to rozhodnutí, ne opomenutí.**
+`flowbite-typography` by verzí sedělo (1.0.5 je plugin pro Tailwind 3.x a na
+3.4.17 s Flowbite 2.5.2 nekoliduje), jenže nemá co obsluhovat. Stránky zemí
+nemají ani jeden odstavec delší než 120 znaků, v celé aplikaci není `blockquote`,
+`code` ani `h4`, a `ul` jsou navigační seznamy, ne odrážky v textu. Třináct
+vysvětlujících odstavců na hlavní stránce je součást aplikačního shellu —
+tam `prose` nepatří, protože aplikační UI a redakční text jsou jiné
+typografické kontexty.
+
+Přibyla by tedy závislost a vygenerované CSS pro prvky, které stránka nemá.
+Podmínka, za které se to změní, je konkrétní: **až vznikne skutečná dlouhá
+textová plocha** — metodika renderovaná z Markdownu, nápověda, delší poznámky
+u zemí. Do té doby drží prózu `max-w-prose` a měří ji brána sazby.
 
 **Externí vizualizační knihovny** zatím žádné nejsou a `package.json` je nemá.
 Matice pokrytí je vlastní `<canvas>` bez závislosti. Než nějaká přibude, musí

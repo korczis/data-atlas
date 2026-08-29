@@ -108,3 +108,25 @@ test.describe('Česko jako zástupce', () => {
     expect(overflow).toBeLessThanOrEqual(0)
   })
 })
+
+test('stav řazení je čitelný odečítačem', async ({ page, viewport }) => {
+  if (viewport.width < 768) test.skip(true, 'pod md se místo tabulky vykreslují karty')
+  await page.goto('/cz/')
+  await expect(page.locator('[x-cloak]')).toHaveCount(0)
+  const heads = page.locator('table[data-catalog] thead th, table thead th')
+
+  // Vidět šipku nestačí: řazení musí být v aria-sort, jinak se o něm
+  // odečítač nedozví. Přesně jedna hlavička nese aktivní stav.
+  const active = page.locator('thead th[aria-sort="ascending"], thead th[aria-sort="descending"]')
+  await expect(active).toHaveCount(1)
+
+  const before = await active.first().innerText()
+  await page.locator('thead button').nth(2).click()
+  await expect.poll(async () => (await active.first().innerText())).not.toBe(before)
+  await expect(active).toHaveCount(1)
+
+  // Opakovaný klik na tentýž sloupec obrátí směr, ne počet aktivních.
+  const dir = await active.first().getAttribute('aria-sort')
+  await page.locator('thead button').nth(2).click()
+  await expect.poll(() => active.first().getAttribute('aria-sort')).not.toBe(dir)
+})

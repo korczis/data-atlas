@@ -201,7 +201,8 @@
         <caption class="sr-only">Veřejné datové zdroje — {{NAME}}</caption>
         <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-300">
           <tr>
-            <th scope="col" class="px-4 py-3 text-start">
+            <th scope="col" class="px-4 py-3 text-start"
+                :aria-sort="sort.key === 'name' ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
               <button type="button" @click="sortBy('name')" aria-label="Seřadit podle názvu"
                 class="inline-flex items-center gap-1 font-semibold uppercase hover:text-gray-900 dark:hover:text-white">
                 Zdroj
@@ -212,7 +213,8 @@
                 </svg>
               </button>
             </th>
-            <th scope="col" class="px-4 py-3 text-start">
+            <th scope="col" class="px-4 py-3 text-start"
+                :aria-sort="sort.key === 'ord' ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
               <button type="button" @click="sortBy('ord')" aria-label="Seřadit podle pořadí v katalogu"
                 class="inline-flex items-center gap-1 font-semibold uppercase hover:text-gray-900 dark:hover:text-white">
                 Popis
@@ -223,7 +225,8 @@
                 </svg>
               </button>
             </th>
-            <th scope="col" class="hidden px-4 py-3 text-start md:table-cell">
+            <th scope="col" class="hidden px-4 py-3 text-start md:table-cell"
+                :aria-sort="sort.key === 'topic' ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
               <button type="button" @click="sortBy('topic')" aria-label="Seřadit podle tématu"
                 class="inline-flex items-center gap-1 font-semibold uppercase hover:text-gray-900 dark:hover:text-white">
                 Téma
@@ -234,7 +237,8 @@
                 </svg>
               </button>
             </th>
-            <th scope="col" class="hidden px-4 py-3 text-start lg:table-cell">
+            <th scope="col" class="hidden px-4 py-3 text-start lg:table-cell"
+                :aria-sort="sort.key === 'access' ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
               <button type="button" @click="sortBy('access')" aria-label="Seřadit podle přístupu"
                 class="inline-flex items-center gap-1 font-semibold uppercase hover:text-gray-900 dark:hover:text-white">
                 Přístup
@@ -245,7 +249,8 @@
                 </svg>
               </button>
             </th>
-            <th scope="col" class="hidden px-4 py-3 text-start lg:table-cell">
+            <th scope="col" class="hidden px-4 py-3 text-start lg:table-cell"
+                :aria-sort="sort.key === 'data' ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'">
               <button type="button" @click="sortBy('data')" aria-label="Seřadit podle strojové dostupnosti"
                 class="inline-flex items-center gap-1 font-semibold uppercase hover:text-gray-900 dark:hover:text-white">
                 Data
