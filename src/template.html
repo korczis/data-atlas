@@ -163,7 +163,11 @@ try {
                 :class="source === s.k
                   ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'"
-                class="w-full rounded-lg px-3 py-2 text-start text-sm font-medium" x-text="s.label"></button>
+                class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm font-medium">
+                <span x-text="s.label"></span>
+                <span class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300"
+                      x-text="sourceCounts[s.k]"></span>
+              </button>
             </li>
           </template>
         </ul>
@@ -198,7 +202,12 @@ try {
           <input id="country-search" type="text" x-model="cq" placeholder="Filtrovat země…"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
         </div>
-        <ul class="max-h-72 space-y-0.5 overflow-y-auto">
+        <!-- Žádné `max-h` + `overflow-y-auto`: scrollovat uvnitř sloupce,
+             který sám scrolluje, znamená dva posuvníky nad sebou a obsah,
+             který se ztrácí v tom vnitřním. Panel je jediný scroll kontejner.
+             Vedlejší efekt původního řešení byl vodorovný posuvník — Chrome
+             u `overflow-y:auto` zapne i `overflow-x`, a řádek přetekl o 8 px. -->
+        <ul class="space-y-0.5">
           <li x-show="!cq">
             <button type="button" @click="country = ''" :aria-pressed="country === '' ? 'true' : 'false'"
               :class="country === '' ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-700 dark:text-white'
@@ -226,7 +235,7 @@ try {
                   <span x-show="p.scope"
                         class="shrink-0 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-700 dark:bg-gray-600 dark:text-gray-200"
                         x-text="p.code === 'EU' ? 'EU' : '★'"></span>
-                  <span class="truncate" x-text="p.name"></span>
+                  <span class="min-w-0 leading-snug" x-text="p.name"></span>
                 </span>
                 <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="p.count"></span>
               </button>
@@ -275,13 +284,23 @@ try {
 
         <!-- Třiatřicet témat v plochém seznamu se nedá přehlédnout; skupiny
              odpovídají tomu, co člověk hledá jako první. -->
-        <template x-for="g in groups" :key="g.name">
+        <template x-for="(g, gi) in groups" :key="g.name">
           <div class="mt-4">
-            <p class="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-              <span x-text="g.name"></span>
-              <span class="ms-1 font-normal tabular-nums" x-text="'· ' + g.count"></span>
-            </p>
-            <ul class="space-y-0.5">
+            <h3>
+              <button type="button" @click="toggleGroup(g.name)"
+                :aria-expanded="groupOpen(g.name) ? 'true' : 'false'"
+                :aria-controls="'topic-group-' + gi"
+                class="flex w-full items-center gap-1.5 rounded px-3 pb-1 pt-0.5 text-start text-[11px] font-semibold uppercase tracking-wider text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                <svg class="h-3 w-3 shrink-0 transition-transform" aria-hidden="true"
+                     :class="groupOpen(g.name) ? 'rotate-90' : ''"
+                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2.5">
+                  <path d="M8 5l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span x-text="g.name"></span>
+                <span class="ms-auto font-normal tabular-nums" x-text="g.count"></span>
+              </button>
+            </h3>
+            <ul class="space-y-0.5" :id="'topic-group-' + gi" x-show="groupOpen(g.name)">
               <template x-for="t in g.topics" :key="t.id">
                 <li>
                   <button type="button" data-filter="topic" @click="topic = (topic === t.id ? '' : t.id)"
@@ -290,7 +309,10 @@ try {
                                             : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
                              t.count ? '' : 'opacity-50']"
                     class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm">
-                    <span class="truncate" x-text="t.label"></span>
+                    <!-- Zalomit, ne useknout. „Ortofoto, výškopis, topo…" je
+                         v seznamu, ve kterém si člověk vybírá, ztráta informace
+                         právě tam, kde ji potřebuje. -->
+                    <span class="min-w-0 leading-snug" x-text="t.label"></span>
                     <span data-count class="shrink-0 text-xs tabular-nums text-gray-600 dark:text-gray-300" x-text="t.count"></span>
                   </button>
                 </li>
@@ -1139,7 +1161,23 @@ document.addEventListener('alpine:init', () => {
       { k: 'reference', label: 'Reference' },
     ],
 
+    /** Počty u filtru zdroje. Země i témata je vedle sebe mají, a sekce, která
+     *  je jako jediná nemá, vypadá jako by ještě nebyla hotová. Počítá se
+     *  z katalogu, ne rukou. */
+    get sourceCounts() {
+      const n = { '': this.catalog.length, data: 0, reference: 0 };
+      for (const r of this.catalog) {
+        if (r.src === 'reference') n.reference++;
+        else n.data++;
+      }
+      return n;
+    },
+
     init() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('geodata-atlas-groups') || '[]');
+        if (Array.isArray(saved)) this.closedGroups = saved.filter(x => typeof x === 'string');
+      } catch (e) { /* poškozená hodnota nesmí shodit start */ }
       this.readHash();
       // Flowbite se inicializuje **jednou a hned**, ne v $nextTick.
       //
@@ -1265,6 +1303,25 @@ document.addEventListener('alpine:init', () => {
     },
     /** Kolik témat má zdroj ve všech 27 členských státech. Číslo se počítá
      *  z dat, ne z hlavy — natvrdo napsané v textu by zastaralo hned. */
+    /** Které skupiny témat jsou rozbalené. Výchozí je rozbaleno: filtr, který
+     *  po otevření nic neukáže, je horší než dlouhý seznam. Sbalení je nabídka,
+     *  ne výchozí stav — a pamatuje si ho prohlížeč, takže kdo si panel jednou
+     *  zkrátí, nemusí to dělat znovu.
+     *
+     *  Rozbalování řídí Alpine, ne Flowbite `data-collapse-toggle`: hlavičky
+     *  skupin vznikají v `x-for` nad taxonomií a Flowbite váže chování jediným
+     *  skenem DOM, takže by po překreslení přestaly fungovat. Přesně tohle
+     *  zakazuje pravidlo flowbite/dynamic. */
+    closedGroups: [],
+    groupOpen(name) { return !this.closedGroups.includes(name); },
+    toggleGroup(name) {
+      this.closedGroups = this.groupOpen(name)
+        ? [...this.closedGroups, name]
+        : this.closedGroups.filter(n => n !== name);
+      try { localStorage.setItem('geodata-atlas-groups', JSON.stringify(this.closedGroups)); }
+      catch (e) { /* v přísném sandboxu localStorage není */ }
+    },
+
     /** Témata, na která se z vybraného tématu obvykle pokračuje — „když čteš
      *  obchodní rejstřík, dalším krokem bývají skuteční majitelé". Graf je
      *  kurátorovaný v data/topics.json nad 34 tématy; ruční vazby mezi

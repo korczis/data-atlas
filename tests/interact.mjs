@@ -409,4 +409,45 @@ check('vazba s nulou se v zemi nenabídne', relDE.every(r => r.count > 0));
 s.reset();
 check('bez tématu žádné vazby', s.relatedTopics.length === 0);
 
+// ── sbalitelné skupiny témat ───────────────────────────────────────────────
+// Panel byl 112 položek v jednom sloupci a uvnitř měl vlastní posuvník.
+// Skupiny řídí Alpine, ne Flowbite: hlavičky vznikají v x-for a Flowbite
+// váže chování jediným skenem DOM, takže by po překreslení zmrtvěly.
+s.reset(); await tick();
+{
+  const heads = () => [...d.querySelectorAll('aside h3 button')];
+  check('každá skupina témat má hlavičku', heads().length === s.groups.length,
+        `${heads().length} / ${s.groups.length}`);
+  check('výchozí stav je rozbaleno', s.groups.every(g => s.groupOpen(g.name)));
+  check('aria-controls míří na existující seznam',
+        heads().every(b => !!d.getElementById(b.getAttribute('aria-controls'))));
+
+  const first = s.groups[0].name;
+  s.toggleGroup(first); await tick();
+  check('sbalení skryje položky skupiny', !s.groupOpen(first));
+  const ul = d.getElementById('topic-group-0');
+  check('sbalený seznam je v DOM skrytý', ul && ul.style.display === 'none',
+        ul ? ul.style.display : 'není');
+  check('ostatní skupiny zůstanou otevřené',
+        s.groups.slice(1).every(g => s.groupOpen(g.name)));
+  s.toggleGroup(first); await tick();
+  check('rozbalení vrátí položky zpět', s.groupOpen(first)
+        && d.getElementById('topic-group-0').style.display !== 'none');
+}
+
+// Panel nesmí uvnitř sebe scrollovat: posuvník v posuvníku schová obsah.
+check('panel nemá vnořený scroll kontejner',
+      ![...d.querySelectorAll('aside *')].some(el =>
+        /overflow-y-auto|overflow-auto|max-h-72/.test(el.getAttribute('class') || '')),
+      'nalezen vnořený scroller');
+
+// Sekce panelu musí mluvit stejnou řečí: země i témata nesou počty, takže
+// je nese i zdroj. Počítá se z katalogu, ne rukou.
+check('filtr zdroje nese počty odvozené z katalogu',
+      s.sourceCounts[''] === s.catalog.length
+      && s.sourceCounts.data + s.sourceCounts.reference === s.catalog.length,
+      JSON.stringify(s.sourceCounts));
+check('počet referencí sedí na data',
+      s.sourceCounts.reference === s.catalog.filter(r => r.src === 'reference').length);
+
 check.report(errors);

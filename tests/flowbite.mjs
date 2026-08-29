@@ -38,9 +38,12 @@ check('panel nabízí kategorie i filtry',
 
 state.source = 'reference';
 await tick();
+// Porovnává se popisek, ne celý textContent tlačítka: k popisku patří i počet
+// a shoda na celý text by spadla při každém takovém doplnění — což je změna
+// panelu, ne rozchod se stavem, který tenhle test hlídá.
 check('panel odráží stav komponenty',
       [...sidebar.querySelectorAll('button[aria-pressed="true"]')]
-        .some(b => b.textContent.trim() === 'Reference'));
+        .some(b => (b.querySelector('span')?.textContent || b.textContent).trim() === 'Reference'));
 state.source = '';
 await tick();
 
