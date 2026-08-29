@@ -1,0 +1,71 @@
+<!doctype html><meta charset="utf-8">
+<style>
+  /* Social preview pro GitHub: 1280×640, tedy přesně 2:1 — v tom poměru se
+     zobrazuje bez ořezu. Obsah drží od kraje 64 px, protože náhled se
+     v některých místech GitHubu zaobluje a rohy ukrajuje. */
+  @page { margin: 0 }
+  html, body { margin:0; padding:0; width:1280px; height:640px; overflow:hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #1d4ed8 0%, #0f2a6b 55%, #0a1f4f 100%);
+    color:#fff; box-sizing:border-box; position:relative;
+    display:flex; align-items:center; gap:48px; padding:0 64px;
+  }
+  .grid { position:absolute; inset:0; opacity:.13;
+    background-image:
+      linear-gradient(#93c5fd 1.5px, transparent 1.5px),
+      linear-gradient(90deg, #93c5fd 1.5px, transparent 1.5px);
+    background-size: 84px 84px; }
+
+  .wrap { position:relative; width:498px; flex:none; }
+  .eyebrow { font-size:18px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+             color:#93c5fd; margin:0 0 18px; }
+  h1 { font-size:76px; line-height:1; letter-spacing:-.035em; margin:0 0 20px; font-weight:800; }
+  .lede { font-size:24px; line-height:1.4; margin:0 0 30px; color:#dbeafe; }
+  .stats { display:flex; gap:10px; flex-wrap:wrap; }
+  .stat { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+          border-radius:12px; padding:9px 16px; font-size:20px; font-weight:600; }
+  .stat b { font-variant-numeric: tabular-nums; }
+  .url { margin:28px 0 0; font-size:19px; color:#93c5fd;
+         font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  /* Matice pokrytí — týž klíč jako na stránce: odstín nese rodinu tématu,
+     sytost počet zdrojů. Kreslí se jako mřížka <i>, ne canvas: obrázek
+     vzniká jednou při buildu, takže na počtu uzlů nezáleží. Čísla v buňkách
+     tu nejsou schválně — náhled se v odkazech zmenšuje a byla by z nich
+     šmouha; přesná čísla patří na stránku, sem patří tvar. */
+  /* Panel pod maticí: rodina „veřejná data" má modrý odstín a na modrém
+     gradientu by splynula. Neutrální tmavé pozadí drží všech šest rodin
+     rozeznatelných a zároveň matici odděluje jako samostatný objekt. */
+  .side { position:relative; flex:1; display:flex; flex-direction:column;
+          align-items:center; justify-content:center;
+          background:rgba(2,10,32,.42); border:1px solid rgba(255,255,255,.10);
+          border-radius:18px; padding:22px 20px 18px; box-sizing:border-box; }
+  .m { display:flex; gap:2px; }
+  .m .col { display:flex; flex-direction:column; gap:2px; }
+  .m .sep { width:6px; }
+  .m i { display:block; width:14px; height:14px; border-radius:2px; }
+  .m .band { height:6px; border-radius:2px; margin-bottom:2px; }
+  .cap { margin:20px 0 0; font-size:17px; color:#bfdbfe; text-align:center; line-height:1.5; }
+  .cap b { color:#fff; font-variant-numeric: tabular-nums; }
+</style>
+<div class="grid"></div>
+
+<div class="wrap">
+  <p class="eyebrow">Geodata · Registry · Transparence · Due diligence</p>
+  <h1>Data&nbsp;Atlas</h1>
+  <p class="lede">Ověřené veřejné datové zdroje všech 27 členských států EU —
+     katastr, rejstříky, insolvence, zakázky, dohled.</p>
+  <div class="stats">
+    <span class="stat"><b>{{ITEMS}}</b> zdrojů</span>
+    <span class="stat"><b>{{COUNTRIES}}</b> zemí a rozsahů</span>
+    <span class="stat"><b>{{TOPICS}}</b> témat</span>
+  </div>
+  <p class="url">korczis.github.io/data-atlas</p>
+</div>
+
+<div class="side">
+  {{MATRIX}}
+  <p class="cap">27 členských států × {{TOPICS}} témat<br>
+     <b>{{FULL}}</b> témat má zdroj ve všech 27</p>
+</div>

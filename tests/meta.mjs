@@ -55,8 +55,17 @@ check('popis odpovídá skutečným počtům',
 
 for (const f of ['robots.txt', 'sitemap.xml', 'site.webmanifest', '404.html', '.nojekyll',
                  'favicon.ico', 'favicon.svg', 'apple-touch-icon.png',
-                 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'og-image.png'])
+                 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'og-image.png',
+                 'social-preview.png'])
   check(`dist/${f}`, fs.existsSync(path.join(DIST, f)));
+
+// GitHub social preview chce 1280×640 (2:1), jinak náhled ořízne. Rozměr
+// se čte z hlavičky PNG, ne z názvu souboru.
+{
+  const buf = fs.readFileSync(path.join(DIST, 'social-preview.png'));
+  const w = buf.readUInt32BE(16), h = buf.readUInt32BE(20);
+  check('social preview je 1280×640', w === 1280 && h === 640, `${w}×${h}`);
+}
 
 check('sitemap odkazuje na kanonickou URL',
       fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8').includes('https://korczis.github.io/data-atlas/'));
