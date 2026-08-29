@@ -50,6 +50,7 @@ catalog:
 [group('build')]
 build:
     python3 tools/build_page.py
+    python3 tools/build_places.py
 
 # Vygeneruje docs/CATALOG.md a docs/COVERAGE.md z data/catalog.csv
 [group('build')]
@@ -79,6 +80,7 @@ test:
     node tests/interact.mjs
     node tests/meta.mjs
     node tests/flowbite.mjs
+    node tests/places.mjs
 
 # Vynutí konvence Flowbite + Alpine nad src/template.html
 [group('test')]
@@ -95,6 +97,7 @@ validate:
 [group('test')]
 responsive:
     python3 tools/check_responsive.py
+    python3 tools/check_responsive.py --page place
 
 # Screenshoty stránky do .cache/shots/ — na vady, které měření nepozná
 [group('test')]
@@ -105,6 +108,7 @@ shots *ARGS:
 [group('test')]
 a11y:
     python3 tools/check_a11y.py
+    python3 tools/check_a11y.py --page place
 
 # Ověří odkazy (síť, mimo `check`); zúžení: --country AT --topic companies --changed
 [group('test')]

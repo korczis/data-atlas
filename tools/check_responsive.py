@@ -25,6 +25,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE = ROOT / "dist" / "index.html"
+# Stránka země je vlastní šablona s vlastní tabulkou, filtry a stránkováním —
+# měřit jen hlavní stránku by znamenalo, že o polovině webu brána neví.
+# Bere se Česko: má nejvíc položek, nejdelší popisy a nejširší tabulku.
+PLACE = ROOT / "dist" / "cz" / "index.html"
 CHROME: str | None = None  # zjistí se v runtime přes find_chrome()
 
 # šířky, na kterých se to musí chovat: malý telefon → mobil → tablet → desktop
@@ -230,7 +234,12 @@ def measure(width: int) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--widths", type=int, nargs="*", default=WIDTHS)
+    ap.add_argument("--page", choices=("index", "place"), default="index",
+                    help="která stránka se měří (výchozí: index)")
     args = ap.parse_args()
+    global PAGE
+    if args.page == "place":
+        PAGE = PLACE
 
     if not PAGE.exists():
         raise SystemExit("chybí dist/index.html — spusť nejdřív `just build`")

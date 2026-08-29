@@ -1,23 +1,7 @@
 <title>Data Atlas</title>
 <style>
-  :root { color-scheme: light dark; }
-  body { background:#f9fafb; color:#111827; margin:0; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { background:#111827; color:#f3f4f6; } }
-  :root[data-theme="dark"] body { background:#111827; color:#f3f4f6; }
-  [x-cloak] { display: none !important; }
-  .scroll-x::-webkit-scrollbar { height: 8px; }
-  .scroll-x::-webkit-scrollbar-thumb { background: rgba(107,114,128,.4); border-radius: 4px; }
-  button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-    outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) button:focus-visible,
-    :root:not([data-theme="light"]) a:focus-visible,
-    :root:not([data-theme="light"]) input:focus-visible { outline-color: #60a5fa; }
-  }
-  :root[data-theme="dark"] button:focus-visible,
-  :root[data-theme="dark"] a:focus-visible,
-  :root[data-theme="dark"] input:focus-visible { outline-color: #60a5fa; }
+  /* Základ (pozadí, x-cloak, fokus, scrollbar) je v src/input.css, protože
+     ho sdílí i stránky zemí. Tady zůstává jen to, co má jenom tahle stránka. */
   /* Postranní panel je pod lg: šuplík. Posun mimo plátno sám o sobě nestačí —
      obsah zůstane fokusovatelný a odečítač do něj vleze. */
   /* Vrstvení: hlavička z-50 > panel z-40 > backdrop Flowbite z-30 > obsah.
@@ -32,7 +16,6 @@
     #sidebar { transition: transform .3s ease-in-out, visibility 0s linear 0s; }
     #sidebar[aria-hidden="true"] { transition: transform .3s ease-in-out, visibility 0s linear .3s; }
   }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 </style>
 
 <script>
@@ -296,6 +279,8 @@ try {
           <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/CATALOG.md"
                  target="_blank" rel="noopener noreferrer"
                  class="block rounded px-3 py-1.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Plný výpis katalogu</a></li>
+          <li><a href="zeme/"
+                 class="block rounded-lg px-3 py-1.5 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white">Stránky zemí</a></li>
           <li><a href="https://github.com/korczis/data-atlas/blob/main/docs/COVERAGE.md"
                  target="_blank" rel="noopener noreferrer"
                  class="block rounded px-3 py-1.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Matice pokrytí</a></li>
@@ -504,6 +489,15 @@ try {
                se scrolluje zvlášť — dvakrát se stalo, že člověk četl počty
                a netušil, pod jakým filtrem je čte. -->
           <div x-show="activeFilters" class="mt-3 flex flex-wrap items-center gap-2">
+            <!-- Ke stránce země se jinak dá dostat jen přes rozcestník `zeme/`.
+                 Tady stojí v okamžiku, kdy je zřejmé, o kterou zemi jde. -->
+            <a x-show="country" :href="country.toLowerCase() + '/'"
+               class="inline-flex items-center gap-1.5 rounded-lg border border-primary-300 bg-primary-50 px-2.5 py-1 text-sm font-medium text-primary-800 hover:bg-primary-100 dark:border-primary-800 dark:bg-primary-900/30 dark:text-primary-300 dark:hover:bg-primary-900/50">
+              <span>Stránka <span x-text="placeLabel(country)"></span></span>
+              <svg class="h-3.5 w-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+            </a>
             <template x-for="chip in filterChips" :key="chip.kind">
               <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 ps-3 pe-1.5 text-xs font-medium text-primary-800 dark:bg-primary-900/40 dark:text-primary-200">
                 <span x-text="chip.label"></span>

@@ -1,7 +1,12 @@
 /** Skenuje se vygenerovaná stránka s už vloženými daty — Alpine výrazy v ní
- *  obsahují literální třídy (badge(), :class), které by jinak Tailwind ořezal. */
+ *  obsahují literální třídy (badge(), :class), které by jinak Tailwind ořezal.
+ *
+ *  Stránky zemí se generují až po buildu CSS, takže se jejich zdroje skenují
+ *  přímo. Bez toho by z nich Tailwind ořízl každou třídu, kterou hlavní
+ *  stránka nepoužívá — stránkování, dropdowny filtrů, mřížku témat — a
+ *  vypadaly by rozsypaně, aniž by cokoli spadlo. */
 module.exports = {
-  content: ['./.cache/page.src.html'],
+  content: ['./.cache/page.src.html', './src/country.html', './src/js/place.js'],
 
   // Flowbite si tyhle třídy **přidává za běhu**, takže v markupu nejsou
   // a Tailwind je ořízne. Bez nich se šuplík otevře bez ztmavení a ťuknutí

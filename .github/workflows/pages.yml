@@ -41,7 +41,9 @@ jobs:
           python3 tools/build_catalog.py
 
       - name: Build
-        run: python3 tools/build_page.py
+        run: |
+          python3 tools/build_page.py
+          python3 tools/build_places.py
 
       - name: Konvence UI
         run: |
@@ -51,7 +53,9 @@ jobs:
       - name: Responzivita a přístupnost
         run: |
           python3 tools/check_responsive.py
+          python3 tools/check_responsive.py --page place
           python3 tools/check_a11y.py
+          python3 tools/check_a11y.py --page place
 
       - name: Test
         run: |
@@ -59,6 +63,7 @@ jobs:
           node tests/interact.mjs
           node tests/meta.mjs
           node tests/flowbite.mjs
+          node tests/places.mjs
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

@@ -159,8 +159,13 @@ def check(html: str) -> None:
         root = re.search(tag("div"), markup[root.end():])
     if root and "x-cloak" not in root.group(0):
         fail("alpine/cloak", "kořenový x-data nemá x-cloak")
-    if "[x-cloak]" not in html:
-        fail("alpine/cloak", "chybí CSS pravidlo pro [x-cloak]")
+    # Pravidlo smí být i ve sdíleném input.css — tam se přesunulo, když ho
+    # začaly potřebovat i stránky zemí. Hlídá se, že existuje, ne kde leží.
+    shared = (ROOT / "src" / "input.css")
+    css_sources = html + (shared.read_text(encoding="utf-8") if shared.exists() else "")
+    if "[x-cloak]" not in css_sources:
+        fail("alpine/cloak",
+             "chybí CSS pravidlo pro [x-cloak] v šabloně ani v src/input.css")
 
     # ── Alpine: registrace komponenty ─────────────────────────────────────────
     # Alpine.data() drží logiku mimo globální jmenný prostor.

@@ -15,6 +15,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGE = ROOT / "dist" / "index.html"
+# Stránka země má vlastní markup — tabulku s filtry a stránkováním —
+# takže má i vlastní rizika kontrastu a názvů ovládacích prvků.
+PLACE = ROOT / "dist" / "cz" / "index.html"
 AXE = ROOT / "node_modules" / "axe-core" / "axe.min.js"
 CHROME: str | None = None  # zjistí se v runtime přes find_chrome()
 
@@ -70,14 +73,21 @@ window.addEventListener('load', () => setTimeout(() => {{
 }}, 700));
 </script>
 """
-    with tempfile.TemporaryDirectory() as tmp:
-        page = Path(tmp) / "a11y.html"
+    # Sonda se zapisuje **vedle originálu**, ne do temp adresáře. Stránka země
+    # načítá runtime relativně (`../assets/atlas.js`); z temp adresáře by se
+    # nenačetl, Alpine by nenaběhl a axe by hlásil prázdná tlačítka — falešný
+    # nález, který vypadá jako vada stránky. Hlavní stránka je soběstačná,
+    # takže na ní ten rozdíl nikdy nebyl vidět.
+    page = PAGE.with_name(f".a11y-{width}-{theme}.html")
+    try:
         page.write_text(html.replace("</body>", probe + "</body>"), encoding="utf-8")
         res = subprocess.run(
             [CHROME, "--headless", "--disable-gpu", "--hide-scrollbars",
              "--virtual-time-budget=15000", f"--window-size={max(width, 520)},1200",
              "--dump-dom", page.as_uri()],
             capture_output=True, text=True, timeout=120)
+    finally:
+        page.unlink(missing_ok=True)
     m = re.search(r'<div id="axe-result">(.*?)</div>', res.stdout, re.S)
     if not m:
         raise SystemExit(f"axe nevrátil výsledek ({width}px, {theme})")
@@ -87,13 +97,18 @@ window.addEventListener('load', () => setTimeout(() => {{
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--page", choices=("index", "place"), default="index",
+                    help="která stránka se audituje (výchozí: index)")
     ap.add_argument("--impact", default="serious",
                     choices=["minor", "moderate", "serious", "critical"],
                     help="od jaké závažnosti selhat (výchozí: serious)")
     args = ap.parse_args()
+    global PAGE
+    if args.page == "place":
+        PAGE = PLACE
 
     if not PAGE.exists():
-        raise SystemExit("chybí dist/index.html — spusť nejdřív `just build`")
+        raise SystemExit(f"chybí {PAGE.relative_to(ROOT)} — spusť nejdřív `just build`")
     global CHROME
     CHROME = find_chrome()
     if CHROME is None:

@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Základ sdílený hlavní stránkou i stránkami zemí. Dokud žil v inline
+   <style> hlavní šablony, stránky zemí ho neměly: `x-cloak` nic neskrýval,
+   takže při načtení probliklo nevykreslené `x-text`, a tělo nemělo pozadí,
+   takže v tmavém motivu svítilo bíle pod obsahem. */
+:root { color-scheme: light dark; }
+body { background: #f9fafb; color: #111827; margin: 0; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body { background: #111827; color: #f3f4f6; }
+}
+:root[data-theme="dark"] body { background: #111827; color: #f3f4f6; }
+
+[x-cloak] { display: none !important; }
+
+.scroll-x::-webkit-scrollbar { height: 8px; }
+.scroll-x::-webkit-scrollbar-thumb { background: rgba(107, 114, 128, .4); border-radius: 4px; }
+
+button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) button:focus-visible,
+  :root:not([data-theme="light"]) a:focus-visible,
+  :root:not([data-theme="light"]) input:focus-visible { outline-color: #60a5fa; }
+}
+:root[data-theme="dark"] button:focus-visible,
+:root[data-theme="dark"] a:focus-visible,
+:root[data-theme="dark"] input:focus-visible { outline-color: #60a5fa; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

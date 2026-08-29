@@ -32,14 +32,18 @@ jobs:
       - name: Build a testy
         run: |
           python3 tools/build_page.py
+          python3 tools/build_places.py
           python3 tools/lint_ui.py
           python3 tools/check_runtime_classes.py
           python3 tools/check_responsive.py
+          python3 tools/check_responsive.py --page place
           python3 tools/check_a11y.py
+          python3 tools/check_a11y.py --page place
           node tests/smoke.mjs
           node tests/interact.mjs
           node tests/meta.mjs
           node tests/flowbite.mjs
+          node tests/places.mjs
 
       - name: Dokumentace je aktuální
         run: |
