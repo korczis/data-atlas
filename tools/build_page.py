@@ -54,7 +54,11 @@ def load_data():
         dict(id=r["ID"], topic=r["Téma ID"], code=r["Kód"], name=r["Web"], dom=r["Doména"],
              desc=r["Popis"], kind=r["Typ"], access=r["Přístup"], data=r["Data"],
              src=r["Zdroj"], visits=int(r["Návštěvy"] or 0),
-             last=r["Poslední návštěva"], url=r["URL"])
+             last=r["Poslední návštěva"], url=r["URL"],
+             # Ověření je hlavní tvrzení celého katalogu — „ověřený zdroj,
+             # ne odhadnutá URL". Do dneška bylo jen v data/sources/*.json,
+             # takže stránka o něm nemohla říct nic doložitelného.
+             ver=r.get("Ověřeno", ""))
         for r in read_csv(ROOT / "data" / "catalog.csv")
     ]
     longlist = []
@@ -303,8 +307,10 @@ def main():
     for p in places:
         if not p["scope"] and p["code"] in flags:
             p["fx"] = flags[p["code"]]
+    from build_catalog import ACCESS, DATA_MODES
     data = json.dumps({"catalog": catalog, "longlist": longlist,
-                       "groups": groups, "places": places, "gaps": gaps},
+                       "groups": groups, "places": places, "gaps": gaps,
+                       "labels": {"access": ACCESS, "data": DATA_MODES}},
                       ensure_ascii=False, separators=(",", ":"))
 
     n_items = len(catalog)

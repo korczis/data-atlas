@@ -28,8 +28,15 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
 KINDS = {"official", "regional", "intl", "research", "ngo", "commercial"}
-ACCESS = {"open", "registration", "paid", "mixed", "restricted", "unknown"}
-DATA_MODES = {"bulk", "api", "ogc", "download", "search", "sw", "none", "unknown"}
+# Číselník hodnot i s popisky. Mapa, ne množina: platné hodnoty a jejich český
+# název jsou totéž tvrzení a patří na jedno místo. Dokud byly popisky zvlášť
+# v build_places.py, byly hodnoty definované dvakrát a mohly se rozejít —
+# validace by to nepoznala, protože kontroluje jen klíče.
+ACCESS = {"open": "otevřené", "registration": "registrace", "paid": "placené",
+          "mixed": "smíšené", "restricted": "omezené", "unknown": "neuvedeno"}
+DATA_MODES = {"bulk": "hromadně", "api": "API", "ogc": "OGC služby",
+              "download": "ke stažení", "search": "vyhledávání", "sw": "software",
+              "none": "bez dat", "unknown": "neuvedeno"}
 REQUIRED = ("id", "country", "topic", "name", "url", "desc", "kind", "access", "data", "verified")
 # Nepovinné pole "check": "anti-bot" říká, že server odmítá automatické klienty,
 # přestože v prohlížeči funguje. Čte ho tools/check_links.py.
@@ -140,7 +147,7 @@ def main() -> int:
             p["Zdroj"] if p else "reference",
             p["Návštěvy"] if p else "", p["Unikátních URL"] if p else "",
             p["Poslední návštěva"] if p else "",
-            s["url"], s["id"],
+            s["url"], s["id"], s.get("verified", ""),
         ])
 
     DATA.mkdir(exist_ok=True)
@@ -148,7 +155,7 @@ def main() -> int:
         w = csv.writer(fh)
         w.writerow(["Skupina", "Téma", "Téma ID", "Země", "Kód", "Web", "Doména", "Popis",
                     "Typ", "Přístup", "Data", "Zdroj", "Návštěvy", "Unikátních URL",
-                    "Poslední návštěva", "URL", "ID"])
+                    "Poslední návštěva", "URL", "ID", "Ověřeno"])
         w.writerows(rows)
 
     evidenced = sum(1 for r in rows if r[11] != "reference")

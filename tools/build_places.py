@@ -30,10 +30,8 @@ REPO = PKG["repository"]["url"].replace(".git", "") if isinstance(PKG.get("repos
     else "https://github.com/korczis/data-atlas"
 TITLE = "Data Atlas"
 
-ACCESS = {"open": "otevřené", "registration": "registrace", "paid": "placené",
-          "mixed": "smíšené", "restricted": "omezené", "unknown": "neuvedeno"}
-DATA = {"bulk": "hromadně", "api": "API", "ogc": "OGC služby", "download": "ke stažení",
-        "search": "vyhledávání", "sw": "software", "none": "bez dat", "unknown": "neuvedeno"}
+# Popisky přístupu a formy dat jsou v build_catalog.py vedle validace hodnot.
+from build_catalog import ACCESS, DATA_MODES as DATA  # noqa: E402
 
 
 def slug(code: str) -> str:
