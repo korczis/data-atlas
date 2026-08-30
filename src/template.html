@@ -35,6 +35,15 @@ try {
      @keydown.escape.window="reset()"
      class="font-sans antialiased text-gray-900 dark:text-gray-100">
 
+  <!-- Přeskakovací odkaz. Panel stojí v DOM před obsahem a nese přes sto
+       ovládacích prvků, takže bez něj se uživatel klávesnice ke katalogu
+       proklikává stovkou tabů. Je první v pořadí a vidět je až při zaostření —
+       `sr-only` do té doby, `focus:not-sr-only` potom (WCAG 2.4.1). -->
+  <a href="#main-content"
+     class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary-700 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white">
+    Přejít na obsah
+  </a>
+
   <!-- ══════════ HORNÍ LIŠTA ══════════ -->
   <header class="fixed top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
     <div class="flex items-center gap-3 px-3 py-2.5 lg:px-5">
