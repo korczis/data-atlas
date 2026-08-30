@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 import { remoteResources } from './helpers.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -116,18 +116,36 @@ check('payload nese taxonomii a popisky',
 
 // Chování tabulky. Bez prohlížeče se netestuje vzhled, ale logika filtrů,
 // řazení a stránkování — tedy to, co uživatel na stránce dělá.
+// Chyby uvnitř stránky musí test shodit. Dřív se tu vkládal holý Alpine
+// z node_modules s odůvodněním „testuje se komponenta, ne způsob doručení" —
+// jenže magii `$marks` registruje až sdílený runtime, takže stránka při
+// každém řádku házela `$marks is not defined`. Sto výjimek, a suita hlásila
+// 37/37. Přesně ta zelená, které se nedá věřit: řádky se nevykreslily,
+// odznaky nebyly, a nikdo se to nedozvěděl.
+//
+// Načítá se proto `dist/assets/atlas.js`, tedy to, co si stáhne prohlížeč.
+// Způsob doručení *je* součást chování, když v sobě nese registrace.
+const pageErrors = [];
+const virtualConsole = new VirtualConsole();
+virtualConsole.on('jsdomError', e => pageErrors.push(e.message || String(e)));
+virtualConsole.on('error', (...a) => pageErrors.push(a.join(' ')));
+
 const dom = new JSDOM(html, {
-  runScripts: 'dangerously', pretendToBeVisual: true,
+  runScripts: 'dangerously', pretendToBeVisual: true, virtualConsole,
   beforeParse(w) {
     w.matchMedia = q => ({ matches: false, media: q, addEventListener() {}, removeEventListener() {} });
     w.HTMLCanvasElement.prototype.getContext = () => null;
   },
 });
-// Sdílený runtime se pod jsdom nenačte (je to samostatný soubor), takže se
-// Alpine vloží ručně — testuje se komponenta, ne způsob doručení.
-const alpine = fs.readFileSync(path.join(ROOT, 'node_modules', 'alpinejs', 'dist', 'cdn.min.js'), 'utf8');
-dom.window.eval(alpine);
+const runtime = path.join(DIST, 'assets', 'atlas.js');
+dom.window.eval(fs.readFileSync(runtime, 'utf8'));
 await new Promise(r => setTimeout(r, 500));
+
+// Kontroluje se až tady, po dokončení prvního renderu: Alpine vyhodnocuje
+// výrazy asynchronně a dřív by se stihla zachytit jen část.
+check('stránka nevyhodila při vykreslení ani jednu chybu',
+      pageErrors.length === 0,
+      pageErrors.length ? `${pageErrors.length}× — první: ${pageErrors[0].split('\n')[0]}` : 'čistá');
 
 const s = dom.window.Alpine
   ? dom.window.Alpine.$data(dom.window.document.querySelector('[x-data]')) : null;
@@ -187,6 +205,32 @@ check('nadnárodní zdroje k tématu se hlásí počtem',
       JSON.stringify(s.supraForTopic));
 s.topic = '';
 check('bez tématu se nenabízí nic', s.relatedTopics.length === 0 && !s.supraForTopic);
+
+// ── co se opravdu vykreslilo ───────────────────────────────────────────────
+// Až sem se testoval jen stav komponenty. Proto mohla stránka u každého řádku
+// spadnout na `$marks is not defined` a suita to nezahlédla: do DOM se nikdo
+// nepodíval. Stav bez výstupu není chování.
+s.page = 1;
+await new Promise(r => setTimeout(r, 100));
+const doc = dom.window.document;
+const rendered = doc.querySelectorAll('[data-row], [data-card]');
+check('řádky se vykreslily do DOM', rendered.length > 0, `${rendered.length} uzlů`);
+
+// Odznaky chodí přes magii `$marks`. Poznají se podle barvy, kterou nic
+// jiného na řádku nepoužívá: `emerald` = data jdou ven strojově, `amber` =
+// překážka v přístupu. Šedá se sem nepočítá, tu nosí i štítek tématu.
+//
+// Znění se ověřuje proti číselníku z payloadu, ne proti seznamu napsanému
+// tady — jinak by test tvrdil, že se vykreslilo něco, čemu sám určil slova.
+const vocabulary = new Set([...Object.values(payload.labels.data || {}),
+                            ...Object.values(payload.labels.access || {})]);
+const badges = [...doc.querySelectorAll('[data-row] span, [data-card] span')]
+  .filter(el => /bg-(emerald|amber)-100/.test(el.className))
+  .map(el => el.textContent.trim());
+check('odznaky se vykreslily', badges.length > 0, `${badges.length}×`);
+check('odznaky mluví číselníkem, ne vlastním slovníkem',
+      badges.length > 0 && badges.every(t => vocabulary.has(t)),
+      [...new Set(badges)].slice(0, 4).join(', '));
 
 console.log(`\n${pass}/${pass + fail} prošlo`);
 process.exit(fail ? 1 : 0);
