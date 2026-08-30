@@ -108,7 +108,7 @@ flags:
 
 # Everything CI runs. Deterministic and offline — `just links` stays out on purpose.
 [group('build')]
-check: _deps _chrome validate catalog docs build lint test responsive typography a11y e2e
+check: _deps _chrome validate catalog docs build lint test responsive typography a11y e2e wh-test
     @python3 tools/check_generated.py
 
 # ── tests ─────────────────────────────────────────────────────────────────────
@@ -206,6 +206,115 @@ sanitize:
 # The whole data chain, from Chrome to the built site
 [group('data')]
 refresh: extract scan longlist sanitize provenance catalog docs build
+
+# ── warehouse ─────────────────────────────────────────────────────────────────
+# The historical/analytical PostgreSQL subsystem in warehouse/. Entirely
+# separate from the static catalogue build: `just check` neither runs these nor
+# depends on them, because they need a database and, for `wh-fetch`, the network.
+# Rules and layout: warehouse/AGENTS.md · docs: docs/database/README.md
+
+# Install optional PostgreSQL extensions (h3 from source, hypopg via brew)
+[group('warehouse')]
+wh-extensions:
+    bash warehouse/scripts/install-optional-extensions.sh
+
+# Install the one Python dependency the warehouse needs (psycopg 3)
+[group('warehouse')]
+wh-install:
+    uv pip install --python "$(command -v python3)" 'psycopg[binary]>=3.2'
+
+# What the source manifest says exists, and what is on disk
+[group('warehouse')]
+wh-status:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli source status
+
+# Download raw artifacts and verify their digests (network; narrow it)
+[group('warehouse')]
+wh-fetch *ARGS:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli source fetch {{ ARGS }}
+
+# Re-hash every downloaded artifact against the manifest
+[group('warehouse')]
+wh-verify *ARGS:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli source verify {{ ARGS }}
+
+# Apply pending SQL migrations to the database
+[group('warehouse')]
+wh-migrate:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli db migrate
+
+# Applied migrations, extension state and table counts
+[group('warehouse')]
+wh-db-status:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli db status
+
+# Parse artifacts into staging, losslessly (needs the raw files)
+[group('warehouse')]
+wh-stage *ARGS:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli ingest stage {{ ARGS }}
+
+# Resolve entities and load typed canonical observations
+[group('warehouse')]
+wh-load *ARGS:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli ingest load {{ ARGS }}
+
+# Refresh the dimensional mart and update planner statistics
+[group('warehouse')]
+wh-mart:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli mart build
+    PYTHONPATH=warehouse python3 -m atlasdata.cli mart analyze
+
+# Run the data-quality suite; non-zero when a release gate fails
+[group('warehouse')]
+wh-quality:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli quality run
+
+# Regenerate coverage, field-evolution, storage and reconciliation reports
+[group('warehouse')]
+wh-reports:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli report coverage
+    PYTHONPATH=warehouse python3 -m atlasdata.cli report fields
+    PYTHONPATH=warehouse python3 -m atlasdata.cli report storage
+    PYTHONPATH=warehouse python3 -m atlasdata.cli report reconcile
+
+# Regenerate the schema reference and ERDs from the live database
+[group('warehouse')]
+wh-docs:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli docs generate
+
+# Lint the warehouse Python package (scoped to warehouse/, not the whole repo)
+[group('warehouse')]
+wh-lint:
+    cd warehouse && python3 -m ruff check atlasdata/ tests/
+
+# Offline unit tests for the parsers; needs neither database nor network
+[group('warehouse')]
+wh-test:
+    python3 warehouse/tests/test_values.py
+    python3 warehouse/tests/test_coordinates.py
+    python3 warehouse/tests/test_text_era.py
+    python3 warehouse/tests/test_manifest.py
+
+# Schema and constraint tests against the live database
+[group('warehouse')]
+wh-test-db:
+    python3 warehouse/tests/test_schema.py
+    python3 warehouse/tests/test_api_views.py
+
+# Everything the warehouse can check offline against an existing database
+[group('warehouse')]
+wh-check: wh-lint wh-test wh-migrate wh-test-db wh-quality
+
+# Open a psql session on the warehouse database
+[group('warehouse')]
+wh-psql:
+    psql "${ATLAS_DATABASE_URL:-${DATABASE_URL:-postgresql:///atlas_data}}"
+
+# DROP every warehouse schema. Curated mappings are re-seeded; entity curation is not.
+[confirm("Drop every warehouse schema, including curated entity and mapping decisions?")]
+[group('warehouse')]
+wh-reset:
+    PYTHONPATH=warehouse python3 -m atlasdata.cli db reset --yes
 
 # ── maintenance ───────────────────────────────────────────────────────────────
 
