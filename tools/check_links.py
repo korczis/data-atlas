@@ -9,12 +9,12 @@ Nejdřív HEAD; servery, které ho odmítají (405/501, občas 403), se zkusí
 ještě GETem s omezením na první kilobajty. Rozlišuje se:
 
   ok           2xx
-  přesměrování cíl je jinde, než co je v katalogu (stojí za aktualizaci)
-  blokuje      403 nebo 405 i po prostém GETu — ochrana proti robotům
+  redirect     the target sits elsewhere than the catalogue says (worth updating)
+  blocked      403 or 405 even on a plain GET — bot protection
                (AWS WAF vrací na výzvu „Human Verification\" právě 405),
                v prohlížeči web funguje
-  certifikát   TLS selže, přes --insecure projde: vypršelý nebo špatný certifikát
-  chyba        4xx/5xx nebo nedostupné
+  certificate  TLS fails, --insecure succeeds: expired or wrong certificate
+  error        4xx/5xx or unreachable
 
 Rozlišení není puntičkářství. Bez něj checker nahlásí osm chyb, z nichž jsou
 tři skutečné — a katalog se pak „opravuje" tam, kde je v pořádku.
@@ -121,21 +121,21 @@ def classify(url: str, timeout: int, antibot: frozenset[str] = frozenset()) -> d
         code, final = probe(url, timeout, method="GET")
 
     if 200 <= code < 300:
-        state = "ok" if canonical(final) == canonical(url) else "přesměrování"
+        state = "ok" if canonical(final) == canonical(url) else "redirect"
     elif code in (403, 405):
         # Cloudflare, AWS WAF a spol. odmítají curl bez ohledu na User-Agent.
         # Po prostém GETu neznamená 405 chybějící stránku, ale odmítnutí klienta.
-        state = "blokuje"
+        state = "blocked"
     elif code == 0:
         # Nespojilo se. Pokud to projde s -k, je vinen certifikát, ne server.
         alt, alt_final = probe(url, timeout, method="GET", insecure=True)
-        state = "certifikát" if 200 <= alt <= 399 else "chyba"
-        if state == "certifikát":
+        state = "certificate" if 200 <= alt <= 399 else "error"
+        if state == "certificate":
             code, final = alt, alt_final
     else:
-        state = "chyba"
-    if state == "chyba" and url in antibot:
-        state = "deklarováno"
+        state = "error"
+    if state == "error" and url in antibot:
+        state = "declared"
     return {"url": url, "code": code, "final": final, "state": state}
 
 
@@ -184,8 +184,8 @@ def select(args) -> dict[str, str]:
         # před `just catalog`.
         missing = urls - set(picked)
         if missing:
-            print(f"  ⚠ {len(missing)} změněných URL není v data/catalog.csv — "
-                  f"spusť nejdřív `just catalog`, jinak se neověří:")
+            print(f"  ⚠ {len(missing)} changed URL(s) are not in data/catalog.csv — "
+                  f"run `just catalog` first or they go unchecked:")
             for u in sorted(missing)[:8]:
                 print(f"      {u}")
         return picked
@@ -208,7 +208,7 @@ def main() -> int:
     ap.add_argument("--timeout", type=int, default=12)
     ap.add_argument("--workers", type=int, default=8, help="souběžných požadavků")
     ap.add_argument("--strict", action="store_true",
-                    help="selhat i na přesměrováních, nejen na chybách")
+                    help="fail on redirects too, not only on errors")
     ap.add_argument("--country", action="append", metavar="KÓD",
                     help="jen tato země nebo rozsah (lze uvést víckrát)")
     ap.add_argument("--topic", action="append", metavar="ID", help="jen toto téma")
@@ -220,46 +220,60 @@ def main() -> int:
 
     targets = select(args)
     if not targets:
-        print("  nic k ověření (výběr je prázdný)")
-        return 0
+        # An empty selection is only benign for --changed: nothing changed, so
+        # there is nothing to verify. Every other way of getting here means the
+        # run verified nothing while reporting success — a typo'd --country, or
+        # a data/catalog.csv that lost its URL column. The monthly workflow runs
+        # with no arguments, so that path silently retiring is the worst case:
+        # the audit would keep passing and never open an issue again.
+        if args.changed:
+            print("  no catalogue URLs changed — nothing to verify")
+            return 0
+        narrowed = args.country or args.topic or args.id or args.url_file
+        print("  the selection is empty — nothing was verified.\n"
+              + ("  Check the filter: no catalogue entry matches it."
+                 if narrowed else
+                 "  data/catalog.csv yielded no URLs at all; run `just catalog`."),
+              file=sys.stderr)
+        return 1
 
     antibot = frozenset(declared_antibot())
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         results = list(pool.map(lambda u: classify(u, args.timeout, antibot), targets))
 
     buckets: dict[str, list[dict]] = {k: [] for k in
-                                      ("ok", "přesměrování", "blokuje", "certifikát",
-                                       "deklarováno", "chyba")}
+                                      ("ok", "redirect", "blocked", "certificate",
+                                       "declared", "error")}
     for r in results:
         buckets[r["state"]].append(r)
 
     print("  " + " · ".join(f"{len(v)} {k}" for k, v in buckets.items())
-          + f"   (z {len(results)} odkazů)")
+          + f"   (of {len(results)} links)")
 
-    for r in sorted(buckets["chyba"], key=lambda r: r["url"]):
-        print(f"\n  ✗ {targets[r['url']]}  [{r['code'] or 'nedostupné'}]")
+    for r in sorted(buckets["error"], key=lambda r: r["url"]):
+        print(f"\n  ✗ {targets[r['url']]}  [{r['code'] or 'unreachable'}]")
         print(f"      {r['url']}")
-    for r in sorted(buckets["certifikát"], key=lambda r: r["url"]):
-        print(f"\n  ⚠ {targets[r['url']]} — vadný TLS certifikát (obsah dostupný)")
+    for r in sorted(buckets["certificate"], key=lambda r: r["url"]):
+        print(f"\n  ⚠ {targets[r['url']]} — bad TLS certificate (content reachable)")
         print(f"      {r['url']}")
-    for r in sorted(buckets["přesměrování"], key=lambda r: r["url"]):
+    for r in sorted(buckets["redirect"], key=lambda r: r["url"]):
         print(f"\n  → {targets[r['url']]}")
-        print(f"      z: {r['url']}")
-        print(f"      na: {r['final']}")
-    if buckets["blokuje"]:
-        print("\n  Blokují automat, v prohlížeči fungují: "
-              + ", ".join(targets[r["url"]] for r in buckets["blokuje"]))
+        print(f"      from: {r['url']}")
+        print(f"      to:   {r['final']}")
+    if buckets["blocked"]:
+        print("\n  Block automated clients, work in a browser: "
+              + ", ".join(targets[r["url"]] for r in buckets["blocked"]))
     # Vypisuje se zvlášť, protože tady se nespoléhá na měření, ale na tvrzení
     # kurátora v datech. Když takový web opravdu zemře, pozná se to jen tak,
     # že si toho někdo při čtení téhle sekce všimne.
-    if buckets["deklarováno"]:
-        print("\n  Deklarované jako anti-bot (`check: anti-bot` ve zdrojích) — "
+    if buckets["declared"]:
+        print("\n  Declared anti-bot (`check: anti-bot` in the sources) — "
               "ověřuj ručně, checker se sem nedostane:")
-        for r in sorted(buckets["deklarováno"], key=lambda r: r["url"]):
+        for r in sorted(buckets["declared"], key=lambda r: r["url"]):
             print(f"      {targets[r['url']]} — {r['url']}")
 
     # Vadný certifikát je vada webu, ne katalogu — hlásí se, ale nesráží build.
-    bad = len(buckets["chyba"]) + (len(buckets["přesměrování"]) if args.strict else 0)
+    bad = len(buckets["error"]) + (len(buckets["redirect"]) if args.strict else 0)
     return 1 if bad else 0
 
 

@@ -293,11 +293,11 @@
     "topic": "companies",
     "name": "Portal Rejestrów Sądowych",
     "url": "https://prs.ms.gov.pl/",
-    "desc": "Soudní rejstříky KRS — aktuální i úplné výpisy, sbírka listin a elektronická podání; strojově přes REST na api-krs.ms.gov.pl, které vrací výpis v JSON",
+    "desc": "Soudní rejstříky KRS — aktuální i úplné výpisy, sbírka listin a elektronická podání; strojově přes otevřené REST API api-krs.ms.gov.pl, které vrací celý výpis v JSON bez klíče",
     "kind": "official",
     "access": "open",
-    "data": "search",
-    "verified": "2026-08-28"
+    "data": "api",
+    "verified": "2026-08-30"
   },
   {
     "id": "pl-wyszukiwarka-krs",
@@ -305,11 +305,11 @@
     "topic": "companies",
     "name": "Wyszukiwarka KRS",
     "url": "https://wyszukiwarka-krs.ms.gov.pl/",
-    "desc": "Vyhledávání v obchodním a spolkovém rejstříku podle názvu, čísla KRS, NIP nebo REGON. Na automat odpovídá Incapsula, v prohlížeči funguje",
+    "desc": "Vyhledávání v obchodním a spolkovém rejstříku podle názvu, čísla KRS, NIP nebo REGON. Na automat odpovídá Incapsula, v prohlížeči funguje; strojově vede cesta přes Portal Rejestrów Sądowych, ne přes tenhle formulář",
     "kind": "official",
     "access": "open",
-    "data": "api",
-    "verified": "2026-08-28"
+    "data": "search",
+    "verified": "2026-08-30"
   },
   {
     "id": "pl-krajowy-rejestr-zaduzonych",

@@ -2,43 +2,45 @@
 
 # Pokrytí
 
-Matice země × rodina témat. Číslo je počet zdrojů, prázdné pole znamená, že v katalogu k té rodině pro tu zemi nic není — buď to ještě nikdo nedohledal, nebo tam veřejně nic takového neexistuje. Poznámky k druhé možnosti patří do `docs/EU-EXPANSION-PLAN.md`.
+Matice země × rodina témat. Číslo je počet zdrojů, prázdné pole znamená, že v katalogu k té rodině pro tu zemi nic není — buď to ještě nikdo nedohledal, nebo tam veřejně nic takového neexistuje. Ověřená druhá možnost se zapisuje do [`data/gaps.json`](../data/gaps.json); tady ji nese `·`, na stránce šrafování.
 
-Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.json`](../data/topics.json).
+`·` znamená, že doložená je **každá** položka za tou buňkou. Sloupec sdružující víc témat ho proto dostane až tehdy, když je doložený celý — jedna doložená absence ve čtyřtématovém sloupci se schová do prázdna. Prázdná buňka tedy znamená „díra, nebo zčásti doložená díra“; přesné rozlišení po tématech je na stránce a v [`data/gaps.json`](../data/gaps.json).
 
-| Země | Geo | Katastr | Adresy | Doprava | Prostředí | Statistika | Open data | Sbírka | Zakázky | Výdaje | Firmy | Majitelé | Závěrky | Insolvence | Soudy | Regulace | Nemovitosti | Riziko | Transp. | Σ |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `EU` Evropská unie | 5 |  |  | 2 | 10 | 5 | 2 | 2 | 4 | 5 | 4 |  |  |  | 1 | 6 |  | 6 | 3 | **58** |
-| `GLOBAL` Celosvětové | 16 |  | 1 | 2 | 5 | 7 |  |  |  |  | 2 |  |  |  |  |  |  | 5 |  | **130** |
-| `AT` Rakousko | 3 | 2 | 1 | 2 | 4 | 2 | 1 | 2 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 2 | **47** |
-| `BE` Belgie | 6 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 4 | 8 | 1 | 2 | 2 | **44** |
-| `BG` Bulharsko | 2 | 3 | 1 | 1 | 3 | 1 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 9 |  | 2 | 1 | **42** |
-| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 | 1 | 2 | 1 | **39** |
-| `CY` Kypr | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 |  | 1 | 2 | 9 | 1 | 1 | 1 | **32** |
-| `CZ` Česko | 7 | 5 | 2 | 12 | 10 | 3 | 1 | 3 | 3 | 6 | 4 | 1 | 1 | 2 | 4 | 10 | 8 | 7 | 3 | **101** |
-| `DK` Dánsko | 3 | 1 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 9 | 2 | 2 | 1 | **41** |
-| `EE` Estonsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 1 | **37** |
-| `FI` Finsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | **37** |
-| `FR` Francie | 4 | 2 | 1 | 1 | 4 | 3 | 1 | 2 | 2 | 3 | 3 | 1 | 2 | 1 | 3 | 10 | 1 | 3 | 1 | **51** |
-| `DE` Německo | 4 | 1 | 1 | 2 | 5 | 4 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 3 | 3 | **50** |
-| `GR` Řecko |  | 1 | 1 | 1 | 2 | 1 | 2 | 2 | 1 | 2 | 2 | 1 | 1 |  | 1 | 8 |  | 1 | 2 | **32** |
-| `HU` Maďarsko | 2 | 2 | 1 | 2 | 4 | 1 | 1 | 1 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 8 | 1 | 3 | 1 | **43** |
-| `IE` Irsko | 2 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 8 | 1 | 2 | 1 | **35** |
-| `IT` Itálie | 4 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 2 | 4 | 1 | 1 | 1 |  | 3 | 9 | 1 | 2 | 3 | **46** |
-| `LV` Lotyšsko | 2 | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 6 | 1 | 2 | 1 | **37** |
-| `LT` Litva | 2 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 2 | 8 | 1 | 2 | 1 | **35** |
-| `LU` Lucembursko | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | **35** |
-| `MT` Malta |  | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 |  | 1 | 8 | 1 | 1 | 1 | **31** |
-| `NL` Nizozemsko | 3 | 1 | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 4 | 1 | 1 | 1 | 1 | 2 | 7 | 1 | 2 | 2 | **42** |
-| `PL` Polsko | 7 | 3 | 2 | 5 | 5 | 3 | 1 | 3 | 2 | 3 | 5 | 1 | 3 | 1 | 4 | 8 | 1 | 4 | 2 | **66** |
-| `PT` Portugalsko | 3 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 9 | 1 | 2 | 2 | **42** |
-| `RO` Rumunsko |  | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 |  | 3 | 7 |  | 3 | 1 | **32** |
-| `SK` Slovensko | 2 | 2 | 1 | 1 | 4 | 2 | 1 | 1 | 2 | 3 | 3 | 1 | 2 | 1 | 2 | 8 | 1 | 2 | 1 | **43** |
-| `SI` Slovinsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 2 | 1 | **40** |
-| `ES` Španělsko | 4 | 1 | 1 | 2 | 4 | 1 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 3 | 7 | 1 | 3 | 1 | **42** |
-| `SE` Švédsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 1 | 9 | 1 | 2 | 1 | **38** |
-| `GB` Spojené království |  |  |  |  |  |  |  |  |  |  | 1 |  |  |  |  |  |  | 1 |  | **3** |
-| `US` Spojené státy | 5 |  |  |  | 1 |  | 2 |  |  |  |  |  |  |  |  |  |  | 1 |  | **13** |
+Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.json`](../data/topics.json). Poslední sloupec `Ostatní` nese témata, která do žádné rodiny nespadla (nástroje, formáty, OSINT, archivy), takže Σ je vždy součet viditelných buněk.
+
+| Země | Geo | Katastr | Adresy | Doprava | Prostředí | Statistika | Open data | Sbírka | Zakázky | Výdaje | Firmy | Majitelé | Závěrky | Insolvence | Soudy | Regulace | Nemovitosti | Riziko | Transp. | Ostatní | Σ |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `EU` Evropská unie | 5 |  |  | 2 | 10 | 5 | 2 | 2 | 4 | 5 | 4 |  |  |  | 1 | 6 |  | 6 | 3 | 3 | **58** |
+| `GLOBAL` Celosvětové | 16 |  | 1 | 2 | 5 | 7 |  |  |  |  | 2 |  |  |  |  |  |  | 5 |  | 92 | **130** |
+| `AT` Rakousko | 3 | 2 | 1 | 2 | 4 | 2 | 1 | 2 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 2 | 4 | **47** |
+| `BE` Belgie | 6 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 4 | 8 | 1 | 2 | 2 | 3 | **44** |
+| `BG` Bulharsko | 2 | 3 | 1 | 1 | 3 | 1 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 9 |  | 2 | 1 | 3 | **42** |
+| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 | 1 | 2 | 1 | 3 | **39** |
+| `CY` Kypr | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 | · | 1 | 2 | 9 | 1 | 1 | 1 | 2 | **32** |
+| `CZ` Česko | 7 | 5 | 2 | 12 | 10 | 3 | 1 | 3 | 3 | 6 | 4 | 1 | 1 | 2 | 4 | 10 | 8 | 7 | 3 | 9 | **101** |
+| `DK` Dánsko | 3 | 1 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 9 | 2 | 2 | 1 | 3 | **41** |
+| `EE` Estonsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 1 | 3 | **37** |
+| `FI` Finsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | 4 | **37** |
+| `FR` Francie | 4 | 2 | 1 | 1 | 4 | 3 | 1 | 2 | 2 | 3 | 3 | 1 | 2 | 1 | 3 | 10 | 1 | 3 | 1 | 3 | **51** |
+| `DE` Německo | 4 | 1 | 1 | 2 | 5 | 4 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 3 | 3 | 3 | **50** |
+| `GR` Řecko |  | 1 | 1 | 1 | 2 | 1 | 2 | 2 | 1 | 2 | 2 | 1 | 1 | · | 1 | 8 |  | 1 | 2 | 3 | **32** |
+| `HU` Maďarsko | 2 | 2 | 1 | 2 | 4 | 1 | 1 | 1 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 8 | 1 | 3 | 1 | 3 | **43** |
+| `IE` Irsko | 2 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 8 | 1 | 2 | 1 | 3 | **35** |
+| `IT` Itálie | 4 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 2 | 4 | 1 | 1 | 1 | · | 3 | 9 | 1 | 2 | 3 | 2 | **46** |
+| `LV` Lotyšsko | 2 | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 6 | 1 | 2 | 1 | 3 | **37** |
+| `LT` Litva | 2 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 2 | 8 | 1 | 2 | 1 | 3 | **35** |
+| `LU` Lucembursko | 2 | 1 | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 7 | 1 | 2 | 1 | 3 | **35** |
+| `MT` Malta |  | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 1 | 1 | 1 | · | 1 | 8 | 1 | 1 | 1 | 3 | **31** |
+| `NL` Nizozemsko | 3 | 1 | 1 | 2 | 3 | 2 | 2 | 2 | 1 | 4 | 1 | 1 | 1 | 1 | 2 | 7 | 1 | 2 | 2 | 3 | **42** |
+| `PL` Polsko | 7 | 3 | 2 | 5 | 5 | 3 | 1 | 3 | 2 | 3 | 5 | 1 | 3 | 1 | 4 | 8 | 1 | 4 | 2 | 3 | **66** |
+| `PT` Portugalsko | 3 | 1 | 1 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 2 | 9 | 1 | 2 | 2 | 3 | **42** |
+| `RO` Rumunsko |  | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | · | 3 | 7 |  | 3 | 1 | 2 | **32** |
+| `SK` Slovensko | 2 | 2 | 1 | 1 | 4 | 2 | 1 | 1 | 2 | 3 | 3 | 1 | 2 | 1 | 2 | 8 | 1 | 2 | 1 | 3 | **43** |
+| `SI` Slovinsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 3 | 9 | 1 | 2 | 1 | 3 | **40** |
+| `ES` Španělsko | 4 | 1 | 1 | 2 | 4 | 1 | 1 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 3 | 7 | 1 | 3 | 1 | 3 | **42** |
+| `SE` Švédsko | 2 | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 3 | 2 | 1 | 1 | 1 | 1 | 9 | 1 | 2 | 1 | 3 | **38** |
+| `GB` Spojené království |  |  |  |  |  |  |  |  |  |  | 1 |  |  |  |  |  |  | 1 |  | 1 | **3** |
+| `US` Spojené státy | 5 |  |  |  | 1 |  | 2 |  |  |  |  |  |  |  |  |  |  | 1 |  | 4 | **13** |
 
 **Členských států v katalogu:** 27 z 27.
 

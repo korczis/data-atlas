@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Ověří kurátorovaná data v data/sources/*.json dřív, než se z nich něco postaví.
+"""Check the curated data in data/sources/*.json before anything is built from it.
 
-Schéma hlídá už `build_catalog.py`, protože bez platných dat nemá co zapsat.
-Tenhle skript přidává kontroly kvality, které build nezastaví, ale katalog
-poškodí tiše: prázdný popis, popis „Oficiální web úřadu", datum ověření
-z budoucnosti, dvě položky na tomtéž místě téhož webu.
+`build_catalog.py` already enforces the schema — without valid data it has
+nothing to write. This script adds the quality checks that do not stop a build
+but damage the catalogue quietly: an empty description, a description reading
+"official website of the authority", a verification date in the future, two
+entries pointing at the same place on the same site.
 
-Běží v `just check`, takže špatná data spadnou na stejném místě jako špatné UI.
+It runs inside `just check`, so bad data fails in the same place as bad UI.
 """
 from __future__ import annotations
 
@@ -19,7 +20,15 @@ from build_catalog import load_sources, load_taxonomy, domain  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Popis má odpovědět „proč to mám otevřít". Tyhle tvary neodpovídají nic.
+# `data: none` means "a portal or a document, no data". A description that says
+# the source publishes open data therefore contradicts its own classification —
+# one of the two is wrong, and only a human can say which. A warning, not an
+# error: this reads prose, and prose is not evidence of what a site really
+# serves. It is deliberately narrow — "otevřená data" only, not "datové sady",
+# which also matches a file format that legitimately carries no data itself.
+CLAIMS_OPEN_DATA = re.compile(r"otevřen\w*\s+data", re.I)
+
+# A description answers "why would I open this". These shapes answer nothing.
 EMPTY_PHRASES = re.compile(
     r"^(oficiální (web|stránk|portál)|webové stránky|domovská stránka|portál úřadu)\S*\s*\.?$",
     re.I)
@@ -38,53 +47,77 @@ def main() -> int:
         where = f"{s.get('country')}:{s.get('id')}"
         desc = (s.get("desc") or "").strip()
         if len(desc) < 40:
-            errors.append(f'{where}: popis má {len(desc)} znaků — na „proč to otevřít“ to nestačí')
+            errors.append(f"{where}: description is {len(desc)} characters — too short to "
+                          f"answer 'why open this'")
         if EMPTY_PHRASES.match(desc):
-            errors.append(f"{where}: popis nic neříká — {desc!r}")
+            errors.append(f"{where}: description says nothing — {desc!r}")
         if desc.endswith(("..", "…")):
-            warnings.append(f"{where}: popis končí výpustkou")
+            warnings.append(f"{where}: description trails off in an ellipsis")
 
         try:
             v = datetime.date.fromisoformat(s.get("verified", ""))
-            # Den tolerance: kdo přidává zdroje po půlnoci v CEST, razí datum,
-            # které je pro runner v UTC ještě zítřek. Skutečnou vadu — datum
-            # o týdny napřed — to pořád chytí.
+            # One day of slack: adding sources after midnight CEST stamps a date
+            # that is still tomorrow for a runner in UTC. A real defect — a date
+            # weeks ahead — is still caught.
             if v > today + datetime.timedelta(days=1):
-                errors.append(f"{where}: datum ověření {v} je v budoucnosti")
+                errors.append(f"{where}: verification date {v} is in the future")
             elif (today - v).days > 730:
-                warnings.append(f"{where}: ověřeno naposledy {v}")
+                warnings.append(f"{where}: last verified {v}")
         except ValueError:
-            errors.append(f"{where}: 'verified' není datum ve tvaru RRRR-MM-DD")
+            errors.append(f"{where}: 'verified' is not a YYYY-MM-DD date")
 
         u = urlsplit(s["url"])
-        # Query patří do klíče: část portálů routuje přes ni (minv.sk/?register-adries)
-        # a bez ní by dvě různé stránky vypadaly jako jedno místo.
+        # The query string belongs in the key: some portals route through it
+        # (minv.sk/?register-adries), and without it two different pages would
+        # look like one place.
         key = ((u.hostname or "").lower().removeprefix("www.") + u.path.rstrip("/")
                + ("?" + u.query if u.query else ""))
         if key in seen_path:
-            errors.append(f"{where}: stejné místo jako {seen_path[key]} (liší se jen schéma nebo lomítko)")
+            errors.append(f"{where}: same place as {seen_path[key]} — only the scheme or "
+                          f"a trailing slash differs")
         seen_path[key] = where
         per_country_domain[(s["country"], domain(s["url"]))].append((s["id"], u.path.rstrip("/")))
 
+        if s.get("data") == "none" and CLAIMS_OPEN_DATA.search(desc):
+            warnings.append(f"{where}: data is 'none' but the description says the "
+                            f"source publishes open data — one of the two is wrong")
+
         if s.get("data") == "sw" and s.get("topic") not in (
                 "maplibs", "spatialdb", "routing", "formats", "geocoding", "osint", "learning"):
-            warnings.append(f"{where}: 'sw' u datového tématu '{s.get('topic')}' — je to opravdu nástroj?")
+            warnings.append(f"{where}: 'sw' on data topic '{s.get('topic')}' — is it really a tool?")
 
-    # Jedna doména smí nést víc položek — geoportál, katastrální služba a katalog
-    # WFS jsou tři různé věci na jednom webu. Podezřelé je něco jiného: mít
-    # v katalogu kořen domény *a zároveň* několik jeho podstránek. To bývá
-    # rozcestník rozepsaný na položky, které vedou k témuž.
+    # One domain may legitimately carry several entries — a geoportal, a cadastre
+    # service and a WFS catalogue are three different things on one site. What is
+    # suspicious is holding the domain root *and* several of its subpages: that is
+    # usually one landing page written out as entries that all lead to the same
+    # place.
     for (country, dom), items in per_country_domain.items():
         deep = [i for i, path in items if path]
         if any(not path for _, path in items) and len(deep) >= 4:
-            warnings.append(f"{country}: {dom} má v katalogu kořen i {len(deep)} podstránek — "
-                            "není to jeden rozcestník rozepsaný na položky? " + ", ".join(sorted(deep)[:5]))
+            warnings.append(f"{country}: {dom} is in the catalogue as both the root and "
+                            f"{len(deep)} subpages — one landing page written out as "
+                            "entries? " + ", ".join(sorted(deep)[:5]))
 
-    # Hledá se v kódu, ne v komentářích: docstring, který ten soubor jmenuje
-    # a vysvětluje, proč se na něj nesahá, je v pořádku.
+    # Every tool is forbidden the personal browser export unless it is on the
+    # list below. The polarity matters: a hard-coded list of *checked* tools
+    # missed build_places.py, which `just build` runs, so a read of .cache/
+    # added there would have passed. Deny by default, permit by name.
+    #
+    # Searched in code, not in comments: a docstring that names the file and
+    # explains why nothing may touch it is fine.
     private = ("raw.json", "candidates.json")
-    for name in ("build_catalog.py", "build_page.py", "build_docs.py", "check_links.py"):
-        tree = ast.parse((ROOT / "tools" / name).read_text(encoding="utf-8"))
+    MAY_READ_EXPORT = {
+        "extract.py": "writes the export",
+        "scan.py": "filters the export into candidates",
+        "build_longlist.py": "builds the raw long list from the candidates",
+        "build_provenance.py": "recomputes provenance from the export",
+        "validate_sources.py": "this file — it names the tokens it searches for",
+    }
+    for path in sorted((ROOT / "tools").glob("*.py")):
+        name = path.name
+        if name in MAY_READ_EXPORT:
+            continue
+        tree = ast.parse(path.read_text(encoding="utf-8"))
         docstrings = {ast.get_docstring(n, clean=False) for n in ast.walk(tree)
                       if isinstance(n, (ast.Module, ast.FunctionDef, ast.ClassDef))}
         for node in ast.walk(tree):
@@ -95,58 +128,69 @@ def main() -> int:
             for token in private:
                 if token in node.value:
                     errors.append(
-                        f"tools/{name}: sahá na {token} — veřejný build musí projít bez .cache/")
+                        f"tools/{name}: reads {token} — the public build must run "
+                        f"on a clean clone with no browser profile. Only "
+                        f"{', '.join(sorted(MAY_READ_EXPORT))} may touch the export")
 
-    # ── Graf vazeb mezi tématy ────────────────────────────────────────────────
-    # Vazba je vztah, ne odkaz. Jednosměrná by se při čtení z druhé strany
-    # tiše ztratila — čtenář na téma A uvidí B, ale na B už ne A, a nepozná,
-    # že tam vazba měla být. Symetrie se proto vynucuje, ne doporučuje.
+    # ── Graph of topic relations ──────────────────────────────────────────────
+    # A relation is a relationship, not a link. A one-way one would be lost when
+    # read from the other side: a reader on topic A sees B, on B does not see A,
+    # and cannot tell a relation was meant to be there. Symmetry is enforced.
     topics_raw = json.loads((ROOT / "data" / "topics.json").read_text(encoding="utf-8"))
     rel = {t["id"]: set(t.get("related", ()))
            for g in topics_raw["groups"] for t in g["topics"]}
     for tid, targets in rel.items():
         if tid in targets:
-            errors.append(f"topics {tid}: téma je příbuzné samo se sebou")
+            errors.append(f"topics {tid}: topic is related to itself")
         for other in targets:
             if other not in rel:
-                errors.append(f"topics {tid}: vazba na neznámé téma {other!r}")
+                errors.append(f"topics {tid}: relation to unknown topic {other!r}")
             elif tid not in rel[other]:
-                errors.append(f"topics {tid} ↔ {other}: vazba je jen jednosměrná")
+                errors.append(f"topics {tid} ↔ {other}: relation is only one-way")
 
-    # ── Doložené absence ──────────────────────────────────────────────────────
-    # Číselník děr je tvrzení o tom, co jsme ověřili, že neexistuje. Bez téhle
-    # brány by v něm mohla zůstat buňka, do které někdo mezitím zdroj přidal —
-    # a matice by pak šrafovala místo, kde zdroj je.
+    # ── Documented absences ───────────────────────────────────────────────────
+    # The gap list is a claim about what was verified not to exist. Without this
+    # gate it could keep a cell that someone has since filled with a source — and
+    # the matrix would then hatch a place where a source exists.
+    # Deleting data/gaps.json used to remove this whole block silently: the
+    # summary printed "0 documented absences", the matrix simply stopped
+    # hatching, and nothing turned red. A missing input is not a pass.
     gaps_file = ROOT / "data" / "gaps.json"
+    if not gaps_file.exists():
+        errors.append("data/gaps.json is missing — documented absences cannot be "
+                      "checked. Restore it, or write `{\"gaps\": []}` to say the "
+                      "list is deliberately empty")
     if gaps_file.exists():
         gaps = json.loads(gaps_file.read_text(encoding="utf-8"))
         national = {tid for tid, m in topic_meta.items() if m.get("scope") != "supra"}
-        codes = set(places)          # places je {kód: název}
+        codes = set(places)          # places is {code: name}
         filled = {(s["country"], s["topic"]) for s in sources}
         seen_cell = set()
         for g in gaps["gaps"]:
             cell = (g.get("country"), g.get("topic"))
             where = f"gaps {cell[0]}:{cell[1]}"
             if cell[1] not in topic_meta:
-                errors.append(f"{where}: téma není v data/topics.json")
+                errors.append(f"{where}: topic is not in data/topics.json")
             elif cell[1] not in national:
-                errors.append(f"{where}: téma je nadnárodní — prázdno tam není absence")
+                errors.append(f"{where}: topic is supranational — blank there is not an absence")
             if cell[0] not in codes:
-                errors.append(f"{where}: země není v data/countries.json")
+                errors.append(f"{where}: country is not in data/countries.json")
             if cell in filled:
-                errors.append(f"{where}: buňka má v katalogu zdroj — záznam o absenci je lživý")
+                errors.append(f"{where}: the cell has a source in the catalogue — the absence "
+                              f"record is a lie")
             if cell in seen_cell:
-                errors.append(f"{where}: buňka je v číselníku dvakrát")
+                errors.append(f"{where}: cell is listed twice")
             seen_cell.add(cell)
             if len((g.get("reason") or "").strip()) < 20:
-                errors.append(f"{where}: 'reason' neříká, proč zdroj neexistuje")
+                errors.append(f"{where}: 'reason' does not say why no source exists")
 
     for e in errors:
         print(f"  ✗ {e}")
     for w in warnings:
         print(f"  ⚠ {w}")
-    print(f"validate_sources: {len(sources)} zdrojů · {len(seen_cell) if gaps_file.exists() else 0}"
-          f" doložených absencí · {len(errors)} chyb · {len(warnings)} varování")
+    print(f"validate_sources: {len(sources)} sources · "
+          f"{len(seen_cell) if gaps_file.exists() else 0} documented absences · "
+          f"{len(errors)} errors · {len(warnings)} warnings")
     return 1 if errors else 0
 
 

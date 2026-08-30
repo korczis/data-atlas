@@ -1,0 +1,14 @@
+# Generated files. The source of truth is elsewhere — see AGENTS.md for the map
+# and the command that regenerates each one.
+#
+# linguist-generated collapses them in GitHub diffs and keeps them out of the
+# language statistics. It is a signal, not a guard: it costs nothing and it stops
+# a 1300-line CSV diff from reading like something anyone wrote by hand.
+data/catalog.csv        linguist-generated=true
+data/longlist.csv       linguist-generated=true
+data/provenance.csv     linguist-generated=true
+docs/CATALOG.md         linguist-generated=true
+docs/COVERAGE.md        linguist-generated=true
+src/assets/flags.json   linguist-generated=true
+src/assets/flags.png    linguist-generated=true
+package-lock.json       linguist-generated=true

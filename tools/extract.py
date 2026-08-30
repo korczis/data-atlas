@@ -57,10 +57,10 @@ def history(path: Path, rows: list) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--profile", type=Path, default=DEFAULT_PROFILE,
-                    help="adresář Chrome profilu (výchozí: Default)")
+                    help="Chrome profile directory (default: Default)")
     args = ap.parse_args()
     if not args.profile.is_dir():
-        raise SystemExit(f"profil nenalezen: {args.profile}")
+        raise SystemExit(f"Chrome profile not found: {args.profile}")
 
     rows: list = []
     bookmarks(args.profile, rows)
@@ -73,7 +73,7 @@ def main() -> None:
     out = ROOT / ".cache" / "raw.json"
     out.write_text(json.dumps(rows, ensure_ascii=False), encoding="utf-8")
     domains = {r["domain"] for r in rows if r["domain"]}
-    print(f"{len(rows)} záznamů, {len(domains)} domén → {out.relative_to(ROOT)}")
+    print(f"{len(rows)} records, {len(domains)} domains -> {out.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

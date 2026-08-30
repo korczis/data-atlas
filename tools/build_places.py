@@ -4,11 +4,11 @@
 Proč vlastní stránky a ne jen filtr v jedné aplikaci: filtr žije v hashi,
 takže je pro vyhledávače neviditelný a odkaz „Rakousko" nemá vlastní titulek
 ani popis. Stránka na `/at/` má obojí, dá se sdílet a indexovat a nese jen
-data té země — místo 1347 položek jich načte kolem padesáti.
+data té země — místo celého katalogu jich načte řádově desítky.
 
 **Nejsou to kopie hlavní stránky.** Ta zůstává soběstačná, se vším vloženým
 dovnitř. Stránky zemí naopak sdílejí `assets/atlas.css` a `assets/atlas.js`:
-třiatřicet kopií stotřicetikilobajtového runtime by byly čtyři megabajty
+kopie stotřicetikilobajtového runtime v každé zemi by byly megabajty
 duplikátu za nic. Cena je jeden požadavek navíc, který se hned kešuje.
 
 Vše se generuje z `data/catalog.csv`, `data/topics.json` a
@@ -270,11 +270,11 @@ def main() -> int:
     write_sitemap(written)
 
     total = sum(size for _, _, size in written)
-    print(f"  stránky zemí: {len(written)} · celkem {total / 1024:.0f} KB · "
-          f"největší {max(size for _, _, size in written) / 1024:.0f} KB")
-    print(f"  sdílený runtime: atlas.css {(assets / 'atlas.css').stat().st_size / 1024:.0f} KB"
+    print(f"  country pages: {len(written)} · {total / 1024:.0f} KB total · "
+          f"largest {max(size for _, _, size in written) / 1024:.0f} KB")
+    print(f"  shared runtime: atlas.css {(assets / 'atlas.css').stat().st_size / 1024:.0f} KB"
           f" · atlas.js {(assets / 'atlas.js').stat().st_size / 1024:.0f} KB")
-    print(f"  sitemapa: {len(written) + 2} adres")
+    print(f"  sitemap: {len(written) + 2} URLs")
     return 0
 
 

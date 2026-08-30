@@ -45,8 +45,9 @@ def main() -> int:
     raw = CACHE / "raw.json"
     if not raw.exists():
         sys.stderr.write(
-            f"  {raw.relative_to(ROOT)} chybí — doložení se přepočítat nedá.\n"
-            "  Spusť `just extract` nad Chrome profilem; data/provenance.csv zůstává beze změny.\n")
+            f"  {raw.relative_to(ROOT)} is missing — provenance cannot be recomputed.\n"
+            "  Run `just extract` against a Chrome profile; data/provenance.csv is left "
+            "untouched.\n")
         return 1
 
     rows = json.loads(raw.read_text(encoding="utf-8"))
@@ -98,7 +99,7 @@ def main() -> int:
         w = csv.writer(fh)
         w.writerow(["id", "url", "Zdroj", "Návštěvy", "Unikátních URL", "Poslední návštěva"])
         w.writerows(out)
-    print(f"doložení: {len(out)} položek z {len(rows)} záznamů prohlížeče")
+    print(f"provenance: {len(out)} entries from {len(rows)} browser records")
     return 0
 
 

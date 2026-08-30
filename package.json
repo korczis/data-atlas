@@ -2,7 +2,7 @@
   "name": "data-atlas",
   "version": "1.0.0",
   "private": true,
-  "description": "Katalog GIS a geodatových zdrojů sestavený z Chrome záložek a historie",
+  "description": "Katalog geodat, otevřených dat, veřejných registrů a OSINT/DD zdrojů Evropské unie",
   "homepage": "https://korczis.github.io/data-atlas/",
   "repository": {
     "type": "git",
@@ -11,15 +11,16 @@
   "author": "Tomáš Korčák",
   "license": "MIT",
   "scripts": {
-    "build": "python3 tools/build_page.py",
-    "test": "node tests/smoke.mjs && node tests/interact.mjs && node tests/meta.mjs && node tests/flowbite.mjs",
-    "serve": "python3 -m http.server 8000 --directory dist",
-    "assets": "python3 tools/build_assets.py",
-    "lint": "python3 tools/lint_ui.py",
-    "responsive": "python3 tools/check_responsive.py",
-    "a11y": "python3 tools/check_a11y.py",
-    "links": "python3 tools/check_links.py",
-    "e2e": "playwright test"
+    "build": "just build",
+    "test": "just test",
+    "lint": "just lint",
+    "check": "just check",
+    "serve": "just serve",
+    "assets": "just assets",
+    "responsive": "just responsive",
+    "a11y": "just a11y",
+    "links": "just links",
+    "e2e": "just e2e"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",

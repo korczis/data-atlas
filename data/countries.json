@@ -1,5 +1,5 @@
 {
-  "_comment": "Země a rozsahy platnosti. 'eu' označuje členské státy EU; 'scope' odlišuje nadnárodní rozsahy od států. Filtr země je přesná shoda — celoevropský zdroj se needituje 27×, je jednou pod EU. Pořadí klíčů je pořadí v UI. 'acc' je 4. pád názvu pro nadpisy stránek zemí: „Otevřít Rakousko\" vedle „Otevřít Belgii\" je rozdíl, který čtenář uslyší. Chybí-li, použije se nominativ — neobratné, ale nic to nerozbije. Dokud tahle tabulka žila v tools/build_places.py, byl název země na dvou místech a číselník nebyl zdrojem pravdy.",
+  "_comment": "Země a rozsahy platnosti. 'eu' označuje členské státy EU; 'scope' odlišuje nadnárodní rozsahy od států. Filtr země je přesná shoda — celoevropský zdroj se needituje 27×, je jednou pod EU. Pořadí položek v poli je pořadí v UI. 'acc' je 4. pád názvu pro nadpisy stránek zemí: „Otevřít Rakousko\" vedle „Otevřít Belgii\" je rozdíl, který čtenář uslyší. Chybí-li, použije se nominativ — neobratné, ale nic to nerozbije. Dokud tahle tabulka žila v tools/build_places.py, byl název země na dvou místech a číselník nebyl zdrojem pravdy.",
   "scopes": [
     {
       "code": "EU",

@@ -9,14 +9,19 @@ COVERAGE.md je matice země × rodina témat: ukazuje, kde katalog něco má a k
 zeje díra. Ručně udržovaná matice by zestárla při prvním přidaném zdroji,
 takže se počítá z dat.
 """
-import csv, collections, json
+import csv, collections, json, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Matice po jednotlivých tématech by měla 33 sloupců a nedala by se přečíst.
-# Rodiny odpovídají otázkám, které si člověk klade při due diligence:
+# Matice po jednotlivých tématech by měla sloupec na každé téma a nedala by se
+# přečíst. Rodiny odpovídají otázkám, které si člověk klade při due diligence:
 # „vidím pozemek?", „vidím firmu?", „vidím peníze?", „vidím riziko?".
+#
+# Co do žádné rodiny nespadne, sesype `families()` do sloupce „Ostatní". Bez
+# něj se součet na konci řádku nerovnal viditelným buňkám — GLOBAL ukazoval
+# 38 a Σ 130, GB měl prázdný řádek a Σ 3 — a devět témat z matice tiše zmizelo.
+# Odvozuje se to z dat, takže nové téma se v matici objeví samo.
 FAMILIES = [
     ("Geo",       ["geoportal", "terrain", "basemaps", "remote-sensing"]),
     ("Katastr",   ["cadastre"]),
@@ -113,6 +118,16 @@ def catalog_md(rows) -> str:
     return "\n".join(out)
 
 
+CATCH_ALL = "Ostatní"
+
+
+def families(topics) -> list[tuple[str, list[str]]]:
+    """FAMILIES plus a trailing catch-all, so every topic lands in some column."""
+    known = {t for _, ts in FAMILIES for t in ts}
+    rest = [t["id"] for g in topics["groups"] for t in g["topics"] if t["id"] not in known]
+    return FAMILIES + ([(CATCH_ALL, rest)] if rest else [])
+
+
 def coverage_md(rows) -> str:
     topics = json.loads((ROOT / "data" / "topics.json").read_text(encoding="utf-8"))
     countries = json.loads((ROOT / "data" / "countries.json").read_text(encoding="utf-8"))
@@ -125,6 +140,16 @@ def coverage_md(rows) -> str:
         grid[r["Kód"]][r["Téma ID"]] += 1
     present = [c for c in order if c in grid]
 
+    # data/gaps.json exists to tell "we looked, there is nothing" apart from
+    # "nobody looked yet". The page hatches the difference; until now this
+    # matrix rendered both as the same blank cell, which is the one place the
+    # distinction actually decides how much work is left.
+    gaps_file = ROOT / "data" / "gaps.json"
+    gaps = set()
+    if gaps_file.exists():
+        gaps = {(g["country"], g["topic"])
+                for g in json.loads(gaps_file.read_text(encoding="utf-8"))["gaps"]}
+
     out = [
         "<!-- Generováno `just docs` — needituj ručně. -->",
         "",
@@ -132,25 +157,59 @@ def coverage_md(rows) -> str:
         "",
         "Matice země × rodina témat. Číslo je počet zdrojů, prázdné pole znamená, "
         "že v katalogu k té rodině pro tu zemi nic není — buď to ještě nikdo "
-        "nedohledal, nebo tam veřejně nic takového neexistuje. Poznámky "
-        "k druhé možnosti patří do `docs/EU-EXPANSION-PLAN.md`.",
+        "nedohledal, nebo tam veřejně nic takového neexistuje. Ověřená druhá "
+        "možnost se zapisuje do [`data/gaps.json`](../data/gaps.json); tady ji "
+        "nese `·`, na stránce šrafování.",
+        "",
+        "`·` znamená, že doložená je **každá** položka za tou buňkou. Sloupec "
+        "sdružující víc témat ho proto dostane až tehdy, když je doložený celý — "
+        "jedna doložená absence ve čtyřtématovém sloupci se schová do prázdna. "
+        "Prázdná buňka tedy znamená „díra, nebo zčásti doložená díra\u201c; "
+        "přesné rozlišení po tématech je na stránce a v "
+        "[`data/gaps.json`](../data/gaps.json).",
         "",
         "Sloupce sdružují příbuzná témata; úplné členění je v "
-        "[`data/topics.json`](../data/topics.json).",
+        f"[`data/topics.json`](../data/topics.json). Poslední sloupec "
+        f"`{CATCH_ALL}` nese témata, která do žádné rodiny nespadla (nástroje, "
+        f"formáty, OSINT, archivy), takže Σ je vždy součet viditelných buněk.",
         "",
     ]
-    head = "| Země | " + " | ".join(f for f, _ in FAMILIES) + " | Σ |"
-    out += [head, "|" + "---|" * (len(FAMILIES) + 2)]
+    fams = families(topics)
+    headers = {f for f, _ in fams}
+    prose = "\n".join(l for l in out if not l.startswith("<!--"))
+    for token in re.findall(r"`([^`]+)`", prose):
+        if "/" in token or "." in token or token == "·":
+            continue                       # a path or the marker, not a column
+        if token not in headers:
+            raise SystemExit(
+                f"build_docs: the preamble names a column `{token}` that the "
+                f"matrix does not have. Columns: {', '.join(sorted(headers))}")
+    head = "| Země | " + " | ".join(f for f, _ in fams) + " | Σ |"
+    out += [head, "|" + "---|" * (len(fams) + 2)]
     for code in present:
         cells = []
-        for _, ts in FAMILIES:
+        for _, ts in fams:
             n = sum(grid[code][t] for t in ts)
-            cells.append(str(n) if n else "")
+            if n:
+                cells.append(str(n))
+            else:
+                # `·` only when every topic behind the empty cell is a
+                # documented absence; a family with one gap and three
+                # unexamined topics is still a hole.
+                #
+                # So the marker's precision varies by column. In a one-topic
+                # family (Katastr, Insolvence) it is exact. In a four-topic one
+                # (Geo) a single documented absence shows as nothing, and this
+                # matrix under-reports work that data/gaps.json records and the
+                # page hatches per topic. `·` means "every topic behind this
+                # cell is documented", never "this area is settled".
+                documented = ts and all((code, t) in gaps for t in ts)
+                cells.append("·" if documented else "")
         total = sum(grid[code].values())
         out.append(f"| `{code}` {names[code]} | " + " | ".join(cells) + f" | **{total}** |")
 
     missing = sorted(eu - set(grid))
-    out += ["", f"**Členských států v katalogu:** {len(eu & set(grid))} z 27."]
+    out += ["", f"**Členských států v katalogu:** {len(eu & set(grid))} z {len(eu)}."]
     if missing:
         out.append("**Bez jediného zdroje:** " + ", ".join(f"`{c}`" for c in missing) + ".")
     out += ["", "## Podle témat", "",

@@ -29,7 +29,7 @@ NOISE = re.compile(
 def main() -> int:
     src = CACHE / "candidates.json"
     if not src.exists():
-        print(f"  {src.relative_to(ROOT)} chybí — spusť `just extract` a `just scan`")
+        print(f"  {src.relative_to(ROOT)} is missing — run `just extract` and `just scan` first")
         return 1
     cand = json.loads(src.read_text(encoding="utf-8"))
     with (CACHE / "longlist.raw.csv").open("w", newline="", encoding="utf-8-sig") as fh:
@@ -44,7 +44,7 @@ def main() -> int:
             w.writerow([d, e["visits"], len(e["urls"]), e["bm"], e["hist"], e["last"][:10],
                         t[0][0] if t else "", sorted(e["urls"])[0][:150]])
             n += 1
-    print(f"long list: {n} kandidátů → .cache/longlist.raw.csv")
+    print(f"long list: {n} candidates -> .cache/longlist.raw.csv")
     return 0
 
 

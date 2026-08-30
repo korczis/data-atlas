@@ -6,30 +6,6 @@ soudy, regulace a rizika. Prohledávatelný, filtrovatelný, na jedné stránce.
 
 **→ [korczis.github.io/data-atlas](https://korczis.github.io/data-atlas/)**
 
-Projekt se jmenoval Geodata Atlas, dokud šlo o geodata. Dnes je většina katalogu
-jinde — registry, insolvence, dohled, transparence — a název i adresa tomu
-odpovídají. **Starý odkaz `korczis.github.io/geodata-atlas/` po přejmenování
-vrací 404**; GitHub Pages přesměrování na novou cestu nedělá.
-
-Klíč v `localStorage` zůstává `geodata-atlas-theme` schválně. Origin je
-`korczis.github.io`, sdílený se všemi projekty na tom účtu, takže klíč je jen
-jmenný prostor — a jeho přejmenování by každému návštěvníkovi tiše smazalo
-uloženou volbu motivu.
-
-### Náhledové obrázky
-
-`just assets` generuje ikony i oba náhledy z **dat**, ne z ručně psaných čísel,
-takže po přírůstku katalogu nelžou:
-
-| Soubor | Rozměr | K čemu |
-|---|---|---|
-| `static/og-image.png` | 1200×630 | `og:image` a `twitter:image` — odkaz sdílený na sítích |
-| `static/social-preview.png` | 1280×640 | **Social preview repozitáře** — nahrává se ručně v Settings → General → Social preview |
-
-Náhled repozitáře nese matici pokrytí ve stejném barevném klíči jako stránka
-(odstín = rodina tématu, sytost = počet zdrojů). Čísla v buňkách na něm
-schválně nejsou: náhled se v odkazech zmenšuje a byla by z nich šmouha.
-
 Jádro katalogu vzniklo z vlastních Chrome záložek a historie: co jsem za roky práce
 s geodaty reálně používal. Zbytek je rešerše — všech 27 členských států, zdroj po zdroji,
 s ověřenou adresou a popsaným způsobem přístupu.
@@ -52,17 +28,25 @@ je `MT` bez ohledu na to, jestli jde o katastr nebo o soudy.
 Celoevropské zdroje (TED, data.europa.eu, Eurostat, BRIS, VIES, EBA, ESMA…) stojí
 pod rozsahem `EU` a needitují se sedmadvacetkrát; celosvětové pod `GLOBAL`.
 
+Prázdné políčko v matici pokrytí má dva různé významy a katalog je rozlišuje.
+Buď se tam ještě nikdo nedíval, nebo se díval a doložil, že takový zdroj v té
+zemi veřejně není. Druhý případ se zapisuje i s důvodem do
+[`data/gaps.json`](data/gaps.json) a stránka takovou buňku šrafuje. Bez toho
+rozdílu vypadá „ověřili jsme, neexistuje" stejně jako „nikdo se nedíval"
+a nejde říct, kolik práce ještě zbývá.
+
 Plný výpis je v [`docs/CATALOG.md`](docs/CATALOG.md), matice pokrytí
 v [`docs/COVERAGE.md`](docs/COVERAGE.md), strojově čitelně v [`data/catalog.csv`](data/catalog.csv).
-Jak přidat zemi nebo zdroj popisuje [`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md).
+Jak přidat zemi nebo zdroj popisuje [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md);
+jak vzniklo pokrytí všech 27 států [`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md).
 
 ## Co katalog říká o přístupu
 
 U každého zdroje stojí, **jestli se dovnitř dostaneš** a **co si odneseš** — jsou to dvě
 různé věci a u registrů, kvůli kterým katalog vzniká, se pravidelně pletou.
 
-- `open` · `registration` · `paid` · `mixed` · `restricted` — překážka v přístupu
-- `bulk` · `api` · `ogc` · `download` · `search` · `none` — strojová dostupnost
+- `open` · `registration` · `paid` · `mixed` · `restricted` · `unknown` — překážka v přístupu
+- `bulk` · `api` · `ogc` · `download` · `search` · `sw` · `none` · `unknown` — strojová dostupnost
 
 **Veřejné vyhledávání není otevřená data.** Rejstřík, ve kterém si kdokoli najde firmu,
 ale nedá se stáhnout, je `open` + `search`. Rozdíl mezi „vidím to v prohlížeči"
@@ -89,14 +73,19 @@ a tvářil se jako nejnavštěvovanější položka katalogu.
 ## Práce s repozitářem
 
 ```bash
+just             # všechny recepty
+just help        # shrnutí workflow a výpis toho, co `just check` opravdu pouští
 just install     # npm závislosti
 just catalog     # data/catalog.csv z data/sources/*.json
-just build       # dist/index.html z data/catalog.csv
-just check       # validace dat + build + lint + testy + responzivita + a11y
+just build       # dist/ z data/catalog.csv — hlavní stránka i stránky zemí
+just check       # brána: vše, co pouští CI. Deterministické a offline
 just links       # ověření odkazů (chodí po síti; --country AT, --topic companies, --changed)
 just serve       # náhled na localhost:8000
-just             # všechny recepty
 ```
+
+Pravidla, kterými se řídí úpravy — zdroj pravdy, generované soubory, pasti
+a definice hotového — jsou v [`AGENTS.md`](AGENTS.md); postup pro Claude Code
+v [`CLAUDE.md`](CLAUDE.md). Obojí je anglicky, protože to čtou agenti.
 
 ### Datový řetěz
 
@@ -129,11 +118,17 @@ offline i pod přísným CSP.
 
 Z Flowbite se bundluje jen to, co markup opravdu používá: plný `flowbite.min.js`
 má 133 kB a nese accordion, carousel či datepicker, které tu nejsou — výřez
-s jediným šuplíkem má 9 kB.
+s šuplíkem a dropdownem má zhruba čtvrtinu. Změřit to jde na
+`.cache/flowbite-min.js`, který esbuild nechává po buildu ležet.
 
-Hlídá to pět testových sad (`smoke` · `interact` · `meta` · `flowbite` ·
-`places`), validace kurátorovaných dat, linter konvencí, měření responzivity
-a audit přístupnosti přes axe-core — vše v `just check`. Responzivita i axe
+Hlídá to pět jsdom sad (`smoke` · `interact` · `meta` · `flowbite` · `places`),
+proklik v opravdovém Chromu přes Playwright, validace kurátorovaných dat, linter
+konvencí, měření responzivity a sazby a audit přístupnosti přes axe-core.
+Pod `just lint` k tomu běží ještě tři kontroly samotného repozitáře:
+`tools/check_docs.py` (odkazy, cesty a názvy receptů v Markdownu i v `just help`),
+`tools/check_gate.py` (že `just check` je pořád celá brána) a
+`tools/check_runtime_classes.py` (třídy, které Flowbite přidává až za běhu).
+Všechno je v `just check` a `just help` to vypíše; responzivita, sazba i axe
 běží nad oběma šablonami, ne jen nad hlavní stránkou.
 
 ### Rozvržení
@@ -148,7 +143,7 @@ ukládá a razí se ještě před vykreslením, aby při uložené tmavé neprob
 světlá stránka. Pod záhlavím stránky stojí **čipy aktivních filtrů**, každý
 maže jen svůj filtr; hlavička tabulky je lepivá.
 
-Panel nese obě osy: **země** s vlastním filtrovacím polem (sedmadvacet států
+Panel nese obě osy: **země** s vlastním filtrovacím polem (státy
 plus nadnárodní rozsahy se do plochého seznamu nevejde) a **témata** seskupená
 do šesti rodin. Počty se počítají křížem — při vybraném Rakousku ukazují témata
 počty v Rakousku, při vybraném tématu ukazují země počty v tom tématu.
@@ -160,8 +155,8 @@ odvozené z dat a rychlé vstupy po zemích a tématech. Jakýkoli filtr ho scho
 takže sdílený odkaz jako `#country=DE&topic=companies` vede rovnou do dat —
 rozcestník by překážel právě těm, kdo už vědí, co hledají.
 
-Katalog se vykresluje **po dávkách** — všech 1050 položek naráz znamenalo na
-telefonu 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky. Doscrollování
+Katalog se vykresluje **po dávkách** — při tisícovce položek znamenalo vykreslit
+všechny naráz na telefonu 16 453 uzlů DOM a vteřiny prázdné, nereagující stránky. Doscrollování
 načte další; počty i export do CSV přitom pracují s celým výběrem, ne s tím,
 co je zrovna na obrazovce.
 
@@ -203,16 +198,36 @@ u stovky položek je stránkování levnější i srozumitelnější.
 
 ### Přidání zdroje
 
-Edituj `data/sources/<KÓD>.json`, pak `just validate`, `just links --changed`
-a `just catalog docs build`. Schéma, číselníky a pravidla pro klasifikaci přístupu
-jsou v [`docs/EU-EXPANSION-PLAN.md`](docs/EU-EXPANSION-PLAN.md).
+```bash
+$EDITOR data/sources/AT.json     # zdroj pravdy — jeden soubor na zemi nebo rozsah
+just validate                    # kvalita popisu, data ověření, díry a vazby
+just links --changed             # ověří jen to, co jsi přidal (chodí po síti)
+just check                       # přegeneruje katalog i docs a projde vším
+git add data/sources/AT.json data/catalog.csv docs/CATALOG.md docs/COVERAGE.md
+```
 
-### Ikony a OG karta
+Poslední řádek není formalita: `data/catalog.csv` a obojí `docs/*.md` se
+přegenerovaly a musí do stejného commitu jako zdroj, jinak CI hlásí nesoulad,
+který je na disku už opravený. Konec `just check` vypíše, čeho se to týká.
 
-`static/` obsahuje vygenerované ikony, favicon, maskable ikonu a sociální kartu
-1200×630. Zdroje jsou v `src/assets/` (`icon.svg`, `og.html`); přegeneruje je
-`just assets` — potřebuje headless Chrome a ImageMagick. Výstupy jsou
+Schéma, číselníky a pravidla pro klasifikaci přístupu jsou
+v [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md).
+
+### Ikony a náhledové obrázky
+
+`static/` obsahuje vygenerované ikony, favicon, maskable ikonu a dva náhledy.
+Zdroje jsou v `src/assets/` (`icon.svg`, `og.html`, `social.html`); přegeneruje
+je `just assets` — potřebuje headless Chrome a ImageMagick. Výstupy jsou
 committnuté, aby CI nemuselo nic renderovat.
+
+| Soubor | Rozměr | K čemu |
+|---|---|---|
+| `static/og-image.png` | 1200×630 | `og:image` a `twitter:image` — odkaz sdílený na sítích |
+| `static/social-preview.png` | 1280×640 | **Social preview repozitáře** — nahrává se ručně v Settings → General → Social preview |
+
+Náhled repozitáře nese matici pokrytí ve stejném barevném klíči jako stránka
+(odstín = rodina tématu, sytost = počet zdrojů). Čísla v buňkách na něm
+schválně nejsou: náhled se v odkazech zmenšuje a byla by z nich šmouha.
 
 Počty na kartě i v `<meta name="description">` se berou z `data/catalog.csv`.
 Nikde se nepíšou ručně, takže nemůžou zestárnout.
@@ -284,11 +299,11 @@ a rozliší:
 | Stav | Co znamená |
 |---|---|
 | `ok` | 2xx a cíl sedí |
-| `přesměrování` | web se přestěhoval — stojí za pohled, ale často jde jen o jazykovou mutaci nebo session ID |
-| `blokuje` | 403 na automat, v prohlížeči funguje (Cloudflare a spol.) |
-| `certifikát` | TLS selže, přes `-k` obsah naskočí — vada webu, ne katalogu |
-| `deklarováno` | zdroj má v datech `check: anti-bot`: server spojení po handshaku zahodí, přestože web žije. **Ověřuje se ručně** |
-| `chyba` | opravdu nikam nevede |
+| `redirect` | web se přestěhoval — stojí za pohled, ale často jde jen o jazykovou mutaci nebo session ID |
+| `blocked` | 403 nebo 405 na automat, v prohlížeči funguje (Cloudflare, AWS WAF a spol.) |
+| `certificate` | TLS selže, přes `-k` obsah naskočí — vada webu, ne katalogu |
+| `declared` | zdroj má v datech `check: anti-bot`: server spojení po handshaku zahodí, přestože web žije. **Ověřuje se ručně** |
+| `error` | opravdu nikam nevede |
 
 Rozlišení není puntičkářství: první běh nahlásil osm chyb, ze kterých byly
 **tři skutečné**. Zbytek byly bot ochrany, vypršelý certifikát a — hlavně —
@@ -315,15 +330,20 @@ aby ji nešlo zveřejnit omylem:
 - do `data/longlist.csv` se dostane jen to, co projde `tools/sanitize.py`
 - sanitizer je allowlist-first: vyhazuje interní hostnames, privátní a VPN
   adresy, tunely, zdravotnické a identitní služby, a všechno, co netrefí
-  téma geo/data. Z 192 kandidátů projde 53.
+  téma geo/data. Projde menšina kandidátů; co prošlo, je `data/longlist.csv`.
 - test relevance běží **jen nad doménou**, ne nad titulkem stránky — české
   e-shopy inzerují „Doprava zdarma", což na `doprav` sedne stejně dobře
   jako Ředitelství silnic a dálnic
 - hostnames vlastní sítě patří do `config/private-hosts.txt`, který je také
-  v `.gitignore`. Committnuté pravidlo `^orin\.` je stejný únik jako
-  committnutý hostname, proto v `tools/sanitize.py` zůstávají jen obecné
-  vzory (holé IP, tunely, `.local`). Šablona je
+  v `.gitignore`. Pravidlo pojmenovávající konkrétní stroj je committnuté
+  stejný únik jako committnutý hostname — proto v `tools/sanitize.py` zůstávají
+  jen obecné vzory (holé IP, tunely, `.local`, `intranet.`) a proto ani tenhle
+  odstavec žádné takové pravidlo neuvádí jako příklad. Šablona je
   [`config/private-hosts.example.txt`](config/private-hosts.example.txt)
+- **bez `config/private-hosts.txt` sanitizer neběží.** Dřív jen vypsal
+  poznámku a pokračoval, takže na cizím stroji tiše platily jen obecné vzory
+  a interní hostnames mohly projít do zveřejněného long listu. Kdo ten soubor
+  vědomě nemá, musí to říct: `python3 tools/sanitize.py --no-private-hosts`
 
 Před každým zveřejněním stojí za to projet `python3 tools/sanitize.py` a
 podívat se, co vyhodilo.
@@ -333,6 +353,18 @@ podívat se, co vyhodilo.
 Je to soupis **zdrojů a služeb**, ne databáze osob. Zdroj, který je za
 přihlášením, za platbou nebo za oprávněným zájmem, se zapíše s uvedením
 té překážky — neobchází se.
+
+## Jméno projektu
+
+Projekt se jmenoval Geodata Atlas, dokud šlo o geodata. Dnes je většina katalogu
+jinde — registry, insolvence, dohled, transparence — a název i adresa tomu
+odpovídají. **Starý odkaz `korczis.github.io/geodata-atlas/` po přejmenování
+vrací 404**; GitHub Pages přesměrování na novou cestu nedělá.
+
+Klíč v `localStorage` zůstává `geodata-atlas-theme` schválně. Origin je
+`korczis.github.io`, sdílený se všemi projekty na tom účtu, takže klíč je jen
+jmenný prostor — a jeho přejmenování by každému návštěvníkovi tiše smazalo
+uloženou volbu motivu.
 
 ## Licence
 

@@ -13,8 +13,9 @@ do veřejného repozitáře, musí z něj pryč tři skupiny:
 Skript je záměrně allowlist-first: co neprojde `RELEVANT`, vypadne. Je lepší
 zahodit hraniční kandidáty než omylem publikovat něco osobního.
 """
-import csv, re, sys
+import argparse, csv, re, sys
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / ".cache" / "longlist.raw.csv"
@@ -30,7 +31,46 @@ INFRA = re.compile(r"""
     | ngrok | trycloudflare | loca\.lt   # veřejné tunely
     | ^localhost$
     | \.local$ | \.internal$ | \.lan$ | \.home\.arpa$
+    | ^intranet\. | \.intranet\. | ^intra\.   # vnitřní weby organizací
 """, re.I | re.X)
+
+# ── ukázkové sloupce ──────────────────────────────────────────────────────────
+# `Ukázkový titulek` a `Ukázková URL` se z historie kopírovaly doslova. Doména
+# projde allowlistem, tyhle dva sloupce ale neprocházely ničím — a nesly přesně
+# to, co po člověku v historii zůstane: `?_ga=` s trvalým identifikátorem
+# prohlížeče, `ico=` konkrétní prověřované firmy, id parcely v katastru,
+# kampaňový token z e-mailu, adresu vlastního API účtu, stránky přihlášení
+# a registrace. Přes `tools/build_page.py` se to vkládalo do `dist/index.html`
+# i do artefaktu, tedy na veřejný web, kde se v tom dalo fulltextově hledat.
+#
+# Ukázka má říct „takhle na té doméně vypadá stránka", ne „tohle jsem tam
+# dělal". Dotaz tu první informaci nikdy nenese a tu druhou skoro vždy, takže
+# padá celý; cesta do účtu padá s ní a bere s sebou i titulek, aby nezůstal
+# popis stránky bez adresy.
+ACCOUNT_PATH = re.compile(
+    r"/(account|ucet|login|prihlaseni|signin|auth|register|registrace|zadost"
+    r"|zadosti|identity|profile|profil|admin|dashboard)", re.I)
+
+# Titulek prozradí účet i tam, kde cesta mlčí: `/zadostdp` je neprůhledné,
+# ale „Žádosti - prihlaseni" ne.
+ACCOUNT_TITLE = re.compile(
+    r"přihlá|prihla|odhlá|login|sign in|registrace|register|můj účet|my account",
+    re.I)
+
+
+def scrub_sample(row: dict) -> dict:
+    url = (row.get("Ukázková URL") or "").strip()
+    if not url:
+        return row
+    parts = urlsplit(url)
+    if ACCOUNT_PATH.search(parts.path) or ACCOUNT_TITLE.search(row.get("Ukázkový titulek") or ""):
+        row["Ukázková URL"] = urlunsplit((parts.scheme, parts.netloc, "", "", ""))
+        row["Ukázkový titulek"] = ""
+    else:
+        row["Ukázková URL"] = urlunsplit(
+            (parts.scheme, parts.netloc, parts.path, "", ""))
+    return row
+
 
 PRIVATE_HOSTS = ROOT / "config" / "private-hosts.txt"
 
@@ -82,8 +122,17 @@ RELEVANT = re.compile(r"""
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    # Bez denylistu se dřív pokračovalo s poznámkou. Na cizím stroji tím tiše
+    # platily jen obecné vzory, a co pouštěl committnutý allowlist, prošlo do
+    # zveřejněného long listu. Mlčky publikovat je horší než nespustit se.
+    ap.add_argument("--no-private-hosts", action="store_true",
+                    help="run without config/private-hosts.txt (generic rules only)")
+    args = ap.parse_args()
+
     if not RAW.exists():
-        print(f"chybí {RAW} — spusť nejdřív `just catalog`", file=sys.stderr)
+        print(f"{RAW.relative_to(ROOT)} is missing — run `just extract`, "
+              f"`just scan` and `just longlist` first", file=sys.stderr)
         return 1
 
     with RAW.open(encoding="utf-8-sig") as fh:
@@ -91,6 +140,14 @@ def main() -> int:
         fields = rows[0].keys() if rows else []
 
     private = private_host_pattern()
+    if private is None and not args.no_private_hosts:
+        print(f"{PRIVATE_HOSTS.relative_to(ROOT)} is missing — the site-specific "
+              f"denylist would not apply and internal hostnames could reach "
+              f"data/longlist.csv.\n"
+              f"  Copy config/private-hosts.example.txt to it, or pass "
+              f"--no-private-hosts to run with the generic rules only.",
+              file=sys.stderr)
+        return 1
     kept, dropped = [], {"infrastruktura": [], "citlivé": [], "šum": []}
     for r in rows:
         dom = r["Doména"]
@@ -108,11 +165,11 @@ def main() -> int:
     with OUT.open("w", newline="", encoding="utf-8-sig") as fh:
         w = csv.DictWriter(fh, fieldnames=list(fields))
         w.writeheader()
-        w.writerows(kept)
+        w.writerows(scrub_sample(r) for r in kept)
 
     if private is None:
-        print(f"pozn.: {PRIVATE_HOSTS.relative_to(ROOT)} neexistuje — "
-              "filtrují se jen obecná infrastrukturní pravidla")
+        print(f"pozn.: běží bez {PRIVATE_HOSTS.relative_to(ROOT)} "
+              "(--no-private-hosts) — filtrují se jen obecná pravidla")
     print(f"long list: {len(rows)} → {len(kept)} zveřejnitelných")
     for label, doms in dropped.items():
         print(f"  vyřazeno ({label}): {len(doms)}")

@@ -55,6 +55,6 @@ with listing.open("w", encoding="utf-8") as fh:
         t = collections.Counter(e['titles']).most_common(1)
         t = t[0][0][:60] if t else ''
         fh.write(f"{d:38s} v={e['visits']:<5d} u={len(e['urls']):<4d} bm={e['bm']:<3d} last={e['last'][:10]:12s} {t}\n")
-print(f"{len(out)} kandidátských domén → {listing.relative_to(ROOT)}")
+print(f"{len(out)} candidate domains -> {listing.relative_to(ROOT)}")
 json.dump({d:{**e,"urls":sorted(e["urls"])} for d,e in out},
           open(CACHE/"candidates.json","w",encoding="utf-8"), ensure_ascii=False, default=list)

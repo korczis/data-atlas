@@ -5,7 +5,8 @@ name: Pages
 on:
   push:
     branches: [main]
-    paths: ['data/**', 'src/**', 'tools/**', 'package*.json', '.github/workflows/pages.yml']
+    paths: ['data/**', 'src/**', 'tools/**', 'static/**', 'tests/**', 'package*.json',
+            'justfile', '.gitattributes', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -35,45 +36,33 @@ jobs:
 
       - run: npm ci
 
-      - name: Kurátorovaná data
+      - name: Instalace just
         run: |
-          python3 tools/validate_sources.py
-          python3 tools/build_catalog.py
-
-      - name: Build
-        run: |
-          python3 tools/build_page.py
-          python3 tools/build_places.py
-
-      - name: Konvence UI
-        run: |
-          python3 tools/lint_ui.py
-          python3 tools/check_runtime_classes.py
-
-      - name: Responzivita a přístupnost
-        run: |
-          python3 tools/check_responsive.py
-          python3 tools/check_responsive.py --page place
-          python3 tools/check_typography.py
-          python3 tools/check_typography.py --page place
-          python3 tools/check_a11y.py
-          python3 tools/check_a11y.py --page place
-
-      - name: Test
-        run: |
-          node tests/smoke.mjs
-          node tests/interact.mjs
-          node tests/meta.mjs
-          node tests/flowbite.mjs
-          node tests/places.mjs
+          curl -fsSL -o just.tar.gz \
+            https://github.com/casey/just/releases/download/1.58.0/just-1.58.0-x86_64-unknown-linux-musl.tar.gz
+          echo "4a5cc2f53e6f0f8c59092a6cc38291eb729d46a7dd95d3ae582008881b84931d  just.tar.gz" | sha256sum -c -
+          sudo tar -xzf just.tar.gz -C /usr/local/bin just
+          rm just.tar.gz
 
       # Proklik v opravdovém prohlížeči. Bere se Chrome z runneru
       # (`--only-shell` nestačí, config jede na channel: 'chrome'),
       # takže se nestahuje celý Chromium.
-      - name: Proklik v prohlížeči
+      - name: Chrome pro Playwright
+        run: npx playwright install --with-deps chrome
+
+      # Staví dist/ a projde všemi kontrolami — týmiž, co v ci.yml, protože
+      # obojí je `just check`. Nasazuje se jen to, co prošlo.
+      - name: just check
+        run: just check
+
+      # ci.yml běží jen mimo main (branches-ignore), takže přímý push do main
+      # by se jinak nasadil bez jediné kontroly, že generované soubory sedí.
+      - name: Generované soubory jsou committnuté
         run: |
-          npx playwright install --with-deps chrome
-          npx playwright test
+          git diff --exit-code data/catalog.csv \
+            || { echo "::error::data/catalog.csv neodpovídá data/sources/*.json — spusť 'just catalog' a commitni výsledek"; exit 1; }
+          git diff --exit-code docs/CATALOG.md docs/COVERAGE.md \
+            || { echo "::error::docs/ neodpovídá data/catalog.csv — spusť 'just docs' a commitni výsledek"; exit 1; }
 
       - uses: actions/configure-pages@v6
       # include-hidden-files, protože v5 nově vylučuje všechny tečkové soubory

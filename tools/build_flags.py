@@ -37,7 +37,7 @@ TILE_W, TILE_H = 40, 28
 
 def main() -> int:
     if shutil.which("magick") is None:
-        raise SystemExit("chybí ImageMagick (magick)")
+        raise SystemExit("ImageMagick (magick) not found — `just flags` needs it")
     codes = [c["code"] for c in
              json.loads((ROOT / "data" / "countries.json").read_text(encoding="utf-8"))["countries"]]
     TMP.mkdir(parents=True, exist_ok=True)
@@ -49,7 +49,7 @@ def main() -> int:
             try:
                 urllib.request.urlretrieve(RAW.format(code), src)
             except Exception as exc:                       # noqa: BLE001
-                raise SystemExit(f"{code}: stažení selhalo — {exc}")
+                raise SystemExit(f"{code}: download failed — {exc}")
         tile = TMP / f"t-{code}.png"
         subprocess.run(["magick", src, "-resize", f"{TILE_W}x{TILE_H}",
                         "-background", "none", "-gravity", "center",
@@ -71,9 +71,9 @@ def main() -> int:
 
     size = sprite.stat().st_size
     b64 = len(base64.b64encode(sprite.read_bytes()))
-    print(f"  src/assets/flags.png   {len(codes)} vlajek · {size / 1024:.1f} KB "
+    print(f"  src/assets/flags.png   {len(codes)} flags · {size / 1024:.1f} KB "
           f"· jako data URI {b64 / 1024:.1f} KB")
-    print(f"  src/assets/flags.json  dlaždice {TILE_W // 2}×{TILE_H // 2} CSS px")
+    print(f"  src/assets/flags.json  tile {TILE_W // 2}×{TILE_H // 2} CSS px")
     return 0
 
 

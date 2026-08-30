@@ -82,6 +82,14 @@ def load_sources() -> list[dict]:
 def load_provenance() -> dict[str, dict]:
     path = DATA / "provenance.csv"
     if not path.exists():
+        # Silently returning {} would still build, and every browser-evidenced
+        # row would quietly become "reference" with emptied visit columns —
+        # a catalogue that looks fine and has lost its evidence. The build is
+        # allowed to continue (the file is optional by design), but not quietly.
+        sys.stderr.write(
+            f"  ⚠ {path.relative_to(ROOT)} is missing — every entry falls back to "
+            f"'reference' and the visit columns come out empty. Run "
+            f"`just provenance` if you meant to keep the evidence.\n")
         return {}
     with path.open(encoding="utf-8-sig") as fh:
         return {r["id"]: r for r in csv.DictReader(fh)}
@@ -98,38 +106,39 @@ def main() -> int:
         where = f"{s.get('_file')}:{s.get('id', '?')}"
         for f in REQUIRED:
             if not s.get(f):
-                problems.append(f"{where}: chybí pole '{f}'")
+                problems.append(f"{where}: required field '{f}' is missing")
         if s.get("id") in seen_ids:
-            problems.append(f"{where}: duplicitní id (už v {seen_ids[s['id']]})")
+            problems.append(f"{where}: duplicate id (already in {seen_ids[s['id']]})")
         seen_ids[s.get("id")] = where
         if s.get("url") in seen_urls:
-            problems.append(f"{where}: duplicitní URL (už v {seen_urls[s['url']]})")
+            problems.append(f"{where}: duplicate URL (already in {seen_urls[s['url']]})")
         seen_urls[s.get("url")] = where
         if s.get("topic") not in topic_meta:
-            problems.append(f"{where}: neznámé téma '{s.get('topic')}'")
+            problems.append(f"{where}: unknown topic '{s.get('topic')}' — see data/topics.json")
         if s.get("country") not in places:
-            problems.append(f"{where}: neznámá země '{s.get('country')}'")
+            problems.append(f"{where}: unknown country '{s.get('country')}' — see data/countries.json")
         if s.get("kind") not in KINDS:
-            problems.append(f"{where}: neznámý typ '{s.get('kind')}'")
+            problems.append(f"{where}: unknown kind '{s.get('kind')}' — see docs/DATA-MODEL.md")
         if s.get("access") not in ACCESS:
-            problems.append(f"{where}: neznámý přístup '{s.get('access')}'")
+            problems.append(f"{where}: unknown access '{s.get('access')}' — see docs/DATA-MODEL.md")
         if s.get("data") not in DATA_MODES:
-            problems.append(f"{where}: neznámý režim dat '{s.get('data')}'")
+            problems.append(f"{where}: unknown data mode '{s.get('data')}' — see docs/DATA-MODEL.md")
         if s.get("check") is not None and s["check"] not in CHECK_MODES:
-            problems.append(f"{where}: neznámá hodnota 'check' — {s['check']!r}")
+            problems.append(f"{where}: unknown 'check' value — {s['check']!r}")
         if not str(s.get("url", "")).startswith("https://") and \
            not str(s.get("url", "")).startswith("http://"):
-            problems.append(f"{where}: URL není absolutní")
+            problems.append(f"{where}: URL is not absolute")
         if s.get("_file", "").removesuffix(".json") != s.get("country"):
-            problems.append(f"{where}: položka je v souboru jiné země")
+            problems.append(f"{where}: entry sits in another country's file")
     if problems:
         for p in problems[:40]:
             sys.stderr.write("  ✗ " + p + "\n")
-        sys.stderr.write(f"{len(problems)} problémů ve zdrojích\n")
+        sys.stderr.write(f"{len(problems)} problem(s) in data/sources/ — "
+                         f"the schema is in docs/DATA-MODEL.md\n")
         return 1
 
-    # Pořadí katalogu: skupina → téma → země → pořadí v souboru. Sloupec `ord`
-    # na stránce z něj vzniká a nese výchozí řazení „Pořadí katalogu".
+    # Catalogue order: group -> topic -> country -> order within the file. The
+    # page's `ord` column comes from this and carries the "catalogue order" sort.
     idx = {id(s): i for i, s in enumerate(sources)}
     sources.sort(key=lambda s: (*topic_order[s["topic"]], place_order[s["country"]], idx[id(s)]))
 
@@ -138,7 +147,8 @@ def main() -> int:
     for s in sources:
         p = prov.get(s["id"])
         if p and p["url"] != s["url"]:
-            drift.append(f"{s['id']}: doložení je k {p['url']}, položka míří na {s['url']}")
+            drift.append(f"{s['id']}: provenance is for {p['url']}, the entry points "
+                         f"at {s['url']}")
             p = None
         rows.append([
             topic_meta[s["topic"]]["group"], topic_meta[s["topic"]]["label"], s["topic"],
@@ -161,10 +171,10 @@ def main() -> int:
 
     evidenced = sum(1 for r in rows if r[11] != "reference")
     countries = {r[4] for r in rows}
-    print(f"katalog: {len(rows)} položek · {len({r[1] for r in rows})} témat · "
-          f"{len(countries)} zemí a rozsahů · {evidenced} doložených z prohlížeče")
+    print(f"catalog: {len(rows)} entries · {len({r[1] for r in rows})} topics · "
+          f"{len(countries)} countries and scopes · {evidenced} browser-evidenced")
     for d in drift:
-        sys.stderr.write(f"  ⚠ doložení se rozešlo s URL — {d}\n")
+        sys.stderr.write(f"  ⚠ provenance drifted from the URL — {d}\n")
     return 0
 
 

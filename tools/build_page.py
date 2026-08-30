@@ -120,7 +120,8 @@ def build_flowbite() -> str:
     """Zbundluje jen ty Flowbite komponenty, které markup skutečně používá.
 
     Plný UMD build má 133 kB a nese accordion, carousel, datepicker a další
-    nepoužité věci. Výřez v src/js/flowbite-entry.js má 9 kB.
+    nepoužité věci. Výřez daný importy v src/js/flowbite-entry.js je zlomkem
+    toho; přesnou velikost vypíše tenhle build a leží v .cache/flowbite-min.js.
     """
     CACHE.mkdir(exist_ok=True)
     out = CACHE / "flowbite-min.js"
@@ -130,7 +131,7 @@ def build_flowbite() -> str:
         cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
         sys.stderr.write(r.stdout + r.stderr)
-        raise SystemExit("esbuild selhal")
+        raise SystemExit("esbuild failed — see its output above")
     return out.read_text(encoding="utf-8")
 
 
@@ -159,7 +160,7 @@ def build_css():
         cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
         sys.stderr.write(r.stdout + r.stderr)
-        raise SystemExit("tailwind build selhal")
+        raise SystemExit("tailwind build failed — see its output above")
     return (CACHE / "out.css").read_text(encoding="utf-8")
 
 
@@ -363,8 +364,8 @@ def main():
     for f in ("index.html", "artifact.html"):
         print(f"  dist/{f:16s} {(DIST / f).stat().st_size / 1024:7.1f} KB")
     extras = sorted(f.name for f in DIST.iterdir() if f.name not in ("index.html", "artifact.html"))
-    print(f"  + {len(extras)} doprovodných souborů: {', '.join(extras)}")
-    print(f"  katalog {len(catalog)} · {n_topics} témat · {n_places} zemí · long list {len(longlist)} · "
+    print(f"  + {len(extras)} companion files: {', '.join(extras)}")
+    print(f"  catalog {len(catalog)} · {n_topics} topics · {n_places} countries · long list {len(longlist)} · "
           f"CSS {len(css)/1024:.1f} KB · Flowbite {len(flowbite)/1024:.1f} KB · Alpine {len(alpine)/1024:.1f} KB")
 
 

@@ -45,7 +45,7 @@ jobs:
               'označené `✗`. Zdrojem pravdy jsou `data/sources/*.json`, ne `data/catalog.csv`:',
               'ten se z nich generuje.',
               '',
-              'Sekce „Deklarované jako anti-bot" vypisuje zdroje s `check: anti-bot` ve zdrojových',
+              'Sekce „Declared anti-bot" vypisuje zdroje s `check: anti-bot` ve zdrojových',
               'datech. U nich se checker na měření nespoléhá — projdi je ručně, protože jinak',
               'by se nepoznalo, že takový web skutečně zemřel.',
               '',

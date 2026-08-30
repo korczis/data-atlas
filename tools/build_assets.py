@@ -18,7 +18,7 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 def need(cmd: str) -> None:
     if shutil.which(cmd) is None:
-        raise SystemExit(f"chybí {cmd}")
+        raise SystemExit(f"{cmd} not found — `just assets` needs Chrome and ImageMagick")
 
 
 def shot(html: Path, w: int, h: int, out: Path) -> None:
@@ -107,7 +107,7 @@ def stats() -> dict[str, int]:
 def main() -> None:
     need("magick")
     if not Path(CHROME).exists():
-        raise SystemExit(f"chybí headless Chrome na {CHROME}")
+        raise SystemExit(f"no headless Chrome at {CHROME} — set CHROME_PATH")
     TMP.mkdir(parents=True, exist_ok=True)
     STATIC.mkdir(exist_ok=True)
 
@@ -134,7 +134,7 @@ def main() -> None:
     for key, value in numbers.items():
         token = "{{" + key + "}}"
         if token not in og:
-            raise SystemExit(f"src/assets/og.html neobsahuje značku {token}")
+            raise SystemExit(f"src/assets/og.html has no {token} placeholder")
         og = og.replace(token, str(value))
     page = TMP / "og.html"
     page.write_text(og, encoding="utf-8")
@@ -155,7 +155,7 @@ def main() -> None:
     for key, value in {**numbers, "MATRIX": matrix, "FULL": full}.items():
         token = "{{" + key + "}}"
         if token not in social:
-            raise SystemExit(f"src/assets/social.html neobsahuje značku {token}")
+            raise SystemExit(f"src/assets/social.html has no {token} placeholder")
         social = social.replace(token, str(value))
     page = TMP / "social.html"
     page.write_text(social, encoding="utf-8")
@@ -166,7 +166,7 @@ def main() -> None:
                     "-define", "png:compression-strategy=1",
                     STATIC / "social-preview.png"], check=True)
 
-    print("static/: ikony + OG karta ("
+    print("static/: icons + social cards ("
           + ", ".join(f"{v} {k.lower()}" for k, v in numbers.items()) + ")")
     for f in sorted(STATIC.iterdir()):
         print(f"  {f.name:26s} {f.stat().st_size / 1024:7.1f} KB")
