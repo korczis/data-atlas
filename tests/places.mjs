@@ -22,6 +22,13 @@ const check = (label, ok, note = '') => {
 const csv = fs.readFileSync(path.join(ROOT, 'data', 'catalog.csv'), 'utf8');
 const header = csv.split('\n')[0].replace(/^﻿/, '').split(',');
 const codeCol = header.indexOf('Kód');
+// Bez téhle stráže projdou dvě assertions nad nulou zemí: při přejmenování
+// sloupce je index -1, `cells[-1]` je undefined, `counts` zůstane prázdné
+// a „stránka existuje pro každou zemi" se splní triviálně.
+if (codeCol < 0) {
+  console.error(`sloupec 'Kód' v data/catalog.csv není — hlavička: ${header.join(', ')}`);
+  process.exit(1);
+}
 const counts = new Map();
 // Popisy obsahují čárky, ale sloupec Kód je vždycky dvou- až šestiznakový
 // token bez uvozovek — na počty stačí a nemusí se sem tahat parser CSV.

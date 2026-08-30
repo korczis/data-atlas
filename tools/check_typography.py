@@ -40,7 +40,11 @@ PROBE = r"""
 <script>
 window.onerror = m => /ResizeObserver/.test(m) ? true : undefined;
 window.addEventListener('load', () => setTimeout(() => {
-  const out = { long: [], small: [], skips: [] };
+  // Kolik řádků katalogu je vidět. Bez téhle podlahy projde prázdná stránka:
+  // nemá dlouhé řádky, nemá pole ani přeskočené nadpisy, takže je „v pořádku".
+  // Stejnou stráž má check_responsive.py; těmhle dvěma chyběla.
+  const out = { long: [], small: [], skips: [],
+                rows: document.querySelectorAll('[data-row], [data-card]').length };
   const chWidth = (el) => {
     const s = getComputedStyle(el);
     const probe = document.createElement('span');
@@ -141,6 +145,9 @@ def main() -> int:
                            "iOS Safari zooms the page on focus")
         for x in r["skips"]:
             bad.append(f"skipped heading level {x}")
+        if not r.get("rows"):
+            bad.append("no catalogue row rendered - the page is empty, so measuring "
+                       "it proves nothing")
         mark = "✓" if not bad else "✗"
         print(f"  {mark} {width:>5}px  {len(r['long'])} long lines · "
               f"{len(r['small'])} small fields · {len(r['skips'])} heading skips")

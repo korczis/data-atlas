@@ -135,15 +135,20 @@ document.getElementById('f').addEventListener('load', () => setTimeout(() => {
   // dimming and every tap on it landed on the backdrop, which closed the drawer.
   // So we ask the only thing that matters: what is really at the pixel in the
   // middle of the open panel.
-  const drawer = { testovan: false };
-  const toggle = d.querySelector('[data-drawer-toggle="sidebar"]');
+  // Selektor musí odpovídat tomu, čím se šuplík váže. Když se přešlo na
+  // direktivu, tenhle řádek zůstal na `data-drawer-toggle` — atributu, který
+  // lint_ui.py dnes zakazuje, takže sednout nemohl. Osm assertions o šuplíku
+  // tím osm commitů mlčelo, včetně té o nulové ploše backdropu, kvůli které
+  // vznikl check_runtime_classes.py.
+  const drawer = { tested: false };
+  const toggle = d.querySelector('[x-flowbite\\:drawer]');
   if (side && toggle && w < 1024) {
-    drawer.testovan = true;
-    drawer.spoustecVidet = toggle.getBoundingClientRect().width > 0;
+    drawer.tested = true;
+    drawer.triggerVisible = toggle.getBoundingClientRect().width > 0;
     toggle.click();
     const sr = side.getBoundingClientRect();
     drawer.left = Math.round(sr.left);
-    drawer.viditelnost = d.defaultView.getComputedStyle(side).visibility;
+    drawer.visibility = d.defaultView.getComputedStyle(side).visibility;
     const hit = d.elementFromPoint(Math.round(sr.left + sr.width / 2),
                                    Math.round(Math.min(300, vh / 2)));
     drawer.atPixel = hit ? (hit.id || hit.tagName.toLowerCase() +
@@ -277,12 +282,12 @@ def main() -> int:
         for o in r.get("overlaps", []):
             problems.append(o)
         dr = r.get("drawer") or {}
-        if dr.get("testovan"):
-            if not dr.get("spoustecVidet"):
+        if dr.get("tested"):
+            if not dr.get("triggerVisible"):
                 problems.append("the hamburger is not visible, the panel cannot be opened")
-            elif dr.get("left", -1) != 0 or dr.get("viditelnost") != "visible":
+            elif dr.get("left", -1) != 0 or dr.get("visibility") != "visible":
                 problems.append(f"the panel did not open after the click "
-                                f"(left={dr.get('left')}px, {dr.get('viditelnost')})")
+                                f"(left={dr.get('left')}px, {dr.get('visibility')})")
             elif not dr.get("klikatelny"):
                 problems.append("the open panel is covered by " + str(dr.get("atPixel"))
                                 + " - a tap on the menu cannot reach it")

@@ -64,11 +64,16 @@ window.addEventListener('load', () => setTimeout(() => {{
   axe.run(document, {{ resultTypes: ['violations'] }}).then(r => {{
     const out = document.createElement('div');
     out.id = 'axe-result';
-    out.textContent = JSON.stringify(r.violations.map(v => ({{
+    // Vedle nálezů se posílá i počet vykreslených řádků. Bez téhle podlahy
+    // projde prázdná stránka: nemá co porušit, takže nemá nálezy a je
+    // „v pořádku". Stejnou stráž má check_responsive.py.
+    out.textContent = JSON.stringify({{ rows:
+      document.querySelectorAll('[data-row], [data-card]').length,
+      violations: r.violations.map(v => ({{
       id: v.id, impact: v.impact, help: v.help, nodes: v.nodes.length,
       target: v.nodes.slice(0, 2).map(n => n.target.join(' ')),
       summary: (v.nodes[0] && v.nodes[0].failureSummary || '').split('\\\\n').slice(0, 2).join(' '),
-    }})));
+    }})) }});
     document.body.appendChild(out);
   }});
 }}, 700));
@@ -124,7 +129,13 @@ def main() -> int:
     failing = 0
 
     for label, width, theme in SCENARIOS:
-        violations = run_axe(width, theme)
+        result = run_axe(width, theme)
+        violations = result["violations"]
+        if not result.get("rows"):
+            print(f"  ✗ {label:<20} the page rendered no catalogue row - it is "
+                  "empty, so auditing it proves nothing")
+            failing += 1
+            continue
         blocking = [v for v in violations
                     if order.index(v.get("impact") or "minor") >= threshold]
         failing += len(blocking)

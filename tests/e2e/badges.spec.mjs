@@ -39,6 +39,9 @@ test('odznaky vypadají stejně na hlavní stránce i na stránce země', async 
 
 test('barva odznaku nese stálý význam', async ({ page }) => {
   const main = await badges(page, '/')
+  // Podlaha: nad prázdnou mapou se cyklus nespustí a test projde, aniž by
+  // cokoli ověřil. Stejná stráž jako u testu o shodě mezi stránkami.
+  expect(Object.keys(main).length, 'nenašel se ani jeden odznak').toBeGreaterThan(2)
   // emerald = data jdou ven strojově, amber = překážka v přístupu.
   const machine = ['hromadně', 'API', 'OGC služby', 'ke stažení']
   const barrier = ['registrace', 'placené', 'omezené', 'smíšené', 'vyhledávání']
@@ -51,5 +54,6 @@ test('barva odznaku nese stálý význam', async ({ page }) => {
 test('odznak nese význam i textem, ne jen barvou', async ({ page }) => {
   // Barva sama nesmí nést kritickou informaci — každý odznak má popisek.
   const main = await badges(page, '/')
+  expect(Object.keys(main).length, 'nenašel se ani jeden odznak').toBeGreaterThan(2)
   expect(Object.keys(main).every(t => t.length > 0)).toBe(true)
 })
