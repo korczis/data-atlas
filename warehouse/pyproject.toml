@@ -1,0 +1,54 @@
+[project]
+name = "atlasdata"
+version = "0.1.0"
+description = "Source-agnostic ingestion and warehouse tooling for the Data Atlas data platform"
+requires-python = ">=3.12"
+
+# Deliberately small. The catalogue side of this repository has no Python
+# dependencies at all, and the reason it can be rebuilt on a clean clone is that
+# it never needed any. This package adds exactly one runtime dependency — a
+# PostgreSQL driver — because nothing in the standard library speaks the wire
+# protocol. HTML is parsed with html.parser, archives with zipfile, hashing with
+# hashlib: all stdlib, all already audited by someone other than us.
+dependencies = [
+  "psycopg[binary]>=3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.6",
+]
+
+[project.scripts]
+atlas-data = "atlasdata.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["atlasdata"]
+
+# Scoped to this package only. The repository has no repo-wide formatter or type
+# checker, and introducing one across tools/ would be a separate change with its
+# own diff; see docs/database/README.md.
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+  "E501",    # long lines are mostly SQL and prose; the formatter is not run
+  # Ambiguous-unicode rules. This corpus is full of legitimate non-ASCII —
+  # country names in native scripts, en dashes in prose, the section symbol —
+  # and flagging them would be flagging the data.
+  "RUF001",
+  "RUF002",
+  "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# The test files insert the package directory on sys.path before importing it,
+# so their imports legitimately follow a statement.
+"tests/*.py" = ["E402"]

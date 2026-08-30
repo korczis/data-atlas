@@ -1,0 +1,1401 @@
+{
+  "schema_version": 1,
+  "generated_note": "Curated. Derived from the preservation project's own MANIFEST.json, restructured so that a logical artifact, its bytes (sha256) and its retrieval sources are three different things. Digests were spot-verified by download; see docs/database/SOURCE-AUDIT-CIA-WORLD-FACTBOOK.md.",
+  "dataset": {
+    "code": "cia_world_factbook",
+    "title": "The World Factbook",
+    "publisher": {
+      "code": "us_cia",
+      "name": "Central Intelligence Agency",
+      "country": "US"
+    },
+    "status": "discontinued",
+    "discontinued_note": "CIA retired The World Factbook in February 2026; cia.gov now redirects the Factbook and its archive to a farewell story. Wayback is the retrieval path for the official zips.",
+    "license": {
+      "basis": "us_government_work",
+      "statement": "Works of the U.S. Government are not subject to copyright protection in the United States (17 U.S.C. §105). This covers the CIA text and data. It does NOT automatically cover third-party additions: Project Gutenberg boilerplate, the preservation project's own database and derived fields, or any enrichment.",
+      "third_party_note": "The preservation project releases its own compilation under CC0-1.0; that is its choice about its own additions, not a licence over the underlying public-domain CIA text."
+    },
+    "upstream_manifest": {
+      "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/MANIFEST.json",
+      "version": "raw-sources-v1-draft",
+      "generated_utc": "2026-05-27T04:37:19Z",
+      "total_files": 38,
+      "total_bytes": 2981435015
+    }
+  },
+  "editions": [
+    {
+      "edition_year": 1990,
+      "edition_label": "The World Factbook 1990",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1990-text",
+          "filename": "1990.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 1970952,
+          "sha256": "2198e8efd169c62704d11dfccf6810edd7db6d4c4ce9b45d694a1ca0b53c516b",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1990.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/14/pg14.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1991,
+      "edition_label": "The World Factbook 1991",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1991-text",
+          "filename": "1991.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 2237071,
+          "sha256": "67c7b17456ba5094c80a62c71b17e23a017e24efd2472b586715b565b8c44cf2",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1991.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/25/pg25.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1992,
+      "edition_label": "The World Factbook 1992",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1992-text",
+          "filename": "1992.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 2482193,
+          "sha256": "8af163b427f5d9b60a774105d39c869ec6950e5a8b818d16232ab9810772cb49",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1992.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/48/pg48.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1993,
+      "edition_label": "The World Factbook 1993",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1993-text",
+          "filename": "1993.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 2648286,
+          "sha256": "f62230e2bc7cc6fe30b097f76753cfc20867ff55656a26c40bdf4f7008cf80bf",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1993.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/87/pg87.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1994,
+      "edition_label": "The World Factbook 1994",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1994-text",
+          "filename": "1994.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 2827630,
+          "sha256": "257857b3793e877dc620fed5c651c1a34a15038786ffd6f94ffd3e4e805ad666",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1994.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/180/pg180.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1995,
+      "edition_label": "The World Factbook 1995",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1995-text",
+          "filename": "1995.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 3013182,
+          "sha256": "2c13ca59829e5675ff52d1f6172b1336e86b5432f48bc39048f8533fe711cf55",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1995.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/571/pg571.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1996,
+      "edition_label": "The World Factbook 1996",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1996-text",
+          "filename": "1996.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 2927517,
+          "sha256": "fb62092d4571e0b9767ea359a5ed8e23559aa00d9cbfbc0d58d67bfc4f08b59e",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1996.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/27675/pg27675.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        },
+        {
+          "artifact_id": "cwf-1996-text-repair",
+          "filename": "1996_cia_original.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 3817768,
+          "sha256": "6cdcc385d46a39f88444d8ecf6c2e29b4b6a57d82c907181e7e570a7cec6d384",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_cia_wayback",
+          "role": "repair",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1996_cia_original.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/19970528151800id_/http://www.odci.gov:80/cia/publications/nsolo/wfb-96.txt.gz",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": "Wayback ODCI 1997-05-28 capture; repairs 7 truncated countries in 1996 Gutenberg edition."
+        }
+      ]
+    },
+    {
+      "edition_year": 1997,
+      "edition_label": "The World Factbook 1997",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1997-text",
+          "filename": "1997.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 3099650,
+          "sha256": "b0eeb2b4794bc7cd2406281755f5bc24833c4b05d03c79bb93b8dc4a51f7546d",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1997.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/1662/pg1662.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1998,
+      "edition_label": "The World Factbook 1998",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1998-text",
+          "filename": "1998.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 3476013,
+          "sha256": "9d3c50a4109cbd95189294f62d3271c3869dbddf1e825201ecbbc61129ba9f71",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1998.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/2016/pg2016.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 1999,
+      "edition_label": "The World Factbook 1999",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-1999-text",
+          "filename": "1999.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 3453650,
+          "sha256": "09b48764bc43c7bd5f92518925f3a2115c3083db67d3d62386918f8ab0541ff1",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/1999.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/27676/pg27676.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2000,
+      "edition_label": "The World Factbook 2000",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2000-html",
+          "filename": "factbook-2000.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 65699607,
+          "sha256": "b402833576116cb8ad5d64ad8dcaab8f20796ac0f3e6de9bfdf06a142abb7f83",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2000.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043153id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2000.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2001,
+      "edition_label": "The World Factbook 2001",
+      "publication_family": "world_factbook",
+      "parser_family": "text_gutenberg",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2001-html",
+          "filename": "factbook-2001.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 71041921,
+          "sha256": "eea02eeab9df6919c7fad4f1c6b988f9665cd44233bd2546dd1170303546a167",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "superseded",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2001.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115044405id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2001.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": "Archived as a corrupt-artifact record: the preservation project reports this zip as corrupted and did not parse it. Kept so the failure is auditable, never ingested."
+        },
+        {
+          "artifact_id": "cwf-2001-text",
+          "filename": "2001.txt",
+          "media_type": "text/plain",
+          "compression": "none",
+          "size_bytes": 7195042,
+          "sha256": "f6cbc8017e5c36f1082873fe582f9cd2b5925719c1e0fa85fcda65c38c604ccb",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "text_gutenberg",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/2001.txt",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://www.gutenberg.org/cache/epub/27638/pg27638.txt",
+              "byte_stable": false,
+              "note": "Origin of the bytes. Project Gutenberg rewrites its boilerplate over time, so a live fetch will not reproduce sha256; see docs/database/RAW-DATA.md."
+            }
+          ],
+          "notes": "Used as 2001 source because the 2001 HTML zip was corrupted."
+        }
+      ]
+    },
+    {
+      "edition_year": 2002,
+      "edition_label": "The World Factbook 2002",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2002-html",
+          "filename": "factbook-2002.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 87514282,
+          "sha256": "237d65dbfc92c7a74385105acdc73b198c13eba86b12adaebc69213233a0450d",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2002.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043238id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2002.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2003,
+      "edition_label": "The World Factbook 2003",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2003-html",
+          "filename": "factbook-2003.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 33254161,
+          "sha256": "30ba1711e5812d334e2a42be4c552d45c80015301ae06cb7e88f7e4800403755",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2003.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043307id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2003.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2004,
+      "edition_label": "The World Factbook 2004",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2004-html",
+          "filename": "factbook-2004.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 30918285,
+          "sha256": "a943cb26ba57a59d2206ca64428224b8fbced179b2c4041848b5d0779ee6448b",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2004.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043330id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2004.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2005,
+      "edition_label": "The World Factbook 2005",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2005-html",
+          "filename": "factbook-2005.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 32981425,
+          "sha256": "28ac927e0b36e47dd164d93047ad949ba92e2f91f083544645ed05712df804bc",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2005.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043355id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2005.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2006,
+      "edition_label": "The World Factbook 2006",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2006-html",
+          "filename": "factbook-2006.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 38035503,
+          "sha256": "b7b7f686583f61f8013566991b115c35176f372fde46281c64bb242021c56bcd",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2006.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043418id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2006.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2007,
+      "edition_label": "The World Factbook 2007",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2007-html",
+          "filename": "factbook-2007.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 46716969,
+          "sha256": "44a8df069c39156bf009f7ac08f59a9593eeaf671cc65acd8048e9089abe163d",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2007.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043445id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2007.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2008,
+      "edition_label": "The World Factbook 2008",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2008-html",
+          "filename": "factbook-2008.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 48417620,
+          "sha256": "98de53899101991c77551a1c601d970f1dabcf9411aa6d1f19fb6eb1b29108b2",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2008.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20201028120645id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2008.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2009,
+      "edition_label": "The World Factbook 2009",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2009-html",
+          "filename": "factbook-2009.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 154642185,
+          "sha256": "f4749024892a88e3b4ebda556d8b70edfc135813e0de247620f33e25c0e71a30",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2009.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043527id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2009.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2010,
+      "edition_label": "The World Factbook 2010",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2010-html",
+          "filename": "factbook-2010.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 161940379,
+          "sha256": "39662d79e57c027c7d48aaac9ec5eb7b175d5cc9639effc494bcf33fc33fb1e9",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2010.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043556id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2010.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2011,
+      "edition_label": "The World Factbook 2011",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2011-html",
+          "filename": "factbook-2011.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 252830002,
+          "sha256": "972f05ca0516492478193e1df05d791b67aa2c31242f177405b960830295ec6c",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2011.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043622id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2011.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2012,
+      "edition_label": "The World Factbook 2012",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2012-html",
+          "filename": "factbook-2012.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 179370976,
+          "sha256": "5a59df3533458a51d0f76f1da59f120786796557ded9551c8e5525fb5559e217",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2012.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20201028120347id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2012.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2013,
+      "edition_label": "The World Factbook 2013",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2013-html",
+          "filename": "factbook-2013.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 261674823,
+          "sha256": "570ebf04ed226f3f86da03b6950f18a2989782691ac92fe7e557d4bb9d3f2d46",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2013.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043720id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2013.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2014,
+      "edition_label": "The World Factbook 2014",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2014-html",
+          "filename": "factbook-2014.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 252806938,
+          "sha256": "4b4552745616d14223bcaa7dd4d2cf6cf50e15b6ca22b36d62448e50dce0358e",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2014.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043803id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2014.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2015,
+      "edition_label": "The World Factbook 2015",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2015-html",
+          "filename": "factbook-2015.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 94081524,
+          "sha256": "ef715140b9d087552a53170d8df59fdf1429f1246cf704cf50551b54807ada20",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2015.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20201028121353id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2015.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2016,
+      "edition_label": "The World Factbook 2016",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2016-html",
+          "filename": "factbook-2016.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 168827656,
+          "sha256": "b56e2cc5347710c1894a3f6f9525c4d1960a1f3a8e921322df3b85377c0c83c6",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2016.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043915id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2016.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2017,
+      "edition_label": "The World Factbook 2017",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2017-html",
+          "filename": "factbook-2017.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 175917709,
+          "sha256": "88b43600b057d13da22f9c00a967aec496c751dffe2e3dacefade43d09c65fd9",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2017.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115043959id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2017.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2018,
+      "edition_label": "The World Factbook 2018",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2018-html",
+          "filename": "factbook-2018.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 92748303,
+          "sha256": "7a635512ab790fb46a87249ec6711f4451d1f24690542c7c273de7a8e6e7518d",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2018.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115044100id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2018.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2019,
+      "edition_label": "The World Factbook 2019",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2019-html",
+          "filename": "factbook-2019.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 278880173,
+          "sha256": "807113734875d1ad1f4d520e49551b76cdca182e1bce9e71093ba9b79defa594",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2019.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20201028120752id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2019.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2020,
+      "edition_label": "The World Factbook 2020",
+      "publication_family": "world_factbook",
+      "parser_family": "html_cia_zip",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2020-html",
+          "filename": "factbook-2020.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 384767954,
+          "sha256": "1f2e4d3599248eb91717576059c34f65f01af8dcc8cb5a936491c16668a9a2ce",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "html_cia_zip",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-2020.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "url": "https://web.archive.org/web/20210115044405id_/https://www.cia.gov/the-world-factbook/about/archives/download/factbook-2020.zip",
+              "byte_stable": true,
+              "note": "Origin of the bytes: Wayback capture of the CIA's own download archive, which cia.gov no longer serves."
+            }
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "edition_year": 2021,
+      "edition_label": "The World Factbook 2021",
+      "publication_family": "world_factbook",
+      "parser_family": "json_factbook_cache",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2021-json",
+          "filename": "factbook-json-2021.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 5800169,
+          "sha256": "d561220e7cb6ed61464db2b44995ed7771c37759028e8e1067ee9e41b2eafa36",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "json_factbook_cache",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-json-2021.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "vcs": {
+                "repo": "https://github.com/factbook/cache.factbook.json",
+                "commit": "01df1072374dea8f60a5ea53b756f07f8abcd784",
+                "commit_date": "2021-12-30"
+              },
+              "byte_stable": false,
+              "note": "Origin is a git commit, not a file. `git archive` output is not guaranteed byte-identical across git versions, so the commit reproduces content, not sha256."
+            }
+          ],
+          "notes": "git archive --format=zip 01df1072"
+        }
+      ]
+    },
+    {
+      "edition_year": 2022,
+      "edition_label": "The World Factbook 2022",
+      "publication_family": "world_factbook",
+      "parser_family": "json_factbook_cache",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2022-json",
+          "filename": "factbook-json-2022.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 6393866,
+          "sha256": "2ea403e74d5bd8d1303bbca2c9991ab302dbb4451574afeacddd43c11f8c6203",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "json_factbook_cache",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-json-2022.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "vcs": {
+                "repo": "https://github.com/factbook/cache.factbook.json",
+                "commit": "756fb110600b5c0488649b0c056068b3178467a9",
+                "commit_date": "2022-12-29"
+              },
+              "byte_stable": false,
+              "note": "Origin is a git commit, not a file. `git archive` output is not guaranteed byte-identical across git versions, so the commit reproduces content, not sha256."
+            }
+          ],
+          "notes": "git archive --format=zip 756fb110"
+        }
+      ]
+    },
+    {
+      "edition_year": 2023,
+      "edition_label": "The World Factbook 2023",
+      "publication_family": "world_factbook",
+      "parser_family": "json_factbook_cache",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2023-json",
+          "filename": "factbook-json-2023.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 6369143,
+          "sha256": "c86dbcf763f1ac45f36d22d3e0594a441c312cac38a27ac63467e19204fc49ed",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "json_factbook_cache",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-json-2023.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "vcs": {
+                "repo": "https://github.com/factbook/cache.factbook.json",
+                "commit": "e87ac6fc2f04fddeb061dd905ea40e47adb54824",
+                "commit_date": "2023-12-30"
+              },
+              "byte_stable": false,
+              "note": "Origin is a git commit, not a file. `git archive` output is not guaranteed byte-identical across git versions, so the commit reproduces content, not sha256."
+            }
+          ],
+          "notes": "git archive --format=zip e87ac6fc"
+        }
+      ]
+    },
+    {
+      "edition_year": 2024,
+      "edition_label": "The World Factbook 2024",
+      "publication_family": "world_factbook",
+      "parser_family": "json_factbook_cache",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2024-json",
+          "filename": "factbook-json-2024.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 5733458,
+          "sha256": "361e88582cf731e75b74d17d4f31f42cceafb36fba0365bfe2234228f06becb1",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "json_factbook_cache",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-json-2024.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "vcs": {
+                "repo": "https://github.com/factbook/cache.factbook.json",
+                "commit": "d5b7d4ca23973c877616017039576f122c4b0ad2",
+                "commit_date": "2024-12-26"
+              },
+              "byte_stable": false,
+              "note": "Origin is a git commit, not a file. `git archive` output is not guaranteed byte-identical across git versions, so the commit reproduces content, not sha256."
+            }
+          ],
+          "notes": "git archive --format=zip d5b7d4ca"
+        }
+      ]
+    },
+    {
+      "edition_year": 2025,
+      "edition_label": "The World Factbook 2025",
+      "publication_family": "world_factbook",
+      "parser_family": "json_factbook_cache",
+      "artifacts": [
+        {
+          "artifact_id": "cwf-2025-json",
+          "filename": "factbook-json-2025.zip",
+          "media_type": "application/zip",
+          "compression": "zip",
+          "size_bytes": 4921030,
+          "sha256": "2e355b6cdf14d967e1832a88fdd7e34eda0f04bdd5d625fe40fc2b16dc9759ce",
+          "checksum_origin": "secondary_manifest",
+          "parser_family": "json_factbook_cache",
+          "role": "primary",
+          "retrievals": [
+            {
+              "priority": 1,
+              "role": "mirror",
+              "url": "https://github.com/MilkMp/CIA-World-Factbooks-Archive-1990-2025/releases/download/raw-sources-v1/factbook-json-2025.zip",
+              "byte_stable": true,
+              "note": "Immutable GitHub release asset; reproduces sha256."
+            },
+            {
+              "priority": 2,
+              "role": "origin",
+              "vcs": {
+                "repo": "https://github.com/factbook/cache.factbook.json",
+                "commit": "d81154954b8bd62cb72473f9aa1e1a499945f836",
+                "commit_date": "2026-01-22"
+              },
+              "byte_stable": false,
+              "note": "Origin is a git commit, not a file. `git archive` output is not guaranteed byte-identical across git versions, so the commit reproduces content, not sha256."
+            }
+          ],
+          "notes": "git archive --format=zip d8115495"
+        }
+      ]
+    }
+  ]
+}
