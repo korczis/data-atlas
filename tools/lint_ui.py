@@ -26,6 +26,14 @@ def tracked_files() -> set[str]:
     A missing git is not a reason to skip the rule quietly. Nothing in this
     repository builds outside a checkout, so an unreadable index means the
     environment is wrong, and saying so beats measuring nothing.
+
+    Known limit, so nobody mistakes this for more than it is: the links say
+    `blob/main/...` and this reads the *index*, not `main`. A file committed
+    only on a feature branch passes here and still 404s for a reader. The
+    literal question is `git cat-file -e origin/main:<path>`, which needs the
+    remote - and a linter that reaches for the network is the thing `just
+    links` is deliberately kept out of `just check` to avoid. The index is the
+    right trade for a repository that releases from `main`.
     """
     try:
         out = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"],
