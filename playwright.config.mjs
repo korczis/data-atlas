@@ -36,7 +36,15 @@ export default defineConfig({
   webServer: {
     command: 'python3 -m http.server 8123 --directory dist --bind 127.0.0.1',
     url: 'http://127.0.0.1:8123/',
-    reuseExistingServer: !process.env.CI,
+    // Nikdy se needoptuje cizí server. `reuseExistingServer: true` převezme
+    // *jakýkoli* proces na tom portu — i takový, který servíruje úplně jiný
+    // adresář — a testy pak tiše měří cizí stránku. Stalo se to při dvou
+    // souběžných sezeních nad týmž `dist/`, ale zasáhlo by to i vývojáře,
+    // kterému na 8123 běží něco nesouvisejícího.
+    //
+    // S `false` Playwright na obsazeném portu spadne s hláškou o portu.
+    // Chyba, které se dá věřit, je lepší než zelená, které se věřit nedá.
+    reuseExistingServer: false,
     stdout: 'ignore',
     stderr: 'pipe',
   },
