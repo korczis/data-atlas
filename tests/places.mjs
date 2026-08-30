@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
+import { remoteResources } from './helpers.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
@@ -45,6 +46,23 @@ check('stránka existuje pro každou zemi v katalogu',
       slugs.every(s => fs.existsSync(path.join(DIST, s, 'index.html'))),
       `${slugs.length} zemí`);
 check('rozcestník zeme/ existuje', fs.existsSync(path.join(DIST, 'zeme', 'index.html')));
+// Ani stránky zemí nesmí sahat po síti. Tvrzení o tom existovalo, ale jen
+// pro index.html a artifact.html — CDN skript v src/country.html by tedy
+// neodhalilo nic, přestože je to týž zákaz a týž důvod: stránka musí jet
+// z disku, offline a pod přísným CSP. Relativní `../assets/atlas.js` je
+// v pořádku, remoteResources() hledá jen absolutní http(s).
+{
+  const offenders = [];
+  for (const s of [...slugs, 'zeme']) {
+    const f = path.join(DIST, s, 'index.html');
+    if (!fs.existsSync(f)) continue;
+    const found = remoteResources(fs.readFileSync(f, 'utf8'));
+    if (found.length) offenders.push(`${s}: ${found[0]}`);
+  }
+  check('žádná stránka země nenačítá nic zvenčí', offenders.length === 0,
+        offenders.length ? offenders.slice(0, 3).join(' · ') : `${slugs.length + 1} stránek`);
+}
+
 check('sdílený runtime existuje',
       fs.existsSync(path.join(DIST, 'assets', 'atlas.css'))
       && fs.existsSync(path.join(DIST, 'assets', 'atlas.js')));
