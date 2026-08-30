@@ -293,6 +293,8 @@ wh-test:
     python3 warehouse/tests/test_values.py
     python3 warehouse/tests/test_coordinates.py
     python3 warehouse/tests/test_text_era.py
+    python3 warehouse/tests/test_html_era.py
+    python3 warehouse/tests/test_json_era.py
     python3 warehouse/tests/test_manifest.py
 
 # Schema and constraint tests against the live database
