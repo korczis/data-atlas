@@ -52,6 +52,18 @@ check('sdílený runtime existuje',
 // Sitemapa musí nést všechny stránky, jinak celý důvod, proč vznikly
 // (viditelnost pro vyhledávače), padá.
 const sitemap = fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8');
+// Neúplný build se pozná dřív, než začnou padat jednotlivá tvrzení.
+// build_page.py sitemapu zakládá s jedinou adresou a plnou píše až
+// build_places.py, takže po částečném buildu tady spadnou dvě assertions
+// s hláškou, ze které příčina není poznat. Radši jednou a jasně.
+{
+  const n = (sitemap.match(/<loc>/g) || []).length;
+  if (n < 2) {
+    console.error(`sitemapa má ${n} adresu — build je neúplný. `
+      + 'Spusť `just build`: build_page.py ji zakládá, build_places.py přepisuje.');
+    process.exit(1);
+  }
+}
 check('sitemapa nese každou stránku země',
       slugs.every(s => sitemap.includes(`/${s}/</loc>`)),
       `${(sitemap.match(/<loc>/g) || []).length} adres`);

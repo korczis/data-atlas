@@ -56,7 +56,19 @@ def find_chrome() -> str | None:
 def run_axe(width: int, theme: str) -> dict:
     html = PAGE.read_text(encoding="utf-8")
     # The theme is stamped on :root the same way the artifact viewer does it.
-    html = html.replace('<html lang="cs">', f'<html lang="cs" data-theme="{theme}">')
+    #
+    # Matched by pattern rather than by the exact string, and the substitution
+    # is asserted. A literal replace of '<html lang="cs">' becomes a no-op the
+    # moment another attribute is added to <html> - the four scenarios would
+    # quietly collapse into two light ones while still printing
+    # "✓ mobile / dark". The guard is the point here; the pattern is only the
+    # means, because a looser pattern can just as easily match nothing.
+    html, n = re.subn(r"<html\b[^>]*>", f'<html lang="cs" data-theme="{theme}">',
+                      html, count=1)
+    if n != 1:
+        raise SystemExit(
+            "could not stamp data-theme on <html> - the audit would run in the "
+            "default theme while reporting it ran in both")
     probe = f"""
 <script>{AXE.read_text(encoding="utf-8")}</script>
 <script>

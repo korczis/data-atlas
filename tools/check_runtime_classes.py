@@ -100,6 +100,16 @@ def main() -> int:
         raise SystemExit("missing dist/index.html - run `just build` first")
     page = PAGE.read_text(encoding="utf-8")
 
+    # Hledá se jen ve <style>, ne v celém souboru. Minifikovaný JS obsahuje
+    # řetězce jako `.block` a uspokojil by tvrzení „třída má pravidlo", aniž
+    # by ji cokoli stylovalo. A když blok stylů chybí, prázdný výsledek by
+    # znamenal „nic není ostylované" a hledání v prázdnu by prošlo stejně
+    # dobře jako hledání v celém souboru — proto se rovnou padá.
+    css = "\n".join(re.findall(r"<style\b[^>]*>(.*?)</style>", page, re.S))
+    if not css.strip():
+        raise SystemExit("no <style> block in dist/index.html - there is nothing "
+                         "to check the runtime classes against")
+
     problems: list[str] = []
 
     found = injectable(page)
@@ -117,10 +127,10 @@ def main() -> int:
             + " - drop them after the Flowbite upgrade so the safelist stops holding a dead rule")
 
     for cls, why in sorted(UNSTYLED_BY_DESIGN.items()):
-        if styled(page, cls):
+        if styled(css, cls):
             problems.append(f"`{cls}` has a CSS rule but should not - {why}")
 
-    missing = sorted(c for c in NEEDED if not styled(page, c))
+    missing = sorted(c for c in NEEDED if not styled(css, c))
     if missing:
         problems.append(
             "the CSS is missing rules for classes Flowbite adds at runtime: "
