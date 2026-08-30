@@ -391,9 +391,9 @@
     "kind": "official",
     "access": "open",
     "data": "none",
-    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovinská agentura zveřejňuje licence, tarify a roční zprávu o stavu energetiky jako otevřená data",
+    "desc": "Národní energetický regulátor. Schvaluje síťové tarify, vede **registr licencí pro obchod s elektřinou a plynem** a řeší spory se zákazníky. Slovinská agentura vydává rozhodnutí a roční zprávu o stavu energetiky přes portál eMonitor, ale jako dokumenty — strojově čitelná data nenabízí",
     "country": "SI",
-    "verified": "2026-08-28"
+    "verified": "2026-08-30"
   },
   {
     "id": "si-akos",

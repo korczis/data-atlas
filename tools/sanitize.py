@@ -117,6 +117,13 @@ RELEVANT = re.compile(r"""
     | postgres | postgis | duckdb | pgadmin
     | sigmajs | observablehq | sreality | flatzone | cbre
     | wikipedia | utoronto
+    # Vlastní veřejné projekty autora katalogu. Stojí tu schválně: bez nich by
+    # allowlist tyhle domény zahodil jako šum, přestože jsou to geo/OSINT
+    # projekty a v katalogu mají kurátorovaný záznam. Ověřeno 2026-08-30, že
+    # všechny tři odpovídají veřejně HTTP 200 — nejde tedy o hostnames vlastní
+    # sítě, na které míří zákaz o šedesát řádků výš. Ten platí pro denylist:
+    # tam konkrétní jméno prozrazuje topologii a patří do config/private-hosts.txt.
+    # Tady konkrétní jméno jen říká „tohle propusť", což nic neprozrazuje.
     | progresus | vomaste | situacni-radar
 """, re.I | re.X)
 

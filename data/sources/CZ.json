@@ -353,11 +353,11 @@
     "topic": "transport",
     "name": "Ministerstvo dopravy",
     "url": "https://md.gov.cz/",
-    "desc": "Web Ministerstva dopravy — sekce Statistiky, Dokumenty a Otevřená data (datové sady rezortu)",
+    "desc": "Web Ministerstva dopravy — sekce Statistiky a Otevřená data. Faktury a smlouvy resortu jsou ke stažení po jednotlivých organizacích a letech v CSV i XLSX; souhrnný výdej ani API nenabízí",
     "kind": "official",
     "access": "open",
-    "data": "none",
-    "verified": "2026-08-28"
+    "data": "download",
+    "verified": "2026-08-30"
   },
   {
     "id": "cz-scitani-dopravy-rsd",
@@ -677,11 +677,11 @@
     "topic": "osint",
     "name": "Progresus OSINT",
     "url": "https://osint.cloud.progresus.cz/",
-    "desc": "Tvoje platforma pro due diligence z veřejných zdrojů — zdroje, laboratoř, architektura",
+    "desc": "Platforma pro due diligence z veřejných zdrojů — přehled zdrojů, laboratoř a popis architektury. Provozuje ji autor tohoto katalogu, část je placená",
     "kind": "commercial",
     "access": "mixed",
     "data": "none",
-    "verified": "2026-08-28"
+    "verified": "2026-08-30"
   },
   {
     "id": "cz-vomaste-cz",
@@ -689,11 +689,11 @@
     "topic": "osint",
     "name": "vomaste.cz",
     "url": "https://vomaste.cz/",
-    "desc": "Tvůj projekt — Registr tvrzení / zdrojů / kauz, dossiery, Globální mapa",
+    "desc": "Registr tvrzení, zdrojů a kauz s dossiery a globální mapou. Nezisková stránka autora tohoto katalogu",
     "kind": "ngo",
     "access": "open",
     "data": "none",
-    "verified": "2026-08-28"
+    "verified": "2026-08-30"
   },
   {
     "id": "cz-situacni-radar-hzsradar",
@@ -701,11 +701,11 @@
     "topic": "security",
     "name": "Situační radar (HzsRadar)",
     "url": "https://situacni-radar.fly.dev/",
-    "desc": "Vlastní agregace hlášení IZS v Phoenixu — sbírá krajské výpisy zásahů do jednoho proudu s časovou osou a mapou; ukázka toho, co jde z veřejných krajských zdrojů složit",
+    "desc": "Agregace hlášení IZS v Phoenixu — sbírá krajské výpisy zásahů do jednoho proudu s časovou osou a mapou; ukázka toho, co jde z veřejných krajských zdrojů složit. Provozuje autor katalogu",
     "kind": "ngo",
     "access": "open",
     "data": "none",
-    "verified": "2026-08-28"
+    "verified": "2026-08-30"
   },
   {
     "id": "cz-investigace-cz",

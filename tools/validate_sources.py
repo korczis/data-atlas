@@ -24,7 +24,10 @@ ROOT = Path(__file__).resolve().parent.parent
 # the source publishes open data therefore contradicts its own classification —
 # one of the two is wrong, and only a human can say which. A warning, not an
 # error: this reads prose, and prose is not evidence of what a site really
-# serves. It is deliberately narrow — "otevřená data" only, not "datové sady",
+# serves. It also matches the phrase regardless of polarity, so a description
+# saying the source publishes *no* open data trips it too — write "strojově
+# čitelné datové sady nezveřejňuje" rather than teaching the rule to parse
+# negation, which it would do badly. It is deliberately narrow — "otevřená data" only, not "datové sady",
 # which also matches a file format that legitimately carries no data itself.
 CLAIMS_OPEN_DATA = re.compile(r"otevřen\w*\s+data", re.I)
 

@@ -510,10 +510,10 @@
     "url": "https://www.impots.gouv.fr/",
     "kind": "official",
     "access": "open",
-    "data": "none",
-    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých či dlužících subjektů. Francouzská daňová správa nabízí ověření DIČ a přístup k daňovým údajům o nemovitostech; hodnoty transakcí publikuje jako otevřená data DVF",
+    "data": "bulk",
+    "desc": "Národní daňová správa. Pro due diligence je podstatné, že vede veřejné ověření plátce DPH a zveřejňuje seznamy nespolehlivých subjektů. Stránka Ouverture des données publiques de la DGFiP vede na datové sady na data.gouv.fr — účetní bilance obcí a krajů, katastrální plán, daňové statistiky — celé sady ke stažení, po stovkách MB",
     "country": "FR",
-    "verified": "2026-08-28"
+    "verified": "2026-08-30"
   },
   {
     "id": "fr-cre",

@@ -67,7 +67,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Insolvence a exekuce | 24 | 23 | 24 | 2 |
 | Soudy a judikatura | 66 | 28 | 63 | 4 |
 | Průmyslové vlastnictví | 33 | 29 | 33 | 4 |
-| Regulace a licencované subjekty | 226 | 28 | 226 | 45 |
+| Regulace a licencované subjekty | 226 | 28 | 226 | 46 |
 | Nemovitosti a trh | 33 | 25 | 28 | 17 |
 | Sankce a compliance | 3 | 2 | 2 | 2 |
 | Kriminalita, IZS, bezpečnost | 41 | 31 | 37 | 11 |
@@ -97,9 +97,9 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 |---|--:|
 | `search` | 424 |
 | `api` | 277 |
-| `bulk` | 217 |
-| `none` | 164 |
-| `download` | 157 |
+| `bulk` | 218 |
+| `none` | 162 |
+| `download` | 158 |
 | `ogc` | 82 |
 | `sw` | 46 |
 
