@@ -370,5 +370,17 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Maltská FIAU je zároveň AML dozorem a **zveřejňuje uložené sankce včetně jmen firem a částek** — po zařazení Malty na šedý seznam FATF v letech 2021–2022 jich přibylo",
     "country": "MT",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "mt-pa-mapove-sluzby",
+    "country": "MT",
+    "topic": "terrain",
+    "name": "Planning Authority — mapové služby",
+    "url": "https://mapserver.pa.org.mt/hosting/rest/services",
+    "desc": "Adresář mapových služeb maltského Planning Authority. Složka Orthos nese ortofota z let 1968, 1978 a 2025, složka ElevationData vrstevnice a výšková data; vedle nich jsou topografické průzkumy a mračno bodů 3D. Služby jsou ArcGIS REST bez klíče a bez registrace, ale skriptu odpovídají 403 — v prohlížeči se čtou normálně. Prohlížečka nad nimi stojí na pamapserver.pa.org.mt. Metadatový katalog MSDI je vedle toho rozbitý: jeho GeoNetwork padá při startu na NullPointerException.",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "verified": "2026-08-30"
   }
 ]

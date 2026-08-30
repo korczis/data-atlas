@@ -384,5 +384,17 @@
     "access": "open",
     "data": "none",
     "verified": "2026-08-30"
+  },
+  {
+    "id": "cy-dls-topografie",
+    "country": "CY",
+    "topic": "terrain",
+    "name": "DLS — topografická mapa Kypru",
+    "url": "https://eservices.dls.moi.gov.cy/arcgis/rest/services/National/Topography_GR/MapServer",
+    "desc": "Kyperská topografická mapa jako služba pozemkového a zeměměřického úřadu: silniční síť, správní hranice, výškové údaje, hydrografie, vrcholy hor a body zájmu. ArcGIS REST bez klíče, umí dotazování i výdej dat, ale **WMS na ní není** — kdo čeká OGC službu, nedostane ji. Prohlížečkou je INSPIRE geoportál na eservices.dls.moi.gov.cy.",
+    "kind": "official",
+    "access": "open",
+    "data": "api",
+    "verified": "2026-08-30"
   }
 ]

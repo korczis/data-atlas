@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1364** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1312** doplněných rešerší.
+**1367** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1315** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -39,22 +39,22 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `IE` Irsko — 35
 - `LT` Litva — 35
 - `LU` Lucembursko — 35
-- `CY` Kypr — 32
+- `CY` Kypr — 33
+- `GR` Řecko — 33
+- `MT` Malta — 32
 - `RO` Rumunsko — 32
-- `GR` Řecko — 32
-- `MT` Malta — 31
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
 
 ## Témata
 
 
-**Geodata** — 292
+**Geodata** — 294
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
 - [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 42
 - [Adresy a územní členění](#adresy-a-územní-členění) — 30
-- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 24
+- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 26
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
 - [Doprava a infrastruktura](#doprava-a-infrastruktura) — 57
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
@@ -68,7 +68,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 90
 
-**Firmy a due diligence** — 493
+**Firmy a due diligence** — 494
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
@@ -77,7 +77,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
 - [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 33
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 226
-- [Nemovitosti a trh](#nemovitosti-a-trh) — 32
+- [Nemovitosti a trh](#nemovitosti-a-trh) — 33
 
 **Rizika a OSINT** — 226
 
@@ -244,6 +244,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `BE` | [DHMV II — Digitaal Hoogtemodel Vlaanderen](https://download.vlaanderen.be/product/939-digitaal-hoogtemodel-vlaanderen-ii) | `download.vlaanderen.be` | Flanderský lidarový výškopis — digitální model terénu i povrchu v rozlišení 1 m, volně ke stažení po mapových listech. Valonsko a Brusel mají vlastní modely, federální výškopis pro celou Belgii neexistuje | open | download | reference |
 | `BG` | [INSPIRE Bulharsko — výškopis a ortofoto](https://inspireportal.egov.bg/geonetwork/srv/eng/catalog.search) | `inspireportal.egov.bg` | Katalog bulharské infrastruktury prostorových dat. Pod tématem Elevation tu leží digitální model terénu, vrstevnice, výškové body i grid, pod Orthoimagery ortofoto; většina záznamů nese WMS 1.3.0 a WFS a je tu i stahovací služba pro ortofoto a DEM. Vydavateli jsou agentura AGKK a Vojenská geografická služba. | open | ogc | reference |
 | `HR` | [Digitalni ortofoto (DGU)](https://geoportal.dgu.hr/dof) | `geoportal.dgu.hr` | Chorvatská digitální ortofotomozaika — **celostátní letecké snímky ve více generacích s rozlišením 10 až 50 cm**, jako mapová služba i ke stažení. Podklad pro porovnání stavu území v čase | open | ogc | reference |
+| `CY` | [DLS — topografická mapa Kypru](https://eservices.dls.moi.gov.cy/arcgis/rest/services/National/Topography_GR/MapServer) | `eservices.dls.moi.gov.cy` | Kyperská topografická mapa jako služba pozemkového a zeměměřického úřadu: silniční síť, správní hranice, výškové údaje, hydrografie, vrcholy hor a body zájmu. ArcGIS REST bez klíče, umí dotazování i výdej dat, ale **WMS na ní není** — kdo čeká OGC službu, nedostane ji. Prohlížečkou je INSPIRE geoportál na eservices.dls.moi.gov.cy. | open | api | reference |
 | `CZ` | [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | open | ogc | reference |
 | `DK` | [Danmarks Højdemodel (DHM)](https://dataforsyningen.dk/data/930) | `dataforsyningen.dk` | Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy | registration | bulk | reference |
 | `EE` | [Maa-amet — výšková data (LiDAR)](https://geoportaal.maaamet.ee/eng/spatial-data/elevation-data-p308.html) | `geoportaal.maaamet.ee` | Výšková data z leteckého skenování pro celé Estonsko — surové mračno bodů v LAZ 1.4 po čtverečních kilometrech a odvozené modely terénu i povrchu v rozlišení 1, 5, 10 a 25 m jako GeoTIFF. Zdarma pod estonskou otevřenou licencí a bez registrace | open | download | reference |
@@ -256,6 +257,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `LV` | [Digitālais augstuma modelis (LĢIA)](https://www.lgia.gov.lv/lv/digitalais-augstuma-modelis) | `lgia.gov.lv` | Lotyšský digitální výškový model z leteckého laserového skenování — modely terénu i povrchu a bodová mračna pro celé Lotyšsko. Část produktů je otevřená, podrobnější varianty zpoplatněné | mixed | bulk | reference |
 | `LT` | [ORT10LT — ortofotografická mapa](https://data.gov.lt/datasets/2564/) | `data.gov.lt` | Národní ortofotomapa Litvy v měřítku 1:10 000 na portálu otevřených dat — čtyři kanály R G B NIR, velikost pixelu 0,25 m a deklarovaná polohová chyba do 0,5 m. Ke stažení po listech v TIFF a MrSID; podkladem jejího zpracování je model terénu z laserového skenování | open | download | reference |
 | `LU` | [LiDAR 2019 — Modèle numérique de terrain](https://data.public.lu/en/datasets/lidar-2019-modele-numerique-de-terrain-mnt/) | `data.public.lu` | Lucemburský lidarový model terénu z náletu 2019 v rozlišení 0,5 m, celé území ke stažení jako otevřená data. Ke stejnému náletu existuje i model povrchu a klasifikované mračno bodů | open | download | reference |
+| `MT` | [Planning Authority — mapové služby](https://mapserver.pa.org.mt/hosting/rest/services) | `mapserver.pa.org.mt` | Adresář mapových služeb maltského Planning Authority. Složka Orthos nese ortofota z let 1968, 1978 a 2025, složka ElevationData vrstevnice a výšková data; vedle nich jsou topografické průzkumy a mračno bodů 3D. Služby jsou ArcGIS REST bez klíče a bez registrace, ale skriptu odpovídají 403 — v prohlížeči se čtou normálně. Prohlížečka nad nimi stojí na pamapserver.pa.org.mt. Metadatový katalog MSDI je vedle toho rozbitý: jeho GeoNetwork padá při startu na NullPointerException. | open | api | reference |
 | `NL` | [AHN — Actueel Hoogtebestand Nederland](https://www.ahn.nl/) | `ahn.nl` | Výškopis Nizozemska z leteckého laserového skenování — **bodová mračna a modely terénu i povrchu v rozlišení 0,5 m pro celou zemi, zdarma**, s několika generacemi pro porovnání v čase. Jeden z nejhustších národních výškopisů na světě | open | bulk | reference |
 | `PL` | [Numeryczny model terenu (GUGiK)](https://www.geoportal.gov.pl/en/data/digital-elevation-model-dem/) | `geoportal.gov.pl` | Numerický model terénu pro celé Polsko ze státního geodetického fondu — od roku 2020 volně ke stažení, vedle něj model pokrytí terénu (NMPT) a ortofotomapa. Kromě dlaždic jde odebírat i službou WCS, takže se dá zpracovat bez ručního stahování | open | download | reference |
 | `PT` | [DGT — LiDAR a modely reliéfu](https://www.dgterritorio.gov.pt/levantamento-lidar-de-portugal-continental-0) | `dgterritorio.gov.pt` | Letecké laserové skenování pevninského Portugalska a z něj odvozené digitální modely terénu, vedle starších pobřežních modelů v rozlišení 1 a 2 m z roku 2011. Stahuje se z datového centra DGT; pro QGIS existuje oficiální zásuvný modul CDD Downloader | open | download | reference |
@@ -1257,6 +1259,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `FI` | [Asuntojen hinnat (Tilastokeskus)](https://stat.fi/fi/tilasto/ashi) | `stat.fi` | Finská statistika cen bytů — čtvrtletní ceny podle obcí, čtvrtí a stáří domu, s API do databáze PxWeb. Jednotlivé transakce vede pozemkový úřad a veřejné nejsou | open | api | reference |
 | `FR` | [DVF — Demandes de valeurs foncières](https://app.dvf.etalab.gouv.fr/) | `app.dvf.etalab.gouv.fr` | **Realizované ceny nemovitostních transakcí** ve Francii — každý prodej za posledních pět let s cenou, plochou, typem a parcelou, na mapě i ke stažení. Jedna z mála zemí EU, kde jsou skutečné kupní ceny veřejné a plošné, ne jen nabídkové | open | bulk | reference |
 | `DE` | [BORIS-D — Bodenrichtwerte](https://www.bodenrichtwerte-boris.de/boris-d/) | `bodenrichtwerte-boris.de` | Celoněmecká mapa úředních směrných hodnot pozemků (Bodenrichtwerte) sestavovaná znaleckými komisemi — hodnota za m² podle lokality a využití, srovnatelná napříč zeměmi. Jediný národní pohled na německé ceny pozemků; realizované ceny transakcí veřejné nejsou | open | ogc | reference |
+| `GR` | [Bank of Greece — indexy cen nemovitostí](https://www.bankofgreece.gr/en/statistics/real-estate-market/residential-and-commercial-property-price-indices-and-other-short-term-indices) | `bankofgreece.gr` | Řecké indexy cen bydlení i komerčních nemovitostí, které centrální banka počítá z ocenění hlášených všemi úvěrovými institucemi. Historická řada je ke stažení jako XLS, vedle ní stojí dílčí indexy podle stáří bytu a podle geografické oblasti. Server odmítá automatické klienty s 403; v prohlížeči se otevře normálně. | open | download | reference |
 | `HU` | [E-építés](https://e-epites.hu/) | `e-epites.hu` | Maďarský portál stavebního řízení — evidence stavebních povolení, územních plánů obcí a stavební dokumentace. U maďarské nemovitosti odpoví, co se na pozemku smí. Server má vadný řetěz certifikátů, obsah je dostupný | open | search | reference |
 | `IE` | [Residential Property Price Register](https://www.propertypriceregister.ie/) | `propertypriceregister.ie` | **Realizované ceny všech prodejů rezidenčních nemovitostí v Irsku od roku 2010** — adresa, datum, cena, nová nebo starší stavba, ke stažení jako CSV. Vedle Francie je Irsko jediná země EU s takto plošně veřejnými kupními cenami | open | bulk | reference |
 | `IT` | [OMI — Osservatorio del Mercato Immobiliare](https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi) | `agenziaentrate.gov.it` | Italská observatoř trhu s nemovitostmi při daňové správě. Publikuje **rozpětí cen za metr čtvereční pro každou zónu každé obce**, pololetně a ke stažení — základ pro odhady i pro daňové kontroly podhodnocených kupních cen | open | bulk | reference |

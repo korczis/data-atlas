@@ -382,5 +382,17 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Řecká jednotka smí sama nařídit zmrazení majetku. Server má vadný certifikát, obsah se načte",
     "country": "GR",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "gr-bog-deiktes-akiniton",
+    "country": "GR",
+    "topic": "property",
+    "name": "Bank of Greece — indexy cen nemovitostí",
+    "url": "https://www.bankofgreece.gr/en/statistics/real-estate-market/residential-and-commercial-property-price-indices-and-other-short-term-indices",
+    "desc": "Řecké indexy cen bydlení i komerčních nemovitostí, které centrální banka počítá z ocenění hlášených všemi úvěrovými institucemi. Historická řada je ke stažení jako XLS, vedle ní stojí dílčí indexy podle stáří bytu a podle geografické oblasti. Server odmítá automatické klienty s 403; v prohlížeči se otevře normálně.",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "verified": "2026-08-30"
   }
 ]
