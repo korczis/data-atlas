@@ -20,3 +20,14 @@ __pycache__/
 # Výstupy Playwrightu (stopy, snímky selhání). Generované, do repozitáře nepatří.
 test-results/
 playwright-report/
+
+# Stažené raw artefakty warehouse subsystému. 2,8 GB, content-addressed podle
+# SHA-256 a reprodukovatelné z warehouse/manifests/ — do repozitáře nepatří.
+warehouse/raw/
+
+# Lokální konfigurace warehouse. Vzor je warehouse/.env.example, který tajemství
+# neobsahuje a committuje se.
+warehouse/.env
+
+# Python venv, pokud si ho někdo vytvoří vedle balíčku.
+warehouse/.venv/

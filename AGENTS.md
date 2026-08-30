@@ -185,6 +185,31 @@ than a matter of care:
 Never weaken the sanitizer, never widen what leaves `.cache/`, and never commit
 anything derived from a browser profile other than the two files listed above.
 
+## The warehouse subsystem
+
+`warehouse/` is a **second subsystem**: a PostgreSQL data platform whose first
+corpus is the CIA World Factbook. It is not in this build's path and must not
+become so.
+
+- It has its own rules: [`warehouse/AGENTS.md`](warehouse/AGENTS.md).
+- It has its own gate, `just wh-check`, which is **deliberately not** part of
+  `just check` — it needs a database, and a clean-clone gate must not.
+- Its offline half, `just wh-test`, **is** in `just check`. Those tests need no
+  database, no network and no downloaded corpus, so the clean-clone rule does
+  not exclude them, and leaving them out meant a one-token change could silence
+  an entire generation of the HTML parser with every gate still green.
+- `just check` must keep passing with no database, no downloaded corpus and no
+  network. Nothing in `warehouse/` may change that.
+- Its recipes are the `wh-*` group; `tools/check_gate.py` does not scan
+  `warehouse/`, so a script there is wired up by its recipe rather than by that
+  checker.
+
+Two meanings of "source of truth" now coexist, and conflating them makes both
+incoherent: `data/sources/*.json` remains authoritative for **which sources
+exist**; the database is authoritative for **ingested observations and their
+provenance**. They are joined by one plain text pointer and neither is generated
+from the other. See [`docs/database/README.md`](docs/database/README.md).
+
 ## Layout
 
 | Path | What is in it |

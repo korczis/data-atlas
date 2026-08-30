@@ -348,6 +348,25 @@ aby ji nešlo zveřejnit omylem:
 Před každým zveřejněním stojí za to projet `python3 tools/sanitize.py` a
 podívat se, co vyhodilo.
 
+## Historická a analytická databáze
+
+Vedle statického katalogu žije v [`warehouse/`](warehouse/) druhý, oddělený
+podsystém: datová platforma nad PostgreSQL. Katalog odpovídá na otázku **jaké
+zdroje existují**; tahle databáze na otázku **co ty zdroje skutečně říkaly, kdy
+to řekly a odkud to víme**.
+
+Prvním načteným korpusem je CIA World Factbook 1990–2025 — 38 artefaktů,
+2,8 GB, ověřených podle SHA-256. Architektura ale není postavená kolem něj:
+kanonické schéma je zdrojově neutrální a druhý dataset potřebuje manifest,
+parser a mapování polí, nic víc.
+
+Se statickým buildem se to nepotkává. `just check` na databázi nesahá, nic
+odsud nepotřebuje síť ani stažený korpus, a podsystém má vlastní recepty
+(skupina `wh-` v justfile) i vlastní bránu (`just wh-check`).
+
+Podrobnosti: [`docs/database/README.md`](docs/database/README.md).
+Pravidla pro práci uvnitř: [`warehouse/AGENTS.md`](warehouse/AGENTS.md).
+
 ## Co katalog není
 
 Je to soupis **zdrojů a služeb**, ne databáze osob. Zdroj, který je za
