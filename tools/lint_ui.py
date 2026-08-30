@@ -8,11 +8,39 @@ the enforcing half - a rule in a document stops nobody on its own.
 Every rule is here because breaking it breaks something real. Each one says
 what, so it can be judged whether it still makes sense.
 """
-import re, sys
+import re, subprocess, sys
 from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def tracked_files() -> set[str]:
+    """Paths git actually carries, for the repo-link rule below.
+
+    Not `Path.exists()`. A file can sit on the author's disk and be absent from
+    every clone, and then a link the UI shows to a reader is a 404 while the
+    gate stays green - the same shape of hole as the three closed in
+    4a26166, only pointed outward at readers instead of inward at us.
+
+    A missing git is not a reason to skip the rule quietly. Nothing in this
+    repository builds outside a checkout, so an unreadable index means the
+    environment is wrong, and saying so beats measuring nothing.
+    """
+    try:
+        out = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"],
+                             capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise SystemExit(f"lint_ui: cannot read the git index ({exc}) - the "
+                         "ui/repo-link rule needs it and will not run blind")
+    names = {n for n in out.split("\0") if n}
+    if not names:
+        raise SystemExit("lint_ui: git reports an empty index - refusing to "
+                         "check repository links against nothing")
+    return names
+
+
+TRACKED = tracked_files()
 
 # The templates the rules apply to. The country page is a second template with
 # the same risks - Flowbite dropdowns, x-for over a table, dark mode - so it
@@ -154,7 +182,15 @@ class MinWidth(HTMLParser):
 
 def check(html: str, extra_script: str = "") -> None:
     # Body without <script> - markup rules have no business reading the JS.
-    markup = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
+    #
+    # Blanked, not deleted. Deleting the blocks pulled every later line up, so
+    # the line numbers in the findings were wrong by however much JS sat above
+    # them - a repo-link finding on line 696 was reported as 686, and the drift
+    # grew further down the file. A rule that points at the wrong line is the
+    # false alarm this file warns about elsewhere: it teaches people to stop
+    # reading the output. Newlines in, characters out.
+    markup = re.sub(r"<script\b.*?</script>",
+                    lambda m: "\n" * m.group(0).count("\n"), html, flags=re.S)
     script = "\n".join(re.findall(r"<script\b.*?>(.*?)</script>", html, flags=re.S))
     # The country page's component lives outside the template, but for the JS
     # rules it is the same code, because the build injects it into that page.
@@ -222,12 +258,17 @@ def check(html: str, extra_script: str = "") -> None:
     # nobody notices - the Markdown checker cannot see into HTML. That just
     # happened: "Schéma, číselníky a pravidla klasifikace" pointed at a plan the
     # schema had meanwhile moved out of.
+    #
+    # The target has to be *tracked*, not merely present. `blob/main/<path>` is
+    # resolved by GitHub against the pushed branch, so an untracked file makes
+    # the link a 404 for every reader while it opens fine for whoever wrote it.
     for m in re.finditer(r"blob/[^/]+/([A-Za-z0-9._/-]+\.(?:md|csv|json))", markup):
-        target = ROOT / m.group(1)
-        if not target.exists():
+        target = m.group(1)
+        if target not in TRACKED:
+            why = ("is untracked - commit it, or the link 404s for everyone but you"
+                   if (ROOT / target).exists() else "is not in the repository")
             fail("ui/repo-link",
-                 f"line {line_of(markup, m.start())}: link points at {m.group(1)}, "
-                 "which is not in the repository")
+                 f"line {line_of(markup, m.start())}: link points at {target}, which {why}")
 
     # ── The radius scale is closed ────────────────────────────────────────────
     # Tailwind offers six steps, the project uses four: `rounded-sm` for the tiny
