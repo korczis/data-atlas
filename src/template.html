@@ -1139,6 +1139,7 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('atlas', () => ({
     view: 'catalog', q: '', topic: '', country: '', source: '', cq: '',
     mcell: null,          // buňka matice pod kurzorem
+    mgeom: null,          // rozměry poslední vykreslené matice (čte test)
     toast: '', _syncing: false,
     // 'system' nerazí na :root nic a nechá rozhodnout media query; ostatní
     // dvě hodnoty razí data-theme. Skutečná hodnota se čte z DOM, aby stav
@@ -1465,6 +1466,9 @@ document.addEventListener('alpine:init', () => {
       // se proto popisky nekreslí vůbec a gutter připadne buňkám: matice je
       // pak tvar, a identitu řádku řekne ťuknutí. Nečitelný popisek není
       // informace navíc, jen šum přes data.
+      // Sloupec součtu vpravo. Bez něj se z matice nedá přečíst, kolik toho
+      // země má celkem — čtenář by musel sečíst čtyřiatřicet buněk okem.
+      const SUMW = 34, SUMGAP = 6;
       const fits = (gutter) => Math.min(18, Math.max(5, Math.min(28,
         Math.floor((cssW0() - gutter - (this.taxonomy.length - 1) * GAP)
                    / this.matrixCols.length))));
@@ -1479,10 +1483,45 @@ document.addEventListener('alpine:init', () => {
         // Strop buňky drží matici v rozumné výšce, ale musí být dost velký,
         // aby se do ní vešlo dvojciferné číslo — jinak zůstane vpravo pruh
         // prázdna a čísla se tísní.
+        // Součet se kreslí jen tam, kde se do řádku vejde číslo — pod tím
+        // se dvojciferná čísla přes sedmipixelové řádky slijí do šmouhy.
+        // A když se nekreslí, nesmí si ani brát místo: prázdný pruh vpravo
+        // by ubral šířku všem sloupcům bez protihodnoty. Rozhoduje se proto
+        // z nabídky bez něj, teprve pak se šířka přepočítá.
+        const trial = Math.min(18, Math.max(5, Math.min(28,
+          Math.floor((cssW - LABEL - (groups - 1) * GAP) / cols.length))));
+        const showSum = trial >= 12;
         const cw = Math.max(5, Math.min(28,
-          Math.floor((cssW - LABEL - (groups - 1) * GAP) / cols.length)));
+          Math.floor((cssW - LABEL - (showSum ? SUMW + SUMGAP : 0)
+                      - (groups - 1) * GAP) / cols.length)));
         const ch = Math.min(cw, 18);
-        const cssH = BAND + 4 + rows.length * ch;
+
+        // Svislé popisky sloupců. Bez nich matice ukazuje 34 sloupců, které
+        // nejsou nijak pojmenované — barevný pruh nahoře říká jen rodinu,
+        // takže „Geodata" nerozliší `geoportal` od `terrain`. Legenda pod
+        // maticí mapuje barvy na rodiny, ne sloupce na témata, a tooltip
+        // vyžaduje, aby čtenář věděl, že má kam najet. Mřížka, jejíž jedna
+        // osa není popsaná, není graf.
+        //
+        // Kreslí se jen tam, kde je na ně místo: pod 12 px na sloupec by se
+        // řádky textu slily. Je to týž práh jako u popisků řádků výš — když
+        // se popisek nevejde čitelně, je lepší ho vynechat a nechat mluvit
+        // tvar, než přes data položit šum.
+        const colLabels = cw >= 12;
+        const HEADFONT = '10px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif';
+        // Strop je pojistka proti popisku, který někdo v číselníku natáhne
+        // do nesmyslné délky — dnešní nejdelší („Životní prostředí, geologie,
+        // rizika") se pod něj vejde celý. Deset useknutých popisků bylo horší
+        // než vyšší hlavička: „Gazetteery a geokódová…" neodpoví na otázku,
+        // kvůli které tu popisky jsou.
+        const HEADMAX = 180;
+        let HEAD = 0;
+        if (colLabels) {
+          ctx.font = HEADFONT;
+          HEAD = Math.min(HEADMAX,
+            Math.ceil(Math.max(...cols.map(c => ctx.measureText(c.label).width))) + 8);
+        }
+        const cssH = HEAD + BAND + 4 + rows.length * ch;
         const dpr = window.devicePixelRatio || 1;
         el.width = Math.round(cssW * dpr);
         el.height = Math.round(cssH * dpr);
@@ -1501,12 +1540,51 @@ document.addEventListener('alpine:init', () => {
           if (col.group !== lastGroup) { x += GAP; lastGroup = col.group; }
           xs.push(x); x += cw;
         }
-        geom = { cw, ch, xs, top: BAND + 4, rows, cols, label: LABEL };
+        const sumX = showSum && xs.length ? xs[xs.length - 1] + cw + SUMGAP : -1;
+        geom = { cw, ch, xs, top: HEAD + BAND + 4, rows, cols, label: LABEL,
+                 sumX, sumW: SUMW, head: HEAD };
+        // Vystaveno ven kvůli testu. Popisky os a součet jsou nakreslené
+        // do canvasu, takže z DOM se jejich existence přečíst nedá —
+        // a bez měřitelné stopy by tahle oprava mohla tiše zmizet a
+        // nikdo by se to nedozvěděl až do dalšího screenshotu.
+        this.mgeom = geom;
 
         cols.forEach((col, j) => {
           ctx.fillStyle = 'hsl(' + this.GROUP_HUE[col.group] + ' 62% 48%)';
-          ctx.fillRect(xs[j], 0, cw - 1, BAND);
+          ctx.fillRect(xs[j], HEAD, cw - 1, BAND);
         });
+
+        if (colLabels) {
+          ctx.save();
+          ctx.font = HEADFONT;
+          ctx.fillStyle = dark ? '#9ca3af' : '#6b7280';
+          ctx.textBaseline = 'middle';
+          ctx.textAlign = 'start';
+          const room = HEAD - 8;
+          cols.forEach((col, j) => {
+            let t = col.label;
+            if (ctx.measureText(t).width > room) {
+              while (t.length > 1 && ctx.measureText(t + '…').width > room) t = t.slice(0, -1);
+              t += '…';
+            }
+            ctx.save();
+            // Otočení o -90° nechá text číst zdola nahoru a končit u pruhu,
+            // takže popisek sedí nad svým sloupcem bez ohledu na délku.
+            ctx.translate(xs[j] + (cw - 1) / 2, HEAD - 4);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText(t, 0, 0);
+            ctx.restore();
+          });
+          if (showSum) {
+            ctx.save();
+            ctx.fillStyle = dark ? '#d1d5db' : '#374151';
+            ctx.translate(sumX + SUMW / 2, HEAD - 4);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Celkem', 0, 0);
+            ctx.restore();
+          }
+          ctx.restore();
+        }
 
         // Číslo se kreslí, jen když se do buňky vejde. Pod tou hranicí by
         // z něj byla šmouha přes barvu, která nese totéž — sytost už počet
@@ -1567,6 +1645,19 @@ document.addEventListener('alpine:init', () => {
             ctx.fillText(String(n), xs[j] + (cw - 1) / 2, y + (ch - 1) / 2 + 0.5);
             ctx.textAlign = 'start';
           });
+
+          // Součet přes celý řádek. Čte se z týchž `matrixCounts` jako buňky,
+          // takže nemůže tvrdit něco jiného než to, co je nad ním vidět —
+          // číslo napsané zvlášť by se s maticí dřív nebo později rozešlo.
+          if (!showSum) return;
+          let total = 0;
+          for (const col of cols) total += counts.get(row.code + ' ' + col.id) || 0;
+          ctx.fillStyle = dark ? 'rgba(255,255,255,.08)' : 'rgba(17,24,39,.06)';
+          ctx.fillRect(sumX, y, SUMW, ch - 1);
+          ctx.fillStyle = dark ? '#e5e7eb' : '#374151';
+          ctx.textAlign = 'end';
+          ctx.fillText(String(total), sumX + SUMW - 4, y + (ch - 1) / 2 + 0.5);
+          ctx.textAlign = 'start';
         });
         ctx.globalAlpha = 1;
 
