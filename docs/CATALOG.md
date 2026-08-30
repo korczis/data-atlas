@@ -2,7 +2,7 @@
 
 # Katalog
 
-**1361** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1309** doplněných rešerší.
+**1364** položek v **34** tématech a **31** zemích a rozsazích — **52** doložených v datech prohlížeče, **1312** doplněných rešerší.
 
 Katalog má dvě nezávislé osy. **Téma** říká, o jaký druh zdroje jde (katastr, obchodní rejstřík, zakázky); **země** říká, kde platí. Filtr země je přesná shoda — celoevropské zdroje stojí pod `EU`, celosvětové pod `GLOBAL`, a needitují se sedmadvacetkrát.
 
@@ -25,13 +25,13 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `BE` Belgie — 44
 - `HU` Maďarsko — 43
 - `SK` Slovensko — 43
+- `BG` Bulharsko — 42
 - `NL` Nizozemsko — 42
 - `PT` Portugalsko — 42
 - `ES` Španělsko — 42
-- `BG` Bulharsko — 41
 - `DK` Dánsko — 41
 - `SI` Slovinsko — 40
-- `HR` Chorvatsko — 38
+- `HR` Chorvatsko — 39
 - `SE` Švédsko — 38
 - `EE` Estonsko — 37
 - `FI` Finsko — 37
@@ -39,9 +39,9 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - `IE` Irsko — 35
 - `LT` Litva — 35
 - `LU` Lucembursko — 35
+- `CY` Kypr — 32
 - `RO` Rumunsko — 32
 - `GR` Řecko — 32
-- `CY` Kypr — 31
 - `MT` Malta — 31
 - `US` Spojené státy — 13
 - `GB` Spojené království — 3
@@ -49,12 +49,12 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 ## Témata
 
 
-**Geodata** — 291
+**Geodata** — 292
 
 - [Geoportály a NSDI](#geoportály-a-nsdi) — 43
 - [Katastr a pozemkové knihy](#katastr-a-pozemkové-knihy) — 42
 - [Adresy a územní členění](#adresy-a-územní-členění) — 30
-- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 23
+- [Ortofoto, výškopis, topografie](#ortofoto-výškopis-topografie) — 24
 - [Životní prostředí, geologie, rizika](#životní-prostředí-geologie-rizika) — 64
 - [Doprava a infrastruktura](#doprava-a-infrastruktura) — 57
 - [Remote sensing / rastr](#remote-sensing--rastr) — 15
@@ -68,7 +68,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Veřejné zakázky](#veřejné-zakázky) — 40
 - [Rozpočty, dotace, výdaje](#rozpočty-dotace-výdaje) — 90
 
-**Firmy a due diligence** — 491
+**Firmy a due diligence** — 493
 
 - [Obchodní rejstříky](#obchodní-rejstříky) — 55
 - [Skuteční majitelé](#skuteční-majitelé) — 27
@@ -77,7 +77,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 - [Soudy a judikatura](#soudy-a-judikatura) — 66
 - [Průmyslové vlastnictví](#průmyslové-vlastnictví) — 33
 - [Regulace a licencované subjekty](#regulace-a-licencované-subjekty) — 226
-- [Nemovitosti a trh](#nemovitosti-a-trh) — 30
+- [Nemovitosti a trh](#nemovitosti-a-trh) — 32
 
 **Rizika a OSINT** — 226
 
@@ -242,6 +242,7 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 | `EU` | [EGMS — pohyby zemského povrchu](https://egms.land.copernicus.eu/) | `egms.land.copernicus.eu` | Milimetrová měření pohybu terénu z interferometrie Sentinel-1 pro celou Evropu — poklesy nad doly a čerpanými kolektory, sesuvy, sedání staveb, s časovou řadou pro každý bod. Ke stažení po dlaždicích; u nemovitostí a liniových staveb je to jediný plošně dostupný důkaz o stabilitě podloží | open | bulk | reference |
 | `AT` | [BEV — ALS digitální model terénu](https://www.bev.gv.at/Services/Produkte/Digitales-Gelaendehoehenmodell/ALS-Hoehenraster.html) | `bev.gv.at` | Výškový model celého Rakouska z leteckého laserového skenování — mřížka 1 m v GeoTIFF po dlaždicích 50×50 km, plošně a zdarma bez poplatku za km². Deklarovaná přesnost výšky kolem ±0,5 m, v horách horší; stahuje se z datového katalogu data.bev.gv.at. Server odmítá automatické klienty, v prohlížeči odpovídá | open | download | reference |
 | `BE` | [DHMV II — Digitaal Hoogtemodel Vlaanderen](https://download.vlaanderen.be/product/939-digitaal-hoogtemodel-vlaanderen-ii) | `download.vlaanderen.be` | Flanderský lidarový výškopis — digitální model terénu i povrchu v rozlišení 1 m, volně ke stažení po mapových listech. Valonsko a Brusel mají vlastní modely, federální výškopis pro celou Belgii neexistuje | open | download | reference |
+| `BG` | [INSPIRE Bulharsko — výškopis a ortofoto](https://inspireportal.egov.bg/geonetwork/srv/eng/catalog.search) | `inspireportal.egov.bg` | Katalog bulharské infrastruktury prostorových dat. Pod tématem Elevation tu leží digitální model terénu, vrstevnice, výškové body i grid, pod Orthoimagery ortofoto; většina záznamů nese WMS 1.3.0 a WFS a je tu i stahovací služba pro ortofoto a DEM. Vydavateli jsou agentura AGKK a Vojenská geografická služba. | open | ogc | reference |
 | `HR` | [Digitalni ortofoto (DGU)](https://geoportal.dgu.hr/dof) | `geoportal.dgu.hr` | Chorvatská digitální ortofotomozaika — **celostátní letecké snímky ve více generacích s rozlišením 10 až 50 cm**, jako mapová služba i ke stažení. Podklad pro porovnání stavu území v čase | open | ogc | reference |
 | `CZ` | [ČÚZK — Stahovací služby ATOM](https://atom.cuzk.gov.cz/) | `atom.cuzk.gov.cz` | ATOM feedy ČÚZK pro dávkové stahování po mapových listech — ortofoto, katastrální mapa, RÚIAN a INSPIRE témata bezúplatně pod CC BY 4.0, skriptovatelná alternativa k eShopu | open | ogc | reference |
 | `DK` | [Danmarks Højdemodel (DHM)](https://dataforsyningen.dk/data/930) | `dataforsyningen.dk` | Dánský výškopis z laserového skenování — **modely terénu a povrchu v rozlišení 0,4 m a bodová mračna pro celé Dánsko**, zdarma přes token Dataforsyningen. Podklad pro dánské záplavové a odtokové mapy | registration | bulk | reference |
@@ -1240,6 +1241,8 @@ je doložená v exportu prohlížeče; `reference` znamená doplněno rešerší
 |---|---|---|---|---|---|---|
 | `AT` | [Ediktsdatei — nucené dražby nemovitostí](https://edikte.justiz.gv.at/edikte/ex/exedi3.nsf/suchedi) | `edikte.justiz.gv.at` | Exekuční dražby nemovitostí v Rakousku — dražební vyhlášky s katastrálním označením, znaleckým odhadem, vyvolávací cenou a termínem. Jediný veřejný a bezplatný pohled na oceněné rakouské nemovitosti, když je pozemková kniha zpoplatněná | open | search | reference |
 | `BE` | [Statbel — index cen nemovitostí](https://statbel.fgov.be/en/themes/housing/house-price-index) | `statbel.fgov.be` | Belgický statistický úřad publikuje index cen bydlení a **mediánové ceny podle obcí** z daňových přiznání k převodu nemovitosti. Jednotlivé transakce veřejné nejsou, obecní mediány ano | open | bulk | reference |
+| `HR` | [DZS — Indeksi cijena stambenih nekretnina](https://podaci.dzs.hr/en/statistics/prices/house-price-indices/) | `podaci.dzs.hr` | Chorvatský index cen bydlení podle metodiky Eurostatu, čtvrtletně a odděleně pro Záhřeb, jadranské pobřeží a zbytek země. Řada sahá k roku 2002 a jde stáhnout jako XLSX nebo si ji vybrat v databázi PX-Web, takže se dá počítat, ne jen číst. | open | download | reference |
+| `CY` | [Central Bank of Cyprus — Residential Property Price Index](https://www.centralbank.cy/en/publications/residential-property-price-indices) | `centralbank.cy` | Kyperský index cen rezidenčních nemovitostí, který centrální banka počítá z odhadů nezávislých znalců sbíraných přes úvěrové instituce od roku 2006, zvlášť pro Nikósii, Limassol, Larnaku, Pafos a Famagustu. Vychází čtvrtletně, ale **výhradně jako PDF zprávy** — strojově čitelnou řadu tady nenajdeš. | open | none | reference |
 | `CZ` | [Nabídka majetku státu (ÚZSVM)](https://nabidkamajetku.gov.cz/) | `nabidkamajetku.gov.cz` | Katalog ÚZSVM s nabídkami státního majetku — prodeje, elektronické dražby a pronájmy nemovitostí, filtrovatelné podle kraje a obce | open | search | reference |
 | `CZ` | [Sreality](https://www.sreality.cz/) | `sreality.cz` | Největší český inzertní portál nemovitostí — nabídkové (ne realizované) ceny bytů, domů a pozemků s lokalizací; nedokumentované JSON API za webem se běžně používá k rešerši trhu | open | api | history |
 | `CZ` | [Flat Zone](https://www.flatzone.cz/) | `flatzone.cz` | Vyhledávač novostaveb a developerských projektů v ČR — odhad ceny a datová platforma; B2B větev běží na b2b.flatzone.cz (dataligence.cz tam dnes redirectuje) | paid | none | history |

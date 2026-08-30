@@ -372,5 +372,17 @@
     "desc": "Datové sady kyperského Státního archivu na národním portálu otevřených dat. Archiv drží fondy z britského koloniálního období 1878–1960 včetně archivů guvernérů a sekretariátu; vlastní web archivu pod mjpo.gov.cy dnes neodpovídá, tohle je dostupná cesta",
     "country": "CY",
     "verified": "2026-08-29"
+  },
+  {
+    "id": "cy-cbc-rppi",
+    "country": "CY",
+    "topic": "property",
+    "name": "Central Bank of Cyprus — Residential Property Price Index",
+    "url": "https://www.centralbank.cy/en/publications/residential-property-price-indices",
+    "desc": "Kyperský index cen rezidenčních nemovitostí, který centrální banka počítá z odhadů nezávislých znalců sbíraných přes úvěrové instituce od roku 2006, zvlášť pro Nikósii, Limassol, Larnaku, Pafos a Famagustu. Vychází čtvrtletně, ale **výhradně jako PDF zprávy** — strojově čitelnou řadu tady nenajdeš.",
+    "kind": "official",
+    "access": "open",
+    "data": "none",
+    "verified": "2026-08-30"
   }
 ]

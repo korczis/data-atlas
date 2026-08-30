@@ -12,9 +12,9 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `GLOBAL` Celosvětové | 16 |  | 1 | 2 | 5 | 7 |  |  |  |  | 2 |  |  |  |  |  |  | 5 |  | **130** |
 | `AT` Rakousko | 3 | 2 | 1 | 2 | 4 | 2 | 1 | 2 | 1 | 4 | 2 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 2 | **47** |
 | `BE` Belgie | 6 | 1 | 1 | 1 | 2 | 1 | 2 | 1 | 1 | 3 | 2 | 1 | 1 | 1 | 4 | 8 | 1 | 2 | 2 | **44** |
-| `BG` Bulharsko | 1 | 3 | 1 | 1 | 3 | 1 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 9 |  | 2 | 1 | **41** |
-| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 |  | 2 | 1 | **38** |
-| `CY` Kypr | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 |  | 1 | 2 | 9 |  | 1 | 1 | **31** |
+| `BG` Bulharsko | 2 | 3 | 1 | 1 | 3 | 1 | 1 | 2 | 2 | 3 | 1 | 1 | 1 | 1 | 4 | 9 |  | 2 | 1 | **42** |
+| `HR` Chorvatsko | 2 | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 2 | 2 | 1 | 1 | 1 | 2 | 7 | 1 | 2 | 1 | **39** |
+| `CY` Kypr | 1 | 1 | 1 | 1 | 2 | 1 | 1 | 1 | 1 | 3 | 1 | 1 |  | 1 | 2 | 9 | 1 | 1 | 1 | **32** |
 | `CZ` Česko | 7 | 5 | 2 | 12 | 10 | 3 | 1 | 3 | 3 | 6 | 4 | 1 | 1 | 2 | 4 | 10 | 8 | 7 | 3 | **101** |
 | `DK` Dánsko | 3 | 1 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 1 | 1 | 1 | 1 | 1 | 9 | 2 | 2 | 1 | **41** |
 | `EE` Estonsko | 2 | 1 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | 3 | 1 | 1 | 1 | 1 | 3 | 8 | 1 | 2 | 1 | **37** |
@@ -49,7 +49,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Geoportály a NSDI | 43 | 24 | 42 | 37 |
 | Katastr a pozemkové knihy | 42 | 27 | 42 | 26 |
 | Adresy a územní členění | 30 | 28 | 26 | 22 |
-| Ortofoto, výškopis, topografie | 23 | 23 | 22 | 12 |
+| Ortofoto, výškopis, topografie | 24 | 24 | 23 | 13 |
 | Životní prostředí, geologie, rizika | 64 | 29 | 61 | 35 |
 | Doprava a infrastruktura | 57 | 29 | 52 | 36 |
 | Remote sensing / rastr | 15 | 3 | 7 | 14 |
@@ -66,7 +66,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | Soudy a judikatura | 66 | 28 | 63 | 4 |
 | Průmyslové vlastnictví | 33 | 29 | 33 | 4 |
 | Regulace a licencované subjekty | 226 | 28 | 226 | 45 |
-| Nemovitosti a trh | 30 | 22 | 25 | 17 |
+| Nemovitosti a trh | 32 | 24 | 27 | 17 |
 | Sankce a compliance | 3 | 2 | 2 | 2 |
 | Kriminalita, IZS, bezpečnost | 41 | 31 | 37 | 11 |
 | Kyberbezpečnost a CERT | 32 | 25 | 30 | 10 |
@@ -85,7 +85,7 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 
 | Přístup | Zdrojů |
 |---|--:|
-| `open` | 1212 |
+| `open` | 1215 |
 | `mixed` | 63 |
 | `registration` | 39 |
 | `restricted` | 25 |
@@ -96,14 +96,14 @@ Sloupce sdružují příbuzná témata; úplné členění je v [`data/topics.js
 | `search` | 424 |
 | `api` | 275 |
 | `bulk` | 217 |
-| `none` | 163 |
-| `download` | 155 |
-| `ogc` | 81 |
+| `none` | 164 |
+| `download` | 156 |
+| `ogc` | 82 |
 | `sw` | 46 |
 
 | Vydavatel | Zdrojů |
 |---|--:|
-| `official` | 1106 |
+| `official` | 1109 |
 | `ngo` | 105 |
 | `intl` | 64 |
 | `commercial` | 46 |

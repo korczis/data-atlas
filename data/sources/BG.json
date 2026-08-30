@@ -490,5 +490,17 @@
     "desc": "Finanční zpravodajská jednotka (FIU) podle směrnic proti praní peněz. Přijímá **hlášení podezřelých obchodů** od bank, notářů a dalších povinných osob. Jednotlivá hlášení jsou ze zákona neveřejná — veřejné jsou typologie, výroční zprávy a seznam povinností, které z AML plynou pro firmy. Bulharská jednotka je součástí státní agentury národní bezpečnosti",
     "country": "BG",
     "verified": "2026-08-28"
+  },
+  {
+    "id": "bg-inspire-vyskopis",
+    "country": "BG",
+    "topic": "terrain",
+    "name": "INSPIRE Bulharsko — výškopis a ortofoto",
+    "url": "https://inspireportal.egov.bg/geonetwork/srv/eng/catalog.search",
+    "desc": "Katalog bulharské infrastruktury prostorových dat. Pod tématem Elevation tu leží digitální model terénu, vrstevnice, výškové body i grid, pod Orthoimagery ortofoto; většina záznamů nese WMS 1.3.0 a WFS a je tu i stahovací služba pro ortofoto a DEM. Vydavateli jsou agentura AGKK a Vojenská geografická služba.",
+    "kind": "official",
+    "access": "open",
+    "data": "ogc",
+    "verified": "2026-08-30"
   }
 ]

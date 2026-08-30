@@ -455,5 +455,17 @@
     "desc": "Chorvatské ochranné známky, patenty a průmyslové vzory — vyhledávání v národních rejstřících úřadu průmyslového vlastnictví a rozcestník na mezinárodní báze TMview a Designview. Majitel známky často odhalí propojení firem, které v soudním rejstříku vidět není",
     "country": "HR",
     "verified": "2026-08-29"
+  },
+  {
+    "id": "hr-dzs-cijene-nekretnina",
+    "country": "HR",
+    "topic": "property",
+    "name": "DZS — Indeksi cijena stambenih nekretnina",
+    "url": "https://podaci.dzs.hr/en/statistics/prices/house-price-indices/",
+    "desc": "Chorvatský index cen bydlení podle metodiky Eurostatu, čtvrtletně a odděleně pro Záhřeb, jadranské pobřeží a zbytek země. Řada sahá k roku 2002 a jde stáhnout jako XLSX nebo si ji vybrat v databázi PX-Web, takže se dá počítat, ne jen číst.",
+    "kind": "official",
+    "access": "open",
+    "data": "download",
+    "verified": "2026-08-30"
   }
 ]
