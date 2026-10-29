@@ -240,7 +240,7 @@ from the other. See [`docs/database/README.md`](docs/database/README.md).
 
 ## Flowbite reference
 
-Flowbite 4.0, open source (MIT), on Tailwind 3.4. The shell follows the
+Flowbite 2.5, open source (MIT), on Tailwind 3.4 (Flowbite 3+ needs Tailwind 4). The shell follows the
 Flowbite Pro admin dashboard (the owner's licence; Pro sources are never committed
 here). Copy open-source component markup from
 [`llms.txt`](https://raw.githubusercontent.com/themesberg/flowbite/refs/heads/main/llms.txt)

@@ -8,8 +8,13 @@
 module.exports = {
   // The last glob is the Flowbite components the bundle actually imports
   // (src/js/flowbite-entry.js), as Flowbite's install guide asks. Not all of
-  // `node_modules/flowbite/**`: Flowbite 4 carries its own Tailwind in
-  // `node_modules/flowbite/node_modules`, which would be scanned along with it.
+  // `node_modules/flowbite/**`: that would also scan the prebuilt `dist/`
+  // bundles and every component the bundle never imports.
+  //
+  // Flowbite stays on 2.x because this project builds with Tailwind 3: Flowbite
+  // 3+ builds its plugin base styles on CSS variables (--color-brand, ...) that
+  // only a Tailwind 4 @theme defines, so on Tailwind 3 form controls render
+  // unstyled.
   content: [
     './.cache/page.src.html', './src/country.html', './src/js/place.js',
     './node_modules/flowbite/lib/esm/components/{drawer,dropdown}/*.js',
@@ -28,7 +33,7 @@ module.exports = {
   // Seznam odpovídá `backdropClasses` a `_getPlacementClasses('left')`
   // v balíčku flowbite — při jeho aktualizaci ho zkontroluj.
   safelist: [
-    'fixed', 'inset-0', 'z-30', 'bg-dark-backdrop/70',
+    'fixed', 'inset-0', 'z-30', 'bg-gray-900/50', 'dark:bg-gray-900/80',
     'transform-none', '-translate-x-full', 'overflow-hidden',
   ],
 
@@ -52,10 +57,6 @@ module.exports = {
       // jeho třídová konvence (bg-primary-700, focus:ring-primary-300)
       // použít beze změny. Hodnoty odpovídají Tailwind blue.
       colors: {
-        // Flowbite 4's drawer backdrop is `bg-dark-backdrop/70`. Its theme
-        // defines the colour only for Tailwind 4 (`--color-dark-backdrop`, gray-950
-        // in the default theme), so on Tailwind 3 it is declared here.
-        'dark-backdrop': '#030712',
         primary: {
           50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
           400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',

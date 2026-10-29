@@ -28,7 +28,7 @@ jen v próze, je nedodělaná, pokud jde vynutit strojem.
 
 | Otázka | Odpověď | Vynucuje |
 |---|---|---|
-| Systém komponent | Flowbite 4.0 + Tailwind 3.4, utility-first přímo v markupu. Žádný paralelní designový systém. | — |
+| Systém komponent | Flowbite 2.5 + Tailwind 3.4 (Flowbite 3+ patří k Tailwindu 4), utility-first přímo v markupu. Žádný paralelní designový systém. | — |
 | Jak se Flowbite inicializuje | Direktivou `x-flowbite` po životním cyklu Alpine. Žádné `data-*`, žádné `initFlowbite()`. | `tools/lint_ui.py` → `flowbite/binding` |
 | Jak se uklízí | `cleanup()` direktivy volá `destroy()`; šuplíky se počítají odkazy. | `tests/e2e/index.spec.mjs` |
 | Typografická škála | Role, ne dekorace. Próza `max-w-prose`, pole 16 px na mobilu. | `tools/check_typography.py` |
@@ -117,8 +117,8 @@ a patří k tomu, co si stránka pamatuje v `localStorage`.
 ### Tailwind ořízne to, co Flowbite přidává za běhu
 
 Flowbite si část tříd nevkládá do markupu, ale **přidává je z JavaScriptu**:
-backdrop šuplíku vzniká za běhu s `bg-dark-backdrop/70 fixed inset-0 z-30`
-(Flowbite 2.x: `bg-gray-900/50 dark:bg-gray-900/80`), přepnutí polohy razí `transform-none` a `-translate-x-full`.
+backdrop šuplíku vzniká za běhu s `bg-gray-900/50 dark:bg-gray-900/80 fixed
+inset-0 z-30`, přepnutí polohy razí `transform-none` a `-translate-x-full`.
 Tailwind skenuje zdroj, tyhle třídy v něm nevidí a ořízne je.
 
 Výsledek je zákeřný, protože **v DOM všechno vypadá správně**: backdrop se
