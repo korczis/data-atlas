@@ -40,8 +40,8 @@ PAGE = ROOT / "dist" / "index.html"
 # against the bundle, so an upgrade that adds something here fails and asks for
 # a decision.
 BASELINE = {
-    # the drawer's backdropClasses
-    "bg-gray-900/50", "dark:bg-gray-900/80", "fixed", "inset-0", "z-30",
+    # the drawer's backdropClasses (Flowbite 4; 2.x used bg-gray-900/50 dark:bg-gray-900/80)
+    "bg-dark-backdrop/70", "fixed", "inset-0", "z-30",
     # classList.add/remove with a literal
     "transition-transform", "overflow-hidden", "hidden", "block",
     # _getPlacementClasses - every placement, including ones we do not use
@@ -52,7 +52,7 @@ BASELINE = {
 # The subset this page actually needs: the left drawer (the default placement)
 # and its backdrop. `hidden`/`block` belong to the dropdown.
 NEEDED = {
-    "bg-gray-900/50", "dark:bg-gray-900/80", "fixed", "inset-0", "z-30",
+    "bg-dark-backdrop/70", "fixed", "inset-0", "z-30",
     "transition-transform", "overflow-hidden", "hidden", "block",
     "top-0", "transform-none", "-translate-x-full",
 }

@@ -6,7 +6,14 @@
  *  stránka nepoužívá — stránkování, dropdowny filtrů, mřížku témat — a
  *  vypadaly by rozsypaně, aniž by cokoli spadlo. */
 module.exports = {
-  content: ['./.cache/page.src.html', './src/country.html', './src/js/place.js'],
+  // The last glob is the Flowbite components the bundle actually imports
+  // (src/js/flowbite-entry.js), as Flowbite's install guide asks. Not all of
+  // `node_modules/flowbite/**`: Flowbite 4 carries its own Tailwind in
+  // `node_modules/flowbite/node_modules`, which would be scanned along with it.
+  content: [
+    './.cache/page.src.html', './src/country.html', './src/js/place.js',
+    './node_modules/flowbite/lib/esm/components/{drawer,dropdown}/*.js',
+  ],
 
   // Flowbite si tyhle třídy **přidává za běhu**, takže v markupu nejsou
   // a Tailwind je ořízne. Bez nich se šuplík otevře bez ztmavení a ťuknutí
@@ -21,9 +28,16 @@ module.exports = {
   // Seznam odpovídá `backdropClasses` a `_getPlacementClasses('left')`
   // v balíčku flowbite — při jeho aktualizaci ho zkontroluj.
   safelist: [
-    'fixed', 'inset-0', 'z-30', 'bg-gray-900/50', 'dark:bg-gray-900/80',
+    'fixed', 'inset-0', 'z-30', 'bg-dark-backdrop/70',
     'transform-none', '-translate-x-full', 'overflow-hidden',
   ],
+
+  // Scanning the drawer source above also finds the physical `left-0` that
+  // Flowbite puts in the drawer's base placement. The panel is positioned with
+  // logical `start-0` (flowbite/rtl), and a `left-0` rule would fight it in RTL;
+  // tools/check_runtime_classes.py requires the rule to be absent
+  // (UNSTYLED_BY_DESIGN), and tools/lint_ui.py already forbids it in markup.
+  blocklist: ['left-0'],
 
   // Artefakt se vykresluje ve třech stavech motivu, ne dvou: explicitní volba
   // razí data-theme na :root, výchozí "system" nerazí nic a rozhoduje média.
@@ -38,6 +52,10 @@ module.exports = {
       // jeho třídová konvence (bg-primary-700, focus:ring-primary-300)
       // použít beze změny. Hodnoty odpovídají Tailwind blue.
       colors: {
+        // Flowbite 4's drawer backdrop is `bg-dark-backdrop/70`. Its theme
+        // defines the colour only for Tailwind 4 (`--color-dark-backdrop`, gray-950
+        // in the default theme), so on Tailwind 3 it is declared here.
+        'dark-backdrop': '#030712',
         primary: {
           50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
           400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
