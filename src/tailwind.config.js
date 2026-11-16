@@ -6,7 +6,19 @@
  *  stránka nepoužívá — stránkování, dropdowny filtrů, mřížku témat — a
  *  vypadaly by rozsypaně, aniž by cokoli spadlo. */
 module.exports = {
-  content: ['./.cache/page.src.html', './src/country.html', './src/js/place.js'],
+  // The last glob is the Flowbite components the bundle actually imports
+  // (src/js/flowbite-entry.js), as Flowbite's install guide asks. Not all of
+  // `node_modules/flowbite/**`: that would also scan the prebuilt `dist/`
+  // bundles and every component the bundle never imports.
+  //
+  // Flowbite stays on 2.x because this project builds with Tailwind 3: Flowbite
+  // 3+ builds its plugin base styles on CSS variables (--color-brand, ...) that
+  // only a Tailwind 4 @theme defines, so on Tailwind 3 form controls render
+  // unstyled.
+  content: [
+    './.cache/page.src.html', './src/country.html', './src/js/place.js',
+    './node_modules/flowbite/lib/esm/components/{drawer,dropdown}/*.js',
+  ],
 
   // Flowbite si tyhle třídy **přidává za běhu**, takže v markupu nejsou
   // a Tailwind je ořízne. Bez nich se šuplík otevře bez ztmavení a ťuknutí
@@ -24,6 +36,13 @@ module.exports = {
     'fixed', 'inset-0', 'z-30', 'bg-gray-900/50', 'dark:bg-gray-900/80',
     'transform-none', '-translate-x-full', 'overflow-hidden',
   ],
+
+  // Scanning the drawer source above also finds the physical `left-0` that
+  // Flowbite puts in the drawer's base placement. The panel is positioned with
+  // logical `start-0` (flowbite/rtl), and a `left-0` rule would fight it in RTL;
+  // tools/check_runtime_classes.py requires the rule to be absent
+  // (UNSTYLED_BY_DESIGN), and tools/lint_ui.py already forbids it in markup.
+  blocklist: ['left-0'],
 
   // Artefakt se vykresluje ve třech stavech motivu, ne dvou: explicitní volba
   // razí data-theme na :root, výchozí "system" nerazí nic a rozhoduje média.

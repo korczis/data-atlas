@@ -293,7 +293,7 @@ def check(html: str, extra_script: str = "") -> None:
                  + ", ".join(sorted(RADII_OK)))
 
     # ── Flowbite: RTL and logical properties ──────────────────────────────────
-    # Flowbite 2.x runs on logical properties because of RTL mode.
+    # Flowbite runs on logical properties because of RTL mode.
     directional = {
         r"\bml-\d": "ms-", r"\bmr-\d": "me-", r"\bpl-\d": "ps-", r"\bpr-\d": "pe-",
         r"\bleft-\d": "start-", r"\bright-\d": "end-",

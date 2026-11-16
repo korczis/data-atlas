@@ -28,7 +28,7 @@ jen v próze, je nedodělaná, pokud jde vynutit strojem.
 
 | Otázka | Odpověď | Vynucuje |
 |---|---|---|
-| Systém komponent | Flowbite 2.5 + Tailwind 3.4, utility-first přímo v markupu. Žádný paralelní designový systém. | — |
+| Systém komponent | Flowbite 2.5 + Tailwind 3.4 (Flowbite 3+ patří k Tailwindu 4), utility-first přímo v markupu. Žádný paralelní designový systém. | — |
 | Jak se Flowbite inicializuje | Direktivou `x-flowbite` po životním cyklu Alpine. Žádné `data-*`, žádné `initFlowbite()`. | `tools/lint_ui.py` → `flowbite/binding` |
 | Jak se uklízí | `cleanup()` direktivy volá `destroy()`; šuplíky se počítají odkazy. | `tests/e2e/index.spec.mjs` |
 | Typografická škála | Role, ne dekorace. Próza `max-w-prose`, pole 16 px na mobilu. | `tools/check_typography.py` |
@@ -48,7 +48,7 @@ jen v próze, je nedodělaná, pokud jde vynutit strojem.
 
 **Próza nemá vlastní vrstvu, a je to rozhodnutí, ne opomenutí.**
 `flowbite-typography` by verzí sedělo (1.0.5 je plugin pro Tailwind 3.x a na
-3.4.17 s Flowbite 2.5.2 nekoliduje), jenže nemá co obsluhovat. Stránky zemí
+3.4.17 nekoliduje), jenže nemá co obsluhovat. Stránky zemí
 nemají ani jeden odstavec delší než 120 znaků, v celé aplikaci není `blockquote`,
 `code` ani `h4`, a `ul` jsou navigační seznamy, ne odrážky v textu. Třináct
 vysvětlujících odstavců na hlavní stránce je součást aplikačního shellu —
@@ -173,7 +173,7 @@ a že ťuknutí do něj šuplík zavře. Ověřeno vrácením každé vady zvlá
 
 | Pravidlo | Proč |
 |---|---|
-| `flowbite/rtl` — logické vlastnosti: `ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`/`text-start`/`text-end` | Flowbite 2.x je postavené na RTL režimu; `ml-`/`left-` ho rozbíjí |
+| `flowbite/rtl` — logické vlastnosti: `ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`/`text-start`/`text-end` | Flowbite je postavené na RTL režimu; `ml-`/`left-` ho rozbíjí |
 | `flowbite/dark` — každá barva má `dark:` protějšek | Jinak vznikne černý text na černém pozadí; stránka jede v obou motivech |
 
 Tmavý režim je nastavený jako `darkMode: ['variant', …]` v `src/tailwind.config.js`,
